@@ -4,5 +4,9 @@
     <string name="app_name">Dulwich Outdoor Gallery</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_explore">ExploreActivity</string>
+    <string name="title_activity_route">RouteActivity</string>
+    <string name="title_activity_badges">BadgesActivity</string>
+    <string name="title_activity_about">AboutActivity</string>
 
 </resources>

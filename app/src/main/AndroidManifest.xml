@@ -16,6 +16,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ExploreActivity"
+            android:label="@string/title_activity_explore" >
+        </activity>
+        <activity
+            android:name=".RouteActivity"
+            android:label="@string/title_activity_route" >
+        </activity>
+        <activity
+            android:name=".BadgesActivity"
+            android:label="@string/title_activity_badges" >
+        </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about" >
+        </activity>
     </application>
 
 </manifest>
