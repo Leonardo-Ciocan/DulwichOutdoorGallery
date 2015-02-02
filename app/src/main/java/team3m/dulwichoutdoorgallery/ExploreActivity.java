@@ -22,7 +22,10 @@ public class ExploreActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explore);
+
         if (savedInstanceState == null) {
+            //This activity is empty , the fragment holds the actual UI
+            //This is useful because we can move around that fragment in a tablet layout
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
@@ -53,7 +56,7 @@ public class ExploreActivity extends ActionBarActivity {
     }
 
     /**
-     * A placeholder fragment containing a simple view.
+     * The actual UI , check fragment_explore.xml
      */
     public static class PlaceholderFragment extends Fragment {
 
@@ -64,7 +67,8 @@ public class ExploreActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_explore, container, false);
-            final SupportMapFragment mapFragment = (SupportMapFragment) getFragmentManager()
+            //gets the map control
+            final SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                     .findFragmentById(R.id.map);
             mapFragment.getMapAsync(new OnMapReadyCallback() {
                 @Override

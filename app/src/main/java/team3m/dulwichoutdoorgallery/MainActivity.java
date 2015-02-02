@@ -15,6 +15,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //copy , paste and modify the below code to handle a new button
         Button exploreButton = (Button)findViewById(R.id.btn_explore);
         exploreButton.setOnClickListener(new View.OnClickListener() {
             @Override

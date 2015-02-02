@@ -1,13 +1,27 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
 
     tools:context="team3m.dulwichoutdoorgallery.ExploreActivity$PlaceholderFragment">
 
+
+
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.google.android.gms.maps.MapFragment"/>
+        android:name="com.google.android.gms.maps.SupportMapFragment"/>
+    <!--
+        The following layout will be used as an action bar replacement
+        It's better this way since we might later want to put this fragment
+        in a tablet collumn and we couldn't with only 1 action bar
+        Also the Toolbar control is not supported on older versions
+    -->
+    <LinearLayout
+        android:background="#5f000000"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
 
-</RelativeLayout>
+        android:layout_height="@dimen/abc_action_bar_default_height_material">
+    </LinearLayout>
+</FrameLayout>
