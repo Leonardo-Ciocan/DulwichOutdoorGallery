@@ -3,6 +3,8 @@
 ####Contributing tips
 It would be best if you could make a new branch "add/my-feature" and then submit a pull request for someone else to merge.
 
+Note : the gmail is `dulwichoutdoorgallery@gmail.com` and the password is `androidstudio`
+
 ####Notes on assigned tasks
 ######Quiz
 A basic implementation of this would need to let the user scroll through 5 pictures at the top , the last 4 should be labeled A,B,C,D. There should be corresponding buttons at the bottom.
