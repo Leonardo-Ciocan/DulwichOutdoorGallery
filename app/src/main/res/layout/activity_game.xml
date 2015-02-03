@@ -1,4 +1,59 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:id="@+id/container"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    tools:context="team3m.dulwichoutdoorgallery.GameActivity" tools:ignore="MergeRootFrame" />
+    tools:context="team3m.dulwichoutdoorgallery.GameActivity" tools:ignore="MergeRootFrame" >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="156dp"
+        android:layout_gravity="bottom">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="A"
+            android:id="@+id/buttonA"
+            android:layout_gravity="bottom"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="B"
+            android:id="@+id/buttonB"
+            android:layout_gravity="bottom"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="C"
+            android:id="@+id/buttonC"
+            android:layout_gravity="bottom"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="D"
+            android:id="@+id/buttonD"
+            android:layout_gravity="bottom"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="170dp"
+        android:layout_height="242dp"
+        android:layout_gravity="right|center_vertical">
+        </FrameLayout>
+
+    <ImageView
+        android:layout_width="185dp"
+        android:layout_height="291dp"
+        android:id="@+id/imageView"
+        android:contentDescription=""
+        android:src="@drawable/stik_placeholder"
+        android:layout_gravity="left|center_vertical" />
+
+</FrameLayout>
