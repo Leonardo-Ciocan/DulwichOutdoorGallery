@@ -1,14 +1,17 @@
 package team3m.dulwichoutdoorgallery;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
 
 public class Art {
     String Name;
     String Description;
-    //location here
     String Author;
     Art RelatedArt;
     ArrayList<String> Tags = new ArrayList<>();
+    double Latitude;
+    double Longitude;
 
     public String getName() {
         return Name;
@@ -50,12 +53,15 @@ public class Art {
         Tags = tags;
     }
 
-    public Art(String name, String description, String author, Art relatedArt, ArrayList<String> tags) {
+    public Art(String name, String description, String author, Art relatedArt, ArrayList<String> tags, double latitude, double longitude) {
 
         Name = name;
         Description = description;
         Author = author;
         RelatedArt = relatedArt;
         Tags = tags;
+        Latitude = latitude;
+        Longitude = longitude;
+
     }
 }
