@@ -1,18 +1,26 @@
 package team3m.dulwichoutdoorgallery;
 
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
 
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class GameActivity extends ActionBarActivity {
+    private ImageButton[] imageButtonsArray = new ImageButton[4];
+    private Timer timer = new Timer();
+    private HorizontalScrollView hsv;
+    private int currentButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +31,49 @@ public class GameActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+        imageButtonsArray[0] = (ImageButton) findViewById(R.id.imageButton);
+        imageButtonsArray[1] = (ImageButton) findViewById(R.id.imageButton2);
+        imageButtonsArray[2] = (ImageButton) findViewById(R.id.imageButton3);
+        imageButtonsArray[3] = (ImageButton) findViewById(R.id.imageButton4);
+        hsv = (HorizontalScrollView) findViewById(R.id.horizontalScrollView);
+        hsv.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                onTimerTick();
+            }
+        }, 3000, 3000);
     }
 
+    public void onTimerTick() {
+        currentButton = ++currentButton % 4;
+        Log.i("debug", "tick");
+        hsv.smoothScrollTo(imageButtonsArray[currentButton].getLeft(), 0);
+
+        Log.i(Integer.toString(currentButton), Integer.toString(imageButtonsArray[currentButton].getLeft()));
+    }
+
+    public void clickButton1(View view) {
+        // return to backend that 1st picture was clicked
+    }
+
+    public void clickButton2(View view) {
+        // return to backend that 2nd picture was clicked
+    }
+
+    public void clickButton3(View view) {
+        // return to backend that 3rd picture was clicked
+    }
+
+    public void clickButton4(View view) {
+        // return to backend that 4th picture was clicked
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -47,6 +96,8 @@ public class GameActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
     /**
      * A placeholder fragment containing a simple view.
