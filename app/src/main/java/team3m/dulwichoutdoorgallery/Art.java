@@ -53,6 +53,14 @@ public class Art {
         Tags = tags;
     }
 
+    public double getLatitude(){
+        return Latitude;
+    }
+
+    public double getLongitude(){
+        return Longitude;
+    }
+
     public Art(String name, String description, String author, Art relatedArt, ArrayList<String> tags, double latitude, double longitude) {
 
         Name = name;

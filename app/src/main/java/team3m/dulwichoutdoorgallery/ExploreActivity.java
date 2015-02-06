@@ -14,6 +14,10 @@ import android.os.Build;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
 
 
 public class ExploreActivity extends ActionBarActivity {
@@ -74,6 +78,17 @@ public class ExploreActivity extends ActionBarActivity {
                 @Override
                 public void onMapReady(GoogleMap googleMap) {
                     //the map is ready here
+                    ArrayList<Art> Gallery= Core.getGallery();
+
+                    for(int i=0; i<Gallery.size(); i++){
+
+                        googleMap.addMarker(new MarkerOptions()
+                        .title(Gallery.get(i).getName())
+                        .snippet(Gallery.get(i).getDescription())
+                        .position(new LatLng(Gallery.get(i).getLatitude(), Gallery.get(i).getLongitude())));
+
+                    }
+
                 }
             });
             return rootView;
