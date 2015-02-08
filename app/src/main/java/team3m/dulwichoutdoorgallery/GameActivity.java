@@ -4,6 +4,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +16,14 @@ import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.Writer;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -21,6 +32,8 @@ public class GameActivity extends ActionBarActivity {
     private Timer timer = new Timer();
     private HorizontalScrollView hsv;
     private int currentButton;
+
+    private Game game = new Game();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,22 +71,40 @@ public class GameActivity extends ActionBarActivity {
 
         Log.i(Integer.toString(currentButton), Integer.toString(imageButtonsArray[currentButton].getLeft()));
     }
+    public void imageClick(int currentImageId, int clickedID)
+    {
+        if(game.checkMatch(currentImageId,clickedID))
+        {
+            game.progress++;
+            game.no_right++;
+            game.checkAchievment(game.no_right);
+        }
+    }
 
     public void clickButton1(View view) {
         // return to backend that 1st picture was clicked
+        imageClick(1,1);
+
+
     }
 
     public void clickButton2(View view) {
         // return to backend that 2nd picture was clicked
+
+        imageClick(1,2);
     }
 
     public void clickButton3(View view) {
         // return to backend that 3rd picture was clicked
+        imageClick(1,3);
     }
 
     public void clickButton4(View view) {
         // return to backend that 4th picture was clicked
+        imageClick(1,4);
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -105,6 +136,7 @@ public class GameActivity extends ActionBarActivity {
     public static class PlaceholderFragment extends Fragment {
 
         public PlaceholderFragment() {
+
         }
 
         @Override
