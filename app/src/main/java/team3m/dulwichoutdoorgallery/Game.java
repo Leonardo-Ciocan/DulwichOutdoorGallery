@@ -22,6 +22,11 @@ public class Game {
 
 
     public static void main(String args[]) {
+
+
+        //first number is the image
+        //second number is it's matching photoshopped image
+
         matches.add(0,19);
         matches.add(1,18);
         matches.add(2,17);
@@ -43,6 +48,9 @@ public class Game {
         matches.add(18,1);
         matches.add(19,0);
 
+
+
+        //not finished - saving the progress
         try {
             Boolean isNew = false;
 
@@ -77,6 +85,7 @@ public class Game {
         }
 
     }
+    //check if the guess is right
     public boolean checkMatch(int index, int value)
     {
         if(matches.get(index) == value)
@@ -84,11 +93,14 @@ public class Game {
         else
         return false;
     }
+    //todo
     public void updateFile()
     {
 
     }
 
+
+    //if achieved 20 right guesses -> award achievment
     public boolean checkAchievment(int no)
     {
         if(no==20)

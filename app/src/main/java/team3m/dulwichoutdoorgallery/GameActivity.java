@@ -73,6 +73,7 @@ public class GameActivity extends ActionBarActivity {
     }
     public void imageClick(int currentImageId, int clickedID)
     {
+        //code when the user makes a choice
         if(game.checkMatch(currentImageId,clickedID))
         {
             game.progress++;
@@ -83,6 +84,9 @@ public class GameActivity extends ActionBarActivity {
 
     public void clickButton1(View view) {
         // return to backend that 1st picture was clicked
+
+        //first number is the current image that you must match
+        //second number is the choice
         imageClick(1,1);
 
 
