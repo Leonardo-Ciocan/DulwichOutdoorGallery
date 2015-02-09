@@ -10,9 +10,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+
+import static team3m.dulwichoutdoorgallery.R.drawable.badge;
+import static team3m.dulwichoutdoorgallery.R.drawable.small;
+import static team3m.dulwichoutdoorgallery.R.id.badgesListView;
 
 
 public class BadgesActivity extends ActionBarActivity {
+
+    public static ArrayList<Badge> badges = new ArrayList<Badge>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,16 +62,61 @@ public class BadgesActivity extends ActionBarActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
+    @SuppressWarnings("ConstantConditions")
     public static class PlaceholderFragment extends Fragment {
 
         public PlaceholderFragment() {
         }
 
+
+       View rootView;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_badges, container, false);
+            rootView = inflater.inflate(R.layout.fragment_badges, container, false);
+
+            populateBadgeList();
+            populateListView();
+
             return rootView;
         }
+
+        private void populateBadgeList(){
+            badges.add(new Badge("Title", "description", badge, false));
+            badges.add(new Badge("Title", "description", badge, false));
+            badges.add(new Badge("Title", "description", small, false));
+        }
+
+        private void populateListView() {
+            ArrayAdapter<Badge> adapter = new MyListAdapter();
+            ListView list = (ListView) rootView.findViewById(R.id.badgesListView);
+            list.setAdapter(adapter);
+        }
+
+        private class MyListAdapter extends ArrayAdapter<Badge>{
+
+            public MyListAdapter(){
+                super(PlaceholderFragment.this.getActivity(), R.layout.badge_view, badges);
+            }
+
+            public View getView(int pos, View convertView, ViewGroup parent){
+                View itemView = convertView;
+                if (itemView == null) {
+                    itemView = getActivity().getLayoutInflater().inflate(R.layout.badge_view, parent, false);
+                }
+
+                Badge currentBadge = badges.get(pos);
+
+                ImageView imageView = (ImageView) itemView.findViewById(R.id.badge_icon);
+                imageView.setImageResource(currentBadge.getBadgeID());
+
+
+                return itemView;
+            }
+
+
+        }
+
+
     }
 }

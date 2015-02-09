@@ -49,9 +49,5 @@ public class Core {
         }
     };
 
-    public static ArrayList<Badge> badges = new ArrayList<Badge>(){
-        {
-            add(new Badge("title" , "description"));
-        }
-    };
+
 }
