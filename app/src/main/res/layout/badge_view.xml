@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="120dp"
+    android:layout_width="match_parent" android:layout_height="100dp"
     android:background="@drawable/abc_popup_background_mtrl_mult">
 
     <ImageView
@@ -9,7 +9,7 @@
         android:id="@+id/badge_icon"
         android:src="@drawable/badge"
         android:adjustViewBounds="true"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="13dp"
         android:layout_marginTop="0dp" />
 
     <TextView
@@ -20,8 +20,7 @@
         android:id="@+id/badge_titleView"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="140dp"
-        android:layout_marginRight="20dp"
-         />
+        android:layout_marginRight="20dp" />
 
     <TextView
         android:layout_width="wrap_content"

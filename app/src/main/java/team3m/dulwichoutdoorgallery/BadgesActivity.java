@@ -13,10 +13,12 @@ import android.os.Build;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import static team3m.dulwichoutdoorgallery.R.drawable.badge;
+import static team3m.dulwichoutdoorgallery.R.drawable.baller;
 import static team3m.dulwichoutdoorgallery.R.drawable.small;
 import static team3m.dulwichoutdoorgallery.R.id.badgesListView;
 
@@ -84,7 +86,17 @@ public class BadgesActivity extends ActionBarActivity {
         private void populateBadgeList(){
             badges.add(new Badge("Title", "description", badge, false));
             badges.add(new Badge("Title", "description", badge, false));
-            badges.add(new Badge("Title", "description", small, false));
+            badges.add(new Badge("Baller", "bla bla", baller, false));
+            badges.add(new Badge("Title", "description", badge, false));
+            badges.add(new Badge("Baller", "bla bla", baller, false));
+            badges.add(new Badge("Title", "description", badge, false));
+            badges.add(new Badge("Baller", "bla bla", baller, false));
+            badges.add(new Badge("Title", "description", badge, false));
+            badges.add(new Badge("Baller", "bla bla", baller, false));
+            badges.add(new Badge("Title", "description", badge, false));
+            badges.add(new Badge("Baller", "bla bla", baller, false));
+            badges.add(new Badge("Title", "description", badge, false));
+            badges.add(new Badge("Baller", "bla bla", baller, false));
         }
 
         private void populateListView() {
@@ -110,6 +122,11 @@ public class BadgesActivity extends ActionBarActivity {
                 ImageView imageView = (ImageView) itemView.findViewById(R.id.badge_icon);
                 imageView.setImageResource(currentBadge.getBadgeID());
 
+                TextView makeTitle = (TextView) itemView.findViewById(R.id.badge_titleView);
+                makeTitle.setText(currentBadge.getTitle());
+
+                TextView makeDesctiption = (TextView) itemView.findViewById(R.id.badge_descriptionView);
+                makeDesctiption.setText(currentBadge.getDescription());
 
                 return itemView;
             }

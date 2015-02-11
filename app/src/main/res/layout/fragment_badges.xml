@@ -10,5 +10,5 @@
         android:id="@+id/badgesListView"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
-        android:divider="@null"/>
+        android:divider="@null" />
 </RelativeLayout>
