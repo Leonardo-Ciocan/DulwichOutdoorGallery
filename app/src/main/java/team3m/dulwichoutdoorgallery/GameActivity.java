@@ -78,7 +78,7 @@ public class GameActivity extends ActionBarActivity {
         {
             game.progress++;
             game.no_right++;
-            game.checkAchievment(game.no_right);
+            game.checkAchievement(game.no_right);
         }
     }
 

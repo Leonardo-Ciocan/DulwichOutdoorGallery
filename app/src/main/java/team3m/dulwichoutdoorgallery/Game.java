@@ -6,9 +6,6 @@ import java.io.IOException;
 import java.util.*;
 import java.util.ArrayList;
 
-/**
- * Created by louise on 03/02/15.
- */
 public class Game {
 
     int progress = 0;// how far has the user gone through with the game 0-19
@@ -16,7 +13,7 @@ public class Game {
     int no_guesses = 3; // guesses taken
     String picture = "";
     String pictures = "pic1,pic2,pic3.."; // CSV
-    Boolean achieved = false;//achievment for logging
+    Boolean achieved = false;//achievement for logging
 
     static ArrayList<Integer> matches = new ArrayList<>();
 
@@ -57,7 +54,7 @@ public class Game {
 
             File file = new File("game.txt");
 
-            // if file doesnt exists, then create it
+            // if file doesn't exist, then create it
             if (!file.exists()) {
                 file.createNewFile();
                 isNew = true;//first time ran
@@ -71,9 +68,9 @@ public class Game {
             }
 
             //check if empty
-            CharSequence fileContetnts = "";
-            bw.append(fileContetnts);
-            if(fileContetnts.length()<3)
+            CharSequence fileContents = "";
+            bw.append(fileContents);
+            if(fileContents.length()<3)
                 bw.write("0\n3\n0");
 
 
@@ -100,8 +97,8 @@ public class Game {
     }
 
 
-    //if achieved 20 right guesses -> award achievment
-    public boolean checkAchievment(int no)
+    //if achieved 20 right guesses -> award achievement
+    public boolean checkAchievement(int no)
     {
         if(no==20)
         {
