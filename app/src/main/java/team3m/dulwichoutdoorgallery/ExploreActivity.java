@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.LinearLayout;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -93,5 +94,10 @@ public class ExploreActivity extends ActionBarActivity {
             });
             return rootView;
         }
+    }
+
+    public void viewList(View view){
+        LinearLayout listLayout = (LinearLayout) findViewById(R.id.listLayout);
+        listLayout.setVisibility(View.VISIBLE);
     }
 }

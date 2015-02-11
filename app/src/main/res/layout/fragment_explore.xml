@@ -21,7 +21,22 @@
         android:background="#5f000000"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-
         android:layout_height="@dimen/abc_action_bar_default_height_material">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="List"
+            android:onClick="viewList"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/listLayout"
+        android:orientation="horizontal">
+
     </LinearLayout>
 </FrameLayout>
