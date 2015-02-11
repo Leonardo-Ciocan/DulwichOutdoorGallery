@@ -1,41 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="120dp"
+    android:background="@drawable/abc_popup_background_mtrl_mult">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="105dp"
+        android:layout_height="105dp"
         android:id="@+id/badge_icon"
         android:src="@drawable/badge"
-        android:maxHeight="100dp"
-        android:maxWidth="100dp"
         android:adjustViewBounds="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="0dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/badge_textView"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/badge_icon"
-        android:layout_toEndOf="@+id/badge_icon"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp" />
+        android:text="PT. LEONARDO"
+        android:id="@+id/badge_titleView"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginRight="20dp"
+         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/badge_textView2"
-        android:layout_below="@+id/badge_textView"
-        android:layout_alignLeft="@+id/badge_textView"
-        android:layout_alignStart="@+id/badge_textView"
-        android:layout_alignBottom="@+id/badge_icon"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="LEONARDO TE OMOR DACA MAI COMENTEZI"
+        android:id="@+id/badge_descriptionView"
+        android:layout_marginLeft="140dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@id/badge_titleView"/>
+
+
 </RelativeLayout>
