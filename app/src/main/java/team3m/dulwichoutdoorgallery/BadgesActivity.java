@@ -88,6 +88,7 @@ public class BadgesActivity extends ActionBarActivity {
             populateBadgeList();
             populateListView();
 
+
             return rootView;
         }
 
@@ -133,14 +134,7 @@ public class BadgesActivity extends ActionBarActivity {
             list.setAdapter(adapter);
         }
 
-        // To Fix
-        private void checkAchieved(Badge badge, ImageView img, TextView title, TextView desc){
-            if(!badge.getAchieved()){
-                img.setAlpha(0.4f);
-                title.setAlpha(0.4f);
-                desc.setAlpha(0.4f);
-            }
-        }
+
 
         private class MyListAdapter extends ArrayAdapter<Badge>{
 
@@ -154,7 +148,8 @@ public class BadgesActivity extends ActionBarActivity {
                     itemView = getActivity().getLayoutInflater().inflate(R.layout.badge_view, parent, false);
                 }
 
-                Badge currentBadge = badges.get(pos);
+                Badge currentBadge;
+                currentBadge = badges.get(pos);
 
                 ImageView imageView = (ImageView) itemView.findViewById(R.id.badge_icon);
                 imageView.setImageResource(currentBadge.getBadgeID());
@@ -162,12 +157,26 @@ public class BadgesActivity extends ActionBarActivity {
                 TextView makeTitle = (TextView) itemView.findViewById(R.id.badge_title);
                 makeTitle.setText(currentBadge.getTitle());
 
-                TextView makeDesctiption = (TextView) itemView.findViewById(R.id.badge_description);
-                makeDesctiption.setText(currentBadge.getDescription());
+                TextView makeDescription = (TextView) itemView.findViewById(R.id.badge_description);
+                makeDescription.setText(currentBadge.getDescription());
 
-                //checkAchieved(currentBadge, imageView, makeTitle, makeDescription);
+                checkAchieved(currentBadge, imageView, makeTitle, makeDescription);
 
                 return itemView;
+
+            }
+
+            // To Fix
+            private void checkAchieved(Badge badge, ImageView img, TextView title, TextView desc){
+                if(!badge.getAchieved()){
+                    img.setAlpha(0.4f);
+                    title.setAlpha(0.4f);
+                    desc.setAlpha(0.4f);
+                }else{
+                    img.setAlpha(1.0f);
+                    title.setAlpha(1.0f);
+                    desc.setAlpha(1.0f);
+                }
             }
 
 
