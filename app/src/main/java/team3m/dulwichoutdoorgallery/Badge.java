@@ -30,6 +30,8 @@ public class Badge {
         description = Description;
     }
 
+    public boolean getAchieved() {return achieved;}
+
     public Badge(String Title, String Description, int iconID, boolean achiv) {
 
         title = Title;

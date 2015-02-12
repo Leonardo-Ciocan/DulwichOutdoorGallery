@@ -17,9 +17,17 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static team3m.dulwichoutdoorgallery.R.drawable.artlover;
 import static team3m.dulwichoutdoorgallery.R.drawable.badge;
 import static team3m.dulwichoutdoorgallery.R.drawable.baller;
+import static team3m.dulwichoutdoorgallery.R.drawable.eatsleep;
+import static team3m.dulwichoutdoorgallery.R.drawable.fakespotter;
+import static team3m.dulwichoutdoorgallery.R.drawable.fiver;
+import static team3m.dulwichoutdoorgallery.R.drawable.guardian;
+import static team3m.dulwichoutdoorgallery.R.drawable.navigator;
 import static team3m.dulwichoutdoorgallery.R.drawable.small;
+import static team3m.dulwichoutdoorgallery.R.drawable.streetwatcher;
+import static team3m.dulwichoutdoorgallery.R.drawable.warmup;
 import static team3m.dulwichoutdoorgallery.R.id.badgesListView;
 
 
@@ -84,19 +92,15 @@ public class BadgesActivity extends ActionBarActivity {
         }
 
         private void populateBadgeList(){
-            badges.add(new Badge("Title", "description", badge, false));
-            badges.add(new Badge("Title", "description", badge, false));
-            badges.add(new Badge("Baller", "bla bla", baller, false));
-            badges.add(new Badge("Title", "description", badge, false));
-            badges.add(new Badge("Baller", "bla bla", baller, false));
-            badges.add(new Badge("Title", "description", badge, false));
-            badges.add(new Badge("Baller", "bla bla", baller, false));
-            badges.add(new Badge("Title", "description", badge, false));
-            badges.add(new Badge("Baller", "bla bla", baller, false));
-            badges.add(new Badge("Title", "description", badge, false));
-            badges.add(new Badge("Baller", "bla bla", baller, false));
-            badges.add(new Badge("Title", "description", badge, false));
-            badges.add(new Badge("Baller", "bla bla", baller, false));
+            badges.add(new Badge("The Gladiator", "You conquered all of the street arts", guardian, true));
+            badges.add(new Badge("Baller", "You're a true baller across the streets", baller, true));
+            badges.add(new Badge("Art Lover", "Checking out street art is your new passion", artlover, true));
+            badges.add(new Badge("Warm-Up", "What a start! You already got 3 in the bag.", warmup, true));
+            badges.add(new Badge("Got a Fiver", "5 arts in the bag already!", fiver, false));
+            badges.add(new Badge("Navigator", "Ay Ay Cap'n!", navigator, false));
+            badges.add(new Badge("Street Watcher", "Getting using monitoring street arts.", streetwatcher, false));
+            badges.add(new Badge("Fake Spotter", "Mastering the spot of original arts.", fakespotter, false));
+            badges.add(new Badge("E.S.A.R", "Eat.Sleep.Art.Repeat", eatsleep, false));
         }
 
         private void populateListView() {
