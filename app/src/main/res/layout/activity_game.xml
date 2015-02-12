@@ -1,0 +1,72 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="team3m.dulwichoutdoorgallery.GameActivity"
+    android:weightSum="100">
+    tools:ignore="MergeRootFrame">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:src="@drawable/stik_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:scaleType="fitCenter"
+        android:layout_weight="60" />
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_gravity="bottom"
+        android:layout_weight="40"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:src="@drawable/example1"
+                android:onClick="clickButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="false"
+                android:background="@android:color/transparent" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:src="@drawable/example2"
+                android:onClick="clickButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:src="@drawable/example3"
+                android:onClick="clickButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent" />
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:src="@drawable/example3"
+                android:onClick="clickButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="false"
+                android:background="@android:color/transparent" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</LinearLayout>
