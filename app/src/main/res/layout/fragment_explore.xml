@@ -36,16 +36,23 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:id="@+id/listLayout"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#fff">
+
+
+        <ListView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/artList"
+
+
+            ></ListView>
+
 
     </LinearLayout>
     
-    <ListView
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/artList"
-        ></ListView>
 
 
 
