@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="List"
-            android:onClick="viewList"/>
+            android:id="@+id/buttonList"/>
 
     </LinearLayout>
 
@@ -39,4 +39,15 @@
         android:orientation="horizontal">
 
     </LinearLayout>
+    
+    <ListView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/artList"
+        ></ListView>
+
+
+
+
 </FrameLayout>

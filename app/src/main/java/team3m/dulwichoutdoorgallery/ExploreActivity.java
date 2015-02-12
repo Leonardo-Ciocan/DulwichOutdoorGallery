@@ -1,5 +1,6 @@
 package team3m.dulwichoutdoorgallery;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -10,7 +11,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -71,7 +75,7 @@ public class ExploreActivity extends ActionBarActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_explore, container, false);
+            final View rootView = inflater.inflate(R.layout.fragment_explore, container, false);
             //gets the map control
             final SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                     .findFragmentById(R.id.map);
@@ -79,25 +83,40 @@ public class ExploreActivity extends ActionBarActivity {
                 @Override
                 public void onMapReady(GoogleMap googleMap) {
                     //the map is ready here
-                    ArrayList<Art> Gallery= Core.getGallery();
+                    ArrayList<Art> Gallery = Core.getGallery();
 
-                    for(int i=0; i<Gallery.size(); i++){
+                    for (int i = 0; i < Gallery.size(); i++) {
 
                         googleMap.addMarker(new MarkerOptions()
-                        .title(Gallery.get(i).getName())
-                        .snippet(Gallery.get(i).getDescription())
-                        .position(new LatLng(Gallery.get(i).getLatitude(), Gallery.get(i).getLongitude())));
+                                .title(Gallery.get(i).getName())
+                                .snippet(Gallery.get(i).getDescription())
+                                .position(new LatLng(Gallery.get(i).getLatitude(), Gallery.get(i).getLongitude())));
 
                     }
 
                 }
             });
+
+            Button List = (Button) rootView.findViewById(R.id.buttonList);
+            List.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LinearLayout listLayout = (LinearLayout) rootView.findViewById(R.id.listLayout);
+                    listLayout.setVisibility(View.VISIBLE);
+                    populatedListView();
+
+                }
+            });
             return rootView;
+        }
+
+
+        public void populatedListView() {
+            ArrayAdapter<Art> adapter = new MyAdapter(getActivity(), R.layout.item_view, Core.getGallery());
+            ListView list = (ListView) getView().findViewById(R.id.artList);
+            list.setAdapter(adapter);
         }
     }
 
-    public void viewList(View view){
-        LinearLayout listLayout = (LinearLayout) findViewById(R.id.listLayout);
-        listLayout.setVisibility(View.VISIBLE);
-    }
+
 }
