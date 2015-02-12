@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:text="Route"/>
     <Button
+        android:id="@+id/btn_badges"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Badges"/>

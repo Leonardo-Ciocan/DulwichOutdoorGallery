@@ -91,6 +91,30 @@ public class BadgesActivity extends ActionBarActivity {
             return rootView;
         }
 
+        /*
+        GOOGLE CARDS GUIDELINES
+        -------------------------------------------------------
+        1.2dp rounded corners
+        2.Body Type: 14sp or 16sp
+        3.Headlines: 24sp or larger
+        4.Padding from edge of screen to card: 8dp
+        5.Gutters between cards: 8dp
+        6.Content padding: 16dp
+         */
+
+        /*
+        GOOGLE LISTS GUIDELINES
+        1.Primary Font: Roboto Regular 16sp
+        2.Secondary Font: Roboto Regular 14sp
+        3.Tile height: 88dp
+        4.Left Avatar Padding: 16dp
+        5.Text Left Padding: 72dp
+        6.Text Top Padding: 16dp
+        7.Text Bottom Padding: 20dp
+        8.Top Align avatar and icon with primary text
+        9.Add 8dp padding at the top and bottom of a list.
+         */
+
         private void populateBadgeList(){
             badges.add(new Badge("The Gladiator", "You conquered all of the street arts", guardian, true));
             badges.add(new Badge("Baller", "You're a true baller across the streets", baller, true));
@@ -107,6 +131,15 @@ public class BadgesActivity extends ActionBarActivity {
             ArrayAdapter<Badge> adapter = new MyListAdapter();
             ListView list = (ListView) rootView.findViewById(R.id.badgesListView);
             list.setAdapter(adapter);
+        }
+
+        // To Fix
+        private void checkAchieved(Badge badge, ImageView img, TextView title, TextView desc){
+            if(!badge.getAchieved()){
+                img.setAlpha(0.4f);
+                title.setAlpha(0.4f);
+                desc.setAlpha(0.4f);
+            }
         }
 
         private class MyListAdapter extends ArrayAdapter<Badge>{
@@ -126,11 +159,13 @@ public class BadgesActivity extends ActionBarActivity {
                 ImageView imageView = (ImageView) itemView.findViewById(R.id.badge_icon);
                 imageView.setImageResource(currentBadge.getBadgeID());
 
-                TextView makeTitle = (TextView) itemView.findViewById(R.id.badge_titleView);
+                TextView makeTitle = (TextView) itemView.findViewById(R.id.badge_title);
                 makeTitle.setText(currentBadge.getTitle());
 
-                TextView makeDesctiption = (TextView) itemView.findViewById(R.id.badge_descriptionView);
+                TextView makeDesctiption = (TextView) itemView.findViewById(R.id.badge_description);
                 makeDesctiption.setText(currentBadge.getDescription());
+
+                //checkAchieved(currentBadge, imageView, makeTitle, makeDescription);
 
                 return itemView;
             }

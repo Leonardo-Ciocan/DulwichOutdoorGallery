@@ -1,6 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
 
     tools:context="team3m.dulwichoutdoorgallery.BadgesActivity$PlaceholderFragment">
 
@@ -10,5 +12,6 @@
         android:id="@+id/badgesListView"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
-        android:divider="@null" />
+        android:divider="@null"
+        android:dividerHeight="0.0sp"/>
 </RelativeLayout>

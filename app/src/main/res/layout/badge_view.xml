@@ -1,36 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="100dp"
-    android:background="@drawable/abc_popup_background_mtrl_mult">
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:background="@drawable/bg"
+    android:padding="16dp">
+
 
     <ImageView
-        android:layout_width="105dp"
-        android:layout_height="105dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:id="@+id/badge_icon"
-        android:src="@drawable/badge"
+        android:src="@drawable/baller"
         android:adjustViewBounds="true"
-        android:layout_marginLeft="13dp"
-        android:layout_marginTop="0dp" />
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginRight="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="PT. LEONARDO"
-        android:id="@+id/badge_titleView"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="140dp"
-        android:layout_marginRight="20dp" />
+        android:text="The Guardian"
+        android:id="@+id/badge_title"
+        android:textSize="22sp"
+        android:layout_alignTop="@+id/badge_icon"
+        android:layout_toRightOf="@+id/badge_icon"
+        android:layout_toEndOf="@+id/badge_icon"
+        android:paddingTop="4dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="LEONARDO TE OMOR DACA MAI COMENTEZI"
-        android:id="@+id/badge_descriptionView"
-        android:layout_marginLeft="140dp"
-        android:layout_marginRight="20dp"
-        android:layout_below="@id/badge_titleView"/>
-
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="You conquered all of the arts"
+        android:textSize="14sp"
+        android:id="@+id/badge_description"
+        android:layout_below="@+id/badge_title"
+        android:layout_alignLeft="@+id/badge_title"
+        android:layout_alignStart="@+id/badge_title" />
 
 </RelativeLayout>

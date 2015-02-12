@@ -24,6 +24,14 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(new Intent(MainActivity.this, ExploreActivity.class));
             }
         });
+
+        Button badgeButton = (Button)findViewById(R.id.btn_badges);
+        badgeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, BadgesActivity.class));
+            }
+        });
     }
 
 
