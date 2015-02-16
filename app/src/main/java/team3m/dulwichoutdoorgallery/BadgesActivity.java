@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -170,9 +171,21 @@ public class BadgesActivity extends ActionBarActivity {
         }
 
         private void populateListView() {
-            ArrayAdapter<Badge> adapter = new MyListAdapter();
+            final ArrayAdapter<Badge> adapter = new MyListAdapter();
             ListView list = (ListView) rootView.findViewById(R.id.badgesListView);
             list.setAdapter(adapter);
+
+            // Click on ListItem - ATM it triggers the action which displays the notification
+            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Badge badgePos = adapter.getItem(position);
+                    badgePos.setAchieved(true);
+                    badgeTitle = badgePos.getTitle();
+                    // Display Notification
+                    displayNotification(view);
+                }
+            });
         }
 
 

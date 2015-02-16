@@ -32,6 +32,8 @@ public class Badge {
 
     public boolean getAchieved() {return achieved;}
 
+    public void setAchieved(boolean status){this.achieved = status;}
+
     public Badge(String Title, String Description, int iconID, boolean achiv) {
 
         title = Title;
