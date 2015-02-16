@@ -1,5 +1,8 @@
 package team3m.dulwichoutdoorgallery;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -23,9 +26,13 @@ import static team3m.dulwichoutdoorgallery.R.drawable.baller;
 import static team3m.dulwichoutdoorgallery.R.drawable.eatsleep;
 import static team3m.dulwichoutdoorgallery.R.drawable.fakespotter;
 import static team3m.dulwichoutdoorgallery.R.drawable.fiver;
+import static team3m.dulwichoutdoorgallery.R.drawable.goldenspray;
 import static team3m.dulwichoutdoorgallery.R.drawable.guardian;
+import static team3m.dulwichoutdoorgallery.R.drawable.lordofarts;
 import static team3m.dulwichoutdoorgallery.R.drawable.navigator;
+import static team3m.dulwichoutdoorgallery.R.drawable.oddone;
 import static team3m.dulwichoutdoorgallery.R.drawable.small;
+import static team3m.dulwichoutdoorgallery.R.drawable.stickrunner;
 import static team3m.dulwichoutdoorgallery.R.drawable.streetwatcher;
 import static team3m.dulwichoutdoorgallery.R.drawable.warmup;
 import static team3m.dulwichoutdoorgallery.R.id.badgesListView;
@@ -34,6 +41,8 @@ import static team3m.dulwichoutdoorgallery.R.id.badgesListView;
 public class BadgesActivity extends ActionBarActivity {
 
     public static ArrayList<Badge> badges = new ArrayList<Badge>();
+    public static CharSequence badgeTitle;
+    //public static CharSequence badgeDesc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,15 +126,47 @@ public class BadgesActivity extends ActionBarActivity {
          */
 
         private void populateBadgeList(){
-            badges.add(new Badge("The Gladiator", "You conquered all of the street arts", guardian, true));
-            badges.add(new Badge("Baller", "You're a true baller across the streets", baller, true));
-            badges.add(new Badge("Art Lover", "Checking out street art is your new passion", artlover, true));
-            badges.add(new Badge("Warm-Up", "What a start! You already got 3 in the bag.", warmup, true));
+            badges.add(new Badge("The Gladiator", "You conquered all of the street arts", guardian, false));
+            badges.add(new Badge("Baller", "You're a true baller across the streets", baller, false));
+            badges.add(new Badge("Art Lover", "Checking out street art is your new passion", artlover, false));
+            badges.add(new Badge("Warm-Up", "What a start! You already got 3 in the bag.", warmup, false));
             badges.add(new Badge("Got a Fiver", "5 arts in the bag already!", fiver, false));
             badges.add(new Badge("Navigator", "Ay Ay Cap'n!", navigator, false));
             badges.add(new Badge("Street Watcher", "Getting using monitoring street arts.", streetwatcher, false));
             badges.add(new Badge("Fake Spotter", "Mastering the spot of original arts.", fakespotter, false));
             badges.add(new Badge("E.S.A.R", "Eat.Sleep.Art.Repeat", eatsleep, false));
+            badges.add(new Badge("Stick Runner", "Visit all the Stick Man Arts", stickrunner, false));
+            badges.add(new Badge("Odd one out", "Visit Mear One US Art", oddone, false));
+            badges.add(new Badge("Lord of the arts", "Visit Conor Harrington Art", lordofarts, false));
+            badges.add(new Badge("The Golden Spray", "Visit System UK Rembrandt Art", goldenspray, false));
+        }
+
+        // Notifies the user whenever a badge is earned.
+        private void displayNotification(View v){
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this.getActivity());
+            notificationBuilder.setContentTitle("You just got a new achievement!");
+            notificationBuilder.setContentText("You earned the " +badgeTitle + " badge");
+            // Insert a new notification logo - this one is just a sample for testing
+            notificationBuilder.setSmallIcon(R.drawable.logo);
+            // Insert a new notification bgColor - this one is just a sample for testing
+            notificationBuilder.setColor(getResources().getColor(R.color.bright_foreground_material_light));
+
+            /*
+                Works only with API 16+
+
+            Intent notificationIntent = new Intent(this.getActivity(), BadgesActivity.class);
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(this.getActivity());
+            stackBuilder.addParentStack(BadgesActivity.class);
+            stackBuilder.addNextIntent(notificationIntent);
+
+            PendingIntent notificationPending = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
+            notificationBuilder.setContentIntent(notificationPending);
+
+            */
+
+            Notification notification = notificationBuilder.build();
+            NotificationManager notificationManager = (NotificationManager) this.getActivity().getSystemService(NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notification);
         }
 
         private void populateListView() {
