@@ -1,53 +1,49 @@
 package team3m.dulwichoutdoorgallery;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v4.app.Fragment;
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.Writer;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameActivity extends ActionBarActivity {
+    private Game game;
     private ImageButton[] imageButtonsArray = new ImageButton[4];
+    private ImageView artworkToMatch;
     private Timer timer = new Timer();
     private HorizontalScrollView hsv;
     private int currentButton;
-
-    private Game game = new Game();
+    private TextView changeImageChoiceNumberText;
+    private TextView changeImageNumberText;
+    private TextView changeArtistText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
-        imageButtonsArray[0] = (ImageButton) findViewById(R.id.imageButton);
+        game = Game.getNextGame(this);
+
+        changeImageChoiceNumberText = (TextView) findViewById(R.id.currentRotatedPicture);
+        changeImageNumberText = (TextView) findViewById(R.id.currentGameArtwork);
+        changeArtistText = (TextView) findViewById(R.id.currentGameArtworkArtist);
+        artworkToMatch = (ImageView) findViewById(R.id.imageView);
+        imageButtonsArray[0] = (ImageButton) findViewById(R.id.imageButton1);
         imageButtonsArray[1] = (ImageButton) findViewById(R.id.imageButton2);
         imageButtonsArray[2] = (ImageButton) findViewById(R.id.imageButton3);
         imageButtonsArray[3] = (ImageButton) findViewById(R.id.imageButton4);
+        loadData();
+
         hsv = (HorizontalScrollView) findViewById(R.id.horizontalScrollView);
         hsv.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -55,7 +51,6 @@ public class GameActivity extends ActionBarActivity {
                 return true;
             }
         });
-
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -64,51 +59,93 @@ public class GameActivity extends ActionBarActivity {
         }, 3000, 3000);
     }
 
+    public void loadData() {
+        game = Game.getNextGame(this);
+        runOnUiThread(new Thread(new Runnable() {
+            public void run() {
+                artworkToMatch.setImageResource(game.getIdOfArtworkToMatch());
+                for (int i = 0; i < 4; i++) {
+                    imageButtonsArray[i].setImageResource(game.getPossibleChoices()[i]);
+                }
+
+                changeImageNumberText.setText("Picture: " + Game.progress() + "/20");
+                changeArtistText.setText(game.getArtistName());
+            }
+        }));
+    }
+
     public void onTimerTick() {
         currentButton = ++currentButton % 4;
-        Log.i("debug", "tick");
-        hsv.smoothScrollTo(imageButtonsArray[currentButton].getLeft(), 0);
-
         Log.i(Integer.toString(currentButton), Integer.toString(imageButtonsArray[currentButton].getLeft()));
+        hsv.smoothScrollTo(imageButtonsArray[currentButton].getLeft(), 0);
+        runOnUiThread(new Thread(new Runnable() {
+            public void run() {
+                int currentText = currentButton + 1;
+                changeImageChoiceNumberText.setText(Integer.toString(currentText));
+            }
+        }));
     }
-    public void imageClick(int currentImageId, int clickedID)
-    {
-        //code when the user makes a choice
-        if(game.checkMatch(currentImageId,clickedID))
-        {
-            game.progress++;
-            game.no_right++;
-            game.checkAchievement(game.no_right);
+
+    public void imageClick() {
+
+        if (!Game.allSetsComplete()) {
+            loadData();
+        } else {
+            // if all 20 choices guessed correctly, run the GameComplete activity
+            Intent intent = new Intent(this, GameCompleteActivity.class);
+            gameComplete(intent);
         }
     }
 
     public void clickButton1(View view) {
         // return to backend that 1st picture was clicked
-
-        //first number is the current image that you must match
-        //second number is the choice
-        imageClick(1,1);
-
-
+        if (game.makeAGuess(0)) {
+            imageClick();
+        } else {
+            incorrectAnswerAlert();
+        }
     }
 
     public void clickButton2(View view) {
         // return to backend that 2nd picture was clicked
-
-        imageClick(1,2);
+        if (game.makeAGuess(1)) {
+            imageClick();
+        } else {
+            incorrectAnswerAlert();
+        }
     }
 
     public void clickButton3(View view) {
         // return to backend that 3rd picture was clicked
-        imageClick(1,3);
+        if (game.makeAGuess(2)) {
+            imageClick();
+        } else {
+            incorrectAnswerAlert();
+        }
     }
 
     public void clickButton4(View view) {
         // return to backend that 4th picture was clicked
-        imageClick(1,4);
+        if (game.makeAGuess(3)) {
+            imageClick();
+        } else {
+            incorrectAnswerAlert();
+        }
     }
 
+    public void gameComplete(Intent intent) {
+        // start GameCompleteActivity
+        startActivity(intent);
+    }
 
+    public void incorrectAnswerAlert() {
+        AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
+        dlgAlert.setMessage("Try again.");
+        dlgAlert.setTitle("Incorrect Answer");
+        dlgAlert.setPositiveButton("OK", null);
+        dlgAlert.setCancelable(true);
+        dlgAlert.create().show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -130,24 +167,5 @@ public class GameActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
-
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_game, container, false);
-            return rootView;
-        }
     }
 }

@@ -1,72 +1,110 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context="team3m.dulwichoutdoorgallery.GameActivity"
-    android:weightSum="100">
-    tools:ignore="MergeRootFrame">
+<LinearLayout   xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:weightSum="2"
+                tools:context="team3m.dulwichoutdoorgallery.GameActivity"
+                android:orientation="vertical">
 
     <ImageView
         android:id="@+id/imageView"
-        android:src="@drawable/stik_placeholder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="top"
+        android:layout_weight="1"
         android:scaleType="fitCenter"
-        android:layout_weight="60" />
+        android:src="@drawable/roa_new"/>
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView"
-        android:layout_gravity="bottom"
-        android:layout_weight="40"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:text="@string/currentGameArtworkText"
+        android:id="@+id/currentGameArtwork"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
-        <LinearLayout
-            android:orientation="horizontal"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/currentGameArtworkArtist"
+        android:id="@+id/currentGameArtworkArtist"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom">
 
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:src="@drawable/example1"
-                android:onClick="clickButton1"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="false"
-                android:background="@android:color/transparent" />
+                android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:src="@drawable/example2"
-                android:onClick="clickButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitCenter"
-                android:background="@android:color/transparent" />
+                <ImageButton
+                    android:id="@+id/imageButton1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:onClick="clickButton1"
+                    android:src="@drawable/reka_europa_and_the_bull"
+                    android:scaleType="fitStart" />
 
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:src="@drawable/example3"
-                android:onClick="clickButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitCenter"
-                android:background="@android:color/transparent" />
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:onClick="clickButton2"
+                    android:src="@drawable/roa_landscape_with_sportsmen_and_game1"
+                    android:scaleType="fitStart" />
 
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:src="@drawable/example3"
-                android:onClick="clickButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="false"
-                android:background="@android:color/transparent" />
-        </LinearLayout>
-    </HorizontalScrollView>
+                <ImageButton
+                    android:id="@+id/imageButton3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:onClick="clickButton3"
+                    android:src="@drawable/stik_eliza_and_mary_davidson"
+                    android:scaleType="fitStart" />
+
+                <ImageButton
+                    android:id="@+id/imageButton4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:onClick="clickButton4"
+                    android:src="@drawable/stik_the_fall_of_man"
+                    android:scaleType="fitStart" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/currentRotatedPicture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/currentRotatedPicture"
+            android:layout_alignLeft="@+id/horizontalScrollView"
+            android:layout_alignTop="@+id/horizontalScrollView"
+            android:layout_alignRight="@+id/horizontalScrollView"
+            android:layout_alignBottom="@+id/horizontalScrollView"
+            android:layout_margin="1dp"
+            android:textColor="#000000"
+            android:textSize="40dp" />
+
+    </RelativeLayout>
 
 </LinearLayout>

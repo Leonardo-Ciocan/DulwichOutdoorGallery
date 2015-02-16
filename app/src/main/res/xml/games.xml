@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<games>
+    <pictureSet
+        artist="ROA"
+        target="@drawable/roa_new"
+        choice0="@drawable/agent_provocateur_new"
+        choice1="@drawable/roa_landscape_with_sportsmen_and_game1"
+        choice2="@drawable/roa_landscape_with_sportsmen_and_game2"
+        choice3="@drawable/mear_one_new"
+        correct="2"
+    />
+    <pictureSet
+        artist="MadC"
+        target="@drawable/madc_new"
+        choice0="@drawable/mear_one_the_virgin_of_the_rosary"
+        choice1="@drawable/ben_wilson_new2"
+        choice2="@drawable/old_nuns_head_ap_new"
+        choice3="@drawable/phlegm_triumph_of_david"
+        correct="1"
+        />
+</games>
