@@ -95,10 +95,16 @@ public class BadgesActivity extends ActionBarActivity {
                                  Bundle savedInstanceState) {
             rootView = inflater.inflate(R.layout.fragment_badges, container, false);
 
-            populateBadgeList();
+            /*
+            Quick Fix to Badges Duplication : Quickly checks whether the badges array is already populated.
+                        We only want to populate the list if the array is empty; if it isn't, then
+                        just display the current list.
+             */
+            if(badges.size()==0){
+                populateBadgeList();
+            }
+
             populateListView();
-
-
             return rootView;
         }
 
@@ -148,7 +154,7 @@ public class BadgesActivity extends ActionBarActivity {
             notificationBuilder.setContentTitle("You just got a new achievement!");
             notificationBuilder.setContentText("You earned the " +badgeTitle + " badge");
             // Insert a new notification logo - this one is just a sample for testing
-            notificationBuilder.setSmallIcon(R.drawable.logo);
+            notificationBuilder.setSmallIcon(R.drawable.ic_action_about);
             // Insert a new notification bgColor - this one is just a sample for testing
             notificationBuilder.setColor(getResources().getColor(R.color.bright_foreground_material_light));
 
