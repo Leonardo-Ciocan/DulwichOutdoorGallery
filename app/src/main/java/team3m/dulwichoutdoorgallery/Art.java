@@ -12,6 +12,7 @@ public class Art {
     ArrayList<String> Tags = new ArrayList<>();
     double Latitude;
     double Longitude;
+    LatLng position;
 
     public String getName() {
         return Name;
@@ -61,6 +62,8 @@ public class Art {
         return Longitude;
     }
 
+    public LatLng getLocation(){ return position;}
+
     public Art(String name, String description, String author, Art relatedArt, ArrayList<String> tags, double latitude, double longitude) {
 
         Name = name;
@@ -70,6 +73,7 @@ public class Art {
         Tags = tags;
         Latitude = latitude;
         Longitude = longitude;
+        position = new LatLng(latitude,longitude);
 
     }
 }

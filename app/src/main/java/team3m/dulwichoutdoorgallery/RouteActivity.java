@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -66,11 +67,15 @@ public class RouteActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+
+
     /**
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
 
+        Polyline line ;
         public PlaceholderFragment() {
         }
 
@@ -151,6 +156,45 @@ public class RouteActivity extends ActionBarActivity {
 
                         }
                     }*/
+
+                    googleMap.setMyLocationEnabled(true);
+                    GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
+                        @Override
+                        public void onMyLocationChange(Location location) {
+                            LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
+                            googleMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory
+                                    .defaultMarker(200)).position(loc));
+                            double min = Integer.MAX_VALUE;
+                            LatLng minPos = Core.Gallery.get(0).getLocation();
+
+                            Log.i("appx" , location.getLatitude() +"");
+                            for(int x = 1; x < Core.Gallery.size();x++) {
+                                Location userLocation = new Location("t" + x);
+                                userLocation.setLatitude(Core.Gallery.get(x).getLatitude());
+                                userLocation.setLatitude(Core.Gallery.get(x).getLongitude());
+
+                                double dist = location.distanceTo(userLocation);
+
+
+
+
+                                if(dist < min) {
+                                    min = dist;
+                                    minPos = Core.getGallery().get(x).getLocation();
+                                }
+                            }
+
+                            if(googleMap != null) {
+                                if(line != null)line.remove();
+                                PolylineOptions polylineOptions = new PolylineOptions();
+                                polylineOptions.add(new LatLng(location.getLatitude() , location.getLongitude()));
+                                polylineOptions.add(minPos);
+                                line = googleMap.addPolyline(polylineOptions);
+                            }
+                        }
+                    };
+                    googleMap.setOnMyLocationChangeListener(myLocationChangeListener);
+
                     LatLngBounds AUSTRALIA = new LatLngBounds(
                             new LatLng(Core.Gallery.get(1).getLatitude(), Core.Gallery.get(1).getLongitude()), new LatLng(Core.Gallery.get(0).getLatitude(), Core.Gallery.get(0).getLongitude()));
 
@@ -158,19 +202,19 @@ public class RouteActivity extends ActionBarActivity {
 
                     int x =0;
                     for(int i=0; i<Gallery.size(); i++){
-                        x+=8;
+                        //x+=8;
                         LatLng point = new LatLng(Gallery.get(i).getLatitude(), Gallery.get(i).getLongitude());
                         googleMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory
                                 .defaultMarker(x))
                                 .title(Gallery.get(i).getName())
                                 .snippet(Gallery.get(i).getDescription())
                                 .position(point));
-
                         shape.add(point);
                     }
 
-                    Polyline polyline = googleMap.addPolyline(shape);
-                    polyline.setColor(Color.RED);
+                   // Polyline polyline = googleMap.addPolyline(shape);
+                   // polyline.setGeodesic(true);
+                   // polyline.setColor(Color.RED);
 
 
                 }
