@@ -7,6 +7,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+
+import com.google.android.gms.maps.internal.IGoogleMapDelegate;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -17,11 +21,20 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         //copy , paste and modify the below code to handle a new button
-        Button exploreButton = (Button)findViewById(R.id.btn_explore);
+        ImageButton exploreButton = (ImageButton)findViewById(R.id.meniu_ExploreButton);
         exploreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ExploreActivity.class));
+            }
+        });
+
+
+        ImageButton badgeButton = (ImageButton)findViewById(R.id.meniu_BadgesButton);
+        badgeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, BadgesActivity.class));
             }
         });
     }
