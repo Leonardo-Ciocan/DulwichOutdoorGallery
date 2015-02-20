@@ -24,6 +24,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -77,7 +78,7 @@ public class RouteActivity extends ActionBarActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_route, container, false);
+            final View rootView = inflater.inflate(R.layout.fragment_route, container, false);
             //gets the map control
             final SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                     .findFragmentById(R.id.map);
@@ -152,17 +153,22 @@ public class RouteActivity extends ActionBarActivity {
                         }
                     }*/
 
+
                     googleMap.setMyLocationEnabled(true);
                     GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
+                        Marker last;
                         @Override
                         public void onMyLocationChange(Location location) {
+                            if(last != null)last.remove();
                             LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-                            googleMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory
+                            last = googleMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory
                                     .defaultMarker(200)).position(loc));
                             double min = Integer.MAX_VALUE;
                             LatLng minPos = Core.Gallery.get(0).getLocation();
 
-                            Log.i("appx" , location.getLatitude() +"");
+
+
+                            //Log.i("appx" , location.getLatitude() +"");
                             for(int x = 1; x < Core.Gallery.size();x++) {
                                 Location userLocation = new Location("t" + x);
                                 userLocation.setLatitude(Core.Gallery.get(x).getLatitude());
@@ -179,12 +185,20 @@ public class RouteActivity extends ActionBarActivity {
                                 }
                             }
 
+                            Location userLocation = new Location("t" + 0);
+                            userLocation.setLatitude(Core.Gallery.get(0).getLatitude());
+                            userLocation.setLongitude(Core.Gallery.get(0).getLongitude());
+                            Float dist = userLocation.distanceTo(location);
+                            rootView.setAlpha((dist>30?0.5f:1f));
+                            dist = dist /1000000.0f;
+                            Log.v("aprp",dist.toString());
+
                             if(googleMap != null) {
                                 if(line != null)line.remove();
                                 PolylineOptions polylineOptions = new PolylineOptions();
                                 polylineOptions.add(new LatLng(location.getLatitude() , location.getLongitude()));
                                 polylineOptions.add(minPos);
-                                line = googleMap.addPolyline(polylineOptions);
+                                //line = googleMap.addPolyline(polylineOptions);
                             }
                         }
                     };

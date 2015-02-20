@@ -91,6 +91,7 @@ public class ExploreActivity extends ActionBarActivity {
                 @Override
                 public void onMapReady(GoogleMap googleMap) {
                     //the map is ready here
+
                     ArrayList<Art> Gallery = Core.getGallery();
 
                     for (int i = 0; i < Gallery.size(); i++) {
@@ -99,7 +100,6 @@ public class ExploreActivity extends ActionBarActivity {
                                 .title(Gallery.get(i).getName())
                                 .snippet(Gallery.get(i).getDescription())
                                 .position(new LatLng(Gallery.get(i).getLatitude(), Gallery.get(i).getLongitude())));
-
                     }
 
                 }
