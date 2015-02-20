@@ -11,6 +11,61 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+    <android.support.v7.widget.CardView
+        android:layout_height="200dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="bottom"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="-45dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/title"
+                android:textColor="@color/brand"
+                android:fontFamily="sans-serif-light"
+                android:textSize="16pt"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Grand tour"
+                />
+
+            <TextView
+                android:id="@+id/author"
+                android:textColor="@color/brand"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif-light"
+                android:textSize="10pt"
+                android:alpha="0.7"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="author"/>
+
+            <Button
+                android:padding="5dp"
+                android:textColor="#fff"
+                android:background="@color/brand"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NAVIGATE"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:gravity="center"
+                android:background="@color/brand"
+                android:text="More about"/>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
     <!--
         The following layout will be used as an action bar replacement
         It's better this way since we might later want to put this fragment
