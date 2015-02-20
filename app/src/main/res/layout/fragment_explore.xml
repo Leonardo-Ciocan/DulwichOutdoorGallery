@@ -18,14 +18,20 @@
         Also the Toolbar control is not supported on older versions
     -->
     <LinearLayout
-        android:background="#5f000000"
+        android:background="@color/brand"
+        android:alpha="0.85"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="@dimen/abc_action_bar_default_height_material">
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="#fff"
+            android:textColor="#000"
             android:text="List"
             android:id="@+id/buttonList"/>
 
