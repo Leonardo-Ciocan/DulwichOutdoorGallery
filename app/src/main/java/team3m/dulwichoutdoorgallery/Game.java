@@ -1,14 +1,13 @@
 package team3m.dulwichoutdoorgallery;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.content.res.XmlResourceParser;
+import android.util.Log;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -18,57 +17,17 @@ public class Game {
     private static Activity theActivity;
     private static ArrayList<Game> theSets = null;
     private String artist;
+    private String artworkResourceName;
     private int artworkToMatch;
     private int[] possibleChoices;
     private int correctChoice;
     private boolean completed = false;
 
-    //todo
-    public void saving() {
-
-        //not finished - saving the progress
-        try {
-            Boolean isNew = false;
-
-
-            File file = new File("game.txt");
-
-            // if file doesn't exist, then create it
-            if (!file.exists()) {
-                file.createNewFile();
-                isNew = true;//first time ran
-            }
-
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
-            if (isNew) {
-                bw.write("0\n3\n0");
-            }
-
-            //check if empty
-            CharSequence fileContents = "";
-            bw.append(fileContents);
-            if (fileContents.length() < 3)
-                bw.write("0\n3\n0");
-
-
-            bw.close();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    //todo
-    public void updateFile() {
-
-    }
-
     private static void loadSets() {
         int event;
         Game cur = null;
+
+        SharedPreferences completionData = theActivity.getSharedPreferences("Completion", 0);
 
         theSets = new ArrayList<>();
         XmlResourceParser data = theActivity.getResources().getXml(R.xml.games);
@@ -84,12 +43,15 @@ public class Game {
                         cur = new Game();
 
                         cur.artist = data.getAttributeValue(null, "artist");
+                        //use the resource name to save completion data across runs
+                        cur.artworkResourceName = data.getAttributeValue(null, "target");
                         cur.artworkToMatch = data.getAttributeResourceValue(null, "target", 0);
                         cur.possibleChoices[0] = data.getAttributeResourceValue(null, "choice0", 0);
                         cur.possibleChoices[1] = data.getAttributeResourceValue(null, "choice1", 0);
                         cur.possibleChoices[2] = data.getAttributeResourceValue(null, "choice2", 0);
                         cur.possibleChoices[3] = data.getAttributeResourceValue(null, "choice3", 0);
                         cur.correctChoice = data.getAttributeIntValue(null, "correct", 0);
+                        cur.completed = completionData.getBoolean(cur.artworkResourceName, false);
                     }
                 } else if (event == XmlPullParser.END_TAG) {
                     if (data.getName().contentEquals("pictureSet")) {
@@ -108,7 +70,7 @@ public class Game {
         if (theSets == null)
             loadSets();
 
-        int res = 1;
+        int res = 0;
 
         for (int t = 0; t < theSets.size(); t++)
             if (theSets.get(t).isCompleted())
@@ -136,12 +98,13 @@ public class Game {
 
         Random r = new Random();
         int n = r.nextInt(theSets.size());
-
+        Log.i("bmr", "n is " + Integer.toString(n));
         if (allSetsComplete())
             return theSets.get(n); //they're just playing for fun
 
         while (theSets.get(n).isCompleted()) // otherwise make sure it's a new game
             n = r.nextInt(theSets.size());
+        Log.i("bmr", "n is " + Integer.toString(n));
         return theSets.get(n);
     }
 
@@ -163,7 +126,11 @@ public class Game {
 
     public boolean makeAGuess(int pictureNumber) {
         if (pictureNumber == correctChoice) {
+            SharedPreferences.Editor updateCompletionData = theActivity.getSharedPreferences("Completion", 0).edit();
+
             completed = true;
+            updateCompletionData.putBoolean(this.artworkResourceName, true).commit();
+            Log.i("artworkResourceName", String.valueOf(this.completed));
             return true;
         }
         return false;

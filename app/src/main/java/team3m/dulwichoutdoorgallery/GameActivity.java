@@ -2,9 +2,9 @@ package team3m.dulwichoutdoorgallery;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -17,7 +17,7 @@ import android.widget.TextView;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class GameActivity extends ActionBarActivity {
+public class GameActivity extends ActionBarActivity implements GameHelpFragment.OnFragmentInteractionListener {
     private Game game;
     private ImageButton[] imageButtonsArray = new ImageButton[4];
     private ImageView artworkToMatch;
@@ -32,8 +32,17 @@ public class GameActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        game = Game.getNextGame(this);
 
+        SharedPreferences gameUiData = getSharedPreferences("gameUi", 0);
+
+        if (savedInstanceState == null) {
+            if (gameUiData.getBoolean("showHelp", true))
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.game_container, GameHelpFragment.newInstance())
+                        .commit();
+        }
+
+        game = Game.getNextGame(this);
         changeImageChoiceNumberText = (TextView) findViewById(R.id.currentRotatedPicture);
         changeImageNumberText = (TextView) findViewById(R.id.currentGameArtwork);
         changeArtistText = (TextView) findViewById(R.id.currentGameArtworkArtist);
@@ -43,7 +52,6 @@ public class GameActivity extends ActionBarActivity {
         imageButtonsArray[2] = (ImageButton) findViewById(R.id.imageButton3);
         imageButtonsArray[3] = (ImageButton) findViewById(R.id.imageButton4);
         loadData();
-
         hsv = (HorizontalScrollView) findViewById(R.id.horizontalScrollView);
         hsv.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -68,7 +76,7 @@ public class GameActivity extends ActionBarActivity {
                     imageButtonsArray[i].setImageResource(game.getPossibleChoices()[i]);
                 }
 
-                changeImageNumberText.setText("Picture: " + Game.progress() + "/20");
+                changeImageNumberText.setText("Picture: " + (Game.progress() + 1) + "/20");
                 changeArtistText.setText(game.getArtistName());
             }
         }));
@@ -76,7 +84,7 @@ public class GameActivity extends ActionBarActivity {
 
     public void onTimerTick() {
         currentButton = ++currentButton % 4;
-        Log.i(Integer.toString(currentButton), Integer.toString(imageButtonsArray[currentButton].getLeft()));
+        //Log.i(Integer.toString(currentButton), Integer.toString(imageButtonsArray[currentButton].getLeft()));
         hsv.smoothScrollTo(imageButtonsArray[currentButton].getLeft(), 0);
         runOnUiThread(new Thread(new Runnable() {
             public void run() {
@@ -92,8 +100,10 @@ public class GameActivity extends ActionBarActivity {
             loadData();
         } else {
             // if all 20 choices guessed correctly, run the GameComplete activity
+            timer.purge();
             Intent intent = new Intent(this, GameCompleteActivity.class);
             gameComplete(intent);
+            loadData();
         }
     }
 
@@ -134,6 +144,7 @@ public class GameActivity extends ActionBarActivity {
     }
 
     public void gameComplete(Intent intent) {
+
         // start GameCompleteActivity
         startActivity(intent);
     }
@@ -167,5 +178,18 @@ public class GameActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragmentInteraction() {
+        SharedPreferences gameUiData = getSharedPreferences("gameUi", 0);
+
+        gameUiData.edit()
+                .putBoolean("showHelp", false)
+                .commit();
+
+        getSupportFragmentManager().beginTransaction()
+                .remove(getSupportFragmentManager().findFragmentById(R.id.game_container))
+                .commit();
     }
 }
