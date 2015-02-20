@@ -27,6 +27,8 @@ import java.util.ArrayList;
 
 public class ExploreActivity extends ActionBarActivity {
 
+    protected static LinearLayout listLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +64,14 @@ public class ExploreActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onBackPressed(){
+
+        if(listLayout.getVisibility()== View.VISIBLE)
+            listLayout.setVisibility(View.INVISIBLE);
+        else
+            super.onBackPressed();
     }
 
     /**
@@ -101,7 +111,7 @@ public class ExploreActivity extends ActionBarActivity {
             List.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    LinearLayout listLayout = (LinearLayout) rootView.findViewById(R.id.listLayout);
+                    listLayout = (LinearLayout) rootView.findViewById(R.id.listLayout);
                     listLayout.setVisibility(View.VISIBLE);
                     populatedListView();
 
@@ -116,6 +126,7 @@ public class ExploreActivity extends ActionBarActivity {
             ListView list = (ListView) getView().findViewById(R.id.artList);
             list.setAdapter(adapter);
         }
+
     }
 
 
