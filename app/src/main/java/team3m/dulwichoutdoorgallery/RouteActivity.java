@@ -29,6 +29,7 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class RouteActivity extends ActionBarActivity {
@@ -67,12 +68,6 @@ public class RouteActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
     public static class PlaceholderFragment extends Fragment {
 
         Polyline line ;
@@ -196,25 +191,33 @@ public class RouteActivity extends ActionBarActivity {
                     googleMap.setOnMyLocationChangeListener(myLocationChangeListener);
 
                     LatLngBounds AUSTRALIA = new LatLngBounds(
-                            new LatLng(Core.Gallery.get(1).getLatitude(), Core.Gallery.get(1).getLongitude()), new LatLng(Core.Gallery.get(0).getLatitude(), Core.Gallery.get(0).getLongitude()));
+                            new LatLng(Core.Gallery.get(10).getLatitude(), Core.Gallery.get(10).getLongitude()), new LatLng(Core.Gallery.get(0).getLatitude(), Core.Gallery.get(0).getLongitude()));
 
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(AUSTRALIA.getCenter(), 10));
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(AUSTRALIA.getCenter(), 12));
 
+                    Random rnd = new Random();
+                    LatLng last = Gallery.get(0).getLocation();
                     int x =0;
-                    for(int i=0; i<Gallery.size(); i++){
-                        //x+=8;
+                    for(int i=1; i<Gallery.size(); i++){
                         LatLng point = new LatLng(Gallery.get(i).getLatitude(), Gallery.get(i).getLongitude());
-                        googleMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory
-                                .defaultMarker(x))
+                        googleMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.marker))
                                 .title(Gallery.get(i).getName())
                                 .snippet(Gallery.get(i).getDescription())
                                 .position(point));
-                        shape.add(point);
+
+
+                        PolylineOptions options = new PolylineOptions();
+                        options.add(last);
+                        options.add(point);
+
+                        last = point;
+                        Polyline polyline = googleMap.addPolyline(options);
+                        polyline.setGeodesic(true);
+                        int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+                        polyline.setColor(color);
+                        polyline.setWidth(4);
                     }
 
-                   // Polyline polyline = googleMap.addPolyline(shape);
-                   // polyline.setGeodesic(true);
-                   // polyline.setColor(Color.RED);
 
 
                 }

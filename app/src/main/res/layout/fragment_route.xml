@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="team3m.dulwichoutdoorgallery.RouteActivity$PlaceholderFragment">
@@ -8,4 +8,49 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="com.google.android.gms.maps.SupportMapFragment"/>
-</RelativeLayout>
+
+    <android.support.v7.widget.CardView
+        android:layout_height="200dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="bottom"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="-45dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:textColor="@color/brand"
+                android:fontFamily="sans-serif-light"
+                android:textSize="22pt"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Grand tour"/>
+
+            <TextView
+                android:textColor="@color/brand"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif-light"
+                android:textSize="10pt"
+                android:alpha="0.7"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="20 minutes"/>
+
+            <Button
+                android:padding="5dp"
+                android:textColor="#fff"
+                android:background="@color/brand"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NAVIGATE"/>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</FrameLayout>

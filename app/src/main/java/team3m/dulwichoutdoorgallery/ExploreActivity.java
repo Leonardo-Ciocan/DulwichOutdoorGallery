@@ -64,12 +64,9 @@ public class ExploreActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * The actual UI , check fragment_explore.xml
-     */
     public static class PlaceholderFragment extends Fragment {
-
         public PlaceholderFragment() {
+
         }
 
         @Override
