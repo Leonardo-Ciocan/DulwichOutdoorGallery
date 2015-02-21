@@ -15,11 +15,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
@@ -96,11 +98,34 @@ public class ExploreActivity extends ActionBarActivity {
                     for (int i = 0; i < Gallery.size(); i++) {
 
                         googleMap.addMarker(new MarkerOptions()
-                                .title(Gallery.get(i).getName())
+                                .title(String.valueOf(i))
                                 .snippet(Gallery.get(i).getDescription())
                                 .position(new LatLng(Gallery.get(i).getLatitude(), Gallery.get(i).getLongitude())));
 
+
                     }
+
+                    googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                        @Override
+                        public boolean onMarkerClick(Marker marker) {
+
+
+                            String title= marker.getTitle();
+                            int index= Integer.parseInt(title);
+
+
+                            TextView textTitle= (TextView)getView().findViewById(R.id.title);
+                            textTitle.setText(Core.getGallery().get(index).getName());
+
+                            TextView textAuthor= (TextView)getView().findViewById(R.id.author);
+                            textAuthor.setText(Core.getGallery().get(index).getAuthor());
+
+
+
+
+                            return false;
+                        }
+                    });
 
                 }
             });
