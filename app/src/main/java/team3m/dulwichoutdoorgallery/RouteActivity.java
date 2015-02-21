@@ -1,6 +1,7 @@
 package team3m.dulwichoutdoorgallery;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -75,6 +77,9 @@ public class RouteActivity extends ActionBarActivity {
         public PlaceholderFragment() {
         }
 
+        int lastVisited = 0;
+        GoogleMap map;
+        LatLng last;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
@@ -83,77 +88,13 @@ public class RouteActivity extends ActionBarActivity {
             final SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                     .findFragmentById(R.id.map);
 
+            final RouteProgressIndicator indicator = (RouteProgressIndicator) rootView.findViewById(R.id.dotview);
             mapFragment.getMapAsync(new OnMapReadyCallback() {
                 @Override
                 public void onMapReady(final GoogleMap googleMap) {
                     //the map is ready here
                     ArrayList<Art> Gallery= Core.getGallery();
-
-                    PolylineOptions shape = new PolylineOptions();
-
-                    ArrayList<Art> Sorted = new ArrayList<Art>();
-
-                    Art closest = null;
-                    double dist = Integer.MAX_VALUE;
-                    /*while(Sorted.size() != Gallery.size()){
-                        for(int x =0; x< Gallery.size();x++){
-                            if(closest == null) {
-                                closest = Gallery.get(x);
-                                float[] arr = new float[1] ;
-                                Location.distanceBetween(closest.Latitude , closest.Longitude ,
-                                        Core.Gallery.get(x).Latitude,Core.Gallery.get(x).Longitude,
-                                        arr
-                                        );
-                                dist = arr[0];
-
-                            }
-                            float[] arr = new float[1] ;
-                            Location.distanceBetween(closest.Latitude , closest.Longitude ,
-                                    Core.Gallery.get(x).Latitude,Core.Gallery.get(x).Longitude,
-                                    arr
-                            );
-                            if(arr[0] < dist) {
-                                closest = Core.Gallery.get(x);
-                                dist = arr[0];
-                            }
-
-                        }
-
-                    }
-                    LocationManager lm = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
-                    final LocationListener locationListener = new LocationListener() {
-                        public void onLocationChanged(Location location) {
-                            LatLng point3 = new LatLng(location.getLatitude(),location.getLongitude());
-                            googleMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory
-                                    .defaultMarker(180))
-                                    .title("User")
-                                    .position(point3));
-                        }
-                    };
-
-                    lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, locationListener);
-                    */
-
-
-
-
-                    /*LocationManager lm = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
-                    Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-                    LatLng point3 = new LatLng(location.getLatitude(),location.getLongitude());
-                    googleMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory
-                            .defaultMarker(180))
-                            .title("User")
-                            .position(point3));*/
-
-                    /*while(Sorted.size() != Gallery.size()){
-                        for(int x =0; x< Gallery.size();x++){
-                            if(closest == null) closest = Gallery.get(x);
-
-                        }
-                    }*/
-
-
+                    map = googleMap;
                     googleMap.setMyLocationEnabled(true);
                     GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
                         Marker last;
@@ -163,80 +104,90 @@ public class RouteActivity extends ActionBarActivity {
                             LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
                             last = googleMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory
                                     .defaultMarker(200)).position(loc));
-                            double min = Integer.MAX_VALUE;
-                            LatLng minPos = Core.Gallery.get(0).getLocation();
 
-
-
-                            //Log.i("appx" , location.getLatitude() +"");
-                            for(int x = 1; x < Core.Gallery.size();x++) {
-                                Location userLocation = new Location("t" + x);
-                                userLocation.setLatitude(Core.Gallery.get(x).getLatitude());
-                                userLocation.setLatitude(Core.Gallery.get(x).getLongitude());
-
-                                double dist = location.distanceTo(userLocation);
-
-
-
-
-                                if(dist < min) {
-                                    min = dist;
-                                    minPos = Core.getGallery().get(x).getLocation();
-                                }
-                            }
-
+                            /*
                             Location userLocation = new Location("t" + 0);
                             userLocation.setLatitude(Core.Gallery.get(0).getLatitude());
                             userLocation.setLongitude(Core.Gallery.get(0).getLongitude());
                             Float dist = userLocation.distanceTo(location);
-                            rootView.setAlpha((dist>30?0.5f:1f));
-                            dist = dist /1000000.0f;
-                            Log.v("aprp",dist.toString());
+                            rootView.setAlpha((dist>30?0.5f:1f));*/
 
-                            if(googleMap != null) {
-                                if(line != null)line.remove();
-                                PolylineOptions polylineOptions = new PolylineOptions();
-                                polylineOptions.add(new LatLng(location.getLatitude() , location.getLongitude()));
-                                polylineOptions.add(minPos);
-                                //line = googleMap.addPolyline(polylineOptions);
+                            int closest = getClosestWithinRange(location , 20f);
+                            if(closest != lastVisited && closest > lastVisited){
+                                lastVisited = closest;
+                                Toast.makeText(getActivity() , lastVisited +"",Toast.LENGTH_SHORT).show();
+                                indicator.setSelected(closest);
+                                drawOverlay();
                             }
                         }
                     };
+
                     googleMap.setOnMyLocationChangeListener(myLocationChangeListener);
 
-                    LatLngBounds AUSTRALIA = new LatLngBounds(
-                            new LatLng(Core.Gallery.get(10).getLatitude(), Core.Gallery.get(10).getLongitude()), new LatLng(Core.Gallery.get(0).getLatitude(), Core.Gallery.get(0).getLongitude()));
 
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(AUSTRALIA.getCenter(), 12));
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Core.Gallery.get(10).getLocation() ,  12));
 
-                    Random rnd = new Random();
-                    LatLng last = Gallery.get(0).getLocation();
-                    int x =0;
-                    for(int i=1; i<Gallery.size(); i++){
-                        LatLng point = new LatLng(Gallery.get(i).getLatitude(), Gallery.get(i).getLongitude());
-                        googleMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.marker))
-                                .title(Gallery.get(i).getName())
-                                .snippet(Gallery.get(i).getDescription())
-                                .position(point));
+                    last = Gallery.get(0).getLocation();
 
 
-                        PolylineOptions options = new PolylineOptions();
-                        options.add(last);
-                        options.add(point);
-
-                        last = point;
-                        Polyline polyline = googleMap.addPolyline(options);
-                        polyline.setGeodesic(true);
-                        int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-                        polyline.setColor(color);
-                        polyline.setWidth(4);
-                    }
-
+                    drawOverlay();
 
 
                 }
             });
             return rootView;
+        }
+
+        int getClosestWithinRange(Location user,float max){
+
+            float min = Float.MAX_VALUE;
+            int minIndex=0;
+            for( int x =0; x< Core.getGallery().size();x++){
+                Location location = new Location("t" + x);
+                location.setLatitude(Core.Gallery.get(x).getLatitude());
+                location.setLongitude(Core.Gallery.get(x).getLongitude());
+                Float dist = location.distanceTo(user);
+                if(dist < min && dist < max){
+                    minIndex = x;
+                }
+            }
+            return minIndex;
+        }
+
+
+        void drawOverlay(){
+            map.clear();
+            ArrayList<Art> Gallery = Core.getGallery();
+            for(int i=0; i< Core.getGallery().size(); i++){
+                LatLng point = new LatLng(Gallery.get(i).getLatitude(), Gallery.get(i).getLongitude());
+                map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.marker))
+                        .title(Gallery.get(i).getName())
+                        .snippet(Gallery.get(i).getDescription())
+                        .position(point));
+
+
+                PolylineOptions options = new PolylineOptions();
+                options.add(last);
+                options.add(point);
+
+                last = point;
+
+                //int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+                if(i>=1) {
+                    Polyline polyline = map.addPolyline(options);
+                    polyline.setGeodesic(true);
+                    int color = (i == lastVisited+1) ? getActivity().getResources().getColor(R.color.brand) : Color.GRAY;
+                    polyline.setColor(color);
+                    polyline.setWidth(6);
+                }
+            }
+        }
+
+        void share(){
+            Intent intent2 = new Intent(); intent2.setAction(Intent.ACTION_SEND);
+            intent2.setType("text/plain");
+            intent2.putExtra(Intent.EXTRA_TEXT, "Your text here" );
+            startActivity(Intent.createChooser(intent2, "Share via"));
         }
     }
 }

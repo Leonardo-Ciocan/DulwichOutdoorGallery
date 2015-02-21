@@ -7,31 +7,31 @@
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="170dp"
         android:name="com.google.android.gms.maps.SupportMapFragment"/>
 
     <android.support.v7.widget.CardView
         android:layout_height="200dp"
         android:layout_width="match_parent"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="-5dp"
         android:layout_gravity="bottom"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="-45dp">
+        android:layout_marginRight="-5dp"
+        android:layout_marginBottom="-25dp">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
-                android:textColor="@color/brand"
+                android:textColor="#000"
                 android:fontFamily="sans-serif-light"
-                android:textSize="22pt"
+                android:textSize="14pt"
                 android:textAlignment="center"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Grand tour"/>
-
+                android:text="GRAND TOUR"/>
             <TextView
-                android:textColor="@color/brand"
+                android:textColor="#000"
                 android:layout_margin="5dp"
                 android:fontFamily="sans-serif-light"
                 android:textSize="10pt"
@@ -40,16 +40,44 @@
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="20 minutes"/>
+                android:text="1: First art piece"/>
+            <team3m.dulwichoutdoorgallery.RouteProgressIndicator
+                android:id="@+id/dotview"
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
 
-            <Button
-                android:padding="5dp"
-                android:textColor="#fff"
-                android:background="@color/brand"
-                android:layout_gravity="center"
+            </team3m.dulwichoutdoorgallery.RouteProgressIndicator>
+
+
+
+
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="NAVIGATE"/>
+                >
+                <Button
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:textColor="@color/brand"
+                    android:background="#00ffffff"
+                    android:layout_gravity="center"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="NAVIGATE"/>
+
+                <Button
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:textColor="@color/brand"
+                    android:background="#00ffffff"
+
+                    android:layout_gravity="center"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SHARE"/>
+
+            </LinearLayout>
         </LinearLayout>
 
     </android.support.v7.widget.CardView>

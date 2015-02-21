@@ -2,9 +2,13 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:colorPrimary">@color/brand</item>
+        <!--   darker variant for the status bar and contextual app bars -->
+        <item name="android:colorPrimaryDark">@color/brandDark</item>
+        <!--   theme UI controls like checkboxes and text fields -->
+        <item name="android:colorAccent">@color/brand</item>
 
+        <item name="android:statusBarColor">@color/brand</item>
     </style>
 
 </resources>
