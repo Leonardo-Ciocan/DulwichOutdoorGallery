@@ -9,10 +9,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ViewAnimator;
+
+import com.facebook.Session;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -22,7 +26,7 @@ public class GameActivity extends ActionBarActivity implements GameHelpFragment.
     private ImageButton[] imageButtonsArray = new ImageButton[4];
     private ImageView artworkToMatch;
     private Timer timer = new Timer();
-    private HorizontalScrollView hsv;
+    private ViewAnimator theVa;
     private int currentButton;
     private TextView changeImageChoiceNumberText;
     private TextView changeImageNumberText;
@@ -52,13 +56,10 @@ public class GameActivity extends ActionBarActivity implements GameHelpFragment.
         imageButtonsArray[2] = (ImageButton) findViewById(R.id.imageButton3);
         imageButtonsArray[3] = (ImageButton) findViewById(R.id.imageButton4);
         loadData();
-        hsv = (HorizontalScrollView) findViewById(R.id.horizontalScrollView);
-        hsv.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
+        theVa = (ViewAnimator) findViewById(R.id.viewAnimator);
+        theVa.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left));
+        theVa.setOutAnimation(this, android.R.anim.slide_out_right);
+        theVa.setDisplayedChild(0);
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -71,13 +72,14 @@ public class GameActivity extends ActionBarActivity implements GameHelpFragment.
         game = Game.getNextGame(this);
         runOnUiThread(new Thread(new Runnable() {
             public void run() {
+                currentButton = 0;
                 artworkToMatch.setImageResource(game.getIdOfArtworkToMatch());
                 for (int i = 0; i < 4; i++) {
                     imageButtonsArray[i].setImageResource(game.getPossibleChoices()[i]);
                 }
 
                 changeImageNumberText.setText("Picture: " + (Game.progress() + 1) + "/20");
-                changeArtistText.setText(game.getArtistName());
+                changeArtistText.setText("Artist: " + game.getArtistName());
             }
         }));
     }
@@ -85,11 +87,11 @@ public class GameActivity extends ActionBarActivity implements GameHelpFragment.
     public void onTimerTick() {
         currentButton = ++currentButton % 4;
         //Log.i(Integer.toString(currentButton), Integer.toString(imageButtonsArray[currentButton].getLeft()));
-        hsv.smoothScrollTo(imageButtonsArray[currentButton].getLeft(), 0);
         runOnUiThread(new Thread(new Runnable() {
             public void run() {
                 int currentText = currentButton + 1;
                 changeImageChoiceNumberText.setText(Integer.toString(currentText));
+                theVa.setDisplayedChild(currentButton);
             }
         }));
     }

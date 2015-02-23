@@ -11,8 +11,9 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/space">
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/space"
+        android:layout_toStartOf="@+id/space">
 
         <ImageView
             android:layout_width="match_parent"
@@ -51,8 +52,8 @@
     </RelativeLayout>
 
     <Space
-        android:layout_width="match_parent"
-        android:layout_height="20px"
+        android:layout_width="20px"
+        android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/space" />
@@ -60,10 +61,11 @@
     <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/space"
         android:id="@+id/artViewArea"
-        android:outlineProvider="bounds">
+        android:outlineProvider="bounds"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/space"
+        android:layout_toEndOf="@+id/space">
 
         <ViewAnimator
             android:layout_width="wrap_content"
