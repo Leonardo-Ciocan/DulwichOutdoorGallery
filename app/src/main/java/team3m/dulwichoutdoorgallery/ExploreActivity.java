@@ -123,7 +123,7 @@ public class ExploreActivity extends ActionBarActivity {
 
 
 
-                            return false;
+                            return true;
                         }
                     });
 

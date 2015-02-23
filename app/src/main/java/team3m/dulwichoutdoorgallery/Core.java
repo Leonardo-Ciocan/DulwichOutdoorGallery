@@ -5,10 +5,9 @@ import java.util.ArrayList;
 public class Core {
     public static ArrayList<Art> Gallery = new ArrayList<Art>(){
         {
-
             add(new Art("name" , "description" , "Faith47" , null , new ArrayList<String>(), 51.471406, -0.064335));
-            add(new Art("name" , "description" , "Walter Kershaw" , null , new ArrayList<String>(), 51.467357, -0.072510));
             add(new Art("name" , "description" , "Roa 2013" , null , new ArrayList<String>(), 51.467437, -0.072308));
+            add(new Art("name" , "description" , "Walter Kershaw" , null , new ArrayList<String>(), 51.467357, -0.072510));
             add(new Art("name" , "description" , "Remi Rough and System" , null , new ArrayList<String>(), 51.461959, -0.079336));
             add(new Art("name" , "description" , "Pablo Delgado" , null , new ArrayList<String>(), 51.461853, -0.077332));
             add(new Art("name" , "description" , "Conor Harrington" , null , new ArrayList<String>(), 51.460617, -0.075041));
