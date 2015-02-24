@@ -13,11 +13,12 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"/>
 
     <android.support.v7.widget.CardView
+        android:id="@+id/card"
+        android:layout_marginLeft="-5dp"
+        android:layout_marginRight="-5dp"
         android:layout_height="200dp"
         android:layout_width="match_parent"
-        android:layout_marginLeft="20dp"
         android:layout_gravity="bottom"
-        android:layout_marginRight="20dp"
         android:layout_marginBottom="-45dp">
         <LinearLayout
             android:orientation="vertical"
@@ -31,9 +32,7 @@
                 android:textAlignment="center"
                 android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Grand tour"
-                />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/author"
@@ -46,23 +45,15 @@
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="author"/>
+                android:text="Select a piece of art"/>
 
-            <Button
-                android:padding="5dp"
-                android:textColor="#fff"
-                android:background="@color/brand"
-                android:layout_gravity="center"
+            <ListView
+                android:alpha="0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="NAVIGATE"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:gravity="center"
-                android:background="@color/brand"
-                android:text="More about"/>
+                android:id="@+id/artList"
+                android:layout_marginBottom="45dp"
+             ></ListView>
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
@@ -72,25 +63,34 @@
         in a tablet collumn and we couldn't with only 1 action bar
         Also the Toolbar control is not supported on older versions
     -->
-    <LinearLayout
-        android:background="@color/brand"
-        android:alpha="0.85"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/abc_action_bar_default_height_material">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:background="#fff"
-            android:textColor="#000"
-            android:text="List"
-            android:id="@+id/buttonList"/>
 
-    </LinearLayout>
+
+
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_marginRight="-84dp"
+        xmlns:fab="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="125dp"
+        android:src="@drawable/ic_maps_navigation"
+        fab:fab_colorNormal="@color/brand"
+        fab:fab_colorPressed="@color/brandDark" />
+
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/fab2"
+        android:layout_marginLeft="16dp"
+        xmlns:fab="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|bottom"
+        android:layout_marginBottom="125dp"
+        android:src="@drawable/ic_navigation_menu"
+        fab:fab_colorNormal="@color/brand"
+        fab:fab_colorPressed="@color/brandDark" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -101,21 +101,9 @@
         android:background="#fff">
 
 
-        <ListView
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/artList"
-
-
-            ></ListView>
 
 
     </LinearLayout>
-    
-
-
-
-
 
 </FrameLayout>
