@@ -21,8 +21,7 @@
                 android:id="@+id/meniu_ExploreButton"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:background="@drawable/test_poseidon"
-                android:src="@drawable/test_poseidon" />
+                android:background="@drawable/btn_explore" />
         </LinearLayout>
 
         <LinearLayout
@@ -39,7 +38,7 @@
                 android:layout_height="fill_parent"
                 android:layout_gravity="left"
                 android:layout_weight="1"
-                android:background="#D32F2F" />
+                android:background="@drawable/btn_route" />
 
             <ImageView
                 android:layout_width="8dp"
@@ -51,7 +50,7 @@
                 android:layout_height="fill_parent"
                 android:layout_gravity="right"
                 android:layout_weight="1"
-                android:background="#ffcc3cbc" />
+                android:background="@drawable/btn_quiz" />
 
 
         </LinearLayout>
@@ -68,7 +67,7 @@
                 android:id="@+id/meniu_GalleryButton"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:background="#ff68cc4b" />
+                android:background="@drawable/btn_gallery" />
         </LinearLayout>
 
         <LinearLayout
@@ -84,7 +83,7 @@
                 android:layout_height="fill_parent"
                 android:layout_gravity="left"
                 android:layout_weight="1"
-                android:background="#ff2dd3d0" />
+                android:background="@drawable/btn_badges" />
 
             <ImageView
                 android:layout_width="8dp"
@@ -96,7 +95,7 @@
                 android:layout_height="fill_parent"
                 android:layout_gravity="right"
                 android:layout_weight="2"
-                android:background="#ff1e29cc" />
+                android:background="@drawable/btn_about" />
 
         </LinearLayout>
 

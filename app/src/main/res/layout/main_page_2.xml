@@ -14,7 +14,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:id="@+id/meniu_ExploreButton"
-            android:background="#ccc" />
+            android:background="@drawable/btn_explore" />
     </LinearLayout>
 
     <LinearLayout
@@ -31,7 +31,7 @@
             android:id="@+id/meniu_RouteButton"
             android:layout_weight="1"
             android:layout_gravity="left"
-            android:background="#D32F2F" />
+            android:background="@drawable/btn_route" />
 
         <ImageView
             android:layout_width="8dp"
@@ -43,7 +43,7 @@
             android:id="@+id/meniu_QuizButton"
             android:layout_weight="1"
             android:layout_gravity="right"
-            android:background="#ccc"
+            android:background="@drawable/btn_quiz"
              />
 
 
@@ -60,7 +60,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:id="@+id/meniu_GalleryButton"
-            android:background="#ccc" />
+            android:background="@drawable/btn_gallery" />
     </LinearLayout>
 
     <LinearLayout
