@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     tools:context="team3m.dulwichoutdoorgallery.RouteActivity$PlaceholderFragment">
 
+
+
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/map"
         android:layout_width="match_parent"
@@ -69,16 +71,7 @@
                 android:textColor="#fff"
                 android:text="This is some long text here. It is is initially hidden beneath the other card."/>
 
-            <TextView
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:layout_gravity="right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="^"
-                android:textColor="#fff"
-                android:fontFamily="sans-serif-light"
-                android:textSize="20pt"/>
+
 
             <LinearLayout
                 android:layout_gravity="bottom"
@@ -127,6 +120,8 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+
             <TextView
                 android:textColor="#000"
                 android:fontFamily="sans-serif-light"
@@ -162,6 +157,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
+
                 <Button
                     android:id="@+id/navigateBtn"
 
@@ -191,4 +187,17 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
+
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_marginRight="16dp"
+        xmlns:fab="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="180dp"
+        android:src="@drawable/ic_av_play_arrow"
+        android:rotation="-90"
+        fab:fab_colorNormal="@color/brand"
+        fab:fab_colorPressed="@color/brandDark" />
 </FrameLayout>

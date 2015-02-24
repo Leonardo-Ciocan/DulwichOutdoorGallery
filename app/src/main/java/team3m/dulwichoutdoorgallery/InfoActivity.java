@@ -95,7 +95,7 @@ public class InfoActivity extends ActionBarActivity {
                     int scrollY = scrollView.getScrollY(); //for verticalScrollView
                     float percentage = scrollY / scrollView.getMaxScrollAmount();
 
-                    FrameLayout.LayoutParams params2 = (FrameLayout.LayoutParams) header.getLayoutParams();
+                    FrameLayout.LayoutParams params2 = (FrameLayout.LayoutParams) imgHolder.getLayoutParams();
                     params2.topMargin = (int)(-scrollY / 2.5f);
                     //header.setScaleX(1 + scrollY / 7.5f);
                     //header.setScaleY(1 + scrollY / 7.5f);
@@ -104,7 +104,7 @@ public class InfoActivity extends ActionBarActivity {
                     //DisplayMetrics metrics = resources.getDisplayMetrics();
                     //float px = 400 * (metrics.densityDpi / 160f);
                     //params2.height =  (int)(px - scrollY);
-                    header.setLayoutParams(params2);
+                    imgHolder.setLayoutParams(params2);
 
 
 

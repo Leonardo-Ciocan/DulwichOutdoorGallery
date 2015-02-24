@@ -28,7 +28,6 @@ import java.util.ArrayList;
 
 
 public class ExploreActivity extends ActionBarActivity {
-
     protected static LinearLayout listLayout;
 
     @Override

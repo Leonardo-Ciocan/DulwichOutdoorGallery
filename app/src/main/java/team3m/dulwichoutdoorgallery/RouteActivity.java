@@ -39,6 +39,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -172,7 +173,9 @@ public class RouteActivity extends ActionBarActivity {
 
             collapsed = true;
 
-            currentArt.setOnTouchListener(new View.OnTouchListener() {
+            final FloatingActionButton fab = (FloatingActionButton)rootView.findViewById(R.id.fab);
+
+            fab.setOnTouchListener(new View.OnTouchListener() {
 
 
                 @Override
@@ -182,9 +185,9 @@ public class RouteActivity extends ActionBarActivity {
                         protected void applyTransformation(float interpolatedTime, Transformation t) {
 
                             Log.v("appi", interpolatedTime + " " + collapsed);
-                            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) v.getLayoutParams();
+                            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) currentArt.getLayoutParams();
                             params.bottomMargin = (int) ((-80 + (int) (70 * ((collapsed) ? interpolatedTime : 1 - interpolatedTime))) * getActivity().getResources().getDisplayMetrics().density);
-                            v.setLayoutParams(params);
+                            currentArt.setLayoutParams(params);
 
                             FrameLayout.LayoutParams params2 = (FrameLayout.LayoutParams) navigationCard.getLayoutParams();
                             params2.bottomMargin = (int) (-25 - (int) (190 * ((collapsed) ? interpolatedTime : 1 - interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
@@ -204,7 +207,18 @@ public class RouteActivity extends ActionBarActivity {
                             navigationCard.setScaleX(1 + ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
                             navigationCard.setAlpha(1- ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
 
+
                             artCardImage.setAlpha( ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
+
+
+
+
+                            FrameLayout.LayoutParams params55 = (FrameLayout.LayoutParams) fab.getLayoutParams();
+                            params55.bottomMargin = (int) ((180 + (int) (70 * ((collapsed) ? interpolatedTime : 1 - interpolatedTime))) * getActivity().getResources().getDisplayMetrics().density);
+                            fab.setLayoutParams(params55);
+
+                            fab.setRotation(-90 + 180 *( (collapsed) ? interpolatedTime : 1 - interpolatedTime));
+                            fab.setAlpha(( 0.5f + 0.5f *( (!collapsed) ? interpolatedTime : 1 - interpolatedTime)));
 
                             if (interpolatedTime == 1) {
                                 collapsed = !collapsed;
