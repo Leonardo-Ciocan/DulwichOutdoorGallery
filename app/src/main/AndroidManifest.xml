@@ -50,10 +50,15 @@
             android:name=".GameCompleteActivity"
             android:label="@string/title_activity_game_complete" >
         </activity>
+
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyArwKgXftJmpH2rHXt-uC5UmDWjiXzKza0" />
 
+        <activity
+            android:name=".InfoActivity"
+            android:label="@string/title_activity_info" >
+        </activity>
     </application>
 
 </manifest>

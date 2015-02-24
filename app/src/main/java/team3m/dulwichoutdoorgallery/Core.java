@@ -42,9 +42,6 @@ public class Core {
             add(new Art("name" , "description" , "Agent Provocateur(AP)" , null , new ArrayList<String>(), 51.441069, -0.056676));
             add(new Art("name" , "description" , "RUN" , null , new ArrayList<String>(), 51.438862, -0.053918));
             add(new Art("name" , "description" , "Beerens" , null , new ArrayList<String>(), 51.447739, -0.074982));
-
-
-
         }
     };
 

@@ -40,5 +40,6 @@
         <item>Walter Kershaw - Landscape with Windmills Near Haarlem</item>
     </string-array>
     <string name="title_activity_game_complete">GameCompleteActivity</string>
+    <string name="title_activity_info">InfoActivity</string>
 
 </resources>

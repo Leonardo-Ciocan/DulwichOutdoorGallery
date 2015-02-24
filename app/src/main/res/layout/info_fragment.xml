@@ -1,0 +1,141 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="team3m.dulwichoutdoorgallery.InfoActivity$PlaceholderFragment"
+    android:background="#fff">
+
+
+
+
+
+
+    <FrameLayout
+        android:clipChildren="false"
+        android:id="@+id/imgHolder"
+        android:layout_width="fill_parent"
+        android:layout_height="300dp">
+        <ImageView
+            android:rotationY="90"
+            android:id="@+id/header2"
+            android:src="@drawable/madc_vase_with_flowers"
+            android:scaleType="fitXY"
+            android:layout_width="fill_parent"
+            android:layout_height="300dp" />
+
+        <ImageView
+            android:id="@+id/header"
+            android:src="@drawable/reka_europa_and_the_bull"
+            android:scaleType="fitXY"
+            android:layout_width="fill_parent"
+            android:layout_height="300dp" />
+
+        </FrameLayout>
+
+
+
+    <ScrollView
+        android:clipChildren="false"
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+
+
+        <LinearLayout
+            android:clipChildren="false"
+            android:paddingBottom="300dp"
+            android:layout_marginTop="300dp"
+            android:orientation="vertical"
+            android:background="#fff"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+
+
+        <TextView
+
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="sans-serif-light"
+            android:textSize="18pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            />
+        <TextView
+
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="sans-serif-light"
+
+            android:textSize="11pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Author"
+            />
+        <TextView
+
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="9pt"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+            />
+
+
+        <LinearLayout
+
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <Button
+                android:id="@+id/navigateBtn"
+
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:textColor="@color/brand"
+                android:background="#00ffffff"
+                android:layout_gravity="center"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="NAVIGATE"/>
+
+            <Button
+                android:id="@+id/shareBtn"
+
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:textColor="@color/brand"
+                android:background="#00ffffff"
+
+                android:layout_gravity="center"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="SHARE"/>
+
+        </LinearLayout>
+        </LinearLayout>
+        
+    </ScrollView>
+
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_marginRight="16dp"
+        xmlns:fab="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="270dp"
+        android:src="@drawable/ic_action_notification_sync"
+        fab:fab_colorNormal="@color/brand"
+        fab:fab_colorPressed="@color/brandDark" />
+
+</FrameLayout>
