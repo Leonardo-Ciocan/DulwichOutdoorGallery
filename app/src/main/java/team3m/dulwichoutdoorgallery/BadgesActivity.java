@@ -43,6 +43,9 @@ public class BadgesActivity extends ActionBarActivity {
 
     public static ArrayList<Badge> badges = new ArrayList<Badge>();
     public static CharSequence badgeTitle;
+    private static TextView txt_achievementsStats;
+    private static int badgesInTheBag;
+    private static float achievementsPerc;
     //public static CharSequence badgeDesc;
 
     @Override
@@ -212,6 +215,9 @@ public class BadgesActivity extends ActionBarActivity {
                 Badge currentBadge;
                 currentBadge = badges.get(pos);
 
+                badgesInTheBag = 0;
+                txt_achievementsStats = (TextView)rootView.findViewById(R.id.txt_achievementsStats);
+
                 ImageView imageView = (ImageView) itemView.findViewById(R.id.badge_icon);
                 imageView.setImageResource(currentBadge.getBadgeID());
 
@@ -222,12 +228,13 @@ public class BadgesActivity extends ActionBarActivity {
                 makeDescription.setText(currentBadge.getDescription());
 
                 checkAchieved(currentBadge, imageView, makeTitle, makeDescription);
+                getStats();
 
                 return itemView;
 
             }
 
-            // To Fix
+         
             private void checkAchieved(Badge badge, ImageView img, TextView title, TextView desc){
                 if(!badge.getAchieved()){
                     img.setAlpha(0.4f);
@@ -238,6 +245,15 @@ public class BadgesActivity extends ActionBarActivity {
                     title.setAlpha(1.0f);
                     desc.setAlpha(1.0f);
                 }
+            }
+
+            public void getStats(){
+                for(int i=0; i<badges.size(); i++){
+                    if(badges.get(i).getAchieved())
+                        badgesInTheBag++;
+                    achievementsPerc = (badgesInTheBag*100)/badges.size();
+                }
+                txt_achievementsStats.setText("You have unlocked "+badgesInTheBag+"/"+badges.size()+" ("+Math.round(achievementsPerc)+"%"+")");
             }
 
 
