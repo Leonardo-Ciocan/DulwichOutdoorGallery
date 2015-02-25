@@ -2,6 +2,8 @@ package team3m.dulwichoutdoorgallery;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.CountDownTimer;
@@ -9,12 +11,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import java.io.FileOutputStream;
@@ -23,13 +29,24 @@ import java.io.IOException;
 
 public class CoreActivity extends ActionBarActivity {
 
+    EditText searchBox;
     ActionBarDrawerToggle toggle;
+    ExploreActivity.PlaceholderFragment ExploreFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_core);
 
         final Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+
+        searchBox = (EditText) findViewById(R.id.search);
+        /*Palette.generateAsync(BitmapFactory.decodeResource(getResources() , R.drawable.reka_europa_and_the_bull), new Palette.PaletteAsyncListener() {
+            public void onGenerated(Palette palette) {
+                toolbar.setBackground(new ColorDrawable(palette.getVibrantColor(getResources().getColor(R.color.brand))));
+            }
+        });*/
+
+
         toolbar.setTitle("Explore");
 
         setSupportActionBar(toolbar);
@@ -39,12 +56,12 @@ public class CoreActivity extends ActionBarActivity {
         drawerLayout.setDrawerListener(toggle);
 
 
-        final ExploreActivity.PlaceholderFragment exploreFragment = new ExploreActivity.PlaceholderFragment();
-        exploreFragment.setRetainInstance(true);
+        ExploreFragment = new ExploreActivity.PlaceholderFragment(searchBox);
+        ExploreFragment.setRetainInstance(true);
 
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.contentHolder, exploreFragment)
+                .add(R.id.contentHolder, ExploreFragment)
                 .commit();
 
 
@@ -67,9 +84,9 @@ public class CoreActivity extends ActionBarActivity {
 
                 new CountDownTimer(300, 300) {
                     public void onFinish() {
-                        ExploreActivity.PlaceholderFragment exploreFragment = new ExploreActivity.PlaceholderFragment();
+                        ExploreFragment = new ExploreActivity.PlaceholderFragment(searchBox);
                         getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.contentHolder, exploreFragment)
+                                .replace(R.id.contentHolder, ExploreFragment)
                                 .commit();
                     }
 
@@ -109,6 +126,22 @@ public class CoreActivity extends ActionBarActivity {
                 }.start();
             }
         });
+        searchBox.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                ExploreFragment.search(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
 
@@ -124,11 +157,19 @@ public class CoreActivity extends ActionBarActivity {
         return true;
     }
 
-    boolean t = false;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (toggle.onOptionsItemSelected(item))
             return true;
+
+        if(item.getItemId() == R.id.search){
+            searchBox.setVisibility(View.VISIBLE);
+            searchBox.setText("");
+            ExploreFragment.search("");
+            searchBox.requestFocus();
+
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +23,7 @@ import android.view.animation.Transformation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -37,6 +39,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -55,7 +58,7 @@ public class ExploreActivity extends ActionBarActivity {
         if (savedInstanceState == null) {
             //This activity is empty , the fragment holds the actual UI
             //This is useful because we can move around that fragment in a tablet layout
-            fragment = new PlaceholderFragment();
+            fragment = new PlaceholderFragment(null);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, fragment)
                     .commit();
@@ -98,8 +101,9 @@ public class ExploreActivity extends ActionBarActivity {
 
         private ArrayAdapter<Art> adapter;
 
-        public PlaceholderFragment() {
-
+        EditText searchField;
+        public PlaceholderFragment(EditText searchField) {
+            this.searchField = searchField;
         }
 
         public void toggleCardAnim() {
@@ -130,7 +134,6 @@ public class ExploreActivity extends ActionBarActivity {
             final SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                     .findFragmentById(R.id.map);
             card = (CardView) rootView.findViewById(R.id.card);
-            final CardView searchCard = (CardView) rootView.findViewById(R.id.searchHolder);
 
             final FloatingActionButton fab2 = (FloatingActionButton) rootView.findViewById(R.id.fab2);
             final ListView list = (ListView) rootView.findViewById(R.id.artList);
@@ -144,7 +147,15 @@ public class ExploreActivity extends ActionBarActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     card.startAnimation(toggleCardAnim);
                     map.moveCamera(CameraUpdateFactory.newLatLngZoom(Core.Gallery.get(position).getLocation(), 15));
-                    selectArt(position);
+                    selectArt(position , false);
+                }
+            });
+            final Button btnInfo  = (Button) rootView.findViewById(R.id.info);
+            btnInfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(getActivity() , InfoActivity.class);
+                    startActivity(i);
                 }
             });
 
@@ -156,7 +167,12 @@ public class ExploreActivity extends ActionBarActivity {
                     fab.setLayoutParams(params3);
                     fab.setRotation(interpolatedTime * 100);
 
+                    FrameLayout.LayoutParams params6 = (FrameLayout.LayoutParams) btnInfo.getLayoutParams();
+                    params6.bottomMargin = (int) ((5 - (45 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
+                    btnInfo.setLayoutParams(params6);
+
                     if (interpolatedTime >= 1f) {
+
                         fab.setRotation(-100);
                         this.cancel();
                     }
@@ -179,6 +195,10 @@ public class ExploreActivity extends ActionBarActivity {
                     fab.setLayoutParams(params3);
 
                     fab.setRotation(-100 + interpolatedTime * 100);
+
+                    FrameLayout.LayoutParams params6 = (FrameLayout.LayoutParams) btnInfo.getLayoutParams();
+                    params6.bottomMargin = (int) ((-40 + (45 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
+                    btnInfo.setLayoutParams(params6);
 
                 }
 
@@ -210,23 +230,28 @@ public class ExploreActivity extends ActionBarActivity {
                         params4.bottomMargin = (int) ((115 + 250 - (250 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
                     fab2.setLayoutParams(params4);
 
-                    FrameLayout.LayoutParams params5 = (FrameLayout.LayoutParams) searchCard.getLayoutParams();
+                    /*FrameLayout.LayoutParams params5 = (FrameLayout.LayoutParams) searchCard.getLayoutParams();
                     if (isCardUp)
                         params5.topMargin = (int) (((-200 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
                     else
                         params5.topMargin = (int) ((-200 + (207 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
                     searchCard.setLayoutParams(params5);
 
+                    searchCard.setAlpha(((isCardUp) ? 1 - interpolatedTime : interpolatedTime * 1));*/
                     list.setAlpha(((isCardUp) ? 1 - interpolatedTime : interpolatedTime * 1));
-                    searchCard.setAlpha(((isCardUp) ? 1 - interpolatedTime : interpolatedTime * 1));
+
                     mapHolder.setAlpha(((!isCardUp) ? 1.5f - interpolatedTime : 0.5f + interpolatedTime * 1));
 
                     fab2.setImageDrawable(getResources().getDrawable(!isCardUp ? R.drawable.ic_action_content_add : R.drawable.ic_navigation_menu));
                     fab2.setRotation(((isCardUp) ? 135 - interpolatedTime * 135 : interpolatedTime * 135));
+
+
+
                     if (interpolatedTime >= 1f) {
+                        if(isCardUp && selected) fab.startAnimation(toggleNavButton);
+                        if(isCardUp && searchField != null)searchField.setVisibility(View.GONE);
                         isCardUp = !isCardUp;
                         this.cancel();
-
                     }
                 }
 
@@ -286,7 +311,7 @@ public class ExploreActivity extends ActionBarActivity {
                                 String title = marker.getTitle();
                                 int index = Integer.parseInt(title);
 
-                                selectArt(index);
+                                selectArt(index , true);
                             }
 
                             return true;
@@ -302,13 +327,6 @@ public class ExploreActivity extends ActionBarActivity {
                             LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
                             last = map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory
                                     .defaultMarker(100)).position(loc));
-
-                            /*
-                            Location userLocation = new Location("t" + 0);
-                            userLocation.setLatitude(Core.Gallery.get(0).getLatitude());
-                            userLocation.setLongitude(Core.Gallery.get(0).getLongitude());
-                            Float dist = userLocation.distanceTo(location);
-                            rootView.setAlpha((dist>30?0.5f:1f));*/
 
 
                         }
@@ -329,12 +347,11 @@ public class ExploreActivity extends ActionBarActivity {
                     //populatedListView();
                     populatedListView();
 
-                    if (selected) {
+                    if (selected && !isCardUp) {
                         fab.startAnimation(hideNavAnim);
-                        selected = false;
+                        //selected = false;
                     }
                     fab2.startAnimation(toggleCardAnim);
-
 
                 }
             });
@@ -348,7 +365,7 @@ public class ExploreActivity extends ActionBarActivity {
                 }
             });
 
-            final TextView search = (TextView) rootView.findViewById(R.id.search);
+           /* final TextView search = (TextView) rootView.findViewById(R.id.search);
             search.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -373,14 +390,17 @@ public class ExploreActivity extends ActionBarActivity {
                     params7.topMargin = (int) ((hasFocus ? 100 : 0) * getActivity().getResources().getDisplayMetrics().density);
                     list.setLayoutParams(params7);
                 }
-            });
+            });*/
+            adapter = new MyAdapter(getActivity(), R.layout.item_view, Core.getGallery());
+            ListView list2 = (ListView)rootView.findViewById(R.id.artList);
+            list2.setAdapter(adapter);
 
             return rootView;
         }
 
 
-        public void selectArt(int pos) {
-            if (!selected) {
+        public void selectArt(int pos , boolean shouldSkipAnimation) {
+            if (!selected && shouldSkipAnimation) {
                 fab.startAnimation(toggleNavButton);
             }
 
@@ -423,10 +443,8 @@ public class ExploreActivity extends ActionBarActivity {
         }
 
         public void populatedListView() {
-            adapter = new MyAdapter(getActivity(), R.layout.item_view, Core.getGallery());
 
-            ListView list = (ListView) getView().findViewById(R.id.artList);
-            list.setAdapter(adapter);
+
         }
 
         void navigate(int index) {
@@ -436,8 +454,16 @@ public class ExploreActivity extends ActionBarActivity {
             startActivity(intent);
         }
 
+        public void search(String text){
+            if (selected && !isCardUp) {
+                fab.startAnimation(hideNavAnim);
+                //selected = false;
+            }
+            if(!isCardUp)toggleCardAnim();
+            adapter.getFilter().filter(text);
+        }
+
 
     }
-
 
 }

@@ -3,4 +3,5 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="team3m.dulwichoutdoorgallery.CoreActivity">
 
+    <item android:id="@+id/search" android:title="Search" android:icon="@drawable/ic_action_action_search" app:showAsAction="always"></item>
 </menu>

@@ -4,10 +4,22 @@
     tools:context="team3m.dulwichoutdoorgallery.CoreActivity">
 
     <android.support.v7.widget.Toolbar
+
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:id="@+id/toolbar"
         android:background="@color/brandDark"
+
         android:layout_height="wrap_content"
         android:layout_width="fill_parent">
+
+        <EditText
+            android:id="@+id/search"
+            android:visibility="gone"
+            android:textColor="#fff"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:hint="Search art"/>
 
     </android.support.v7.widget.Toolbar>
 

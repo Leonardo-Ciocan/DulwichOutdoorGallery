@@ -146,7 +146,14 @@ public class RouteActivity extends ActionBarActivity {
 
                 }
             });
-
+            final Button btnInfo  = (Button) rootView.findViewById(R.id.info);
+            btnInfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(getActivity() , InfoActivity.class);
+                    startActivity(i);
+                }
+            });
             Button navigateBtn = (Button) rootView.findViewById(R.id.navigateBtn);
             navigateBtn.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -81,6 +81,7 @@
                 >
                 <Button
 
+                    android:id="@+id/info"
                     android:layout_weight="1"
                     android:padding="5dp"
                     android:textColor="@color/brand"
