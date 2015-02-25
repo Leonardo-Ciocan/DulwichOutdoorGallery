@@ -27,11 +27,24 @@
         android:layout_width="match_parent"
         android:layout_gravity="bottom"
         android:layout_marginBottom="-45dp">
-        <LinearLayout
+        <FrameLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <ImageView
+                android:scaleType="centerCrop"
+                android:alpha="0.5"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:src="@drawable/reka_europa_and_the_bull"/>
+            <FrameLayout
+                android:background="@drawable/gradient"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                </FrameLayout>
             <TextView
+                android:layout_marginTop="10dp"
                 android:id="@+id/title"
                 android:textColor="#c4000000"
                 android:fontFamily="sans-serif-light"
@@ -42,6 +55,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:layout_marginTop="50dp"
                 android:id="@+id/author"
                 android:textColor="@color/brand"
                 android:layout_margin="5dp"
@@ -55,13 +69,14 @@
                 android:text="Select a piece of art"/>
 
             <ListView
+                android:layout_marginTop="60dp"
                 android:alpha="0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/artList"
                 android:layout_marginBottom="45dp"
              ></ListView>
-        </LinearLayout>
+        </FrameLayout>
 
     </android.support.v7.widget.CardView>
     <!--

@@ -34,7 +34,7 @@
            android:background="#fff">
 
            <Button
-               android:textColor="#000"
+               android:textColor="#fff"
                android:padding="0dp"
                android:layout_margin="0dp"
                android:background="@color/brand"
