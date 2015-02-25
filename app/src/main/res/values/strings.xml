@@ -41,5 +41,8 @@
     </string-array>
     <string name="title_activity_game_complete">GameCompleteActivity</string>
     <string name="title_activity_info">InfoActivity</string>
+    <string name="title_activity_core">CoreActivity</string>
 
+    <string name="close">Close</string>
+    <string name="open">Open</string>
 </resources>

@@ -6,11 +6,18 @@
 
 
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/map"
+
+    <FrameLayout
+       android:id="@+id/mapHolder"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.google.android.gms.maps.SupportMapFragment"/>
+        android:layout_height="fill_parent">
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.google.android.gms.maps.SupportMapFragment"/>
+        </FrameLayout>
+
 
     <android.support.v7.widget.CardView
         android:id="@+id/card"
@@ -26,7 +33,7 @@
             android:layout_height="match_parent">
             <TextView
                 android:id="@+id/title"
-                android:textColor="@color/brand"
+                android:textColor="#c4000000"
                 android:fontFamily="sans-serif-light"
                 android:textSize="16pt"
                 android:textAlignment="center"
@@ -99,11 +106,30 @@
         android:id="@+id/listLayout"
         android:orientation="horizontal"
         android:background="#fff">
-
-
-
-
-
     </LinearLayout>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="-200dp"
+        android:id="@+id/searchHolder"
+        android:layout_width="fill_parent"
+        android:focusable="true"
+        android:padding="7dp"
+        android:focusableInTouchMode="true"
+        android:layout_height="60dp">
+        <EditText
+
+            android:textColor="#000"
+            android:lines="1"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:id="@+id/search"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="Search art"/>
+    </android.support.v7.widget.CardView>
 
 </FrameLayout>

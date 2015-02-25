@@ -76,4 +76,9 @@ public class Art {
         position = new LatLng(latitude,longitude);
 
     }
+
+    @Override
+    public String toString() {
+        return Author;
+    }
 }
