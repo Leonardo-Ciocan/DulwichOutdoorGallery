@@ -126,6 +126,35 @@ public class CoreActivity extends ActionBarActivity {
                 }.start();
             }
         });
+
+        Button gameButton = (Button)findViewById(R.id.btn_game);
+        gameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toolbar.setTitle("Game");
+                for(int x =0;x < buttonHolder.getChildCount();x++){
+                    buttonHolder.getChildAt(x).setBackground(null);
+                    ((Button)buttonHolder.getChildAt(x)).setTextColor(Color.BLACK);
+                }
+                v.setBackground(new ColorDrawable(getResources().getColor(R.color.brand)));
+                ((Button)v).setTextColor(Color.WHITE);
+
+                drawerLayout.closeDrawers();
+
+                new CountDownTimer(300, 300) {
+                    public void onFinish() {
+                        GameFragment gameFragment = GameFragment.newInstance();
+
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.contentHolder, gameFragment)
+                                .commit();
+                    }
+
+                    public void onTick(long millisUntilFinished) {
+                    }
+                }.start();
+            }
+        });
         searchBox.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

@@ -40,7 +40,7 @@ public class MainActivity extends ActionBarActivity {
         gameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, GameActivity.class));
+                startActivity(new Intent(MainActivity.this, RouteActivity.class));
             }
         });
 
