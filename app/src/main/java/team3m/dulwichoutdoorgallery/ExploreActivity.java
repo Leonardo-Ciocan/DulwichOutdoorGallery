@@ -155,6 +155,9 @@ public class ExploreActivity extends ActionBarActivity {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(getActivity() , InfoActivity.class);
+                    String title = lastMaker.getTitle();
+                    int index = Integer.parseInt(title);
+                    i.putExtra("index" , index);
                     startActivity(i);
                 }
             });

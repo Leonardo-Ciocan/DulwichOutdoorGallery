@@ -155,6 +155,38 @@ public class CoreActivity extends ActionBarActivity {
                 }.start();
             }
         });
+
+
+        Button badgesButton = (Button)findViewById(R.id.btn_badge);
+        badgesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toolbar.setTitle("Badges");
+                for(int x =0;x < buttonHolder.getChildCount();x++){
+                    buttonHolder.getChildAt(x).setBackground(null);
+                    ((Button)buttonHolder.getChildAt(x)).setTextColor(Color.BLACK);
+                }
+                v.setBackground(new ColorDrawable(getResources().getColor(R.color.brand)));
+                ((Button)v).setTextColor(Color.WHITE);
+
+                drawerLayout.closeDrawers();
+
+                new CountDownTimer(300, 300) {
+                    public void onFinish() {
+                        BadgesActivity.PlaceholderFragment fragment = new  BadgesActivity.PlaceholderFragment();
+
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.contentHolder, fragment)
+                                .commit();
+                    }
+
+                    public void onTick(long millisUntilFinished) {
+                    }
+                }.start();
+            }
+        });
+
+
         searchBox.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

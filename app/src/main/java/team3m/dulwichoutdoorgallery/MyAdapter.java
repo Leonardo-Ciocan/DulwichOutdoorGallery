@@ -34,8 +34,6 @@ public class MyAdapter extends ArrayAdapter<Art>{
         TextView textAuthor= (TextView)itemView.findViewById(R.id.textAuthor);
         textAuthor.setText(a.getAuthor());
 
-        TextView textDescription= (TextView) itemView.findViewById(R.id.textDescription);
-        textDescription.setText(a.getDescription());
 
             return itemView;
 

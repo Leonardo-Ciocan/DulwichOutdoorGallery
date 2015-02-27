@@ -26,6 +26,7 @@ import android.view.animation.Transformation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -100,6 +101,13 @@ public class RouteActivity extends ActionBarActivity {
                     .findFragmentById(R.id.map);
 
             final RouteProgressIndicator indicator = (RouteProgressIndicator) rootView.findViewById(R.id.dotview);
+
+            final TextView titleView = (TextView) rootView.findViewById(R.id.title);
+            final TextView authorView = (TextView) rootView.findViewById(R.id.author);
+
+            titleView.setText(Core.getGallery().get(0).getName());
+            authorView.setText(Core.getGallery().get(0).getAuthor());
+
             mapFragment.getMapAsync(new OnMapReadyCallback() {
                 @Override
                 public void onMapReady(final GoogleMap googleMap) {
@@ -151,6 +159,8 @@ public class RouteActivity extends ActionBarActivity {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(getActivity() , InfoActivity.class);
+
+                    i.putExtra("index" , lastVisited);
                     startActivity(i);
                 }
             });
@@ -182,23 +192,18 @@ public class RouteActivity extends ActionBarActivity {
 
             final FloatingActionButton fab = (FloatingActionButton)rootView.findViewById(R.id.fab);
 
-            fab.setOnTouchListener(new View.OnTouchListener() {
-
-
+            final Animation a = new Animation() {
                 @Override
-                public boolean onTouch(final View v, MotionEvent event) {
-                    Animation a = new Animation() {
-                        @Override
-                        protected void applyTransformation(float interpolatedTime, Transformation t) {
+                protected void applyTransformation(float interpolatedTime, Transformation t) {
 
-                            Log.v("appi", interpolatedTime + " " + collapsed);
-                            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) currentArt.getLayoutParams();
-                            params.bottomMargin = (int) ((-80 + (int) (70 * ((collapsed) ? interpolatedTime : 1 - interpolatedTime))) * getActivity().getResources().getDisplayMetrics().density);
-                            currentArt.setLayoutParams(params);
+                    Log.v("appi", interpolatedTime + " " + collapsed);
+                    FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) currentArt.getLayoutParams();
+                    params.bottomMargin = (int) ((-80 + (int) (70 * ((collapsed) ? interpolatedTime : 1 - interpolatedTime))) * getActivity().getResources().getDisplayMetrics().density);
+                    currentArt.setLayoutParams(params);
 
-                            FrameLayout.LayoutParams params2 = (FrameLayout.LayoutParams) navigationCard.getLayoutParams();
-                            params2.bottomMargin = (int) (-25 - (int) (190 * ((collapsed) ? interpolatedTime : 1 - interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
-                            navigationCard.setLayoutParams(params2);
+                    FrameLayout.LayoutParams params2 = (FrameLayout.LayoutParams) navigationCard.getLayoutParams();
+                    params2.bottomMargin = (int) (-25 - (int) (190 * ((collapsed) ? interpolatedTime : 1 - interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
+                    navigationCard.setLayoutParams(params2);
 
                            /* FrameLayout.LayoutParams params3 =(FrameLayout.LayoutParams) smallImage.getLayoutParams();
                             params3.topMargin = (int)(5 + (int)(30 * ((collapsed)?interpolatedTime:1-interpolatedTime))* getActivity().getResources().getDisplayMetrics().density);
@@ -207,40 +212,46 @@ public class RouteActivity extends ActionBarActivity {
 
 
 
-                            artCardImage.setScaleY(2 - ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
-                            artCardImage.setScaleX(2 - ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
+                    artCardImage.setScaleY(2 - ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
+                    artCardImage.setScaleX(2 - ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
 
-                            navigationCard.setScaleY(1 + ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
-                            navigationCard.setScaleX(1 + ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
-                            navigationCard.setAlpha(1- ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
-
-
-                            artCardImage.setAlpha( ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
+                    navigationCard.setScaleY(1 + ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
+                    navigationCard.setScaleX(1 + ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
+                    navigationCard.setAlpha(1- ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
 
 
+                    artCardImage.setAlpha( ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
 
 
-                            FrameLayout.LayoutParams params55 = (FrameLayout.LayoutParams) fab.getLayoutParams();
-                            params55.bottomMargin = (int) ((180 + (int) (70 * ((collapsed) ? interpolatedTime : 1 - interpolatedTime))) * getActivity().getResources().getDisplayMetrics().density);
-                            fab.setLayoutParams(params55);
 
-                            fab.setRotation(-90 + 180 *( (collapsed) ? interpolatedTime : 1 - interpolatedTime));
-                            fab.setAlpha(( 0.5f + 0.5f *( (!collapsed) ? interpolatedTime : 1 - interpolatedTime)));
 
-                            if (interpolatedTime == 1) {
-                                collapsed = !collapsed;
-                                this.cancel();
-                            }
-                        }
+                    FrameLayout.LayoutParams params55 = (FrameLayout.LayoutParams) fab.getLayoutParams();
+                    params55.bottomMargin = (int) ((180 + (int) (70 * ((collapsed) ? interpolatedTime : 1 - interpolatedTime))) * getActivity().getResources().getDisplayMetrics().density);
+                    fab.setLayoutParams(params55);
 
-                        @Override
-                        public boolean willChangeBounds() {
-                            return true;
-                        }
-                    };
+                    fab.setRotation(-90 + 180 *( (collapsed) ? interpolatedTime : 1 - interpolatedTime));
+                    fab.setAlpha(( 0.5f + 0.5f *( (!collapsed) ? interpolatedTime : 1 - interpolatedTime)));
 
-                    a.setInterpolator(new AccelerateDecelerateInterpolator());
-                    a.setDuration(655);
+                    if (interpolatedTime == 1) {
+                        collapsed = !collapsed;
+                        this.cancel();
+                    }
+                }
+
+                @Override
+                public boolean willChangeBounds() {
+                    return true;
+                }
+            };
+
+            a.setInterpolator(new AccelerateDecelerateInterpolator());
+            a.setDuration(655);
+            fab.setOnTouchListener(new View.OnTouchListener() {
+
+
+                @Override
+                public boolean onTouch(final View v, MotionEvent event) {
+
                     v.startAnimation(a);
                     return false;
                 }

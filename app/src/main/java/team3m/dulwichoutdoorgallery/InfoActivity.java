@@ -20,6 +20,7 @@ import android.view.animation.Transformation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.melnykov.fab.FloatingActionButton;
 
@@ -87,6 +88,17 @@ public class InfoActivity extends ActionBarActivity {
 
             final FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
 
+            int i = getActivity().getIntent().getIntExtra("index",0);
+
+            final Art art = Core.getGallery().get(i);
+
+            final TextView textTitle = (TextView) rootView.findViewById(R.id.title);
+            final TextView textAuthor = (TextView) rootView.findViewById(R.id.author);
+            final TextView textDescription = (TextView) rootView.findViewById(R.id.description);
+
+            textTitle.setText(art.getName());
+            textDescription.setText(art.getDescription());
+            textAuthor.setText(art.getAuthor());
 
             scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
 
