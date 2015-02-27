@@ -279,7 +279,7 @@ public class BadgesActivity extends ActionBarActivity {
             intent2.setType("text/plain");
 
             //TODO fix please
-            intent2.putExtra(Intent.EXTRA_TEXT, "I've completed "+ achievementsPerc + " of the badges etc" );
+            intent2.putExtra(Intent.EXTRA_TEXT, "I've completed "+ Math.round(achievementsPerc) + "% of the badges etc" );
             startActivity(Intent.createChooser(intent2, "Share via"));
         }
     }

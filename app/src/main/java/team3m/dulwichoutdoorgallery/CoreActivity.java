@@ -6,7 +6,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.os.CountDownTimer;
+import android.support.annotation.ArrayRes;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -21,23 +24,39 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class CoreActivity extends ActionBarActivity {
 
+    static int EXPLORE = 0;
+    static int ROUTE = 1;
+    static int BADGES = 2;
+    static int GAME = 3;
+    static int ABOUT = 4;
+
+    static String[] titles = new String[]{"Explore" , "Route" , "Badges" , "Game","About"};
+
     EditText searchBox;
     ActionBarDrawerToggle toggle;
     ExploreActivity.PlaceholderFragment ExploreFragment;
+    private Toolbar toolbar;
+    private DrawerLayout drawerLayout;
+    private LinearLayout buttonHolder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_core);
 
-        final Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
 
         searchBox = (EditText) findViewById(R.id.search);
         /*Palette.generateAsync(BitmapFactory.decodeResource(getResources() , R.drawable.reka_europa_and_the_bull), new Palette.PaletteAsyncListener() {
@@ -46,12 +65,23 @@ public class CoreActivity extends ActionBarActivity {
             }
         });*/
 
-
         toolbar.setTitle("Explore");
 
         setSupportActionBar(toolbar);
-        final DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
-        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close){
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                searchBox.setVisibility(View.GONE);
+                super.onDrawerClosed(drawerView);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                searchBox.setVisibility(View.GONE);
+                super.onDrawerOpened(drawerView);
+            }
+        };
         toggle.setDrawerIndicatorEnabled(true);
         drawerLayout.setDrawerListener(toggle);
 
@@ -65,39 +95,22 @@ public class CoreActivity extends ActionBarActivity {
                 .commit();
 
 
-        final LinearLayout buttonHolder = (LinearLayout) findViewById(R.id.buttonHolder);
+        buttonHolder = (LinearLayout) findViewById(R.id.buttonHolder);
 
 
-        Button exploreButton = (Button)findViewById(R.id.btn_explore);
-        exploreButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toolbar.getMenu().getItem(0).setVisible(true);
-                toolbar.setTitle("Explore");
-                for(int x =0;x < buttonHolder.getChildCount();x++){
-                    buttonHolder.getChildAt(x).setBackground(null);
-                    ((Button)buttonHolder.getChildAt(x)).setTextColor(Color.BLACK);
-                }
-                v.setBackground(new ColorDrawable(getResources().getColor(R.color.brand)));
-                ((Button)v).setTextColor(Color.WHITE);
+        LinearLayout exploreButton = (LinearLayout)findViewById(R.id.btn_explore);
+        LinearLayout routeButton = (LinearLayout)findViewById(R.id.btn_route);
+        LinearLayout badgeButton = (LinearLayout)findViewById(R.id.btn_badges);
+        LinearLayout gameButton = (LinearLayout)findViewById(R.id.btn_game);
+        LinearLayout aboutButton = (LinearLayout)findViewById(R.id.btn_about);
 
-                drawerLayout.closeDrawers();
+        makeButtonClickable(exploreButton , EXPLORE);
+        makeButtonClickable(routeButton , ROUTE);
+        makeButtonClickable(badgeButton , BADGES);
+        makeButtonClickable(gameButton , GAME);
+        makeButtonClickable(aboutButton , ABOUT);
 
-                new CountDownTimer(300, 300) {
-                    public void onFinish() {
-                        ExploreFragment = new ExploreActivity.PlaceholderFragment(searchBox);
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.contentHolder, ExploreFragment)
-                                .commit();
-                    }
-
-                    public void onTick(long millisUntilFinished) {
-                    }
-                }.start();
-
-            }
-        });
-
+        /*
         Button routeButton = (Button)findViewById(R.id.btn_route);
         routeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,6 +180,7 @@ public class CoreActivity extends ActionBarActivity {
             public void onClick(View v) {
                 toolbar.getMenu().getItem(0).setVisible(false);
 
+
                 toolbar.setTitle("Badges");
                 for(int x =0;x < buttonHolder.getChildCount();x++){
                     buttonHolder.getChildAt(x).setBackground(null);
@@ -192,7 +206,7 @@ public class CoreActivity extends ActionBarActivity {
             }
         });
 
-
+*/
         searchBox.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -206,6 +220,60 @@ public class CoreActivity extends ActionBarActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+    void makeButtonClickable(LinearLayout exploreButton  , final int id){
+        exploreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("x--a" , "hello it is app");
+                toolbar.getMenu().getItem(0).setVisible(true);
+                toolbar.setTitle(titles[id]);
+
+                for(int x =0;x < buttonHolder.getChildCount();x++){
+                    buttonHolder.getChildAt(x).setBackground(null);
+                    TextView txt = (TextView) ((LinearLayout)buttonHolder.getChildAt(x)).getChildAt(1);
+                    ((ImageView)( ((LinearLayout) buttonHolder.getChildAt(x)).getChildAt(0))).setImageDrawable(getResources()
+                            .getDrawable(getResources().getIdentifier(titles[x].toLowerCase()+"_dark", "drawable", getApplicationContext().getPackageName())));
+                    txt.setTextColor(Color.BLACK);
+                }
+                v.setBackground(new ColorDrawable(getResources().getColor(R.color.brand)));
+                //((Button)v).setTextColor(Color.WHITE);
+                TextView txt = (TextView) ((LinearLayout)v).getChildAt(1);
+                txt.setTextColor(Color.WHITE);
+                ((ImageView)( ((LinearLayout) v)).getChildAt(0)).setImageDrawable(getResources()
+                        .getDrawable(getResources().getIdentifier(titles[id].toLowerCase() + "_light", "drawable", getApplicationContext().getPackageName())));
+
+                drawerLayout.closeDrawers();
+
+                new CountDownTimer(300, 300) {
+                    public void onFinish() {
+                        //ExploreFragment = new ExploreActivity.PlaceholderFragment(searchBox);
+                        Fragment fragment = null;
+                        if(id == EXPLORE){
+                            fragment = new ExploreActivity.PlaceholderFragment(searchBox);
+                        }
+                        else if(id == ROUTE){
+                            fragment = new RouteActivity.PlaceholderFragment();
+                        }else if(id == BADGES){
+                            fragment = new BadgesActivity.PlaceholderFragment();
+                        }else if(id == GAME){
+                            fragment = new GameFragment();
+                        }
+                        else if(id == ABOUT){
+                            fragment = new GameFragment();
+                        }
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.contentHolder, fragment)
+                                .commit();
+                    }
+
+                    public void onTick(long millisUntilFinished) {
+                    }
+                }.start();
 
             }
         });

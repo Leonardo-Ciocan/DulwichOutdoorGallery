@@ -2,4 +2,5 @@
 <resources>
     <color name="brand">#CD0000</color>
     <color name="brandDark">#990000</color>
+    <color name="brandTransparent">#df990000</color>
 </resources>

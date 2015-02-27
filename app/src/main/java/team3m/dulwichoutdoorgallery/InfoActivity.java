@@ -24,6 +24,8 @@ import android.widget.TextView;
 
 import com.melnykov.fab.FloatingActionButton;
 
+import java.util.concurrent.locks.Lock;
+
 
 public class InfoActivity extends ActionBarActivity {
 
@@ -69,6 +71,7 @@ public class InfoActivity extends ActionBarActivity {
         public PlaceholderFragment() {
         }
 
+         boolean isLocked = false;
 
         ImageView i1;
         ImageView i2;
@@ -88,7 +91,7 @@ public class InfoActivity extends ActionBarActivity {
 
             final FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
 
-            int i = getActivity().getIntent().getIntExtra("index",0);
+            int i = getActivity().getIntent().getIntExtra("index", 0);
 
             final Art art = Core.getGallery().get(i);
 
@@ -162,46 +165,49 @@ public class InfoActivity extends ActionBarActivity {
                 }
             });
 
+            final Animation flipAnimation = new Animation() {
+                @Override
+                protected void applyTransformation(float interpolatedTime, Transformation t) {
+                    isLocked = true;
+                    if(interpolatedTime < 0.5f){
+
+
+                        i1.setAlpha(255);
+                        i2.setAlpha(0);
+                        //i1.setAlpha(0);
+                        i1.setRotationY(90 * (2f * interpolatedTime));
+                    }
+                    else{
+
+                        i1.setAlpha(0);
+                        i2.setAlpha(255);
+                        i2.setRotationY(180 + 90 * ( interpolatedTime * 2f));
+                    }
+
+                    if(interpolatedTime >= 1f){
+                        final ImageView temp = i1;
+                        i1 = i2;
+                        i2 = temp;
+                        //i2.setRotationY(90);
+                        isLocked = false;
+                        this.cancel();
+                    }
+                }
+
+                @Override
+                public boolean willChangeBounds() {
+                    return true;
+                }
+            };
+
+            flipAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
+            flipAnimation.setDuration(2000);
 
             fab.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    final Animation a = new Animation() {
-                        @Override
-                        protected void applyTransformation(float interpolatedTime, Transformation t) {
-                            if(interpolatedTime < 0.5f){
 
-
-                                i1.setAlpha(255);
-                                i2.setAlpha(0);
-                                //i1.setAlpha(0);
-                                i1.setRotationY(90 * (2f * interpolatedTime));
-                            }
-                            else{
-
-                                i1.setAlpha(0);
-                                i2.setAlpha(255);
-                                i2.setRotationY(180 + 90 * ( interpolatedTime * 2f));
-                            }
-
-                            if(interpolatedTime >= 1f){
-                                final ImageView temp = i1;
-                                i1 = i2;
-                                i2 = temp;
-                                //i2.setRotationY(90);
-                                this.cancel();
-                            }
-                        }
-
-                        @Override
-                        public boolean willChangeBounds() {
-                            return true;
-                        }
-                    };
-
-                    a.setInterpolator(new AccelerateDecelerateInterpolator());
-                    a.setDuration(2000);
-                    header.startAnimation(a);
+                    if(!isLocked)header.startAnimation(flipAnimation);
                 }
             });
             return rootView;

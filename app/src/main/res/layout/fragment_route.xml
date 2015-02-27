@@ -28,6 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
+
             <ImageView
                android:alpha="0"
                 android:scaleX="2"
@@ -37,7 +39,12 @@
                 android:layout_height="fill_parent"
                 android:scaleType="centerInside"
                 android:background="@drawable/reka_europa_and_the_bull"/>
+            <LinearLayout
+                android:background="@drawable/gradient"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
 
+            </LinearLayout>
             <LinearLayout
                 android:background="#7f000000"
                 android:layout_width="match_parent"
@@ -84,6 +91,8 @@
 
 
             </LinearLayout>
+
+
 
 
             <LinearLayout
