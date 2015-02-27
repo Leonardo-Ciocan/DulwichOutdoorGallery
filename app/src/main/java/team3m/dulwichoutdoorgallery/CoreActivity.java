@@ -72,6 +72,7 @@ public class CoreActivity extends ActionBarActivity {
         exploreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                toolbar.getMenu().getItem(0).setVisible(true);
                 toolbar.setTitle("Explore");
                 for(int x =0;x < buttonHolder.getChildCount();x++){
                     buttonHolder.getChildAt(x).setBackground(null);
@@ -101,6 +102,7 @@ public class CoreActivity extends ActionBarActivity {
         routeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                toolbar.getMenu().getItem(0).setVisible(false);
 
                 toolbar.setTitle("Tours");
                 for(int x =0;x < buttonHolder.getChildCount();x++){
@@ -131,6 +133,8 @@ public class CoreActivity extends ActionBarActivity {
         gameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                toolbar.getMenu().getItem(0).setVisible(false);
+
                 toolbar.setTitle("Game");
                 for(int x =0;x < buttonHolder.getChildCount();x++){
                     buttonHolder.getChildAt(x).setBackground(null);
@@ -161,6 +165,8 @@ public class CoreActivity extends ActionBarActivity {
         badgesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                toolbar.getMenu().getItem(0).setVisible(false);
+
                 toolbar.setTitle("Badges");
                 for(int x =0;x < buttonHolder.getChildCount();x++){
                     buttonHolder.getChildAt(x).setBackground(null);

@@ -3,6 +3,7 @@ package team3m.dulwichoutdoorgallery;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -21,6 +22,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -109,6 +112,14 @@ public class BadgesActivity extends ActionBarActivity {
             if(badges.size()==0){
                 populateBadgeList();
             }
+
+            final FloatingActionButton shareBtn = (FloatingActionButton) rootView.findViewById(R.id.shareBtn);
+            shareBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    share();
+                }
+            });
 
             populateListView();
             return rootView;
@@ -233,6 +244,7 @@ public class BadgesActivity extends ActionBarActivity {
                 checkAchieved(currentBadge, imageView, makeTitle, makeDescription);
                 getStats();
 
+
                 return itemView;
 
             }
@@ -262,6 +274,13 @@ public class BadgesActivity extends ActionBarActivity {
 
         }
 
+        void share(){
+            Intent intent2 = new Intent(); intent2.setAction(Intent.ACTION_SEND);
+            intent2.setType("text/plain");
 
+            //TODO fix please
+            intent2.putExtra(Intent.EXTRA_TEXT, "I've completed "+ achievementsPerc + " of the badges etc" );
+            startActivity(Intent.createChooser(intent2, "Share via"));
+        }
     }
 }
