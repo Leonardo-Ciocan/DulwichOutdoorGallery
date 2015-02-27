@@ -267,6 +267,7 @@ public class CoreActivity extends ActionBarActivity {
                             fragment = new GameFragment();
                         }
                         getSupportFragmentManager().beginTransaction()
+                                .setCustomAnimations(R.anim.show , R.anim.hide)
                                 .replace(R.id.contentHolder, fragment)
                                 .commit();
                     }
