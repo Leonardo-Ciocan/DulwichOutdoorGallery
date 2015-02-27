@@ -2,7 +2,6 @@ package team3m.dulwichoutdoorgallery;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -72,6 +71,23 @@ public class GameFragment extends Fragment {
             });
         }
 
+        game = Game.getNextGame(theActivity);
+        loadData();
+
+        theVa.setInAnimation(AnimationUtils.loadAnimation(theActivity, android.R.anim.slide_in_left));
+        theVa.setOutAnimation(theActivity, android.R.anim.slide_out_right);
+        theVa.setDisplayedChild(0);
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                onTimerTick();
+            }
+        }, 3000, 3000);
+
+        if (Game.allSetsComplete()) {
+            gameComplete();
+        }
+
         Button lpb = (Button) v.findViewById(R.id.letsplaybutton);
         lpb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,18 +113,6 @@ public class GameFragment extends Fragment {
             v.findViewById(R.id.gameHelpFrame).setVisibility(View.GONE);
         }
 
-        game = Game.getNextGame(theActivity);
-        loadData();
-
-        theVa.setInAnimation(AnimationUtils.loadAnimation(theActivity, android.R.anim.slide_in_left));
-        theVa.setOutAnimation(theActivity, android.R.anim.slide_out_right);
-        theVa.setDisplayedChild(0);
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                onTimerTick();
-            }
-        }, 3000, 3000);
         return v;
     }
 
@@ -122,21 +126,23 @@ public class GameFragment extends Fragment {
         game = Game.getNextGame(theActivity);
         theActivity.runOnUiThread(new Thread(new Runnable() {
             public void run() {
-                currentButton = 0;
-                artworkToMatch.setImageResource(game.getIdOfArtworkToMatch());
-                for (int i = 0; i < 4; i++) {
-                    imageButtonsArray[i].setImageResource(game.getPossibleChoices()[i]);
+                if (Game.allSetsComplete()) {
+                    changeImageNumberText.setText("Game completed!");
+                } else {
+                    currentButton = 0;
+                    artworkToMatch.setImageResource(game.getIdOfArtworkToMatch());
+                    for (int i = 0; i < 4; i++) {
+                        imageButtonsArray[i].setImageResource(game.getPossibleChoices()[i]);
+                    }
+                    changeImageNumberText.setText("Picture: " + ((Game.progress()) + 1) + "/20");
+                    changeArtistText.setText("Artist: " + game.getArtistName());
                 }
-
-                changeImageNumberText.setText("Picture: " + (Game.progress() + 1) + "/20");
-                changeArtistText.setText("Artist: " + game.getArtistName());
             }
         }));
     }
 
     public void onTimerTick() {
         currentButton = ++currentButton % 4;
-        //Log.i(Integer.toString(currentButton), Integer.toString(imageButtonsArray[currentButton].getLeft()));
         theActivity.runOnUiThread(new Thread(new Runnable() {
             public void run() {
                 int currentText = currentButton + 1;
@@ -152,17 +158,21 @@ public class GameFragment extends Fragment {
             loadData();
         } else {
             // if all 20 choices guessed correctly, run the GameComplete activity
-            timer.purge();
-            Intent intent = new Intent(theActivity, GameCompleteActivity.class);
-            gameComplete(intent);
-            loadData();
+            gameComplete();
         }
     }
 
-    public void gameComplete(Intent intent) {
+    public void gameComplete() {
+        // start GameCompleteFragment
+        timer.purge();
+        GameCompleteFragment newFragment = new GameCompleteFragment();
+        theActivity.getFragmentManager().beginTransaction()
+                .replace(R.id.contentHolder, newFragment)
+                .addToBackStack(null)
+                .commit();
 
-        // start GameCompleteActivity
-        startActivity(intent);
+        getFragmentManager().beginTransaction().
+                remove(getFragmentManager().findFragmentById(R.id.contentHolder)).commit();
     }
 
     public void incorrectAnswerAlert() {
