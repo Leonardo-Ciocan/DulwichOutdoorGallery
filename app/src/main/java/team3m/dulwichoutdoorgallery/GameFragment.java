@@ -110,7 +110,7 @@ public class GameFragment extends Fragment {
         SharedPreferences gameUiData = theActivity.getSharedPreferences("gameUi", 0);
 
         if (!gameUiData.getBoolean("showHelp", true)) {
-            //v.findViewById(R.id.gameHelpFrame).setVisibility(View.GONE);
+            v.findViewById(R.id.gameHelpFrame).setVisibility(View.GONE);
         }
 
         return v;
@@ -158,7 +158,7 @@ public class GameFragment extends Fragment {
             loadData();
         } else {
             // if all 20 choices guessed correctly, run the GameComplete activity
-            //gameComplete();
+            gameComplete();
         }
     }
 
@@ -174,8 +174,6 @@ public class GameFragment extends Fragment {
                 GameCompleteUiData.edit()
                         .putBoolean("gameUi", false)
                         .commit();
-
-                //theActivity.findViewById(R.id.artViewArea).setVisibility(View.GONE);
             }
         });
     }
