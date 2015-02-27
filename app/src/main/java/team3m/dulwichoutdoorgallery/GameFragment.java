@@ -110,7 +110,7 @@ public class GameFragment extends Fragment {
         SharedPreferences gameUiData = theActivity.getSharedPreferences("gameUi", 0);
 
         if (!gameUiData.getBoolean("showHelp", true)) {
-            v.findViewById(R.id.gameHelpFrame).setVisibility(View.GONE);
+            //v.findViewById(R.id.gameHelpFrame).setVisibility(View.GONE);
         }
 
         return v;
