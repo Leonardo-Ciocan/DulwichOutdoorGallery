@@ -1,28 +1,44 @@
 package team3m.dulwichoutdoorgallery;
 
 public class Badge {
-    String Title;
-    String Description;
+    String title;
+    String description;
+    int badgeID;
+    boolean achieved;
 
-    public String getTitle() {
-        return Title;
+    public int getBadgeID() {
+        return badgeID;
     }
 
-    public void setTitle(String title) {
-        Title = title;
+    public void setBadgeID(int badgeID) {
+        this.badgeID = badgeID;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String Title) {
+        title = Title;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    public void setDescription(String description) {
-        Description = description;
+    public void setDescription(String Description) {
+        description = Description;
     }
 
-    public Badge(String title, String description) {
+    public boolean getAchieved() {return achieved;}
 
-        Title = title;
-        Description = description;
+    public void setAchieved(boolean status){this.achieved = status;}
+
+    public Badge(String Title, String Description, int iconID, boolean achiv) {
+
+        title = Title;
+        description = Description;
+        badgeID = iconID;
+        achieved = achiv;
     }
 }

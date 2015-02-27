@@ -198,13 +198,12 @@ public class Core {
 
     };
 
+
     public static ArrayList<Art> getGallery(){
         return Gallery;
     }
 
-    public static ArrayList<Badge> badges = new ArrayList<Badge>(){
-        {
-            add(new Badge("title" , "description"));
-        }
-    };
+
 }
+
+

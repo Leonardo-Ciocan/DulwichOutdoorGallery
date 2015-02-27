@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:background="@drawable/bg"
+    android:padding="16dp">
+
+
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:id="@+id/badge_icon"
+        android:src="@drawable/baller"
+        android:adjustViewBounds="true"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginRight="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="The Guardian"
+        android:id="@+id/badge_title"
+        android:textSize="22sp"
+        android:layout_alignTop="@+id/badge_icon"
+        android:layout_toRightOf="@+id/badge_icon"
+        android:layout_toEndOf="@+id/badge_icon"
+        android:paddingTop="4dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="You conquered all of the arts"
+        android:textSize="14sp"
+        android:id="@+id/badge_description"
+        android:layout_below="@+id/badge_title"
+        android:layout_alignLeft="@+id/badge_title"
+        android:layout_alignStart="@+id/badge_title" />
+
+</RelativeLayout>

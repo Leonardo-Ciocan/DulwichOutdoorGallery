@@ -28,6 +28,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+
         Button routeButton = (Button)findViewById(R.id.btn_route);
         routeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +50,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, InfoActivity.class));
+
             }
         });
     }
