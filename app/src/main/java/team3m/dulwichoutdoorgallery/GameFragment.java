@@ -158,21 +158,26 @@ public class GameFragment extends Fragment {
             loadData();
         } else {
             // if all 20 choices guessed correctly, run the GameComplete activity
-            gameComplete();
+            //gameComplete();
         }
     }
 
     public void gameComplete() {
         // start GameCompleteFragment
         timer.purge();
-        GameCompleteFragment newFragment = new GameCompleteFragment();
-        theActivity.getFragmentManager().beginTransaction()
-                .replace(R.id.contentHolder, newFragment)
-                .addToBackStack(null)
-                .commit();
 
-        getFragmentManager().beginTransaction().
-                remove(getFragmentManager().findFragmentById(R.id.contentHolder)).commit();
+        theActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                SharedPreferences GameCompleteUiData = theActivity.getSharedPreferences("gameCompleteUi", 0);
+
+                GameCompleteUiData.edit()
+                        .putBoolean("gameUi", false)
+                        .commit();
+
+                //theActivity.findViewById(R.id.artViewArea).setVisibility(View.GONE);
+            }
+        });
     }
 
     public void incorrectAnswerAlert() {

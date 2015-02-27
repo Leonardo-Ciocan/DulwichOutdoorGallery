@@ -129,7 +129,6 @@
         android:layout_height="fill_parent">
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:alpha="0.75"
@@ -171,6 +170,25 @@
                 android:alpha="1"
                 android:text="Let&apos;s Play!" />
         </RelativeLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/gameCompleteFrame"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@android:color/white">
+
+        <TextView
+            android:id="@+id/gameCompleteText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="Well done, you have completed the game! Share that you have completed it on Facebook."
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/black" />
+
     </FrameLayout>
 
 </RelativeLayout>
