@@ -79,15 +79,40 @@ public class InfoActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.info_fragment, container, false);
-
-
+            final ScrollView scrollView = (ScrollView) rootView.findViewById(R.id.scrollView);
             final FrameLayout imgHolder = (FrameLayout) rootView.findViewById(R.id.imgHolder);
+
+            Animation animation = new Animation() {
+                @Override
+                protected void applyTransformation(float interpolatedTime, Transformation t) {
+                    FrameLayout.LayoutParams params3 = (FrameLayout.LayoutParams) scrollView.getLayoutParams();
+                    params3.topMargin = (int) ((400 + (int) (-400 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
+                    scrollView.setLayoutParams(params3);
+                   // navigationButton.setRotation(interpolatedTime * 100);
+
+                    scrollView.setAlpha(interpolatedTime);
+
+                    FrameLayout.LayoutParams params4 = (FrameLayout.LayoutParams) imgHolder.getLayoutParams();
+                    params4.height = (int) ((700 + (int) (-400 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
+                    imgHolder.setLayoutParams(params4);
+                }
+
+                @Override
+                public boolean willChangeBounds() {
+                    return true;
+                }
+            };
+
+            animation.setInterpolator(new AccelerateDecelerateInterpolator());
+            animation.setDuration(1175);
+
+            scrollView.startAnimation(animation);
+
 
             final ImageView header = (ImageView) rootView.findViewById(R.id.header);
 
             final ImageView header2 = (ImageView) rootView.findViewById(R.id.header2);
 
-            final ScrollView scrollView = (ScrollView) rootView.findViewById(R.id.scrollView);
 
             final FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
 
@@ -127,9 +152,9 @@ public class InfoActivity extends ActionBarActivity {
                         @Override
                         protected void applyTransformation(float interpolatedTime, Transformation t) {
 
-                            FrameLayout.LayoutParams params2 = (FrameLayout.LayoutParams) fab.getLayoutParams();
+                            FrameLayout.LayoutParams params2 = (FrameLayout.LayoutParams) navigationButton.getLayoutParams();
                             params2.rightMargin = (int)(-200 * interpolatedTime);
-                            fab.setLayoutParams(params2);
+                            navigationButton.setLayoutParams(params2);
                         }
 
                         @Override
