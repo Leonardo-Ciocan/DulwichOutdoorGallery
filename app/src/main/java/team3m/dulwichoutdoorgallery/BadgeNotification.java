@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 public class BadgeNotification extends RelativeLayout {
@@ -28,6 +29,7 @@ public class BadgeNotification extends RelativeLayout {
         init();
     }
 
+    ImageView imageView;
     Animation enterAnim;
     Animation hideAnim;
     private void init() {
@@ -40,7 +42,6 @@ public class BadgeNotification extends RelativeLayout {
                 navBtnLayout.topMargin = (int) ((-180 + (int) (185 * interpolatedTime)) * getContext().getResources().getDisplayMetrics().density);
                 BadgeNotification.this.setLayoutParams(navBtnLayout);
                 BadgeNotification.this.setRotation(interpolatedTime < 0.5f ? interpolatedTime * 30 : (1-interpolatedTime) * 30 );
-                //Log.v("ax" , "xppr");
             }
 
             @Override
@@ -49,16 +50,29 @@ public class BadgeNotification extends RelativeLayout {
             }
         };
         enterAnim.setInterpolator(new AccelerateDecelerateInterpolator());
-        enterAnim.setDuration(1275);
+        enterAnim.setDuration(1100);
 
         hideAnim = new Animation() {
             @Override
             protected void applyTransformation(float interpolatedTime, Transformation t) {
                 BadgeNotification.this.setScaleX(1-interpolatedTime);
-                BadgeNotification.this.setScaleY(1-interpolatedTime);
+                BadgeNotification.this.setScaleY(1 - interpolatedTime);
                 //Log.v("ax" , "xppr");
                 BadgeNotification.this.setRotation(interpolatedTime*80);
                 BadgeNotification.this.setAlpha(1-interpolatedTime);
+
+                if(interpolatedTime>=1f){
+                    RelativeLayout.LayoutParams navBtnLayout = (RelativeLayout.LayoutParams) BadgeNotification.this.getLayoutParams();
+                    navBtnLayout.leftMargin = 0;
+                    navBtnLayout.rightMargin = 0;
+                    navBtnLayout.topMargin = (int) ((-180) * getContext().getResources().getDisplayMetrics().density);
+                    BadgeNotification.this.setLayoutParams(navBtnLayout);
+                    BadgeNotification.this.setAlpha(1);
+                    BadgeNotification.this.setScaleX(1);
+                    BadgeNotification.this.setScaleY(1);
+                    BadgeNotification.this.setRotation(0);
+                    this.cancel();
+                }
             }
 
             @Override
@@ -71,6 +85,8 @@ public class BadgeNotification extends RelativeLayout {
 
         View inner = inflate(getContext(), R.layout.badge_notification, this);
         Button closeBtn = (Button)inner.findViewById(R.id.closeNotification);
+        imageView = (ImageView)inner.findViewById(R.id.image);
+
         closeBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +98,9 @@ public class BadgeNotification extends RelativeLayout {
     }
 
 
-    public void show(){
+    public void show(Badge b){
+        imageView.setImageResource(b.getBadgeID());
+
         this.startAnimation(enterAnim);
     }
 }

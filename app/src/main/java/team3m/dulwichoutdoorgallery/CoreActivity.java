@@ -216,12 +216,12 @@ public class CoreActivity extends ActionBarActivity {
         final BadgeNotification badgeNotification = (BadgeNotification) findViewById(R.id.badgeNotification);
         //new Thread().start();
 
-        new Handler().postDelayed(new Runnable() {
+        Core.setBadgeListener(new BadgeEarnedListener() {
             @Override
-            public void run() {
-                badgeNotification.show();
+            public void completedBadge(Badge badge) {
+                badgeNotification.show(badge);
             }
-        } , 4500);
+        });
     }
 
     void makeButtonClickable(LinearLayout exploreButton  , final int id){
