@@ -3,6 +3,7 @@ package team3m.dulwichoutdoorgallery;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -210,6 +212,16 @@ public class CoreActivity extends ActionBarActivity {
 
             }
         });
+
+        final BadgeNotification badgeNotification = (BadgeNotification) findViewById(R.id.badgeNotification);
+        //new Thread().start();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                badgeNotification.show();
+            }
+        } , 4500);
     }
 
     void makeButtonClickable(LinearLayout exploreButton  , final int id){
