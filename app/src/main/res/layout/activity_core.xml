@@ -196,6 +196,14 @@
                android:layout_width="fill_parent"
                android:layout_height="wrap_content"
                android:text="About"/>-->
+
        </LinearLayout>
     </android.support.v4.widget.DrawerLayout>
+
+    <team3m.dulwichoutdoorgallery.BadgeNotification
+        android:layout_marginTop="-180dp"
+        android:id="@+id/badgeNotification"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"></team3m.dulwichoutdoorgallery.BadgeNotification>
+
 </RelativeLayout>

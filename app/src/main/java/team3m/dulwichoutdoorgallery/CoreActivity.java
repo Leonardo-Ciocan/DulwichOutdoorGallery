@@ -1,20 +1,14 @@
 package team3m.dulwichoutdoorgallery;
 
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.os.CountDownTimer;
-import android.support.annotation.ArrayRes;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,16 +16,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class CoreActivity extends ActionBarActivity {
@@ -46,7 +35,7 @@ public class CoreActivity extends ActionBarActivity {
 
     EditText searchBox;
     ActionBarDrawerToggle toggle;
-    ExploreActivity.PlaceholderFragment ExploreFragment;
+    team3m.dulwichoutdoorgallery.ExploreFragment ExploreFragment;
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private LinearLayout buttonHolder;
@@ -86,7 +75,7 @@ public class CoreActivity extends ActionBarActivity {
         drawerLayout.setDrawerListener(toggle);
 
 
-        ExploreFragment = new ExploreActivity.PlaceholderFragment(searchBox);
+        ExploreFragment = new team3m.dulwichoutdoorgallery.ExploreFragment(searchBox);
         ExploreFragment.setRetainInstance(true);
 
 
@@ -223,6 +212,16 @@ public class CoreActivity extends ActionBarActivity {
 
             }
         });
+
+        final BadgeNotification badgeNotification = (BadgeNotification) findViewById(R.id.badgeNotification);
+        //new Thread().start();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                badgeNotification.show();
+            }
+        } , 4500);
     }
 
     void makeButtonClickable(LinearLayout exploreButton  , final int id){
@@ -230,7 +229,7 @@ public class CoreActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Log.v("x--a" , "hello it is app");
-                toolbar.getMenu().getItem(0).setVisible(true);
+                toolbar.getMenu().getItem(0).setVisible( id == EXPLORE);
                 toolbar.setTitle(titles[id]);
 
                 for(int x =0;x < buttonHolder.getChildCount();x++){
@@ -254,7 +253,7 @@ public class CoreActivity extends ActionBarActivity {
                         //ExploreFragment = new ExploreActivity.PlaceholderFragment(searchBox);
                         Fragment fragment = null;
                         if(id == EXPLORE){
-                            fragment = new ExploreActivity.PlaceholderFragment(searchBox);
+                            fragment = new team3m.dulwichoutdoorgallery.ExploreFragment(searchBox);
                         }
                         else if(id == ROUTE){
                             fragment = new RouteActivity.PlaceholderFragment();
