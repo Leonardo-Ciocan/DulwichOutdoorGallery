@@ -117,14 +117,14 @@
         correct="1"
         target="@drawable/remi_rough_and_system_new" />
 
-    <pictureSet
+    <!--<pictureSet
         artist="Thierry Noir"
         choice0="@drawable/phlegm_triumph_of_david"
         choice1="@drawable/none_virtue_and_nobility_putting_ignorance_to_flight"
         choice2="@drawable/none_after_nicolas_poussin_the_adoration_of_the_magi"
         choice3="@drawable/thierry_noir_joseph_receiving_pharaohs_ring"
         correct="3"
-        target="@drawable/thierry_noir_new1" />
+        target="@drawable/thierry_noir_new1" />-->
 
     <pictureSet
         artist="Phlegm"

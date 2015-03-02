@@ -62,6 +62,7 @@ public class BadgeNotification extends RelativeLayout {
                 BadgeNotification.this.setAlpha(1-interpolatedTime);
 
                 if(interpolatedTime>=1f){
+                    this.cancel();
                     RelativeLayout.LayoutParams navBtnLayout = (RelativeLayout.LayoutParams) BadgeNotification.this.getLayoutParams();
                     navBtnLayout.leftMargin = 0;
                     navBtnLayout.rightMargin = 0;
@@ -71,7 +72,7 @@ public class BadgeNotification extends RelativeLayout {
                     BadgeNotification.this.setScaleX(1);
                     BadgeNotification.this.setScaleY(1);
                     BadgeNotification.this.setRotation(0);
-                    this.cancel();
+
                 }
             }
 

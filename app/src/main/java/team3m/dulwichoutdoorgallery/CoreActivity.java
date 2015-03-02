@@ -44,7 +44,6 @@ public class CoreActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_core);
-
         toolbar = (Toolbar)findViewById(R.id.toolbar);
 
         searchBox = (EditText) findViewById(R.id.search);
@@ -237,7 +236,7 @@ public class CoreActivity extends ActionBarActivity {
                     TextView txt = (TextView) ((LinearLayout)buttonHolder.getChildAt(x)).getChildAt(1);
                     ((ImageView)( ((LinearLayout) buttonHolder.getChildAt(x)).getChildAt(0))).setImageDrawable(getResources()
                             .getDrawable(getResources().getIdentifier(titles[x].toLowerCase()+"_dark", "drawable", getApplicationContext().getPackageName())));
-                    txt.setTextColor(Color.BLACK);
+                    txt.setTextColor(Color.parseColor("#bf000000"));
                 }
                 v.setBackground(new ColorDrawable(getResources().getColor(R.color.brand)));
                 //((Button)v).setTextColor(Color.WHITE);

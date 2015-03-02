@@ -71,4 +71,5 @@ android:orientation="vertical"
         android:src="@drawable/ic_action_social_share"
         fab:fab_colorNormal="@color/brand"
         fab:fab_colorPressed="@color/brandDark" />
+
 </FrameLayout>
