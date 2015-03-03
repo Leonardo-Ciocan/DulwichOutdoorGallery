@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,7 +48,7 @@ public class GameFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_game, container, false);
 
-        changeImageChoiceNumberText = (TextView) v.findViewById(R.id.currentRotatedPicture);
+        //changeImageChoiceNumberText = (TextView) v.findViewById(R.id.currentRotatedPicture);
         changeImageNumberText = (TextView) v.findViewById(R.id.currentGameArtwork);
         changeArtistText = (TextView) v.findViewById(R.id.currentGameArtworkArtist);
         artworkToMatch = (ImageView) v.findViewById(R.id.imageView);
@@ -146,13 +147,22 @@ public class GameFragment extends Fragment {
         theActivity.runOnUiThread(new Thread(new Runnable() {
             public void run() {
                 int currentText = currentButton + 1;
-                changeImageChoiceNumberText.setText(Integer.toString(currentText));
+                //changeImageChoiceNumberText.setText(Integer.toString(currentText));
                 theVa.setDisplayedChild(currentButton);
             }
         }));
     }
 
     public void imageClick() {
+
+        final CustomDialogClass2 cdd=new CustomDialogClass2(theActivity);
+        cdd.show();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+               cdd.dismiss();
+            }
+        }, 1500);
 
         if (!Game.allSetsComplete()) {
             loadData();
@@ -179,12 +189,20 @@ public class GameFragment extends Fragment {
     }
 
     public void incorrectAnswerAlert() {
+
+
+        //R.id.TXT_Exit:
+        CustomDialogClass cdd=new CustomDialogClass(theActivity);
+        cdd.show();
+
+        /*
         AlertDialog.Builder dlgAlert = new AlertDialog.Builder(theActivity);
         dlgAlert.setMessage("Try again.");
         dlgAlert.setTitle("Incorrect Answer");
         dlgAlert.setPositiveButton("OK", null);
         dlgAlert.setCancelable(true);
         dlgAlert.create().show();
+        */
     }
 
     @Override
