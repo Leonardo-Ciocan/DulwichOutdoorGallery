@@ -3,7 +3,6 @@ package team3m.dulwichoutdoorgallery;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.XmlResourceParser;
-import android.util.Log;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Game {
-    private boolean achieved = false;//achievement for logging
     private static Activity theActivity;
     private static ArrayList<Game> theSets = null;
     private String artist;
@@ -22,6 +20,7 @@ public class Game {
     private int[] possibleChoices;
     private int correctChoice;
     private boolean completed = false;
+    private boolean correct = false;
 
     private static void loadSets() {
         int event;
@@ -29,7 +28,7 @@ public class Game {
 
         SharedPreferences completionData = theActivity.getSharedPreferences("Completion", 0);
 
-        theSets = new ArrayList<>();
+        theSets = new ArrayList<Game>();
         XmlResourceParser data = theActivity.getResources().getXml(R.xml.games);
 
         try {
@@ -52,6 +51,7 @@ public class Game {
                         cur.possibleChoices[3] = data.getAttributeResourceValue(null, "choice3", 0);
                         cur.correctChoice = data.getAttributeIntValue(null, "correct", 0);
                         cur.completed = completionData.getBoolean(cur.artworkResourceName, false);
+                        cur.correct = completionData.getBoolean(cur.artworkResourceName + "_correct", false);
                     }
                 } else if (event == XmlPullParser.END_TAG) {
                     if (data.getName().contentEquals("pictureSet")) {
@@ -61,9 +61,24 @@ public class Game {
                 }
                 data.next();
             }
-        } catch (IOException | XmlPullParserException x) {
+        } catch (IOException x) {
+            x.printStackTrace();
+        } catch (XmlPullParserException x) {
             x.printStackTrace();
         }
+    }
+
+    public static int score() {
+        if (theSets == null)
+            loadSets();
+
+        int res = 0;
+
+        for (int t = 0; t < theSets.size(); t++) {
+            if (theSets.get(t).correct)
+                res++;
+        }
+        return res;
     }
 
     public static int progress() {
@@ -73,7 +88,7 @@ public class Game {
         int res = 0;
 
         for (int t = 0; t < theSets.size(); t++)
-            if (theSets.get(t).isCompleted())
+            if (theSets.get(t).completed)
                 res++;
 
         return res;
@@ -98,14 +113,28 @@ public class Game {
 
         Random r = new Random();
         int n = r.nextInt(theSets.size());
-        Log.i("bmr", "n is " + Integer.toString(n));
         if (allSetsComplete())
-            return theSets.get(n); //they're just playing for fun
+            return null; // game over!
 
         while (theSets.get(n).isCompleted()) // otherwise make sure it's a new game
             n = r.nextInt(theSets.size());
-        Log.i("bmr", "n is " + Integer.toString(n));
         return theSets.get(n);
+    }
+
+    public static void reset() {
+        SharedPreferences.Editor updateCompletionData = theActivity.getSharedPreferences("Completion", 0).edit();
+
+        if (theSets == null)
+            loadSets();
+
+        for (int t = 0; t < theSets.size(); t++) {
+            Game g = theSets.get(t);
+            g.correct = false;
+            g.completed = false;
+            updateCompletionData.putBoolean(g.artworkResourceName, g.completed).
+                    putBoolean(g.artworkResourceName + "_correct", g.correct);
+        }
+        updateCompletionData.apply();
     }
 
     private Game() { //intentionally private - only our static functions should create Games
@@ -125,15 +154,16 @@ public class Game {
     }
 
     public boolean makeAGuess(int pictureNumber) {
-        if (pictureNumber == correctChoice) {
-            SharedPreferences.Editor updateCompletionData = theActivity.getSharedPreferences("Completion", 0).edit();
+        SharedPreferences.Editor updateCompletionData = theActivity.getSharedPreferences("Completion", 0).edit();
 
-            completed = true;
-            updateCompletionData.putBoolean(this.artworkResourceName, true).commit();
-            Log.i("artworkResourceName", String.valueOf(this.completed));
-            return true;
-        }
-        return false;
+        completed = true;
+        if (pictureNumber == correctChoice)
+            correct = true;
+
+        updateCompletionData.putBoolean(this.artworkResourceName, true).
+                putBoolean(this.artworkResourceName + "_correct", correct)
+                .apply();
+        return correct;
     }
 
     public boolean isCompleted() {

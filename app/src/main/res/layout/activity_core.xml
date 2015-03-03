@@ -52,13 +52,13 @@
                android:layout_width="fill_parent"
                android:layout_height="50dp">
                <ImageView
-                   android:layout_marginLeft="12dp"
+                   android:layout_marginLeft="5dp"
                    android:src="@drawable/explore_light"
                    android:layout_marginTop="5dp"
                    android:layout_width="40dp"
                    android:layout_height="40dp" />
                <TextView
-                   android:layout_marginLeft="6dp"
+                   android:layout_marginLeft="18dp"
                    android:layout_gravity="center_vertical"
                    android:textSize="8.5pt"
                    android:textColor="#fff"
@@ -73,16 +73,16 @@
                android:layout_width="fill_parent"
                android:layout_height="50dp">
                <ImageView
-                   android:layout_marginLeft="12dp"
+                   android:layout_marginLeft="5dp"
                    android:src="@drawable/route_dark"
                    android:layout_marginTop="5dp"
                    android:layout_width="40dp"
                    android:layout_height="40dp" />
                <TextView
-                   android:layout_marginLeft="6dp"
+                   android:layout_marginLeft="18dp"
                    android:layout_gravity="center_vertical"
                    android:textSize="8.5pt"
-                   android:textColor="#000"
+                   android:textColor="#bf000000"
                    android:text="Route"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
@@ -94,17 +94,17 @@
                android:layout_width="fill_parent"
                android:layout_height="50dp">
                <ImageView
-                   android:layout_marginLeft="12dp"
+                   android:layout_marginLeft="5dp"
                    android:src="@drawable/badges_dark"
                    android:layout_marginTop="5dp"
                    android:layout_width="40dp"
                    android:layout_height="40dp" />
 
                <TextView
-                   android:layout_marginLeft="6dp"
+                   android:layout_marginLeft="18dp"
                    android:layout_gravity="center_vertical"
                    android:textSize="8.5pt"
-                   android:textColor="#000"
+                   android:textColor="#bf000000"
                    android:text="Badges"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
@@ -116,17 +116,17 @@
                android:layout_width="fill_parent"
                android:layout_height="50dp">
                <ImageView
-                   android:layout_marginLeft="12dp"
+                   android:layout_marginLeft="5dp"
                    android:src="@drawable/game_dark"
                    android:layout_marginTop="5dp"
                    android:layout_width="40dp"
                    android:layout_height="40dp" />
 
                <TextView
-                   android:layout_marginLeft="6dp"
+                   android:layout_marginLeft="18dp"
                    android:layout_gravity="center_vertical"
                    android:textSize="8.5pt"
-                   android:textColor="#000"
+                   android:textColor="#bf000000"
                    android:text="Quiz"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
@@ -138,17 +138,17 @@
                android:layout_width="fill_parent"
                android:layout_height="50dp">
                <ImageView
-                   android:layout_marginLeft="12dp"
+                   android:layout_marginLeft="5dp"
                    android:src="@drawable/about_dark"
                    android:layout_marginTop="5dp"
                    android:layout_width="40dp"
                    android:layout_height="40dp" />
 
                <TextView
-                   android:layout_marginLeft="6dp"
+                   android:layout_marginLeft="18dp"
                    android:layout_gravity="center_vertical"
                    android:textSize="8.5pt"
-                   android:textColor="#000"
+                   android:textColor="#bf000000"
                    android:text="About"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
@@ -196,6 +196,14 @@
                android:layout_width="fill_parent"
                android:layout_height="wrap_content"
                android:text="About"/>-->
+
        </LinearLayout>
     </android.support.v4.widget.DrawerLayout>
+
+    <team3m.dulwichoutdoorgallery.BadgeNotification
+        android:layout_marginTop="-180dp"
+        android:id="@+id/badgeNotification"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"></team3m.dulwichoutdoorgallery.BadgeNotification>
+
 </RelativeLayout>

@@ -204,6 +204,7 @@ public class BadgesActivity extends ActionBarActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Badge badgePos = adapter.getItem(position);
                     badgePos.setAchieved(true);
+                    Core.notifyBadgeEarned(badgePos);
                     badgeTitle = badgePos.getTitle();
                     adapter.notifyDataSetChanged();
                     // Display Notification

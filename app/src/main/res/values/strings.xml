@@ -13,32 +13,6 @@
     <string name="currentGameArtworkArtist"></string>
     <string name="currentRotatedPicture">1</string>
 
-    <string-array name="ArtworksList">
-        <item>Agent Provocateur - The Three Graces</item>
-        <item>Agent Provocateur - Old Nun\'s Head</item>
-        <item>Ben Wilson - St Catherine of Siena</item>
-        <item>Conor Harrington - The Massacre of The Innocents</item>
-        <item>David Shillinglaw - Samson and Delilah</item>
-        <item>Faith47 - Europa and The Bull</item>
-        <item>Inkie - Old Nun\'s Head</item>
-        <item>MadC - Vase With Flowers</item>
-        <item>Mear One - The Virgin of The Rosary</item>
-        <item>Phlegm - Triumph of David</item>
-        <item>Pure Evil - Old Nun\'s Head</item>
-        <item>REKA - Europa and The Bull</item>
-        <item>Remi Rough, System - Girl at a Window</item>
-        <item>ROA - Landscape with Sportsmen and Game</item>
-        <item>RUN - Triumph of David</item>
-        <item>RUN - The Translation of St. Rita</item>
-        <item>Stik - Couple in a Landscape</item>
-        <item>Stik - Eliza and Mary Davidson</item>
-        <item>Stik - Elizabeth and Mary Linley</item>
-        <item>Stik - The Fall of Man</item>
-        <item>Stik - The Guardian Angel</item>
-        <item>Stik - Three Boys</item>
-        <item>Thierry Noir - Joseph Receiving Pharaoh\'s Ring</item>
-        <item>Walter Kershaw - Landscape with Windmills Near Haarlem</item>
-    </string-array>
     <string name="title_activity_game_complete">GameCompleteActivity</string>
     <string name="title_activity_info">InfoActivity</string>
     <string name="title_activity_core">CoreActivity</string>

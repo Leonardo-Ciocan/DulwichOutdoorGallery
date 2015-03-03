@@ -1,9 +1,9 @@
 package team3m.dulwichoutdoorgallery;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,8 +62,24 @@ public class GameFragment extends Fragment {
             imageButtonsArray[t].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+
                     if (game.makeAGuess(u)) {
-                        imageClick();
+                        final CustomDialogClass2 cdd = new CustomDialogClass2(theActivity);
+                        cdd.show();
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run() {
+                                cdd.dismiss();
+                            }
+                        }, 1500);
+
+                        if (!Game.allSetsComplete()) {
+                            loadData();
+                        } else {
+                            // if all 20 choices guessed correctly, run the GameComplete activity
+                            showCompleteScreen(getView());
+                        }
                     } else {
                         incorrectAnswerAlert();
                     }
@@ -71,22 +87,10 @@ public class GameFragment extends Fragment {
             });
         }
 
-        game = Game.getNextGame(theActivity);
-        loadData();
-
         theVa.setInAnimation(AnimationUtils.loadAnimation(theActivity, android.R.anim.slide_in_left));
         theVa.setOutAnimation(theActivity, android.R.anim.slide_out_right);
         theVa.setDisplayedChild(0);
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                onTimerTick();
-            }
-        }, 3000, 3000);
-
-        if (Game.allSetsComplete()) {
-            gameComplete();
-        }
+        startTimer();
 
         Button lpb = (Button) v.findViewById(R.id.letsplaybutton);
         lpb.setOnClickListener(new View.OnClickListener() {
@@ -96,11 +100,9 @@ public class GameFragment extends Fragment {
                     @Override
                     public void run() {
                         SharedPreferences gameUiData = theActivity.getSharedPreferences("gameUi", 0);
-
                         gameUiData.edit()
                                 .putBoolean("showHelp", false)
-                                .commit();
-
+                                .apply();
                         theActivity.findViewById(R.id.gameHelpFrame).setVisibility(View.GONE);
                     }
                 });
@@ -113,6 +115,32 @@ public class GameFragment extends Fragment {
             v.findViewById(R.id.gameHelpFrame).setVisibility(View.GONE);
         }
 
+        game = Game.getNextGame(theActivity);
+        loadData();
+
+        if (Game.allSetsComplete()) {
+            showCompleteScreen(v);
+        }
+
+        Button restartGameButton = (Button) v.findViewById(R.id.gameRestartButton);
+        restartGameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                theActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Game.reset();
+                        theActivity.findViewById(R.id.gameFrame).setVisibility(View.VISIBLE);
+                        game = Game.getNextGame(theActivity);
+                        loadData();
+                        theActivity.findViewById(R.id.gameCompleteFrame).setVisibility(View.GONE);
+                        //startTimer();
+
+                    }
+                });
+            }
+        });
+
         return v;
     }
 
@@ -120,6 +148,8 @@ public class GameFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         theActivity = activity; //save this for later
+        game = Game.getNextGame(theActivity);
+
     }
 
     public void loadData() {
@@ -129,7 +159,6 @@ public class GameFragment extends Fragment {
                 if (Game.allSetsComplete()) {
                     changeImageNumberText.setText("Game completed!");
                 } else {
-                    currentButton = 0;
                     artworkToMatch.setImageResource(game.getIdOfArtworkToMatch());
                     for (int i = 0; i < 4; i++) {
                         imageButtonsArray[i].setImageResource(game.getPossibleChoices()[i]);
@@ -141,6 +170,28 @@ public class GameFragment extends Fragment {
         }));
     }
 
+    public void startTimer() {
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                onTimerTick();
+            }
+        }, 3000, 3000);
+    }
+
+    public void incorrectAnswerAlert() {
+        CustomDialogClass cdd = new CustomDialogClass(theActivity);
+        cdd.show();
+    }
+
+    public void showCompleteScreen(View v) {
+        //timer.cancel();
+        TextView displayCorrectAnswers = (TextView) v.findViewById(R.id.textViewGameComplete2);
+        displayCorrectAnswers.setText("You got " + game.score() + "/20 questions correct!");
+        v.findViewById(R.id.gameCompleteFrame).setVisibility(View.VISIBLE);
+        v.findViewById(R.id.gameFrame).setVisibility(View.GONE);
+    }
+
     public void onTimerTick() {
         currentButton = ++currentButton % 4;
         theActivity.runOnUiThread(new Thread(new Runnable() {
@@ -150,41 +201,6 @@ public class GameFragment extends Fragment {
                 theVa.setDisplayedChild(currentButton);
             }
         }));
-    }
-
-    public void imageClick() {
-
-        if (!Game.allSetsComplete()) {
-            loadData();
-        } else {
-            // if all 20 choices guessed correctly, run the GameComplete activity
-            gameComplete();
-        }
-    }
-
-    public void gameComplete() {
-        // start GameCompleteFragment
-        timer.purge();
-
-        theActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                SharedPreferences GameCompleteUiData = theActivity.getSharedPreferences("gameCompleteUi", 0);
-
-                GameCompleteUiData.edit()
-                        .putBoolean("gameUi", false)
-                        .commit();
-            }
-        });
-    }
-
-    public void incorrectAnswerAlert() {
-        AlertDialog.Builder dlgAlert = new AlertDialog.Builder(theActivity);
-        dlgAlert.setMessage("Try again.");
-        dlgAlert.setTitle("Incorrect Answer");
-        dlgAlert.setPositiveButton("OK", null);
-        dlgAlert.setCancelable(true);
-        dlgAlert.create().show();
     }
 
     @Override

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="170dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+                <FrameLayout android:layout_height="120dp" android:layout_width="fill_parent" >
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/badge"/>
+
+                <LinearLayout
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="145dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:textColor="#000"
+                        android:textSize="12pt"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="You earned XXY"/>
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="sans-serif-light"
+                        android:textColor="#bf000000"
+                        android:textStyle="italic"
+                        android:textSize="10pt"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="For doing X at Y"/>
+                    </LinearLayout>
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp">
+                    <Button
+                        android:textColor="@color/brandDark"
+                        android:background="#00000000"
+                        android:layout_weight="1"
+                        android:text="SHARE"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" />
+                    <Button
+                        android:id="@+id/closeNotification"
+                        android:textColor="@color/brandDark"
+                        android:background="#00000000"
+                        android:layout_weight="1"
+                        android:text="CLOSE"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" />
+                </LinearLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>

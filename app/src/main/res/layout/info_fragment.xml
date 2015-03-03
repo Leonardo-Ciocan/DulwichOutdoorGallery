@@ -20,20 +20,22 @@
             android:src="@drawable/madc_vase_with_flowers"
             android:scaleType="fitXY"
             android:layout_width="fill_parent"
-            android:layout_height="300dp" />
+            android:layout_height="fill_parent" />
 
         <ImageView
             android:id="@+id/header"
             android:src="@drawable/reka_europa_and_the_bull"
             android:scaleType="fitXY"
             android:layout_width="fill_parent"
-            android:layout_height="300dp" />
+            android:layout_height="fill_parent" />
 
         </FrameLayout>
 
 
 
     <ScrollView
+        android:alpha="0"
+        android:layout_marginTop="400dp"
         android:clipChildren="false"
         android:id="@+id/scrollView"
         android:layout_width="match_parent"

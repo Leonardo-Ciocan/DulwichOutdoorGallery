@@ -1,21 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
 <games>
     <pictureSet
-        artist="ROA"
-        target="@drawable/roa_new"
-        choice0="@drawable/agent_provocateur_new"
-        choice1="@drawable/roa_landscape_with_sportsmen_and_game1"
-        choice2="@drawable/roa_landscape_with_sportsmen_and_game2"
-        choice3="@drawable/mear_one_new"
-        correct="2"
-    />
-    <pictureSet
         artist="MadC"
-        target="@drawable/madc_new"
-        choice0="@drawable/mear_one_the_virgin_of_the_rosary"
-        choice1="@drawable/ben_wilson_new2"
-        choice2="@drawable/old_nuns_head_ap_new"
-        choice3="@drawable/phlegm_triumph_of_david"
+        choice0="@drawable/madc_vase_with_flowers"
+        choice1="@drawable/none_a_delft_vase_with_flowers"
+        choice2="@drawable/none_cartouche_with_the_virgin_child_and_saint_anne"
+        choice3="@drawable/none_the_flower_girl"
+        correct="0"
+        target="@drawable/madc_new" />
+
+    <pictureSet
+        artist="ROA"
+        choice0="@drawable/none_two_horsemen_near_a_fountain"
+        choice1="@drawable/roa_landscape_with_sportsmen_and_game1"
+        choice2="@drawable/none_a_farrier_and_peasants_near_roman_ruins"
+        choice3="@drawable/none_figures_in_the_courtyard_of_an_old_building"
+        correct="2"
+        target="@drawable/roa_new" />
+
+    <pictureSet
+        artist="Stik"
+        choice0="@drawable/none_figures_in_the_courtyard_of_an_old_building"
+        choice1="@drawable/mear_one_the_virgin_of_the_rosary"
+        choice2="@drawable/thierry_noir_joseph_receiving_pharaohs_ring"
+        choice3="@drawable/stik_three_boys"
+        correct="3"
+        target="@drawable/stik_three_boys_new" />
+
+    <pictureSet
+        artist="Agent Provocateur"
+        choice0="@drawable/none_allegory"
+        choice1="@drawable/agent_provocateur_the_three_graces"
+        choice2="@drawable/stik_the_fall_of_man"
+        choice3="@drawable/none_ceres_and_two_nymphs_with_a_cornucopia"
         correct="1"
-        />
+        target="@drawable/agent_provocateur_new" />
+
+    <pictureSet
+        artist="Mear One"
+        choice0="@drawable/none_holy_family"
+        choice1="@drawable/none_the_madonna_and_child"
+        choice2="@drawable/none_mrs_benjamin_west_ii_with_her_son_benjamin_west_iii"
+        choice3="@drawable/mear_one_the_virgin_of_the_rosary"
+        correct="3"
+        target="@drawable/mear_one_new" />
+
+    <pictureSet
+        artist="Stik"
+        choice0="@drawable/none_nymphs_by_a_fountain"
+        choice1="@drawable/stik_elizabeth_and_mary_linley"
+        choice2="@drawable/none_virtue_and_nobility_putting_ignorance_to_flight"
+        choice3="@drawable/david_shillinglaw_samson_and_delilah"
+        correct="1"
+        target="@drawable/stik_elizabeth_and_mary_linley_new" />
+
+    <pictureSet
+        artist="David Shilinglaw"
+        choice0="@drawable/david_shillinglaw_samson_and_delilah"
+        choice1="@drawable/conor_harrington_the_massacre_of_the_innocents"
+        choice2="@drawable/none_rape_of_europa"
+        choice3="@drawable/none_nymphs_by_a_fountain"
+        correct="0"
+        target="@drawable/david_shillinglaw_new" />
+
+    <pictureSet
+        artist="Stik"
+        choice0="@drawable/none_allegory"
+        choice1="@drawable/stik_the_guardian_angel"
+        choice2="@drawable/none_the_deposition"
+        choice3="@drawable/none_the_judgement_of_paris"
+        correct="1"
+        target="@drawable/stik_the_guardian_angel_new" />
+
+    <pictureSet
+        artist="Stik"
+        choice0="@drawable/none_called_the_howard_children"
+        choice1="@drawable/none_creation_of_eve"
+        choice2="@drawable/none_mystic_marriage_of_saint_catherine"
+        choice3="@drawable/stik_the_fall_of_man"
+        correct="3"
+        target="@drawable/stik_the_fall_of_man_new" />
+
+    <pictureSet
+        artist="Stik"
+        choice0="@drawable/none_allegory"
+        choice1="@drawable/stik_elizabeth_and_mary_linley"
+        choice2="@drawable/stik_couple_in_a_landscape"
+        choice3="@drawable/none_the_orphans"
+        correct="2"
+        target="@drawable/stik_couple_in_a_landscape_new" />
+
+    <pictureSet
+        artist="RUN"
+        choice0="@drawable/run_the_translation_of_st_rita"
+        choice1="@drawable/none_charles_jervas_dorothy_viscountess_townshend"
+        choice2="@drawable/none_guercino_saint_cecilia"
+        choice3="@drawable/none_carlo_bononi_saint_cecilia"
+        correct="0"
+        target="@drawable/run_the_translation_of_st_rita_new" />
+
+    <pictureSet
+        artist="RUN"
+        choice0="@drawable/none_sir_peter_paul_rubens_the_miracles_of_saint_ignatius_of_loyola"
+        choice1="@drawable/none_after_nicolas_poussin_the_adoration_of_the_magi"
+        choice2="@drawable/run_hoardings_triumph_of_david"
+        choice3="@drawable/none_anon_baccanal"
+        correct="2"
+        target="@drawable/run_hoardings_new" />
+
+    <pictureSet
+        artist="Remi, Rough, and System"
+        choice0="@drawable/none_follower_francesco_albani_madonna"
+        choice1="@drawable/remi_rough_and_system_girl_at_a_window"
+        choice2="@drawable/none_british_school_european_sibyl"
+        choice3="@drawable/none_after_sir_joshua_reynolds_mrs_margaret_desenfans"
+        correct="1"
+        target="@drawable/remi_rough_and_system_new" />
+
+    <pictureSet
+        artist="Thierry Noir"
+        choice0="@drawable/phlegm_triumph_of_david"
+        choice1="@drawable/none_virtue_and_nobility_putting_ignorance_to_flight"
+        choice2="@drawable/none_after_nicolas_poussin_the_adoration_of_the_magi"
+        choice3="@drawable/thierry_noir_joseph_receiving_pharaohs_ring"
+        correct="3"
+        target="@drawable/thierry_noir_new1" />
+
+    <pictureSet
+        artist="Phlegm"
+        choice0="@drawable/phlegm_triumph_of_david"
+        choice1="@drawable/none_after_nicolas_poussin_the_adoration_of_the_magi"
+        choice2="@drawable/thierry_noir_joseph_receiving_pharaohs_ring"
+        choice3="@drawable/none_virtue_and_nobility_putting_ignorance_to_flight"
+        correct="0"
+        target="@drawable/phlegm_new" />
+
+    <pictureSet
+        artist="Agent Provocateur"
+        choice0="@drawable/remi_rough_and_system_girl_at_a_window"
+        choice1="@drawable/none_follower_francesco_albani_madonna"
+        choice2="@drawable/multiple_st_catherine_of_siena"
+        choice3="@drawable/none_british_school_tiburtine_sibyl"
+        correct="2"
+        target="@drawable/old_nuns_head_ap_new" />
+
+    <pictureSet
+        artist="Inkie"
+        choice0="@drawable/multiple_st_catherine_of_siena"
+        choice1="@drawable/remi_rough_and_system_girl_at_a_window"
+        choice2="@drawable/none_british_school_tiburtine_sibyl"
+        choice3="@drawable/none_follower_francesco_albani_madonna"
+        correct="0"
+        target="@drawable/old_nuns_head_inkie_new" />
+
+    <pictureSet
+        artist="Pure Evil"
+        choice0="@drawable/none_british_school_tiburtine_sibyl"
+        choice1="@drawable/multiple_st_catherine_of_siena"
+        choice2="@drawable/none_follower_francesco_albani_madonna"
+        choice3="@drawable/remi_rough_and_system_girl_at_a_window"
+        correct="1"
+        target="@drawable/old_nuns_head_pure_evil_new" />
+
+    <pictureSet
+        artist="REKA"
+        choice0="@drawable/none_british_school_tiburtine_sibyl"
+        choice1="@drawable/none_jean_honore_fragonard_young_woman"
+        choice2="@drawable/reka_europa_and_the_bull"
+        choice3="@drawable/none_after_guido_reni_lucretia"
+        correct="2"
+        target="@drawable/reka_new" />
+
+    <pictureSet
+        artist="Faith47"
+        choice0="@drawable/faith47_europa_and_the_bull"
+        choice1="@drawable/none_after_guido_reni_lucretia"
+        choice2="@drawable/none_jean_honore_fragonard_young_woman"
+        choice3="@drawable/none_british_school_tiburtine_sibyl"
+        correct="0"
+        target="@drawable/faith47_new" />
+
 </games>

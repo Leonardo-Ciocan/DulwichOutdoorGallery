@@ -257,6 +257,13 @@ public class Core {
         return Gallery;
     }
 
+    static BadgeEarnedListener badgeEarnedListener;
+    public static void setBadgeListener(BadgeEarnedListener listener){
+        badgeEarnedListener = listener;
+    }
+    public static void notifyBadgeEarned(Badge b){
+        if(badgeEarnedListener != null) badgeEarnedListener.completedBadge(b);
+    }
 
 }
 
