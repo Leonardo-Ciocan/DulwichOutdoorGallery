@@ -121,7 +121,7 @@ public class ExploreActivity extends ActionBarActivity {
         GoogleMap map;
         TextView textAuthor, textTitle;
 
-        ArrayList<Marker> markers = new ArrayList<>();
+        ArrayList<Marker> markers = new ArrayList<Marker>();
         Marker lastMaker = null;
 
         @Override

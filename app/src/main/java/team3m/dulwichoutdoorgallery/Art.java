@@ -9,7 +9,7 @@ public class Art {
     String Description;
     String Author;
     Art RelatedArt;
-    ArrayList<String> Tags = new ArrayList<>();
+    ArrayList<String> Tags = new ArrayList<String>();
     double Latitude;
     double Longitude;
     LatLng position;
