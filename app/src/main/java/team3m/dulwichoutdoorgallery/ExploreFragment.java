@@ -341,6 +341,8 @@ public class ExploreFragment extends Fragment {
                 //Add a marker for each art
                 for (int i = 0; i < Gallery.size(); i++) {
                     Marker m = googleMap.addMarker(new MarkerOptions()
+                            .icon(BitmapDescriptorFactory
+                                    .defaultMarker(100))
                             .title(String.valueOf(i))
                             .snippet(Gallery.get(i).getDescription())
                             .position(new LatLng(Gallery.get(i).getLatitude(), Gallery.get(i).getLongitude())));
@@ -454,6 +456,8 @@ public class ExploreFragment extends Fragment {
             String title = currentMarker.getTitle();
             int index = Integer.parseInt(title);
             Marker m2 = map.addMarker(new MarkerOptions()
+                    .icon(BitmapDescriptorFactory
+                            .defaultMarker(100))
                     .title(String.valueOf(index))
                     .snippet(Core.getGallery().get(index).getDescription())
                     .position(new LatLng(Core.getGallery().get(index).getLatitude(), Core.getGallery().get(index).getLongitude())));

@@ -36,12 +36,19 @@ public class BadgeNotification extends RelativeLayout {
         enterAnim = new Animation() {
             @Override
             protected void applyTransformation(float interpolatedTime, Transformation t) {
+                BadgeNotification.this.setAlpha(1);
+                BadgeNotification.this.setScaleX(1);
+                BadgeNotification.this.setScaleY(1);
+
+                BadgeNotification.this.setPivotX(0);
+                BadgeNotification.this.setPivotY(0);
                 RelativeLayout.LayoutParams navBtnLayout = (RelativeLayout.LayoutParams) BadgeNotification.this.getLayoutParams();
                 navBtnLayout.leftMargin = (int)(interpolatedTime*10* getContext().getResources().getDisplayMetrics().density);
                 navBtnLayout.rightMargin =(int)( interpolatedTime*10* getContext().getResources().getDisplayMetrics().density);
                 navBtnLayout.topMargin = (int) ((-180 + (int) (185 * interpolatedTime)) * getContext().getResources().getDisplayMetrics().density);
                 BadgeNotification.this.setLayoutParams(navBtnLayout);
                 BadgeNotification.this.setRotation(interpolatedTime < 0.5f ? interpolatedTime * 30 : (1-interpolatedTime) * 30 );
+
             }
 
             @Override
@@ -68,10 +75,7 @@ public class BadgeNotification extends RelativeLayout {
                     navBtnLayout.rightMargin = 0;
                     navBtnLayout.topMargin = (int) ((-180) * getContext().getResources().getDisplayMetrics().density);
                     BadgeNotification.this.setLayoutParams(navBtnLayout);
-                    BadgeNotification.this.setAlpha(1);
-                    BadgeNotification.this.setScaleX(1);
-                    BadgeNotification.this.setScaleY(1);
-                    BadgeNotification.this.setRotation(0);
+
 
                 }
             }
