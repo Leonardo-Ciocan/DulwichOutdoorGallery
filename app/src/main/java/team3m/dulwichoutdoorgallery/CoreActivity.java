@@ -226,10 +226,7 @@ public class CoreActivity extends ActionBarActivity {
             }
         });
 
-        GoogleAccountCredential credential = GoogleAccountCredential.usingOAuth2(this, DriveScopes.DRIVE);
-        credential.setSelectedAccountName(accountName);
-        Drive service = new Drive.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), credential).build();
-    }
+       }
 
     void makeButtonClickable(LinearLayout exploreButton  , final int id){
         exploreButton.setOnClickListener(new View.OnClickListener() {
