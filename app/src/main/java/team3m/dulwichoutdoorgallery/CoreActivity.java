@@ -1,5 +1,7 @@
 package team3m.dulwichoutdoorgallery;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.CountDownTimer;
@@ -37,6 +39,8 @@ public class CoreActivity extends ActionBarActivity {
 
     static String[] titles = new String[]{"Explore" , "Route" , "Badges" , "Game","About"};
 
+    public static SharedPreferences preferences ;
+
     EditText searchBox;
     ActionBarDrawerToggle toggle;
     team3m.dulwichoutdoorgallery.ExploreFragment ExploreFragment;
@@ -46,6 +50,8 @@ public class CoreActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        preferences = getSharedPreferences(
+                "com.example.app", Context.MODE_PRIVATE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_core);
         toolbar = (Toolbar)findViewById(R.id.toolbar);

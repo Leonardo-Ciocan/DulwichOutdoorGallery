@@ -1,5 +1,9 @@
 package team3m.dulwichoutdoorgallery;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class Core {
@@ -263,6 +267,26 @@ public class Core {
     }
     public static void notifyBadgeEarned(Badge b){
         if(badgeEarnedListener != null) badgeEarnedListener.completedBadge(b);
+    }
+
+    public static boolean getBadgeStatus(int n){
+        return CoreActivity.preferences.getBoolean("badge"+n , false);
+    }
+
+    public static void setBadgeCompleted(int n){
+        CoreActivity.preferences.edit().putBoolean("badge"+n,true).commit();
+    }
+
+    public static void updateBadges(){
+        int count = 0;
+        for(int x =0; x<getGallery().size();x++){
+            if(getBadgeStatus(x))count++;
+        }
+        if(count == 3){
+            notifyBadgeEarned(BadgesActivity.badges.get(3));
+        }
+
+        Log.e("xxxxxxxx " , count +"");
     }
 
 }

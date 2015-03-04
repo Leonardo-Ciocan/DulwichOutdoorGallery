@@ -400,6 +400,11 @@ public class ExploreFragment extends Fragment {
                         last = map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory
                                 .defaultMarker(100)).position(loc));
 
+                        int n = RouteActivity.PlaceholderFragment.getClosestWithinRange(location,11);
+                        if(n != -1){
+                            Core.setBadgeCompleted(n);
+                            Core.updateBadges();
+                        }
 
                     }
                 };

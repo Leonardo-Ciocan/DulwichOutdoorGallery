@@ -260,10 +260,10 @@ public class RouteActivity extends ActionBarActivity {
             return rootView;
         }
 
-        int getClosestWithinRange(Location user,float max){
+        public static int getClosestWithinRange(Location user,float max){
 
             float min = Float.MAX_VALUE;
-            int minIndex=0;
+            int minIndex=-1;
             for( int x =0; x< Core.getGallery().size();x++){
                 Location location = new Location("t" + x);
                 location.setLatitude(Core.Gallery.get(x).getLatitude());
