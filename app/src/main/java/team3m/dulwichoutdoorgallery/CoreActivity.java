@@ -22,6 +22,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.drive.Drive;
+import com.google.android.gms.drive.MetadataChangeSet;
+
 
 public class CoreActivity extends ActionBarActivity {
 
@@ -221,6 +225,10 @@ public class CoreActivity extends ActionBarActivity {
                 badgeNotification.show(badge);
             }
         });
+
+        GoogleAccountCredential credential = GoogleAccountCredential.usingOAuth2(this, DriveScopes.DRIVE);
+        credential.setSelectedAccountName(accountName);
+        Drive service = new Drive.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), credential).build();
     }
 
     void makeButtonClickable(LinearLayout exploreButton  , final int id){

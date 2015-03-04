@@ -48,7 +48,6 @@ public class BadgeNotification extends RelativeLayout {
                 navBtnLayout.topMargin = (int) ((-180 + (int) (185 * interpolatedTime)) * getContext().getResources().getDisplayMetrics().density);
                 BadgeNotification.this.setLayoutParams(navBtnLayout);
                 BadgeNotification.this.setRotation(interpolatedTime < 0.5f ? interpolatedTime * 30 : (1-interpolatedTime) * 30 );
-
             }
 
             @Override
@@ -64,7 +63,6 @@ public class BadgeNotification extends RelativeLayout {
             protected void applyTransformation(float interpolatedTime, Transformation t) {
                 BadgeNotification.this.setScaleX(1-interpolatedTime);
                 BadgeNotification.this.setScaleY(1 - interpolatedTime);
-                //Log.v("ax" , "xppr");
                 BadgeNotification.this.setRotation(interpolatedTime*80);
                 BadgeNotification.this.setAlpha(1-interpolatedTime);
 
@@ -75,8 +73,6 @@ public class BadgeNotification extends RelativeLayout {
                     navBtnLayout.rightMargin = 0;
                     navBtnLayout.topMargin = (int) ((-180) * getContext().getResources().getDisplayMetrics().density);
                     BadgeNotification.this.setLayoutParams(navBtnLayout);
-
-
                 }
             }
 
