@@ -38,31 +38,39 @@
             android:name=".AboutActivity"
             android:label="@string/title_activity_about" >
         </activity>
-        <activity
-            android:name=".GameActivity"
-            android:label="@string/title_activity_game" >
-        </activity>
-        <activity
-            android:name=".GameCompleteActivity"
-            android:label="@string/title_activity_game_complete" >
-        </activity>
+
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyBVp0xcLU9a6I1ATNo7U65d96Oc43GQdH0" />
 
         <activity
+            android:screenOrientation="portrait"
             android:name=".InfoActivity"
-            android:label="@string/title_activity_info" >
+            android:label="Info" >
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".CoreActivity"
-            android:label="@string/title_activity_core"
+            android:label="Dulwich Outdoor Gallery"
             >
             <intent-filter>
+
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.dropbox.client2.android.AuthActivity"
+            android:launchMode="singleTask"
+            android:configChanges="orientation|keyboard">
+            <intent-filter>
+                <!-- Change this to be db- followed by your app key -->
+                <data android:scheme="db-taiirhe19lvs791" />                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>

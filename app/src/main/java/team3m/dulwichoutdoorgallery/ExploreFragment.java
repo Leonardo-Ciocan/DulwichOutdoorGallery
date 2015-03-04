@@ -342,7 +342,7 @@ public class ExploreFragment extends Fragment {
                 for (int i = 0; i < Gallery.size(); i++) {
                     Marker m = googleMap.addMarker(new MarkerOptions()
                             .icon(BitmapDescriptorFactory
-                                    .defaultMarker(100))
+                                    .defaultMarker(Core.getLocationtatus(i) ? 0:200))
                             .title(String.valueOf(i))
                             .snippet(Gallery.get(i).getDescription())
                             .position(new LatLng(Gallery.get(i).getLatitude(), Gallery.get(i).getLongitude())));
@@ -395,14 +395,14 @@ public class ExploreFragment extends Fragment {
                     @Override
                     public void onMyLocationChange(Location location) {
                         if (last != null) last.remove();
-                        LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
+                        //LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
                         //We keep the marker location so we can update it on change
-                        last = map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory
-                                .defaultMarker(100)).position(loc));
+                        //last = map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.).position(loc));
 
                         int n = RouteActivity.PlaceholderFragment.getClosestWithinRange(location,11);
                         if(n != -1){
-                            Core.setBadgeCompleted(n);
+                            markers.get(n).setIcon(BitmapDescriptorFactory.defaultMarker(0));
+                            Core.setLocationVisited(n);
                             Core.updateBadges();
                         }
 
@@ -441,7 +441,7 @@ public class ExploreFragment extends Fragment {
         markers.get(pos).remove();
         Marker m = map.addMarker(new MarkerOptions()
                 .icon(BitmapDescriptorFactory
-                        .defaultMarker(200))
+                        .defaultMarker(Core.getLocationtatus(pos) ? 0:200))
                 .title(String.valueOf(pos))
                 .snippet(Core.getGallery().get(pos).getDescription())
                 .position(new LatLng(Core.getGallery().get(pos).getLatitude(), Core.getGallery().get(pos).getLongitude())));
@@ -462,7 +462,7 @@ public class ExploreFragment extends Fragment {
             int index = Integer.parseInt(title);
             Marker m2 = map.addMarker(new MarkerOptions()
                     .icon(BitmapDescriptorFactory
-                            .defaultMarker(100))
+                            .defaultMarker(Core.getLocationtatus(index) ? 0:200))
                     .title(String.valueOf(index))
                     .snippet(Core.getGallery().get(index).getDescription())
                     .position(new LatLng(Core.getGallery().get(index).getLatitude(), Core.getGallery().get(index).getLongitude())));

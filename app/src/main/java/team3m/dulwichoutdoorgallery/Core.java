@@ -7,6 +7,10 @@ import android.util.Log;
 import java.util.ArrayList;
 
 public class Core {
+
+    final static public String APP_KEY = "taiirhe19lvs791";
+    final static public String APP_SECRET = "wlq0gei4ofhppca";
+
     public static ArrayList<Art> Gallery = new ArrayList<Art>(){
         {
             add(new Art("Landscape with Sportsmen and Game, 2013" ,
@@ -270,23 +274,39 @@ public class Core {
     }
 
     public static boolean getBadgeStatus(int n){
-        return CoreActivity.preferences.getBoolean("badge"+n , false);
+        return CoreActivity.preferences.getBoolean("_badge"+n , false);
     }
 
     public static void setBadgeCompleted(int n){
-        CoreActivity.preferences.edit().putBoolean("badge"+n,true).commit();
+        CoreActivity.preferences.edit().putBoolean("_badge"+n,true).commit();
+    }
+
+    public static boolean getLocationtatus(int n){
+        return CoreActivity.preferences.getBoolean("_location"+n , false);
+    }
+
+    public static void setLocationVisited(int n){
+        CoreActivity.preferences.edit().putBoolean("_location"+n,true).commit();
     }
 
     public static void updateBadges(){
         int count = 0;
         for(int x =0; x<getGallery().size();x++){
-            if(getBadgeStatus(x))count++;
+            if(getLocationtatus(x))count++;
         }
         if(count == 3){
-            notifyBadgeEarned(BadgesActivity.badges.get(3));
+            if(!getBadgeStatus(3)) {
+                notifyBadgeEarned(BadgesActivity.badges.get(3));
+                setBadgeCompleted(3);
+            }
         }
 
-        Log.e("xxxxxxxx " , count +"");
+        if(count == 5){
+            if(!getBadgeStatus(4)) {
+                notifyBadgeEarned(BadgesActivity.badges.get(4));
+                setBadgeCompleted(4);
+            }
+        }
     }
 
 }
