@@ -276,7 +276,6 @@ public class RouteActivity extends ActionBarActivity {
             return minIndex;
         }
 
-
         void drawOverlay(){
             map.clear();
             ArrayList<Art> Gallery = Core.getGallery();

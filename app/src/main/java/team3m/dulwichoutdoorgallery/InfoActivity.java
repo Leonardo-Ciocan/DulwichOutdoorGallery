@@ -1,6 +1,7 @@
 package team3m.dulwichoutdoorgallery;
 
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -72,6 +73,7 @@ public class InfoActivity extends ActionBarActivity {
         }
 
          boolean isLocked = false;
+         boolean street_ = true;
 
         ImageView i1;
         ImageView i2;
@@ -207,13 +209,21 @@ public class InfoActivity extends ActionBarActivity {
                         i1.setRotationY(90 * (2f * interpolatedTime));
                     }
                     else{
-
+                        street_ = !street_;
+                        textTitle.setText(street_? art.getName() : art.getRelatedArt().getName());
+                        textAuthor.setText(street_ ? art.getAuthor() : art.getRelatedArt().getAuthor());
+                        textDescription.setText(street_? art.getDescription() : art.getRelatedArt().getDescription());
+                        textTitle.setTextColor(street_ ? getResources().getColor(R.color.brand) : Color.RED);
                         i1.setAlpha(0);
                         i2.setAlpha(255);
                         i2.setRotationY(180 + 90 * ( interpolatedTime * 2f));
                     }
 
+                    scrollView.setRotationY(interpolatedTime * 360);
+
+
                     if(interpolatedTime >= 1f){
+                        street_ = !street_;
                         final ImageView temp = i1;
                         i1 = i2;
                         i2 = temp;
