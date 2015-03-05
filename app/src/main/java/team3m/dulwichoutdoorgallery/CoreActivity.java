@@ -24,9 +24,25 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.dropbox.client2.DropboxAPI;
+import com.dropbox.client2.android.AndroidAuthSession;
+import com.dropbox.client2.exception.DropboxException;
+import com.dropbox.client2.session.AppKeyPair;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.drive.MetadataChangeSet;
+
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class CoreActivity extends ActionBarActivity {
@@ -41,18 +57,97 @@ public class CoreActivity extends ActionBarActivity {
 
     public static SharedPreferences preferences ;
 
+    // In the class declaration section:
+    public static DropboxAPI<AndroidAuthSession> mDBApi;
     EditText searchBox;
     ActionBarDrawerToggle toggle;
     team3m.dulwichoutdoorgallery.ExploreFragment ExploreFragment;
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private LinearLayout buttonHolder;
+    private OutputStream outputStream;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferences = getSharedPreferences(
                 "com.example.app", Context.MODE_PRIVATE);
         super.onCreate(savedInstanceState);
+
+
+
+
+// And later in some initialization function:
+        AppKeyPair appKeys = new AppKeyPair(Core.APP_KEY, Core.APP_SECRET);
+        AndroidAuthSession session = new AndroidAuthSession(appKeys);
+        mDBApi = new DropboxAPI<AndroidAuthSession>(session);
+       // mDBApi.getSession().startOAuth2Authentication(CoreActivity.this);
+        mDBApi.getSession().setOAuth2AccessToken("cu234J18AOAAAAAAAAAABLG6O6CmDp57aRQ3frKJ2aNhrKumpe9M10HatiCxFDJN");
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                Core.update(CoreActivity.this);
+            }
+        }).start();
+/*
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                //File file = new File("");
+
+                DropboxAPI.Entry dirent = null;
+                try {
+                    dirent = mDBApi.metadata("/saved/", 1000, null, true, null);
+                } catch (DropboxException e) {
+                    e.printStackTrace();
+                }
+                ArrayList<DropboxAPI.Entry> files = new ArrayList<DropboxAPI.Entry>();
+                ArrayList<String> dir=new ArrayList<String>();
+                int i = 0;
+                for (DropboxAPI.Entry ent: dirent.contents)
+                {
+                    files.add(ent);// Add it to the list of thumbs we can choose from
+                    //dir = new ArrayList<String>();
+                    dir.add(files.get(i++).path);
+                }
+
+                File folder = getApplicationContext().getFilesDir();
+                File file = new File(folder.getAbsolutePath()+File.separator+"hi.txt");
+
+                // OutputStream outputStream;
+                boolean filee = file.exists();
+                try {
+                    outputStream = getApplicationContext().openFileOutput("hi.txt" , MODE_PRIVATE);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    DropboxAPI.DropboxFileInfo info = mDBApi.getFile("/saved/hi.txt", null, outputStream, null);
+                } catch (DropboxException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    BufferedReader inputReader = new BufferedReader(new InputStreamReader(
+                            openFileInput("hi.txt")));
+                    String inputString;
+                    StringBuffer stringBuffer = new StringBuffer();
+                    while ((inputString = inputReader.readLine()) != null) {
+                        stringBuffer.append(inputString + "\n");
+                    }
+                    Log.e("wuwuuwuuw", stringBuffer.toString());
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();*/
+
+
         setContentView(R.layout.activity_core);
         toolbar = (Toolbar)findViewById(R.id.toolbar);
 
@@ -232,6 +327,8 @@ public class CoreActivity extends ActionBarActivity {
             }
         });
 
+        BadgesActivity.PlaceholderFragment.populateBadgeList();
+
        }
 
     void makeButtonClickable(LinearLayout exploreButton  , final int id){
@@ -318,4 +415,6 @@ public class CoreActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

@@ -149,7 +149,7 @@ public class BadgesActivity extends ActionBarActivity {
         9.Add 8dp padding at the top and bottom of a list.
          */
 
-        private void populateBadgeList(){
+        public static void populateBadgeList(){
             badges.add(new Badge("The Gladiator", "You conquered all of the street arts", guardian, false));
             badges.add(new Badge("Baller", "You're a true baller across the streets", baller, false));
             badges.add(new Badge("Art Lover", "Checking out street art is your new passion", artlover, false));
@@ -202,13 +202,13 @@ public class BadgesActivity extends ActionBarActivity {
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Badge badgePos = adapter.getItem(position);
+                    /*Badge badgePos = adapter.getItem(position);
                     badgePos.setAchieved(true);
                     Core.notifyBadgeEarned(badgePos);
                     badgeTitle = badgePos.getTitle();
                     adapter.notifyDataSetChanged();
                     // Display Notification
-                    displayNotification(view);
+                    displayNotification(view);*/
                 }
             });
         }
@@ -252,7 +252,7 @@ public class BadgesActivity extends ActionBarActivity {
 
          
             private void checkAchieved(Badge badge, ImageView img, TextView title, TextView desc){
-                if(!badge.getAchieved()){
+                if(!Core.getBadgeStatus(badges.indexOf(badge))){
                     img.setAlpha(0.4f);
                     title.setAlpha(0.4f);
                     desc.setAlpha(0.4f);

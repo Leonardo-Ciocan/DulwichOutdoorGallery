@@ -4,9 +4,22 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.dropbox.client2.DropboxAPI;
+import com.dropbox.client2.exception.DropboxException;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class Core {
+
+    final static public String APP_KEY = "taiirhe19lvs791";
+    final static public String APP_SECRET = "wlq0gei4ofhppca";
+
     public static ArrayList<Art> Gallery = new ArrayList<Art>(){
         {
             add(new Art("Landscape with Sportsmen and Game, 2013" ,
@@ -226,25 +239,98 @@ public class Core {
     }
 
     public static boolean getBadgeStatus(int n){
-        return CoreActivity.preferences.getBoolean("badge"+n , false);
+        return CoreActivity.preferences.getBoolean("_badge"+n , false);
     }
 
     public static void setBadgeCompleted(int n){
-        CoreActivity.preferences.edit().putBoolean("badge"+n,true).commit();
+        CoreActivity.preferences.edit().putBoolean("_badge"+n,true).commit();
+    }
+
+    public static boolean getLocationtatus(int n){
+        return CoreActivity.preferences.getBoolean("_location"+n , false);
+    }
+
+    public static void setLocationVisited(int n){
+        CoreActivity.preferences.edit().putBoolean("_location"+n,true).commit();
     }
 
     public static void updateBadges(){
         int count = 0;
         for(int x =0; x<getGallery().size();x++){
-            if(getBadgeStatus(x))count++;
+            if(getLocationtatus(x))count++;
         }
         if(count == 3){
-            notifyBadgeEarned(BadgesActivity.badges.get(3));
+            if(!getBadgeStatus(3)) {
+                notifyBadgeEarned(BadgesActivity.badges.get(3));
+                setBadgeCompleted(3);
+            }
         }
 
-        Log.e("xxxxxxxx " , count +"");
+        if(count == 5){
+            if(!getBadgeStatus(4)) {
+                notifyBadgeEarned(BadgesActivity.badges.get(4));
+                setBadgeCompleted(4);
+            }
+        }
     }
 
+    public static void update(Context c){
+        DropboxAPI.Entry dirent = null;
+        try {
+            dirent = CoreActivity.mDBApi.metadata("/saved/", 1000, null, true, null);
+        } catch (DropboxException e) {
+            e.printStackTrace();
+        }
+        ArrayList<DropboxAPI.Entry> files = new ArrayList<DropboxAPI.Entry>();
+        ArrayList<String> dir=new ArrayList<String>();
+        int i = 0;
+        for (DropboxAPI.Entry ent: dirent.contents)
+        {
+            files.add(ent);// Add it to the list of thumbs we can choose from
+            dir.add(files.get(i++).path);
+        }
+
+        for(String s : dir){
+            String name = s.split("/")[2];
+            File folder = c.getFilesDir();
+            File file = new File(folder.getAbsolutePath()+File.separator+name);
+
+            OutputStream outputStream = null;
+            boolean filee = file.exists();
+            try {
+                outputStream = c.openFileOutput(name, c.MODE_PRIVATE);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            try {
+                DropboxAPI.DropboxFileInfo info = CoreActivity.mDBApi.getFile(s, null, outputStream, null);
+            } catch (DropboxException e) {
+                e.printStackTrace();
+            }
+            
+            if (name.endsWith(".txt")) {
+            try {
+
+                    BufferedReader inputReader = new BufferedReader(new InputStreamReader(
+                            c.openFileInput(name)));
+                    String inputString;
+                    StringBuffer stringBuffer = new StringBuffer();
+                    while ((inputString = inputReader.readLine()) != null) {
+                        stringBuffer.append(inputString + "\n");
+                    }
+
+                    String[] lines = stringBuffer.toString().split("\n");
+                    Art art = new Art(lines[0], lines[2], lines[1], new Art(lines[5], lines[7], lines[6], null, null, 0, 0), null, Float.parseFloat(lines[3]), Float.parseFloat(lines[4]));
+                    Core.getGallery().add(art);
+                    Log.e("wuwuuwuuw", stringBuffer.toString());
+                }catch(FileNotFoundException e){
+                    e.printStackTrace();
+                }catch(IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }
 
 

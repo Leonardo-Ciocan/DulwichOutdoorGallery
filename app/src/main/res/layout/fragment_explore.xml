@@ -88,8 +88,8 @@
         android:layout_gravity="right|bottom"
         android:layout_marginBottom="125dp"
         android:src="@drawable/ic_maps_navigation"
-        fab:fab_colorNormal="@color/brand"
-        fab:fab_colorPressed="@color/brandDark" />
+        fab:fab_colorNormal="@color/brandDark"
+        fab:fab_colorPressed="@color/brand"/>
 
     <com.melnykov.fab.FloatingActionButton
         android:id="@+id/fab2"
@@ -100,8 +100,8 @@
         android:layout_gravity="left|bottom"
         android:layout_marginBottom="125dp"
         android:src="@drawable/ic_navigation_menu"
-        fab:fab_colorNormal="@color/brand"
-        fab:fab_colorPressed="@color/brandDark" />
+        fab:fab_colorNormal="@color/brandDark"
+        fab:fab_colorPressed="@color/brand" />
 
 
     <LinearLayout

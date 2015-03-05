@@ -69,7 +69,7 @@ android:orientation="vertical"
         android:layout_gravity="right|bottom"
         android:layout_marginBottom="16dp"
         android:src="@drawable/ic_action_social_share"
-        fab:fab_colorNormal="@color/brand"
-        fab:fab_colorPressed="@color/brandDark" />
+        fab:fab_colorNormal="@color/brandDark"
+        fab:fab_colorPressed="@color/brand" />
 
 </FrameLayout>
