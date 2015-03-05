@@ -17,14 +17,12 @@
         <ImageView
             android:rotationY="90"
             android:id="@+id/header2"
-            android:src="@drawable/madc_vase_with_flowers"
             android:scaleType="fitXY"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
 
         <ImageView
             android:id="@+id/header"
-            android:src="@drawable/reka_europa_and_the_bull"
             android:scaleType="fitXY"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />

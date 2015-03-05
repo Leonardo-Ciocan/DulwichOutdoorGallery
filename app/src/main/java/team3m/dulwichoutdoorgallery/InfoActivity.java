@@ -128,6 +128,10 @@ public class InfoActivity extends ActionBarActivity {
             textDescription.setText(art.getDescription());
             textAuthor.setText(art.getAuthor());
 
+            header.setImageDrawable(getActivity().getResources().getDrawable(getActivity().getResources()
+                    .getIdentifier(art.getPhoto(), "drawable", getActivity().getPackageName())));
+            header2.setImageDrawable(getActivity().getResources().getDrawable(getActivity().getResources()
+                    .getIdentifier(art.getRelatedArt().getPhoto(), "drawable", getActivity().getPackageName())));
             scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
 
                 @Override

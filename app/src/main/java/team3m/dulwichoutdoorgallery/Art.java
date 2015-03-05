@@ -13,6 +13,7 @@ public class Art {
     double Latitude;
     double Longitude;
     LatLng position;
+    String photo;
 
     public String getName() {
         return Name;
@@ -64,7 +65,9 @@ public class Art {
 
     public LatLng getLocation(){ return position;}
 
-    public Art(String name, String description, String author, Art relatedArt, ArrayList<String> tags, double latitude, double longitude) {
+    public String getPhoto() { return photo;}
+
+    public Art(String name, String description, String author, Art relatedArt, ArrayList<String> tags, double latitude, double longitude, String photo) {
         Name = name;
         Description = description;
         Author = author;
@@ -73,6 +76,7 @@ public class Art {
         Latitude = latitude;
         Longitude = longitude;
         position = new LatLng(latitude,longitude);
+        this.photo = photo;
     }
 
     @Override
