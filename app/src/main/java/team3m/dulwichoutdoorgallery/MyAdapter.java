@@ -36,7 +36,7 @@ public class MyAdapter extends ArrayAdapter<Art>{
         textAuthor.setText(a.getAuthor());
 
         ImageView photo = (ImageView)itemView.findViewById(R.id.photo);
-        photo.setImageResource(getContext().getResources().getIdentifier(a.getPhoto(), "drawable", getContext().getPackageName()));
+        photo.setImageResource(a.getDrawable());
 
             return itemView;
 

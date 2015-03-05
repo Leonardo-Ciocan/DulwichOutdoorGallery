@@ -320,7 +320,7 @@ public class Core {
                     }
 
                     String[] lines = stringBuffer.toString().split("\n");
-                    Art art = new Art(lines[0], lines[2], lines[1], new Art(lines[5], lines[7], lines[6], null, null, 0, 0), null, Float.parseFloat(lines[3]), Float.parseFloat(lines[4]));
+                    Art art = new Art(lines[0], lines[2], lines[1], new Art(lines[5], lines[7], lines[6], null, null, 0, 0,"",""), null, Float.parseFloat(lines[3]), Float.parseFloat(lines[4]));
                     Core.getGallery().add(art);
                     Log.e("wuwuuwuuw", stringBuffer.toString());
                 }catch(FileNotFoundException e){

@@ -1,5 +1,7 @@
 package team3m.dulwichoutdoorgallery;
 
+import android.content.Context;
+
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -82,5 +84,13 @@ public class Art {
     @Override
     public String toString() {
         return Author;
+    }
+
+    Integer drawable = null;
+    public int getDrawable(Context c){
+        if(drawable == null) {
+            drawable = c.getResources().getIdentifier(getPhoto(), "drawable", c.getPackageName());
+        }
+        return drawable;
     }
 }
