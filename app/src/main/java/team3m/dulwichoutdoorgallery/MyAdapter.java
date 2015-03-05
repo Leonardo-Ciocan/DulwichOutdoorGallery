@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -47,7 +49,10 @@ public class MyAdapter extends ArrayAdapter<Art>{
             }
         }
         else {
-            photo.setImageDrawable(a.getDrawable(getContext()));
+            //photo.setImageDrawable(a.getDrawable(getContext()));
+            int c = getContext().getResources().getIdentifier(a.getPhoto(), "drawable", getContext().getPackageName());
+            if(c != 0)Picasso.with(getContext()).load(c).into(photo);
+
         }
 
             return itemView;
