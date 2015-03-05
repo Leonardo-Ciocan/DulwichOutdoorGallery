@@ -76,6 +76,7 @@ public class CoreActivity extends ActionBarActivity {
 
 
 
+
 // And later in some initialization function:
         AppKeyPair appKeys = new AppKeyPair(Core.APP_KEY, Core.APP_SECRET);
         AndroidAuthSession session = new AndroidAuthSession(appKeys);
