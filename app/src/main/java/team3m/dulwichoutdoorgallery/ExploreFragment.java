@@ -340,7 +340,7 @@ public class ExploreFragment extends Fragment {
 
                 //Add a marker for each art
                 for (int i = 0; i < Gallery.size(); i++) {
-                    Core.getGallery().get(i).getDrawable(getActivity());
+                    //Core.getGallery().get(i).getDrawable(getActivity());
                     Marker m = googleMap.addMarker(new MarkerOptions()
                             .icon(BitmapDescriptorFactory
                                     .defaultMarker(Core.getLocationtatus(i) ? 0:200))
