@@ -2,6 +2,8 @@ package team3m.dulwichoutdoorgallery;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.ArrayList;
 
-/**
- * Created by MARIA on 2/12/2015.
- */
 public class MyAdapter extends ArrayAdapter<Art>{
     public MyAdapter(Context context, int layoutResourceId, ArrayList data) {
         super(context, layoutResourceId, data);
@@ -36,7 +36,19 @@ public class MyAdapter extends ArrayAdapter<Art>{
         textAuthor.setText(a.getAuthor());
 
         ImageView photo = (ImageView)itemView.findViewById(R.id.photo);
-        photo.setImageResource(a.getDrawable());
+
+        if(a.getIsOnline() != null) {
+            File imgFile = new  File(getContext().getApplicationContext().getFilesDir()+ File.separator+ a.getIsOnline());
+            if(imgFile.exists()){
+
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                photo.setImageBitmap(myBitmap);
+
+            }
+        }
+        else {
+            photo.setImageDrawable(a.getDrawable(getContext()));
+        }
 
             return itemView;
 

@@ -4,6 +4,7 @@
     android:layout_height="100dp">
 
     <ImageView
+        android:scaleType="fitCenter"
         android:id="@+id/photo"
         android:layout_width="80dp"
         android:layout_height="80dp"

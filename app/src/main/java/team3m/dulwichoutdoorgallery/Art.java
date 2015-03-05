@@ -1,6 +1,7 @@
 package team3m.dulwichoutdoorgallery;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -16,6 +17,16 @@ public class Art {
     double Longitude;
     LatLng position;
     String photo;
+
+    public String getIsOnline() {
+        return isOnline;
+    }
+
+    public void setIsOnline(String isOnline) {
+        this.isOnline = isOnline;
+    }
+
+    String isOnline;
 
     public String getName() {
         return Name;
@@ -81,15 +92,31 @@ public class Art {
         this.photo = photo;
     }
 
+    public Art(String name, String description, String author, Art relatedArt, ArrayList<String> tags, double latitude, double longitude, String photo, String isOnline) {
+        Name = name;
+        Description = description;
+        Author = author;
+        RelatedArt = relatedArt;
+        Tags = tags;
+        Latitude = latitude;
+        Longitude = longitude;
+        position = new LatLng(latitude,longitude);
+        this.photo = photo;
+        this.isOnline = isOnline;
+    }
+
     @Override
     public String toString() {
         return Author;
     }
 
-    Integer drawable = null;
-    public int getDrawable(Context c){
+    Drawable drawable = null;
+    public Drawable getDrawable(Context c){
         if(drawable == null) {
-            drawable = c.getResources().getIdentifier(getPhoto(), "drawable", c.getPackageName());
+            try{
+                drawable = c.getResources().getDrawable(c.getResources().getIdentifier(getPhoto(), "drawable", c.getPackageName()));
+            }
+            catch (Exception ex){}
         }
         return drawable;
     }
