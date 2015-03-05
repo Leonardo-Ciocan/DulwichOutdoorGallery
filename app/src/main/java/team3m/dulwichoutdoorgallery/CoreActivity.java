@@ -58,7 +58,7 @@ public class CoreActivity extends ActionBarActivity {
     public static SharedPreferences preferences ;
 
     // In the class declaration section:
-    DropboxAPI<AndroidAuthSession> mDBApi;
+    public static DropboxAPI<AndroidAuthSession> mDBApi;
     EditText searchBox;
     ActionBarDrawerToggle toggle;
     team3m.dulwichoutdoorgallery.ExploreFragment ExploreFragment;
@@ -83,13 +83,18 @@ public class CoreActivity extends ActionBarActivity {
        // mDBApi.getSession().startOAuth2Authentication(CoreActivity.this);
         mDBApi.getSession().setOAuth2AccessToken("cu234J18AOAAAAAAAAAABLG6O6CmDp57aRQ3frKJ2aNhrKumpe9M10HatiCxFDJN");
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
 
+                Core.update(CoreActivity.this);
+            }
+        }).start();
+/*
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                File folder = getApplicationContext().getFilesDir();
-               File file = new File(folder.getAbsolutePath()+File.separator+"hi.txt");
 
                 //File file = new File("");
 
@@ -109,6 +114,8 @@ public class CoreActivity extends ActionBarActivity {
                     dir.add(files.get(i++).path);
                 }
 
+                File folder = getApplicationContext().getFilesDir();
+                File file = new File(folder.getAbsolutePath()+File.separator+"hi.txt");
 
                 // OutputStream outputStream;
                 boolean filee = file.exists();
@@ -138,7 +145,7 @@ public class CoreActivity extends ActionBarActivity {
                     e.printStackTrace();
                 }
             }
-        }).start();
+        }).start();*/
 
 
         setContentView(R.layout.activity_core);
@@ -409,30 +416,5 @@ public class CoreActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    protected void onResume() {
-        super.onResume();
 
-        if (mDBApi.getSession().authenticationSuccessful()) {
-            try {
-                // Required to complete auth, sets the access token on the session
-                mDBApi.getSession().finishAuthentication();
-
-                String accessToken = mDBApi.getSession().getOAuth2AccessToken();
-                mDBApi.getSession().setOAuth2AccessToken("cu234J18AOAAAAAAAAAABLG6O6CmDp57aRQ3frKJ2aNhrKumpe9M10HatiCxFDJN");
-                Log.v("hello" , accessToken);
-                File file = new File("/hi.txt");
-                FileOutputStream outputStream = new FileOutputStream(file);
-                DropboxAPI.DropboxFileInfo info = mDBApi.getFile("/hi.txt", null, outputStream, null);
-
-                Log.e("wuwuuwuuw" ,new Scanner(new FileReader("hi.txt")).toString());
-
-            } catch (IllegalStateException e) {
-                Log.i("DbAuthLog", "Error authenticating", e);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (DropboxException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 }
