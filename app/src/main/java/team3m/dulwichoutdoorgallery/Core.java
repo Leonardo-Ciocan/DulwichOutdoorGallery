@@ -134,11 +134,6 @@ public class Core {
                     "Thomas Gainsborough" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "stik_elizabeth_and_mary_linley") ,
                     new ArrayList<String>() , 51.446656 , -0.073634 , "stik_elizabeth_and_mary_linley_new"));
 
-            add(new Art("St. Sebastian, 2014" ,
-                    "" ,
-                    "Michael Beerens" , null ,
-                    new ArrayList<String>(), 51.447706 , -0.076339 , ""));
-
             add(new Art("Three Boys, 2012" ,
                     "Street children in Seville, probably orphaned by the plague, are negociating for food and drink. Stik's children are negotiating too, but " +
                             "for what can only be guessed at. Class 3S of Dulwich Hamlet Primary School helped Stik to paint the 'Three Boys' mural: 'The children " +
@@ -161,7 +156,7 @@ public class Core {
                             "composition, colour, tone, background and even the expressions on the faces. He adds his own quirky interpretations. Ben painted " +
                             "Catherine running away, having a vision of a banana." ,
                     "Ben Wilson" , new Art("Saint Catherine of Siena(detail), 1665-70" , "" ,
-                    "Carlo Dolci" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "") ,
+                    "Carlo Dolci" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "multiple_st_catherine_of_siena") ,
                     new ArrayList<String>(), 51.445548 , -0.085312 , "ben_wilson_new1"));
 
             add(new Art("Dulwich Picture Gallery" ,
@@ -221,8 +216,13 @@ public class Core {
                     "Stik" , new Art("Eliza and Mary Davidson, 1784" , "" ,
                     "Tilly Kettle" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "stik_eliza_and_mary_davidson") ,
                     new ArrayList<String>() , 51.447408 , -0.075845 , "stik_eliza_and_mary_davidson_new"));
-        }
 
+            add(new Art("Europa and the Bull, 2014" ,
+                    "" ,
+                    "Faith47" , new Art("Europa and the Bull(detail), 17th century" , "" ,
+                    "Guido Reni" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "faith47_europa_and_the_bull") ,
+                    new ArrayList<String>() , 51.471419 , -0.064335 , "faith47_new"));
+        }
     };
 
 
