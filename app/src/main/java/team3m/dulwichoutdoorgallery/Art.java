@@ -2,6 +2,7 @@ package team3m.dulwichoutdoorgallery;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -114,6 +115,7 @@ public class Art {
     public Drawable getDrawable(Context c){
         if(drawable == null) {
             try{
+                Log.e("","wop");
                 drawable = c.getResources().getDrawable(c.getResources().getIdentifier(getPhoto(), "drawable", c.getPackageName()));
             }
             catch (Exception ex){}
