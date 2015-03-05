@@ -1,5 +1,6 @@
 package team3m.dulwichoutdoorgallery;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -322,6 +323,13 @@ public class Core {
                     String[] lines = stringBuffer.toString().split("\n");
                     Art art = new Art(lines[0], lines[2], lines[1], new Art(lines[5], lines[7], lines[6], null, null, 0, 0,""), null, Float.parseFloat(lines[3]), Float.parseFloat(lines[4]),"",name.replace(".txt",".png"));
                     Core.getGallery().add(art);
+                    if(MyAdapter.instance!=null)
+                        ((Activity)c).runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                MyAdapter.instance.notifyDataSetChanged();
+                            }
+                        });
                     Log.e("wuwuuwuuw", stringBuffer.toString());
                 }catch(FileNotFoundException e){
                     e.printStackTrace();

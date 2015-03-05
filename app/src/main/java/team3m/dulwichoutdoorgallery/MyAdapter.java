@@ -19,8 +19,10 @@ import java.util.ArrayList;
 public class MyAdapter extends ArrayAdapter<Art>{
     public MyAdapter(Context context, int layoutResourceId, ArrayList data) {
         super(context, layoutResourceId, data);
+        instance =  this;
     }
 
+    public static MyAdapter instance;
     public View getView(int position, View convertView, ViewGroup parent){
 
         View itemView= convertView;
@@ -42,20 +44,18 @@ public class MyAdapter extends ArrayAdapter<Art>{
         if(a.getIsOnline() != null) {
             File imgFile = new  File(getContext().getApplicationContext().getFilesDir()+ File.separator+ a.getIsOnline());
             if(imgFile.exists()){
-
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                 photo.setImageBitmap(myBitmap);
-
             }
         }
         else {
             //photo.setImageDrawable(a.getDrawable(getContext()));
-            int c = getContext().getResources().getIdentifier(a.getPhoto(), "drawable", getContext().getPackageName());
-            if(c != 0)Picasso.with(getContext()).load(c).into(photo);
-
+            //int c = getContext().getResources().getIdentifier(a.getPhoto(), "drawable", getContext().getPackageName());
+            //if(c != 0)Picasso.with(getContext()).load(c).into(photo);
+            //else photo.setImageResource(0);
+            photo.setImageDrawable(a.getDrawable(getContext()));
         }
-
-            return itemView;
+        return itemView;
 
 
     }
