@@ -31,12 +31,6 @@ public class Core {
                     "Rembrandt van Rijn" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "remi_rough_and_system_girl_at_a_window") ,
                     new ArrayList<String>(), 51.461959 , -0.079336 , "remi_rough_and_system_new"));
 
-            add(new Art("The Nurture of Jupiter and Princess Victoria aged Four, 2013" ,
-                    "You need to look carefully along the sides of the pavements to spot Pablo's paste-up. The project linked opposite ways of presenting " +
-                            "two things that are separated by time, and those differences are caused by the perspective in art through the years." ,
-                    "Pablo Delgado" , null ,
-                    new ArrayList<String>() , 51.461853 , -0.077332 , ""));
-
             add(new Art("Fight Club, 2013" ,
                     "Conor is taking Le Brun's 'Massacre of the Innocents' as a source. His interpretation, filtered through the lens of George Bellows, is " +
                             "a portrayal of global powers turning on themselves ('the massacre of the not-so innocent'). The Dulwich wall was the first in a " +
@@ -89,21 +83,6 @@ public class Core {
                     "Bartolome Murillo" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "mear_one_the_virgin_of_the_rosary") ,
                     new ArrayList<String>() , 51.454564 , -0.077177 , "mear_one_new"));
 
-            add(new Art("Jacob with Laban and his Daughters, 2013" ,
-                    "You need to look carefully along the sides of pavaments to spot Pablo's paste-ups. They are a delight to stumble across- such a different " +
-                            "experience from seeing a large mural from afar. He took pictures from the Dulwich Picture Gallery and rearrange them in order to create " +
-                            "a narrative of their own." ,
-                    "Pablo Delgado" , new Art("Jacobs with Laban and his Daughters, 1676" , "" ,
-                    "Nicolas Poussin" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "") ,
-                    new ArrayList<String>(), 51.454536 , -0.077439 , ""));
-
-            add(new Art("The Triumph of David and The Nurture of Jupiter, 2013" ,
-                    "Here Pablo has placed a water nymph by Poussin('The Nurture of Jupiter') on top of a fire hydrant outlet. She is pouring her endless " +
-                            "stream of water onto the pavement below, watched admiringly by women who are probably grateful for no longer having to gaze " +
-                            "at Goliath's severed head." ,
-                    "Pablo Delgado" , null ,
-                    new ArrayList<String>() , 51.453202 , -0.077272 , ""));
-
             add(new Art("Art House, 2013" ,
                     "Lightbox offered a whole house, up for demolition, to the project. The house was painted inside and out by numerous artists and became " +
                             "the focal point for 'Baroque the Streets' Street Art Festival in May 2013." ,
@@ -128,24 +107,10 @@ public class Core {
                     "Nicolas Poussin" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "phlegm_triumph_of_david") ,
                     new ArrayList<String>() , 51.451588 , -0.071564 , "phlegm_new"));
 
-            add(new Art("White Horse in a Riding School, The Chaff-cutter and The Triumph od David, 2013" ,
-                    "Pablo did a selection od different paintings from Dulwich Painting Gallery and used one as a base line('The Triumph of Dave'). From the " +
-                            "chosen paintings, he extracted an object, animal or character and rearranged them with the characters of Poussin's painting. The result " +
-                            "is a ménage of the whole Gallery, an interaction that the paintings can have out in the street." ,
-                    "Pablo Delgado" , null ,
-                    new ArrayList<String>(), 51.449772 , -0.074846 , ""));
-
             add(new Art("Queen Bee on a Throne, 2013" ,
                     "" ,
                     "Nunca" , null ,
                     new ArrayList<String>() ,51.449180 , -0.074245 , ""));
-
-            add(new Art("Jacob with Laban and his Daughters, Tha Chaff-cutter, The Nurture of Jupiter and Italian Landscape" ,
-                    "The process of the street pieces that he does is to extract items from photographs that he has taken in Dulwich Picture Gallery, and " +
-                            "rearrange them in order to create a narrative of their own. These narratives sometimes aren't specific for the viewer but each " +
-                            "one is made with symbols, and they can be interpreted with different meanings depending on the viewer's perception or personal experience." ,
-                    "Pablo Delgado" , null ,
-                    new ArrayList<String>(), 51.448539 , -0.073050 , ""));
 
             add(new Art("Elizabeth and Mary Linley, 2012" ,
                     "Elizabeth was one of the foremost sopranos of the day, talented, beautiful and earning a great deal from her concerts. Mary had a successful " +
@@ -178,12 +143,12 @@ public class Core {
                     "Giambattista Tiepolo" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "thierry_noir_joseph_receiving_pharaohs_ring") ,
                     new ArrayList<String>() , 51.445275 , -0.079029 , "thierry_noir_new1"));
 
-            add(new Art("Saint Catherine of Siena and The Judgement of Paris, 2013" ,
+            add(new Art("Saint Catherine of Siena, 2013" ,
                     "Ben's tiny works of art are amazingly accurate reproductions of the Dulwich Picture Gallery paintings. He reproduces in miniature the " +
                             "composition, colour, tone, background and even the expressions on the faces. He adds his own quirky interpretations. Ben painted " +
-                            "Catherine running away, having a vision of a banana, and he put Juno, Venus, Cupid and Paris in the same boat, naked together. He ripped " +
-                            "away Paris' bit of material to make them equal." ,
-                    "Ben Wilson" , null ,
+                            "Catherine running away, having a vision of a banana." ,
+                    "Ben Wilson" , new Art("Saint Catherine of Siena(detail), 1665-70" , "" ,
+                    "Carlo Dolci" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "") ,
                     new ArrayList<String>(), 51.445548 , -0.085312 , "ben_wilson_new1"));
 
             add(new Art("Dulwich Picture Gallery" ,
@@ -191,22 +156,6 @@ public class Core {
                             "European Baroque paintings in the world." ,
                     "Dulwich Gallery" , null ,
                     new ArrayList<String>(), 51.445936 , -0.086170 , ""));
-
-            add(new Art("The Seven Corporal Works of Mercy, The Triumph of David, The Nurture of Jupiter and Peasants conversing, 2013" ,
-                    "Pablo chose 'The Triumph of David' by Nicolas Poussin because of the story itself, David was minuscule against Goliath. Part of his " +
-                            "work is based on the size that we need to have in order to coexist with our demands as a population, and that makes our " +
-                            "necessities big and us tiny." ,
-                    "Pablo Delgado" , null ,
-                    new ArrayList<String>(),  51.445361 , -0.087232 , ""));
-
-            add(new Art("The Triumph of David, 2013" ,
-                    "RUN has played with scale, so emphasising the crux of the story, the death of Goliath, the death of the enemy. The exaggerated body " +
-                            "language of the people is remarkably expressive, they are triumphant. Poussin draws attention to David and the head of Goliath, not " +
-                            "by distortingscale, which in fact is a medieval device, but by creating a space around the pair and focusing the interest on his " +
-                            "painted crowd, and therefore the viewer's interest, on them." ,
-                    "RUN" , new Art("The Triumph of David, 1628-31" , "" ,
-                    "Nicolas Poussin" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "run_hoardings_triumph_of_david") ,
-                    new ArrayList<String>() , 51.449647 , -0.084786 , "run_hoardings_new"));
 
             add(new Art("Samson and Delilah, 2013" ,
                     "Discovering the painting by Anthony van Dick in Dulwich Picture Gallery, David saw the story coloured in and picked out some great visual " +
