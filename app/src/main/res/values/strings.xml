@@ -19,4 +19,19 @@
 
     <string name="close">Close</string>
     <string name="open">Open</string>
+    <string name="title_activity_intro">IntroActivity</string>
+
+    <string name="title_0">Welcome</string>
+    <string name="title_1">Explore</string>
+    <string name="title_2">Dulwich Interactive Tour</string>
+    <string name="title_3">Achievements</string>
+    <string name="title_4">Art Matching Game</string>
+    <string name="title_5">Well Done!</string>
+
+    <string name="desc_0">Let\'s have a look at what you can achieve with this app</string>
+    <string name="desc_1">Discover street arts by exploring the Streets of Dulwich at your own pace</string>
+    <string name="desc_2">Successfully complete the Dulwich Interactive Tour and obtain discounted prices for entering the Dulwich Picture Gallery</string>
+    <string name="desc_3">Each street art you visit earns you an achievement. Complete all the achievements, gather all the badges, and prove your passion for Street Art</string>
+    <string name="desc_4">Prove your art spotting abilities by matching street arts with their original counterpart</string>
+    <string name="desc_5">You\'re ready to GO</string>
 </resources>
