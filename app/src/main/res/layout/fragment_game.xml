@@ -6,90 +6,64 @@
     <FrameLayout
         android:id="@+id/gameFrame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/gamebackground">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/background"
-            android:gravity="center_vertical"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin">
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
             <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_above="@+id/space"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true">
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/currentGameArtwork"
-                    android:layout_alignParentLeft="false"
-                    android:layout_alignParentStart="false"
-                    android:layout_alignParentTop="false"
-                    android:layout_alignWithParentIfMissing="false"
-                    android:layout_centerHorizontal="true"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/roa_new" />
+                android:id="@+id/gameprogressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="false"
+                android:layout_gravity="top"
+                android:background="@color/brandDark">
 
                 <TextView
                     android:id="@+id/currentGameArtwork"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_above="@+id/currentGameArtworkArtist"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentStart="true"
-                    android:gravity="center_horizontal"
-                    android:text="Game 0/20"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@android:color/white" />
-
-                <TextView
-                    android:id="@+id/currentGameArtworkArtist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentRight="false"
-                    android:gravity="center_horizontal"
-                    android:text="Medium Text"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@android:color/white" />
+                    android:layout_centerHorizontal="true"
+                    android:alpha="1"
+                    android:text="Progress: 0/20"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
 
             </RelativeLayout>
 
-            <Space
-                android:id="@+id/space"
+            <RelativeLayout
+                android:id="@+id/gameMainArea"
                 android:layout_width="match_parent"
-                android:layout_height="20px"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true" />
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentEnd="false"
+                android:layout_below="@+id/gameprogressBar">
 
-            <FrameLayout
-                android:id="@+id/artViewArea"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_below="@+id/space"
-                android:layout_centerHorizontal="true"
-                android:gravity="center_vertical"
-                android:outlineProvider="bounds">
+                <FrameLayout
+                    android:layout_width="@dimen/picture_size"
+                    android:layout_height="@dimen/picture_size"
+                    android:layout_alignLeft="@+id/viewAnimator"
+                    android:layout_alignTop="@+id/viewAnimator"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#30000000" />
 
                 <ViewAnimator
                     android:id="@+id/viewAnimator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_width="@dimen/picture_size"
+                    android:layout_height="@dimen/picture_size"
+                    android:layout_alignLeft="@+id/imageView"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="false"
+                    android:layout_alignParentStart="false"
+                    android:layout_alignStart="@+id/imageView"
+                    android:layout_marginBottom="30dp"
+                    android:adjustViewBounds="true"
                     android:animateFirstView="false"
-                    android:measureAllChildren="false">
+                    android:background="@drawable/drop_shadow"
+                    android:measureAllChildren="false"
+                    android:scaleType="fitCenter">
 
                     <ImageButton
                         android:id="@+id/imageButton1"
@@ -98,13 +72,15 @@
                         android:adjustViewBounds="true"
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/roa_new" />
+                        android:src="@drawable/madc_vase_with_flowers_game" />
 
                     <ImageButton
                         android:id="@+id/imageButton2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitCenter"
                         android:src="@android:color/transparent" />
 
                     <ImageButton
@@ -122,7 +98,6 @@
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
                         android:background="@android:color/transparent"
-                        android:cropToPadding="false"
                         android:scaleType="fitCenter"
                         android:src="@drawable/roa_landscape_with_sportsmen_and_game2" />
                 </ViewAnimator>
@@ -131,12 +106,89 @@
                     android:id="@+id/currentRotatedPicture"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/viewAnimator"
+                    android:layout_alignTop="@+id/viewAnimator"
                     android:text="1"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@android:color/white"
-                    android:alpha="0" />
+                    android:textColor="@android:color/white" />
 
-            </FrameLayout>
+                <FrameLayout
+                    android:layout_width="@dimen/picture_size"
+                    android:layout_height="@dimen/picture_size"
+                    android:layout_alignLeft="@+id/imageView"
+                    android:layout_alignTop="@+id/imageView"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#30000000"></FrameLayout>
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="@dimen/picture_size"
+                    android:layout_height="@dimen/picture_size"
+                    android:layout_alignParentEnd="false"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/drop_shadow"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/madc_new_game" />
+
+                <RelativeLayout
+                    android:id="@+id/gameNewArtworkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="false"
+                    android:layout_alignParentStart="false"
+                    android:layout_below="@+id/imageView"
+                    android:layout_centerHorizontal="true"
+                    android:alpha="0.5"
+                    android:background="@android:color/black">
+
+                    <TextView
+                        android:id="@+id/currentNewArtist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="1"
+                        android:text="Placeholder New Artist"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textStyle="italic" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/gameOldArtworkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="false"
+                    android:layout_alignParentStart="false"
+                    android:layout_centerHorizontal="true"
+                    android:alpha="0.5"
+                    android:background="@android:color/black">
+
+                    <TextView
+                        android:id="@+id/currentSelectedOldArtworkName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:alpha="1"
+                        android:text="Placeholder Old Artwork Name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textStyle="italic" />
+
+                    <TextView
+                        android:id="@+id/currentSelectedOldArtworkArtist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/currentSelectedOldArtworkName"
+                        android:layout_centerHorizontal="true"
+                        android:alpha="1"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Placeholder Old Artwork Artist"
+                        android:textStyle="italic" />
+                </RelativeLayout>
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
@@ -145,29 +197,27 @@
     <FrameLayout
         android:id="@+id/gameHelpFrame"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:alpha="0.9"
+        android:background="@android:color/white">
 
         <GridLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:columnCount="1"
-            android:background="@drawable/background"
-            android:clickable="true">
+            android:clickable="true"
+            android:columnCount="1">
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_marginTop="80dp"
-                android:layout_marginBottom="40dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
+                android:layout_marginBottom="40dp"
+                android:layout_marginTop="80dp"
                 android:alpha="1"
+                android:gravity="center"
                 android:text="Welcome to\n\nThe Dulwich Outdoor Gallery Quiz!\n\nThe art picture at the top matches one of the 4 Dulwich Picture Gallery art pieces in the slider at the bottom.\n\nChoose carefully!"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/white"
-                android:gravity="center" />
+                android:textColor="@android:color/black" />
 
             <Button
                 android:id="@+id/letsplaybutton"
@@ -175,11 +225,10 @@
                 android:layout_height="88dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:alpha=".90"
-                android:text="Let&apos;s Play!"
-                android:textSize="20dp"
                 android:layout_gravity="center_horizontal"
-                android:background="#22222a" />
+                android:background="@color/brandDark"
+                android:text="Let&apos;s Play!"
+                android:textSize="20dp" />
         </GridLayout>
     </FrameLayout>
 
@@ -187,6 +236,7 @@
         android:id="@+id/gameCompleteFrame"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:alpha="0.9"
         android:visibility="gone">
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -217,11 +267,12 @@
 
             <Button
                 android:id="@+id/gameRestartButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="335dp"
+                android:layout_height="88dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="Restart Game" />
+                android:text="Restart Game"
+                android:textSize="20sp" />
 
         </RelativeLayout>
 

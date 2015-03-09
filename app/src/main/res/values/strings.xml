@@ -19,4 +19,6 @@
 
     <string name="close">Close</string>
     <string name="open">Open</string>
+    <string name="game_top_image">Art street to be matched</string>
+    <string name="game_current_progress">Game 0/20</string>
 </resources>
