@@ -18,6 +18,7 @@ import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -73,7 +74,7 @@ public class InfoActivity extends ActionBarActivity {
         }
 
          boolean isLocked = false;
-         boolean street_ = true;
+         boolean street_ = false;
 
         ImageView i1;
         ImageView i2;
@@ -115,7 +116,7 @@ public class InfoActivity extends ActionBarActivity {
 
             final ImageView header2 = (ImageView) rootView.findViewById(R.id.header2);
 
-
+            final Button btnShare = (Button) rootView.findViewById(R.id.shareBtn);
             final FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
 
             int i = getActivity().getIntent().getIntExtra("index", 0);
@@ -209,17 +210,23 @@ public class InfoActivity extends ActionBarActivity {
                         i1.setRotationY(90 * (2f * interpolatedTime));
                     }
                     else{
-                        street_ = !street_;
                         textTitle.setText(street_? art.getName() : art.getRelatedArt().getName());
                         textAuthor.setText(street_ ? art.getAuthor() : art.getRelatedArt().getAuthor());
                         textDescription.setText(street_? art.getDescription() : art.getRelatedArt().getDescription());
                         textTitle.setTextColor(street_ ? getResources().getColor(R.color.brand) : Color.RED);
+                        fab.setColorNormal(street_  ? getResources().getColor(R.color.brand) : Color.RED);
+                        fab.setColorPressed(street_  ? getResources().getColor(R.color.brand) : Color.RED);
+                        btnShare.setTextColor(street_  ? getResources().getColor(R.color.brand) : Color.RED);
+
                         i1.setAlpha(0);
                         i2.setAlpha(255);
                         i2.setRotationY(180 + 90 * ( interpolatedTime * 2f));
                     }
 
-                    scrollView.setRotationY(interpolatedTime * 360);
+                    float opacity = interpolatedTime < 0.5 ? 1-interpolatedTime*2f : (interpolatedTime-0.5f)*2;
+                    Log.v("wuwuwuuwu",opacity+"");
+                    //scrollView.setRotationY(interpolatedTime * 360);
+                    scrollView.setAlpha(opacity);
 
 
                     if(interpolatedTime >= 1f){

@@ -57,6 +57,7 @@
 
 
         <TextView
+            android:layout_marginTop="10dp"
 
             android:textColor="@color/brand"
             android:id="@+id/title"

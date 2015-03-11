@@ -223,7 +223,7 @@ public class CoreActivity extends ActionBarActivity {
 
                 new CountDownTimer(300, 300) {
                     public void onFinish() {
-                        RouteActivity.PlaceholderFragment routeFragment = new RouteActivity.PlaceholderFragment();
+                        RouteActivity.AboutFragment routeFragment = new RouteActivity.AboutFragment();
 
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.contentHolder, routeFragment)
@@ -287,7 +287,7 @@ public class CoreActivity extends ActionBarActivity {
 
                 new CountDownTimer(300, 300) {
                     public void onFinish() {
-                        BadgesActivity.PlaceholderFragment fragment = new  BadgesActivity.PlaceholderFragment();
+                        BadgesActivity.AboutFragment fragment = new  BadgesActivity.AboutFragment();
 
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.contentHolder, fragment)
@@ -358,7 +358,7 @@ public class CoreActivity extends ActionBarActivity {
 
                 new CountDownTimer(300, 300) {
                     public void onFinish() {
-                        //ExploreFragment = new ExploreActivity.PlaceholderFragment(searchBox);
+                        //ExploreFragment = new ExploreActivity.AboutFragment(searchBox);
                         Fragment fragment = null;
                         if(id == EXPLORE){
                             fragment = new team3m.dulwichoutdoorgallery.ExploreFragment(searchBox);
@@ -371,7 +371,7 @@ public class CoreActivity extends ActionBarActivity {
                             fragment = new GameFragment();
                         }
                         else if(id == ABOUT){
-                            fragment = new GameFragment();
+                            fragment = new AboutFragment();
                         }
                         getSupportFragmentManager().beginTransaction()
                                 .setCustomAnimations(R.anim.show , R.anim.hide)

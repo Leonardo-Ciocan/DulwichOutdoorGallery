@@ -442,7 +442,7 @@ public class ExploreFragment extends Fragment {
         markers.get(pos).remove();
         Marker m = map.addMarker(new MarkerOptions()
                 .icon(BitmapDescriptorFactory
-                        .defaultMarker(Core.getLocationtatus(pos) ? 0:200))
+                        .defaultMarker(Core.getLocationtatus(pos) ? 330:300))
                 .title(String.valueOf(pos))
                 .snippet(Core.getGallery().get(pos).getDescription())
                 .position(new LatLng(Core.getGallery().get(pos).getLatitude(), Core.getGallery().get(pos).getLongitude())));
