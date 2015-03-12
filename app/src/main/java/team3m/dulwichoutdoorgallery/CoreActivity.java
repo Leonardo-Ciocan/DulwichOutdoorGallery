@@ -378,7 +378,6 @@ public class CoreActivity extends ActionBarActivity {
                     public void onTick(long millisUntilFinished) {
                     }
                 }.start();
-
             }
         });
     }

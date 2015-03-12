@@ -1,8 +1,10 @@
 package team3m.dulwichoutdoorgallery;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -84,6 +86,7 @@ public class InfoActivity extends ActionBarActivity {
         public SlidrInterface slidr;
         ImageView i1;
         ImageView i2;
+        Art art;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
@@ -128,7 +131,7 @@ public class InfoActivity extends ActionBarActivity {
 
             int i = getActivity().getIntent().getIntExtra("index", 0);
 
-            final Art art = Core.getGallery().get(i);
+            art = Core.getGallery().get(i);
 
             final TextView textTitle = (TextView) rootView.findViewById(R.id.title);
             final TextView textAuthor = (TextView) rootView.findViewById(R.id.author);
@@ -265,8 +268,27 @@ public class InfoActivity extends ActionBarActivity {
            // getActivity().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
 
+            //Button btnShare = (Button) rootView.findViewById(R.id.shareBtn);
+            btnShare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    share();
+                }
+            });
 
             return rootView;
+        }
+
+        void share(){
+            Intent intent2 = new Intent(); intent2.setAction(Intent.ACTION_SEND);
+            intent2.setType("text/plain");
+
+            intent2.putExtra(Intent.EXTRA_TEXT, "" );
+            intent2.setType("image/*");
+            Uri uri = Uri.parse("android.resource://team3m.dulwichoutdoorgallery/" + getActivity().getResources()
+                    .getIdentifier(art.getPhoto(), "drawable", getActivity().getPackageName()));
+            intent2.putExtra(Intent.EXTRA_STREAM, uri);
+            startActivity(Intent.createChooser(intent2, "Share via"));
         }
     }
 }

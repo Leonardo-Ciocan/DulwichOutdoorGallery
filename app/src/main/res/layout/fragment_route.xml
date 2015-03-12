@@ -116,7 +116,7 @@
                     android:text="INFO"/>
 
                 <Button
-
+                    android:id="@+id/artShareBtn"
                     android:layout_weight="1"
                     android:padding="5dp"
                     android:textColor="@color/brand"

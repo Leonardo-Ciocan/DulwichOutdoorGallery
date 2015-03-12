@@ -98,6 +98,8 @@ public class RouteActivity extends ActionBarActivity {
         GoogleMap map;
         LatLng last;
         boolean collapsed;
+        Art art;
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
@@ -148,19 +150,20 @@ public class RouteActivity extends ActionBarActivity {
                             int closest = getClosestWithinRange(location , 20f);
                             if(closest != lastVisited && closest > lastVisited){
                                 lastVisited = closest;
-                                Art a = Core.Gallery.get(lastVisited);
-                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(a.getLocation() ,  12));
-                                titleProgress.setText((lastVisited) + " : " + a.getName());
-                                title.setText(a.getName());
-                                Log.e("xyz" , a.getPhoto().toLowerCase());
+                                art = Core.Gallery.get(lastVisited);
+                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(art.getLocation(), 12));
+                                titleProgress.setText((lastVisited) + " : " + art.getName());
+                                title.setText(art.getName());
+                                Log.e("xyz", art.getPhoto().toLowerCase());
                                 Drawable d = getActivity().getResources().getDrawable(
-                                        getActivity().getResources().getIdentifier(a.getPhoto() ,
+                                        getActivity().getResources().getIdentifier(art.getPhoto() ,
                                                 "drawable" ,
                                                 getActivity().getPackageName()));
                                 smallImage.setImageDrawable(d);
                                 artCardImage.setImageDrawable(d);
                                 //author.setText(a.getAuthor());
                                 indicator.setSelected(closest);
+
                                 drawOverlay();
                             }
                         }
@@ -184,7 +187,6 @@ public class RouteActivity extends ActionBarActivity {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(getActivity() , InfoActivity.class);
-
                     i.putExtra("index" , lastVisited);
                     startActivity(i);
                 }
@@ -202,6 +204,14 @@ public class RouteActivity extends ActionBarActivity {
                 @Override
                 public void onClick(View v) {
                     share();
+                }
+            });
+
+            Button artShareBtn = (Button) rootView.findViewById(R.id.artShareBtn);
+            artShareBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    shareArt();
                 }
             });
 
@@ -355,6 +365,19 @@ public class RouteActivity extends ActionBarActivity {
             NotificationManager notificationManger =
                     (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManger.notify(01, notification);
+        }
+
+        void shareArt(){
+            Intent intent2 = new Intent(); intent2.setAction(Intent.ACTION_SEND);
+            intent2.setType("text/plain");
+
+            //TODO fix please
+            intent2.putExtra(Intent.EXTRA_TEXT, "" );
+            intent2.setType("image/*");
+            Uri uri = Uri.parse("android.resource://team3m.dulwichoutdoorgallery/" + getActivity().getResources()
+                    .getIdentifier(art.getPhoto(), "drawable", getActivity().getPackageName()));
+            intent2.putExtra(Intent.EXTRA_STREAM, uri);
+            startActivity(Intent.createChooser(intent2, "Share via"));
         }
     }
 }

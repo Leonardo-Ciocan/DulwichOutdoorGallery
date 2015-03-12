@@ -443,12 +443,12 @@ public class ExploreFragment extends Fragment {
         markers.get(pos).remove();
         Marker m = map.addMarker(new MarkerOptions()
                 .icon(BitmapDescriptorFactory
-                        .defaultMarker(300))
-
+                .defaultMarker(300))
                 .alpha(Core.isLocationVisited(pos) ? 0.6f : 1f)
                 .title(String.valueOf(pos))
                 .snippet(Core.getGallery().get(pos).getDescription())
                 .position(new LatLng(Core.getGallery().get(pos).getLatitude(), Core.getGallery().get(pos).getLongitude())));
+
         markers.remove(pos);
         markers.add(pos, m);
 
