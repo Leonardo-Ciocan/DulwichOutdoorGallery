@@ -45,19 +45,19 @@
             android:value="AIzaSyCFyp22fjdHHJgpZuZD0tvRBEQncyg3Zq0" />
 
         <activity
+            android:theme="@style/Theme.Transparent"
             android:screenOrientation="portrait"
             android:name=".InfoActivity"
             android:label="Info" >
         </activity>
         <activity
+            android:theme="@style/AppTheme"
             android:screenOrientation="portrait"
             android:name=".CoreActivity"
             android:label="Dulwich Outdoor Gallery"
             >
             <intent-filter>
-
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -49,7 +49,6 @@ public class InfoActivity extends ActionBarActivity {
 
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -72,6 +71,11 @@ public class InfoActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
 
     /**
      * A placeholder fragment containing a simple view.
@@ -265,7 +269,7 @@ public class InfoActivity extends ActionBarActivity {
                     if (!isLocked) header.startAnimation(flipAnimation);
                 }
             });
-           // getActivity().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            //getActivity().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
 
             //Button btnShare = (Button) rootView.findViewById(R.id.shareBtn);

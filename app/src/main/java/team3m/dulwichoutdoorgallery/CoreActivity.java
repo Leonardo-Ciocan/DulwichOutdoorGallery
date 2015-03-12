@@ -72,6 +72,7 @@ public class CoreActivity extends ActionBarActivity {
         preferences = getSharedPreferences(
                 "com.example.app", Context.MODE_PRIVATE);
         super.onCreate(savedInstanceState);
+        Log.v("xwuwuuwuwu" , "creating activity");
 
 
 // And later in some initialization function:
