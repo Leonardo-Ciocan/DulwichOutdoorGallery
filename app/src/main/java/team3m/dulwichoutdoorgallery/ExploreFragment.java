@@ -343,7 +343,8 @@ public class ExploreFragment extends Fragment {
                     //Core.getGallery().get(i).getDrawable(getActivity());
                     Marker m = googleMap.addMarker(new MarkerOptions()
                             .icon(BitmapDescriptorFactory
-                                    .defaultMarker(Core.getLocationtatus(i) ? 0:200))
+                                    .defaultMarker(200))
+                            .alpha(Core.isLocationVisited(i) ? 0.6f : 1f)
                             .title(String.valueOf(i))
                             .snippet(Gallery.get(i).getDescription())
                             .position(new LatLng(Gallery.get(i).getLatitude(), Gallery.get(i).getLongitude())));
@@ -442,7 +443,9 @@ public class ExploreFragment extends Fragment {
         markers.get(pos).remove();
         Marker m = map.addMarker(new MarkerOptions()
                 .icon(BitmapDescriptorFactory
-                        .defaultMarker(Core.getLocationtatus(pos) ? 330:300))
+                        .defaultMarker(300))
+
+                .alpha(Core.isLocationVisited(pos) ? 0.6f : 1f)
                 .title(String.valueOf(pos))
                 .snippet(Core.getGallery().get(pos).getDescription())
                 .position(new LatLng(Core.getGallery().get(pos).getLatitude(), Core.getGallery().get(pos).getLongitude())));
@@ -463,7 +466,8 @@ public class ExploreFragment extends Fragment {
             int index = Integer.parseInt(title);
             Marker m2 = map.addMarker(new MarkerOptions()
                     .icon(BitmapDescriptorFactory
-                            .defaultMarker(Core.getLocationtatus(index) ? 0:200))
+                            .defaultMarker(200))
+                    .alpha(Core.isLocationVisited(index) ? 0.6f : 1f)
                     .title(String.valueOf(index))
                     .snippet(Core.getGallery().get(index).getDescription())
                     .position(new LatLng(Core.getGallery().get(index).getLatitude(), Core.getGallery().get(index).getLongitude())));

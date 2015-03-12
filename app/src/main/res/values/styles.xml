@@ -11,11 +11,13 @@
         <item name="android:statusBarColor">@color/brand</item>
 
         <item name="android:windowNoTitle">true</item>
+
         <item name="windowActionBar">false</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowTranslucentStatus">true</item>
-        <!--<item name="android:windowTranslucentNavigation">true</item>-->
+
         <item name="android:windowBackground">@color/brandDark</item>
+        <item name="android:windowIsTranslucent">true</item>
 
     </style>
 

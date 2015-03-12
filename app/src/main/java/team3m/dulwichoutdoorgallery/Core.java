@@ -2,7 +2,6 @@ package team3m.dulwichoutdoorgallery;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.dropbox.client2.DropboxAPI;
@@ -14,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.InetAddress;
 import java.util.ArrayList;
 
 public class Core {
@@ -23,6 +23,13 @@ public class Core {
 
     public static ArrayList<Art> Gallery = new ArrayList<Art>(){
         {
+            add(new Art("Europa and the Bull, 2014" ,
+                    "" ,
+                    "Faith47" , new Art("Europa and the Bull(detail), 17th century" , "" ,
+                    "Guido Reni" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "faith47_europa_and_the_bull") ,
+                    new ArrayList<String>() , 51.471419 , -0.064335 , "faith47_new"));
+
+
             add(new Art("Landscape with Sportsmen and Game, 2013" ,
                     "ROA's dog is almost the only painting that has caused some controversy. He was given a portrait orientated wall, ruling out many " +
                             "Dulwich Picture Gallery animals. He adapted the position of the 'scrawny dog' in the Pynacker painting to fit his 'canvas'." ,
@@ -218,11 +225,7 @@ public class Core {
                     "Tilly Kettle" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "stik_eliza_and_mary_davidson") ,
                     new ArrayList<String>() , 51.447408 , -0.075845 , "stik_eliza_and_mary_davidson_new"));
 
-            add(new Art("Europa and the Bull, 2014" ,
-                    "" ,
-                    "Faith47" , new Art("Europa and the Bull(detail), 17th century" , "" ,
-                    "Guido Reni" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "faith47_europa_and_the_bull") ,
-                    new ArrayList<String>() , 51.471419 , -0.064335 , "faith47_new"));
+
         }
     };
 
@@ -247,7 +250,7 @@ public class Core {
         CoreActivity.preferences.edit().putBoolean("_badge"+n,true).commit();
     }
 
-    public static boolean getLocationtatus(int n){
+    public static boolean isLocationVisited(int n){
         return CoreActivity.preferences.getBoolean("_location"+n , false);
     }
 
@@ -258,7 +261,7 @@ public class Core {
     public static void updateBadges(){
         int count = 0;
         for(int x =0; x<getGallery().size();x++){
-            if(getLocationtatus(x))count++;
+            if(isLocationVisited(x))count++;
         }
         if(count == 3){
             if(!getBadgeStatus(3)) {
@@ -338,6 +341,19 @@ public class Core {
                 }
             }
         }
+    }
+
+    public boolean checkInternetConnection() {
+        try {
+            InetAddress ipAddr = InetAddress.getByName("www.google.com"); //You can replace it with your name
+
+            return !ipAddr.equals("");
+
+        }
+        catch (Exception e) {
+            return false;
+        }
+
     }
 }
 

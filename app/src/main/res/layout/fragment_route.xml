@@ -53,12 +53,14 @@
             </LinearLayout>
 
             <ImageView
+                android:scaleType="centerCrop"
                 android:id="@+id/smallImage"
                android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/reka_europa_and_the_bull"/>
+
             <LinearLayout
                 android:layout_marginBottom="45dp"
                 android:paddingTop="15dp"
@@ -147,6 +149,7 @@
 
 
             <TextView
+
                 android:textColor="#000"
                 android:fontFamily="sans-serif-light"
                 android:textSize="14pt"
@@ -156,6 +159,7 @@
                 android:layout_height="wrap_content"
                 android:text="GRAND TOUR"/>
             <TextView
+                android:id="@+id/titleProgress"
                 android:textColor="#000"
                 android:layout_margin="5dp"
                 android:fontFamily="sans-serif-light"

@@ -2,6 +2,7 @@ package team3m.dulwichoutdoorgallery;
 
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -25,19 +26,23 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.melnykov.fab.FloatingActionButton;
+import com.r0adkll.slidr.Slidr;
+import com.r0adkll.slidr.model.SlidrInterface;
 
 import java.util.concurrent.locks.Lock;
 
 
 public class InfoActivity extends ActionBarActivity {
 
+    PlaceholderFragment fragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_activity);
+        fragment = new PlaceholderFragment();
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.container, fragment)
                     .commit();
         }
     }
@@ -65,6 +70,7 @@ public class InfoActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -75,19 +81,20 @@ public class InfoActivity extends ActionBarActivity {
 
          boolean isLocked = false;
          boolean street_ = false;
-
+        public SlidrInterface slidr;
         ImageView i1;
         ImageView i2;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.info_fragment, container, false);
+            final View rootView = inflater.inflate(R.layout.info_fragment, container, false);
             final ScrollView scrollView = (ScrollView) rootView.findViewById(R.id.scrollView);
             final FrameLayout imgHolder = (FrameLayout) rootView.findViewById(R.id.imgHolder);
 
             Animation animation = new Animation() {
                 @Override
                 protected void applyTransformation(float interpolatedTime, Transformation t) {
+                    rootView.setAlpha(interpolatedTime);
                     FrameLayout.LayoutParams params3 = (FrameLayout.LayoutParams) scrollView.getLayoutParams();
                     params3.topMargin = (int) ((400 + (int) (-400 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
                     scrollView.setLayoutParams(params3);
@@ -249,13 +256,18 @@ public class InfoActivity extends ActionBarActivity {
             flipAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
             flipAnimation.setDuration(2000);
 
-            fab.setOnClickListener( new View.OnClickListener() {
+            fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    if(!isLocked)header.startAnimation(flipAnimation);
+                    if (!isLocked) header.startAnimation(flipAnimation);
                 }
             });
+            getActivity().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+            slidr = Slidr.attach(getActivity());
+
+
             return rootView;
         }
     }

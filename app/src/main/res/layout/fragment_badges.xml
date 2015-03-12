@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="4dp"
-
+    android:background="#fff"
     tools:context="team3m.dulwichoutdoorgallery.BadgesActivity$PlaceholderFragment">
 
     <android.support.v7.widget.CardView
@@ -55,6 +54,8 @@ android:orientation="vertical"
         android:layout_marginTop="90dp"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:id="@+id/badgesListView"
         android:divider="@null"
         android:dividerHeight="0.0sp"/>

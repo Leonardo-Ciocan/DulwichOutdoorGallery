@@ -1,8 +1,14 @@
 package team3m.dulwichoutdoorgallery;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -100,10 +106,18 @@ public class RouteActivity extends ActionBarActivity {
             final SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                     .findFragmentById(R.id.map);
 
-            final RouteProgressIndicator indicator = (RouteProgressIndicator) rootView.findViewById(R.id.dotview);
+            final RouteProgressIndicator indicator      = (RouteProgressIndicator)  rootView.findViewById(R.id.dotview);
+            final TextView               titleView      = (TextView)                rootView.findViewById(R.id.title);
+            final TextView               authorView     =  (TextView)               rootView.findViewById(R.id.author);
+            final ImageView              artCardImage   =  (ImageView)              rootView.findViewById(R.id.artCardImage);
+            final ImageView              smallImage     = (ImageView)               rootView.findViewById(R.id.smallImage);
+            final TextView               title          = (TextView)                rootView.findViewById(R.id.title);
+            final TextView               author         = (TextView)                rootView.findViewById(R.id.author);
+            final TextView               titleProgress  = (TextView)                rootView.findViewById(R.id.titleProgress);
+            final CardView               navigationCard = (CardView)                rootView.findViewById(R.id.navigationCard);
+            final CardView               currentArt     = (CardView)                rootView.findViewById(R.id.currentArt);
+            final FloatingActionButton   fab            = (FloatingActionButton)    rootView.findViewById(R.id.fab);
 
-            final TextView titleView = (TextView) rootView.findViewById(R.id.title);
-            final TextView authorView = (TextView) rootView.findViewById(R.id.author);
 
             titleView.setText(Core.getGallery().get(0).getName());
             authorView.setText(Core.getGallery().get(0).getAuthor());
@@ -134,7 +148,18 @@ public class RouteActivity extends ActionBarActivity {
                             int closest = getClosestWithinRange(location , 20f);
                             if(closest != lastVisited && closest > lastVisited){
                                 lastVisited = closest;
-                                Toast.makeText(getActivity() , lastVisited +"",Toast.LENGTH_SHORT).show();
+                                Art a = Core.Gallery.get(lastVisited);
+                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(a.getLocation() ,  12));
+                                titleProgress.setText((lastVisited) + " : " + a.getName());
+                                title.setText(a.getName());
+                                Log.e("xyz" , a.getPhoto().toLowerCase());
+                                Drawable d = getActivity().getResources().getDrawable(
+                                        getActivity().getResources().getIdentifier(a.getPhoto() ,
+                                                "drawable" ,
+                                                getActivity().getPackageName()));
+                                smallImage.setImageDrawable(d);
+                                artCardImage.setImageDrawable(d);
+                                //author.setText(a.getAuthor());
                                 indicator.setSelected(closest);
                                 drawOverlay();
                             }
@@ -181,16 +206,9 @@ public class RouteActivity extends ActionBarActivity {
             });
 
 
-            final ImageView artCardImage = (ImageView)rootView.findViewById(R.id.artCardImage);
-            final ImageView smallImage = (ImageView)rootView.findViewById(R.id.smallImage);
-
-
-            final CardView navigationCard = (CardView) rootView.findViewById(R.id.navigationCard);
-            final CardView currentArt = (CardView) rootView.findViewById(R.id.currentArt);
 
             collapsed = true;
 
-            final FloatingActionButton fab = (FloatingActionButton)rootView.findViewById(R.id.fab);
 
             final Animation a = new Animation() {
                 @Override
@@ -281,7 +299,9 @@ public class RouteActivity extends ActionBarActivity {
             ArrayList<Art> Gallery = Core.getGallery();
             for(int i=0; i< Core.getGallery().size(); i++){
                 LatLng point = new LatLng(Gallery.get(i).getLatitude(), Gallery.get(i).getLongitude());
-                map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(i <=1 ? R.drawable.marker_off : R.drawable.marker))
+                map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(
+                        i != lastVisited && i != lastVisited + 1 ? R.drawable.marker_off : R.drawable.marker))
+                        .alpha(i != lastVisited && i != lastVisited + 1 ? 0.7f : 1f)
                         .title(Gallery.get(i).getName())
                         .snippet(Gallery.get(i).getDescription())
                         .position(point));
@@ -317,6 +337,24 @@ public class RouteActivity extends ActionBarActivity {
             Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
             Uri.parse("http://maps.google.com/maps?saddr="+ last.latitude+ "," + last.longitude+"&daddr="+ next.latitude+ "," + next.longitude));
             startActivity(intent);
+            Intent intent1 = new Intent(getActivity() , CoreActivity.class);
+            Notification.Builder builder = new Notification.Builder(getActivity().getApplicationContext());
+            builder.setContentTitle("Dulwich Outdoor Gallery");
+            builder.setSubText("When you are done navigating , come back to the app.");
+            builder.setNumber(101);
+            builder.setTicker("When you're done, come back in the app.");
+            builder.setSmallIcon(R.drawable.ic_launcher);
+            intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent1.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            PendingIntent pd = PendingIntent.getActivity(getActivity(), 01,intent1 , 0);
+
+            builder.setContentIntent(pd);
+            builder.setAutoCancel(true);
+            builder.setPriority(0);
+            Notification notification = builder.build();
+            NotificationManager notificationManger =
+                    (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManger.notify(01, notification);
         }
     }
 }
