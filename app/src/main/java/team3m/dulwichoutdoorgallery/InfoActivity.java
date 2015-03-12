@@ -34,17 +34,17 @@ import java.util.concurrent.locks.Lock;
 
 public class InfoActivity extends ActionBarActivity {
 
-    PlaceholderFragment fragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_activity);
-        fragment = new PlaceholderFragment();
+        Slidr.attach(this);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, fragment)
+                    .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
     }
 
 
@@ -259,13 +259,11 @@ public class InfoActivity extends ActionBarActivity {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     if (!isLocked) header.startAnimation(flipAnimation);
                 }
             });
-            getActivity().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+           // getActivity().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-            slidr = Slidr.attach(getActivity());
 
 
             return rootView;

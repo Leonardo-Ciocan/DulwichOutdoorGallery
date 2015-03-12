@@ -108,8 +108,8 @@ public class RouteActivity extends ActionBarActivity {
 
             final RouteProgressIndicator indicator      = (RouteProgressIndicator)  rootView.findViewById(R.id.dotview);
             final TextView               titleView      = (TextView)                rootView.findViewById(R.id.title);
-            final TextView               authorView     =  (TextView)               rootView.findViewById(R.id.author);
-            final ImageView              artCardImage   =  (ImageView)              rootView.findViewById(R.id.artCardImage);
+            final TextView               authorView     = (TextView)                rootView.findViewById(R.id.author);
+            final ImageView              artCardImage   = (ImageView)               rootView.findViewById(R.id.artCardImage);
             final ImageView              smallImage     = (ImageView)               rootView.findViewById(R.id.smallImage);
             final TextView               title          = (TextView)                rootView.findViewById(R.id.title);
             final TextView               author         = (TextView)                rootView.findViewById(R.id.author);

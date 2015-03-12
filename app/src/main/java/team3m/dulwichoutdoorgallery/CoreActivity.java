@@ -74,9 +74,6 @@ public class CoreActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
 
-
-
-
 // And later in some initialization function:
         AppKeyPair appKeys = new AppKeyPair(Core.APP_KEY, Core.APP_SECRET);
         AndroidAuthSession session = new AndroidAuthSession(appKeys);
@@ -87,7 +84,6 @@ public class CoreActivity extends ActionBarActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-
                 Core.update(CoreActivity.this);
             }
         }).start();
