@@ -7,8 +7,17 @@
     tools:context="team3m.dulwichoutdoorgallery.AboutActivity.AboutFragment">
 
     <ImageView
+        android:id="@+id/logo"
         android:src="@drawable/ic_launcher"
         android:layout_width="fill_parent"
         android:layout_height="200dp" />
+
+    <TextView
+        android:id="@+id/aboutText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
+        android:textColor="@color/brandDark"
+        android:textSize="16dp"/>
 
 </RelativeLayout>
