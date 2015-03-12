@@ -33,7 +33,10 @@ public class Core {
             add(new Art("Landscape with Sportsmen and Game, 2013" ,
                     "ROA's dog is almost the only painting that has caused some controversy. He was given a portrait orientated wall, ruling out many " +
                             "Dulwich Picture Gallery animals. He adapted the position of the 'scrawny dog' in the Pynacker painting to fit his 'canvas'." ,
-                    "Roa" , new Art("Landscape with Sportsmen and Game(detail), c.1665" , "" ,
+                    "Roa" , new Art("Landscape with Sportsmen and Game, c.1665" , "This landscape is regarded as one of Pynacker's outstanding achievements, " +
+                    "painted in his mature style of the 1660s when he was living in Amsterdam. It has a cool tonality and sharp definition, with an intense " +
+                    "focus on the foreground group of birches to the left. The large blue leaves in the foreground are the result of a chemical change over time: " +
+                    "yellow lake may have been laid as a glaze over the blue, which then either faded or was accidentally removed during former restorations." ,
                     "Adam Pynacker" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "roa_landscape_with_sportsmen_and_game1") ,
                     new ArrayList<String>() , 51.467437 , -0.072308 , "roa_new"));
 
@@ -41,14 +44,19 @@ public class Core {
                     "Kershaw, 74, sat on scaffolding for 10 days to create this astonishing mural. On a couple of afternoons he offered passing children the " +
                             "opportunity to make their additions to the bottom of the wall, where the river is in the original. With the help of POW, he painted " +
                             "a continuation of an existing hedge on which people could add flowers, insects and butterflies to his original masterpiece." ,
-                    "Walter Kershaw" , new Art("Landscape with Windmills near Haarlem, 1650-52" , "" ,
-                    "Jacob Van Ruisdael" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "walter_kershaw_landscape_with_windmills_near_haarlem") ,
+                    "Walter Kershaw" , new Art("Landscape with Windmills near Haarlem, 1650-52" , "The Groote Kerk, Haarlem, is seen in the distance. A horse " +
+                    "and figures centre left (since overpainted) and a rider and boy on the right were shown by pigment analysis to be post 17th-century additions " +
+                    "and were removed in 1997. They are partially recorded in a copy made by Constable in 1831." ,
+                    "Jacob van Ruisdael" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "walter_kershaw_landscape_with_windmills_near_haarlem") ,
                     new ArrayList<String>(), 51.467357 , -0.072510 , "walter_kershaw_new"));
 
             add(new Art("Girl at a Window, 2013" ,
                     "This wall is a combnation of System's interpretation of 'Girl at a Window' by Rembrandt and Remi's interpretation of 'The Triumph of David' " +
                             "by Poussin." ,
-                    "Remi Rough and System" , new Art("Girl at a Window, 1645" , "" ,
+                    "Remi Rough and System" , new Art("Girl at a Window, 1645" , "Painted when Rembrandt was 39, this painting falls somewhere between genre " +
+                    "and portraiture. The girl’s identity remains uncertain; in the past she has been described as a courtesan, a Jewish bride or an historical " +
+                    "or Biblical figure. It is more widely accepted that she is a servant girl; her rosy, tanned complexion along with her brown arms implies " +
+                    "she worked outdoors." ,
                     "Rembrandt van Rijn" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "remi_rough_and_system_girl_at_a_window") ,
                     new ArrayList<String>(), 51.461959 , -0.079336 , "remi_rough_and_system_new"));
 
@@ -56,67 +64,89 @@ public class Core {
                     "Conor is taking Le Brun's 'Massacre of the Innocents' as a source. His interpretation, filtered through the lens of George Bellows, is " +
                             "a portrayal of global powers turning on themselves ('the massacre of the not-so innocent'). The Dulwich wall was the first in a " +
                             "series of murals depicting this struggle, and is continued in New York and Puerto Rico." ,
-                    "Conor Harrington" , new Art("The Massacre of the Innocents, c. 1660" , "" ,
+                    "Conor Harrington" , new Art("The Massacre of the Innocents, c.1660" , "The subject is from Matthew II, 16-18: having learnt from the " +
+                    "wise men of the birth in Bethlehem of the King of the Jews, Herod ordered that the young children of the city be put to death. The " +
+                    "picture was begun in 1647, or shortly after, but was left unfinished probably until the mid-1660s, when it was completed for Gedeon du " +
+                    "Metz, keeper of the Royal Treasury. There are several preliminary drawings in the Louvre." ,
                     "Charles Le Brun" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "conor_harrington_the_massacre_of_the_innocents") ,
                     new ArrayList<String>() , 51.460617 , -0.075041 , "conor_harrington_new"));
-
-            add(new Art("Mandarina Chicharra, 2013" ,
-                    "The Spanish-born Liqen painted a vibrant mural, covering the wall in the courtyard of a local school. His surreal imagery will either " +
-                            "inspire the children by this hybrid orange and insect creature, or the children will have bad dreams." ,
+            /*
+            add(new Art("Mandarina Chicharra (or Tangerine Cicada), 2013" ,
+                    "Crazy and colourful as usual, Liqen’s imagery is never superficial and always seems to spring from some kind of weird acid trip, always " +
+                            "incredible, always interesting, always intriguing. According to Liqen the primary meaning of this new mural has a connection to " +
+                            "the site where it was painted, a school courtyard in Dulwich." ,
                     "Liqen" , null ,
-                    new ArrayList<String>() , 51.456748 , -0.071105 , ""));
+                   new ArrayList<String>() , 51.456748 , -0.071105 , ""));
+            */
 
             add(new Art("A Couple in a Landscape, 2012" ,
                     "The original painting is very probably a wedding portrait. It is likely to be a marriage of convenience as they don't seem to be in love " +
                             "and Gainsborough has separated them with a dying oak tree. Stik's couple are equally disinterested in each other and are " +
                             "separated by a drainpipe." ,
-                    "Stik" , new Art("A Couple in a Landscape(detail), 1753" , "" ,
+                    "Stik" , new Art("A Couple in a Landscape, 1753" , "This is one of Gainsborough’s early conversation pieces, which forms part of a " +
+                    "succession of full-length double portraits of husband and wife, such as Mr and Mrs Andrews (National Gallery, London) and Sarah and John " +
+                    "Joshua Kirby (National Portrait Gallery, London). There is equal emphasis upon the couple and the surrounding landscape. The decaying tree was a " +
+                    "popular compositional device used in 17th-century Dutch landscape painting, especially the work of Jacob van Ruisdael and Jan Wijnants, whom" +
+                    "Gainsborough greatly admired." ,
                     "Thomas Gainsborough" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "stik_couple_in_a_landscape") ,
                     new ArrayList<String>() , 51.456641 , -0.075693 , "stik_couple_in_a_landscape_new"));
 
+            /*
             add(new Art("Mushroom Markers" ,
                     "Although Christiaan's mushrooms do not appear in any Dulwich Picture Gallery paintings, he made good markers of a route for a walk that " +
                             "takes in most of the walls and ends at Dulwich Picture Gallery. He put up four mushrooms but one was objected to so the shop " +
                             "owner on whose roof it was, was forced to take it down." ,
                     "Christiaan Nagel " , null ,
                     new ArrayList<String>(), 51.455987 , -0.076507 , ""));
+            */
 
             add(new Art("The Guardian Angel, 2012" ,
                     "The guardian angel is showing mankind the divine light, the true path, and is preventing the child from 'stubbing its toe on the rock " +
                             "of injustice, scratching itself on the thorny branch of life, and tumbling down the precipice of sin'. Stik has used the low " +
                             "energy street light and the potted plants to good effect." ,
-                    "Stik" , new Art("The Guardian Angel, 1716" , "" ,
+                    "Stik" , new Art("The Guardian Angel, 1716" , "Franceschini was taught by Carlo Cignani, a pupil of Albani, who was in turn trained by " +
+                    "the Carracci in Bologna and Rome - he therefore represents the continuation of the best of the Bolognese classical school of painting. " +
+                    "His skill is very obvious in the beautiful drawing and colour of this work of his maturity. This work is possibly one of the versions of " +
+                    "this subject noted in Franceschini's account book on 5 August and 20 December 1716." ,
                     "Marcantonio Franceschini" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "stik_the_guardian_angel") ,
                     new ArrayList<String>() , 51.456128 , -0.077322 , "stik_the_guardian_angel_new"));
 
-            add(new Art("Girl with owl head and St. Sebastian, 2014" ,
-                    "Dscreet's first painting was an interpretation of 'Judith with the head of Holofernes', but the wall owner thought there were too many " +
-                            "knives on the wall of her shop, so had Dscreet's piece painted over. So he did a piece with a mate that everyone could enjoy, a " +
-                            "girl wearing an owl head." ,
-                    "Dscreet and Michael Beerens" , null ,
+            /*
+            add(new Art("St. Sebastian, 2014" ,
+                    "" ,
+                    "Michael Beerens" , null ,
                     new ArrayList<String>(), 51.455987 , -0.076507 , ""));
+            */
 
             add(new Art("New World Revolution, 2013" ,
                     "Mear's mixed race mother and child are challenging and demanding. Paradoxically they are more symbolic than the Catholic version " +
                             "('The Madonna of the Rosary'). His composition was not specifically designed for the wall. He used an existing work of his, " +
                             "then drew in the outlines and afterwards added colour. He changed the words on the halo and added a butterfly." ,
-                    "Mear One 2013" , new Art("The Madonna of the Rossary(detail), 1670-80" , "" ,
-                    "Bartolome Murillo" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "mear_one_the_virgin_of_the_rosary") ,
+                    "Mear One" , new Art("The Virgin of the Rosary, 1675-80" , "Murillo’s picture is an excellent example of the artist’s late style (his so-called estilo " +
+                    "vaporoso or ‘vaporous style’). The contours of the figures of the Virgin and the Christ Child have been softened and light suffuses the composition, " +
+                    "enveloping them in a gentle glow. Although both figures have been idealized to a great extent, they retain a familiar humanity, particularly in the carefully " +
+                    "combed hair of the child and the engaging way he toys with the beads of the rosary in a characteristic Murillesque touch." ,
+                    "Bartolome Esteban Murillo" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "mear_one_the_virgin_of_the_rosary") ,
                     new ArrayList<String>() , 51.454564 , -0.077177 , "mear_one_new"));
 
+            /*
             add(new Art("Art House, 2013" ,
                     "Lightbox offered a whole house, up for demolition, to the project. The house was painted inside and out by numerous artists and became " +
                             "the focal point for 'Baroque the Streets' Street Art Festival in May 2013." ,
                     "Run, The Rolling People, Christiaan Nagel, Citizen Kane, Malarki, My Dog Sighs" , null ,
                     new ArrayList<String>(), 51.453037 , -0.077218 , ""));
+            */
 
             add(new Art("The Fall of Man, 2012" ,
                     "Although Adam's eyes are firmly fixed on the fascinating apple, he is rejecting it. Stik saw this as Eve offering herself and said " +
                             "that Adam was 'a dick' for refusing her sweet and generous offer. Stik's figures are stripped down to the pure essence of a " +
                             "human being. His people are not individuals who may be beautiful or ugly, old or young, they are generalised figures packed with " +
                             "feelings that everyone can recognise." ,
-                    "Stik" , new Art("The Fall of Man, c.1520-30" , "" ,
-                    "Pieter Coecke van Aelst" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "stik_the_fall_of_man") ,
+                    "Stik" , new Art("The Fall of Man, c.1520-30" , "At the edge of a forest, Eve hands Adam the forbidden fruit from the tree of the " +
+                    "knowledge of good and evil (Genesis, Chapter III, 6). Although Adam recoils, his eyes are firmly fixed on the temptation. In the distance " +
+                    "to the left is their resultant expulsion from Eden (Genesis, III, 23-4). Flemish master Pieter Coecke van Aelst established a successful studio " +
+                    "in Brussels in 1544, where many important Flemish artists were trained - including possibly his future son-in-law, Pieter Brueghel the Elder." ,
+                    "Follower of Pieter Coecke van Aelst" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "stik_the_fall_of_man") ,
                     new ArrayList<String>() , 51.453183 , -0.078809 , "stik_the_fall_of_man_new"));
 
             add(new Art("The Triumph of David, 2013" ,
@@ -124,21 +154,29 @@ public class Core {
                             "subjects for paintings in the 16th century, but not so acceptable nowadays. The wall is owned by Charlotte, mother of nine year " +
                             "old Kaius who goes to the school around the corner. It is passed by primary school children all the time. When Phlegm realised this, " +
                             "he decided that the subject of matter was not appropriate to the area and changed it to the trumpeter in the 'The Triumph of David'." ,
-                    "Phlegm" , new Art("The Triumph of David, 1628-31" , "" ,
+                    "Phlegm" , new Art("The Triumph of David, 1628-31" , "One of Poussin’s first great masterpieces, The Triumph of David demonstrates the " +
+                    "artist’s increasing concern in the early 1630s with employing harmonious design to instil a sense of structural clarity to the human " +
+                    "expression and dramatic storytelling in his paintings. Taken from the Bible’s Book of Samuel, the scene depicts David’s triumphal entry " +
+                    "into Jerusalem after defeating the Philistines’ champion Goliath of Gath, an eight-foot giant who David had outwitted by striking his " +
+                    "forehead with a well-aimed stone from his sling." ,
                     "Nicolas Poussin" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "phlegm_triumph_of_david") ,
                     new ArrayList<String>() , 51.451588 , -0.071564 , "phlegm_new"));
 
+            /*
             add(new Art("Queen Bee on a Throne, 2013" ,
                     "" ,
                     "Nunca" , null ,
                     new ArrayList<String>() ,51.449180 , -0.074245 , ""));
+            */
 
             add(new Art("Elizabeth and Mary Linley, 2012" ,
                     "Elizabeth was one of the foremost sopranos of the day, talented, beautiful and earning a great deal from her concerts. Mary had a successful " +
                             "career as a singer and actress. The sisters are in costly, fashionable clothes and holding objects representing their careers. Stik had " +
                             "represented only the relationship between them. They are comfortable with each other, but in their own separate worlds. It is this, not their " +
                             "youth, beauty or talents, that Stik encapsulates." ,
-                    "Stik" , new Art("Elizabeth and Mary Linley(detail), c.1722" , "" ,
+                    "Stik" , new Art("Elizabeth and Mary Linley, c.1772" , "This double portrait of Elizabeth and Mary Linley, is the only known painting " +
+                    "depicting both sisters together, each other’s closest companions. Gainsborough carried out this painting between early 1771 and March " +
+                    "1772.  In 1785 upon the request of the Linley family, he re-touched the painting to depict the sitters in the fashion of the 1780s." ,
                     "Thomas Gainsborough" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "stik_elizabeth_and_mary_linley") ,
                     new ArrayList<String>() , 51.446656 , -0.073634 , "stik_elizabeth_and_mary_linley_new"));
 
@@ -214,10 +252,12 @@ public class Core {
                     "Nicolas Poussin" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "run_the_translation_of_st_rita") ,
                     new ArrayList<String>() , 51.438862 , -0.053918 , "run_the_translation_of_st_rita_new"));
 
+            /*
             add(new Art("Three Boys, 2013" ,
                     "" ,
                     "Michael Beerens" , null ,
                     new ArrayList<String>() , 51.447739 , -0.074982 , ""));
+            */
 
             add(new Art("Eliza and Mary Davidson, 2012" ,
                     "" ,
