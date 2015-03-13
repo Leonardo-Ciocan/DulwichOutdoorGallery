@@ -185,7 +185,8 @@ public class Core {
                             "for what can only be guessed at. Class 3S of Dulwich Hamlet Primary School helped Stik to paint the 'Three Boys' mural: 'The children " +
                             "responded immediately to his gentle self-effacing manner and really engaged with the simplicity and emotions of his painting.'(Cathy " +
                             "Skelton, Class Teacher)." ,
-                    "Stik" , new Art("Three Boys(detail), c.1670" , "" ,
+                    "Stik" , new Art("Three Boys, c.1670" , "This painting is unique in Murillo's oeuvre in that he appears to have changed his mind as " +
+                    "he painted, a rare occurrence for an artist who is thought to have carefully planned and drawn out most of his compositions." ,
                     "Bartolome Esteban Murillo" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "stik_three_boys") ,
                     new ArrayList<String>() , 51.445235 , -0.078621 , "stik_three_boys_new"));
 
@@ -193,7 +194,9 @@ public class Core {
                     "The subject is from Genesis XLI, 42: appointing Joseph ruler over Egypt, Pharaoh 'took off his ring from his hand, and put it upon " +
                             "Joseph's hand'. Thierry Noir concentrates on the interaction(or lack of) between the people only. His simple technique works " +
                             "well next to Stik's wall and near the children's playground in Dulwich Park." ,
-                    "Thierry Noir" , new Art("Joseph receiving Pharaoh's Ring, 1733-35" , "" ,
+                    "Thierry Noir" , new Art("Joseph receiving Pharaoh's Ring, 1733-35" , "Pharaoh hands Joseph a ring to show that he has chosen the young Jewish" +
+                    " ex-slave as his second-in-command over all the land of Egypt (Genesis 41:42). DPG158 was catalogued by Richter in 1880 as the work of Giandomenico Tiepolo," +
+                    " but Morassi returned the picture to Giambattista, an attribution that is now generally accepted. " ,
                     "Giambattista Tiepolo" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "thierry_noir_joseph_receiving_pharaohs_ring") ,
                     new ArrayList<String>() , 51.445275 , -0.079029 , "thierry_noir_new1"));
 
@@ -201,7 +204,8 @@ public class Core {
                     "Ben's tiny works of art are amazingly accurate reproductions of the Dulwich Picture Gallery paintings. He reproduces in miniature the " +
                             "composition, colour, tone, background and even the expressions on the faces. He adds his own quirky interpretations. Ben painted " +
                             "Catherine running away, having a vision of a banana." ,
-                    "Ben Wilson" , new Art("Saint Catherine of Siena(detail), 1665-70" , "" ,
+                    "Ben Wilson" , new Art("Saint Catherine of Siena, 1665-70" , "Saint Catherine is shown in the habit of a Dominican tertiary with a crown of thorns." +
+                    " This refers to a vision in which Christ offered her the choice between a crown of gold and a crown of thoms and she chose the latter. " ,
                     "Carlo Dolci" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "multiple_st_catherine_of_siena") ,
                     new ArrayList<String>(), 51.445548 , -0.085312 , "ben_wilson_new1"));
 
@@ -216,7 +220,10 @@ public class Core {
                             "references to draw on, breaking down the visual allegory into basic parts: the long hair, the scissors, the broken heart, the beautiful " +
                             "girl and the powerful man. He uses colour symbolically, red for drama, danger, violence and incorporates the sacred yet fascinated eyes of " +
                             "the onlookers." ,
-                    "David Shillinglaw" , new Art("Samson and Delilah, c.1618" , "" ,
+                    "David Shillinglaw" , new Art("Samson and Delilah, c.1618" , "This painting is regarded as one of Van Dyck’s first masterpieces, executed when he was around" +
+                    " the age of 20 and working as Rubens’ studio assistant in Antwerp. It entered Bourgeois’ and Desenfans’ collection in 1783 as a work by Van Dyck, but the similarity " +
+                    "in style between his early work and Rubens’ late work caused much confusion, and it was subsequently reattributed to the older master. It was not until the beginning " +
+                    "of the 20th century that it was rightfully given back to Van Dyck." ,
                     "Anthony van Dyck" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "david_shillinglaw_samson_and_delilah") ,
                     new ArrayList<String>() , 51.452870 , -0.103013 , "david_shillinglaw_new"));
 
@@ -232,7 +239,8 @@ public class Core {
                     "Reka chose the piece 'Europa and the Bull' because the imagery lent itself to his style. He paint a lot of female figures in motion using " +
                             "flowing hair as a way to give the piece a dynamic quality. In a sense it is moving on the wall. The project has been a great experience " +
                             "for Reka, as he rarely use an image as a reference to my artworks." ,
-                    "Reka" , new Art("Europa and the Bull(detail, 17th century" , "" ,
+                    "Reka" , new Art("Europa and the Bull(detail, 17th century" , "Guido Reni managed one of the busiest studios of the 17th century. His most popular " +
+                    "compositions can exist in several versions, with varying degrees of involvement of the master" ,
                     "Guido Reni" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "reka_europa_and_the_bull") ,
                     new ArrayList<String>() , 51.427814 , -0.086899 , "reka_new"));
 
@@ -240,7 +248,9 @@ public class Core {
                     "The work of art from Dulwich Picture Gallery that AP chose to interpret is a sketch. Before the days of porn in magazines and on the internet, " +
                             "men who wanted to gaze at naked women employed artists. It was acceptable to have a painting of naked females from Greek mythology " +
                             "hanging in your study, so 'The Three Graces' was a popular subject in some circles." ,
-                    "Agent Provocateur(AP)" , new Art("The Three Graces, c.1636" , "" ,
+                    "Agent Provocateur(AP)" , new Art("The Three Graces, c.1636" , "The Graces - Euphrosyne, Thalia and Aglaea - were daughters of Zeus and goddesses " +
+                    "of beauty and kindness. An irregular section above the heads of the figures has been cut away and replaced. Held suggests a date of c.1625/8, Jaff‚ " +
+                    "gives c.1636. A preliminary drawing is at Christ Church, Oxford." ,
                     "Sir Peter Paul Rubens" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "agent_provocateur_the_three_graces") ,
                     new ArrayList<String>() , 51.441069 , -0.056676 , "agent_provocateur_new"));
 
@@ -248,7 +258,8 @@ public class Core {
                     "Saint Rita had wished to become a nun, but she submitted to her parents' will and married. After the violent death of her cruel husband, " +
                             "she was miraculously transported to the Augustinian convent of Cascia, near Spoleto. She is the patron saint of abused wives. Wearing " +
                             "similar flowing clothes, RUN's Saint Rita is careering down into the convent whereas Poussin's saint is journeying in a more sedate manner." ,
-                    "RUN" , new Art("The Translation of Saint Rita of Cascia(detail), c.1630" , "" ,
+                    "RUN" , new Art("The Translation of Saint Rita of Cascia, c.1630" , "Saint Rita had wished to become a nun, but submitted to her parents' will and married; " +
+                    "after the violent death of her cruel husband, she was miraculously transported to the Augustinian convent of Cascia, near Spoleto. She was canonised in 1900. " ,
                     "Nicolas Poussin" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "run_the_translation_of_st_rita") ,
                     new ArrayList<String>() , 51.438862 , -0.053918 , "run_the_translation_of_st_rita_new"));
 
@@ -261,7 +272,8 @@ public class Core {
 
             add(new Art("Eliza and Mary Davidson, 2012" ,
                     "" ,
-                    "Stik" , new Art("Eliza and Mary Davidson, 1784" , "" ,
+                    "Stik" , new Art("Eliza and Mary Davidson, 1784" , "The portrait was painted in India c. 1784, it portrays the daughters of Alexander Davidson (d.1791), " +
+                    "Governor of Madras, 1785-6" ,
                     "Tilly Kettle" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "stik_eliza_and_mary_davidson") ,
                     new ArrayList<String>() , 51.447408 , -0.075845 , "stik_eliza_and_mary_davidson_new"));
 
