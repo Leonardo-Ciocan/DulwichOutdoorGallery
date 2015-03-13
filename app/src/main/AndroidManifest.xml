@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="team3m.dulwichoutdoorgallery" >
+    package="team3m.dulwichoutdoorgallery">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -16,28 +16,19 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name" >
-
-        </activity>
+        android:theme="@style/AppTheme">
         <activity
             android:name=".ExploreActivity"
-            android:label="@string/title_activity_explore" >
-        </activity>
+            android:label="@string/title_activity_explore"></activity>
         <activity
             android:name=".RouteActivity"
-            android:label="@string/title_activity_route" >
-        </activity>
+            android:label="@string/title_activity_route"></activity>
         <activity
             android:name=".BadgesActivity"
-            android:label="@string/title_activity_badges" >
-        </activity>
+            android:label="@string/title_activity_badges"></activity>
         <activity
             android:name=".AboutActivity"
-            android:label="@string/title_activity_about" >
-        </activity>
+            android:label="@string/title_activity_about"></activity>
 
 
         <meta-data
@@ -48,14 +39,12 @@
             android:theme="@style/Theme.Transparent"
             android:screenOrientation="portrait"
             android:name=".InfoActivity"
-            android:label="Info" >
-        </activity>
+            android:label="Info"></activity>
         <activity
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait"
             android:name=".CoreActivity"
-            android:label="Dulwich Outdoor Gallery"
-            >
+            android:label="Dulwich Outdoor Gallery">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -68,8 +57,10 @@
             android:configChanges="orientation|keyboard">
             <intent-filter>
                 <!-- Change this to be db- followed by your app key -->
-                <data android:scheme="db-taiirhe19lvs791" />                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="db-taiirhe19lvs791" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

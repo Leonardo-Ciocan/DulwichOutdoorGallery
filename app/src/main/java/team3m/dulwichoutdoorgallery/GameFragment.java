@@ -5,7 +5,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
@@ -16,7 +18,6 @@ import android.widget.TextView;
 import android.widget.ViewAnimator;
 
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class GameFragment extends Fragment {
 
@@ -29,7 +30,12 @@ public class GameFragment extends Fragment {
     private TextView changeImageChoiceNumberText;
     private TextView changeImageNumberText;
     private TextView changeArtistText;
+
+    private TextView changeOldArtistText;
+    private TextView changeOldArtNameText;
+
     private Activity theActivity;
+    private GestureDetector theGestureDetector;
 
     public static GameFragment newInstance() {
         GameFragment fragment = new GameFragment();
@@ -49,48 +55,78 @@ public class GameFragment extends Fragment {
 
         changeImageChoiceNumberText = (TextView) v.findViewById(R.id.currentRotatedPicture);
         changeImageNumberText = (TextView) v.findViewById(R.id.currentGameArtwork);
-        changeArtistText = (TextView) v.findViewById(R.id.currentGameArtworkArtist);
+        changeArtistText = (TextView) v.findViewById(R.id.currentNewArtist);
+
+        changeOldArtistText = (TextView) v.findViewById(R.id.currentSelectedOldArtworkName);
+        changeOldArtNameText = (TextView) v.findViewById(R.id.currentSelectedOldArtworkArtist);
+
         artworkToMatch = (ImageView) v.findViewById(R.id.imageView);
         imageButtonsArray[0] = (ImageButton) v.findViewById(R.id.imageButton1);
         imageButtonsArray[1] = (ImageButton) v.findViewById(R.id.imageButton2);
         imageButtonsArray[2] = (ImageButton) v.findViewById(R.id.imageButton3);
         imageButtonsArray[3] = (ImageButton) v.findViewById(R.id.imageButton4);
         theVa = (ViewAnimator) v.findViewById(R.id.viewAnimator);
+        theVa.setInAnimation(AnimationUtils.loadAnimation(theActivity, android.R.anim.fade_in));
+        theVa.setOutAnimation(theActivity, android.R.anim.fade_out);
 
-        for (int t = 0; t < 4; t++) {
-            final int u = t;
-            imageButtonsArray[t].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                    if (game.makeAGuess(u)) {
-                        final CustomDialogClass2 cdd = new CustomDialogClass2(theActivity);
-                        cdd.show();
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            public void run() {
-                                cdd.dismiss();
-                            }
-                        }, 1500);
-
+        theGestureDetector = new GestureDetector(getActivity().getBaseContext(),
+                new GestureDetector.SimpleOnGestureListener() {
+                    @Override
+                    public boolean onSingleTapConfirmed(MotionEvent e) {
+                        if (game.makeAGuess(currentButton)) {
+                            final CustomDialogClass2 cdd = new CustomDialogClass2(theActivity);
+                            cdd.show();
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                public void run() {
+                                    cdd.dismiss();
+                                }
+                            }, 1500);
+                        } else {
+                            final CustomDialogClass cdd = new CustomDialogClass(theActivity);
+                            cdd.show();
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                public void run() {
+                                    cdd.dismiss();
+                                }
+                            }, 1500);
+                        }
                         if (!Game.allSetsComplete()) {
                             loadData();
                         } else {
                             // if all 20 choices guessed correctly, run the GameComplete activity
                             showCompleteScreen(getView());
                         }
-                    } else {
-                        incorrectAnswerAlert();
+                        return true;
                     }
+
+                    @Override
+                    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                        if (velocityX > 0) { //right
+                            if ((--currentButton) < 0) currentButton = 3;
+                        } else {
+                            if ((++currentButton) > 3) currentButton = 0;
+                        }
+                        changeImageChoiceNumberText.setText(Integer.toString(currentButton + 1));
+                        theVa.setDisplayedChild(currentButton);
+                        changeOldArtistText.setText(game.getArtworkName(currentButton));
+                        changeOldArtNameText.setText(game.getArtworkArtist(currentButton));
+                        return true;
+                    }
+                }
+        );
+
+        for (int t = 0; t < 4; t++) {
+            imageButtonsArray[t].setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    return theGestureDetector.onTouchEvent(event);
                 }
             });
         }
 
-        theVa.setInAnimation(AnimationUtils.loadAnimation(theActivity, android.R.anim.slide_in_left));
-        theVa.setOutAnimation(theActivity, android.R.anim.slide_out_right);
         theVa.setDisplayedChild(0);
-        startTimer();
 
         Button lpb = (Button) v.findViewById(R.id.letsplaybutton);
         lpb.setOnClickListener(new View.OnClickListener() {
@@ -134,13 +170,10 @@ public class GameFragment extends Fragment {
                         game = Game.getNextGame(theActivity);
                         loadData();
                         theActivity.findViewById(R.id.gameCompleteFrame).setVisibility(View.GONE);
-                        //startTimer();
-
                     }
                 });
             }
         });
-
         return v;
     }
 
@@ -164,43 +197,22 @@ public class GameFragment extends Fragment {
                         imageButtonsArray[i].setImageResource(game.getPossibleChoices()[i]);
                     }
                     changeImageNumberText.setText("Picture: " + ((Game.progress()) + 1) + "/20");
-                    changeArtistText.setText("Artist: " + game.getArtistName());
+                    changeArtistText.setText("Street Artist: " + game.getArtistName());
+                    currentButton = 0;
+                    changeOldArtistText.setText(game.getArtworkName(currentButton));
+                    changeOldArtNameText.setText(game.getArtworkArtist(currentButton));
+                    theVa.setDisplayedChild(0);
+                    changeImageChoiceNumberText.setText(Integer.toString(currentButton + 1));
                 }
             }
         }));
     }
 
-    public void startTimer() {
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                onTimerTick();
-            }
-        }, 3000, 3000);
-    }
-
-    public void incorrectAnswerAlert() {
-        CustomDialogClass cdd = new CustomDialogClass(theActivity);
-        cdd.show();
-    }
-
     public void showCompleteScreen(View v) {
-        //timer.cancel();
         TextView displayCorrectAnswers = (TextView) v.findViewById(R.id.textViewGameComplete2);
-        displayCorrectAnswers.setText("You got " + game.score() + "/20 questions correct!");
+        displayCorrectAnswers.setText("You got " + Game.score() + "/20 questions correct!");
         v.findViewById(R.id.gameCompleteFrame).setVisibility(View.VISIBLE);
         v.findViewById(R.id.gameFrame).setVisibility(View.GONE);
-    }
-
-    public void onTimerTick() {
-        currentButton = ++currentButton % 4;
-        theActivity.runOnUiThread(new Thread(new Runnable() {
-            public void run() {
-                int currentText = currentButton + 1;
-                changeImageChoiceNumberText.setText(Integer.toString(currentText));
-                theVa.setDisplayedChild(currentButton);
-            }
-        }));
     }
 
     @Override

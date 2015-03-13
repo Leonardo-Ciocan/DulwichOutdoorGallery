@@ -21,6 +21,8 @@ public class Game {
     private int correctChoice;
     private boolean completed = false;
     private boolean correct = false;
+    private String[] artworkName = new String[4];
+    private String[] artworkArtist = new String[4];
 
     private static void loadSets() {
         int event;
@@ -28,7 +30,7 @@ public class Game {
 
         SharedPreferences completionData = theActivity.getSharedPreferences("Completion", 0);
 
-        theSets = new ArrayList<Game>();
+        theSets = new ArrayList<>();
         XmlResourceParser data = theActivity.getResources().getXml(R.xml.games);
 
         try {
@@ -52,6 +54,14 @@ public class Game {
                         cur.correctChoice = data.getAttributeIntValue(null, "correct", 0);
                         cur.completed = completionData.getBoolean(cur.artworkResourceName, false);
                         cur.correct = completionData.getBoolean(cur.artworkResourceName + "_correct", false);
+                        cur.artworkName[0] = data.getAttributeValue(null, "choice0name");
+                        cur.artworkName[1] = data.getAttributeValue(null, "choice1name");
+                        cur.artworkName[2] = data.getAttributeValue(null, "choice2name");
+                        cur.artworkName[3] = data.getAttributeValue(null, "choice3name");
+                        cur.artworkArtist[0] = data.getAttributeValue(null, "choice0artist");
+                        cur.artworkArtist[1] = data.getAttributeValue(null, "choice1artist");
+                        cur.artworkArtist[2] = data.getAttributeValue(null, "choice2artist");
+                        cur.artworkArtist[3] = data.getAttributeValue(null, "choice3artist");
                     }
                 } else if (event == XmlPullParser.END_TAG) {
                     if (data.getName().contentEquals("pictureSet")) {
@@ -151,6 +161,14 @@ public class Game {
 
     public int[] getPossibleChoices() {
         return possibleChoices;
+    }
+
+    public String getArtworkName(int i) {
+        return artworkName[i];
+    }
+
+    public String getArtworkArtist(int i) {
+        return artworkArtist[i];
     }
 
     public boolean makeAGuess(int pictureNumber) {
