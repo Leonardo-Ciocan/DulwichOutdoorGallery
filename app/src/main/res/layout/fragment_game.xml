@@ -21,11 +21,19 @@
                 android:layout_gravity="top"
                 android:background="@color/brandDark">
 
+                <ImageButton
+                    android:id="@+id/gameResetButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:src="@android:drawable/ic_menu_revert" />
+
                 <TextView
                     android:id="@+id/currentGameArtwork"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
+                    android:layout_centerInParent="true"
                     android:alpha="1"
                     android:fontFamily="sans-serif-light"
                     android:text="Picture: 0/20"
@@ -123,6 +131,17 @@
                     android:layout_marginTop="5dp"
                     android:background="#30000000"></FrameLayout>
 
+                <ImageButton
+                    android:id="@+id/gameOldArtInfoButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/viewAnimator"
+                    android:layout_toRightOf="@+id/viewAnimator"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/about_dark"
+                    android:adjustViewBounds="true"
+                    android:alpha="0" />
+
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="@dimen/picture_size"
@@ -203,10 +222,9 @@
         android:layout_height="fill_parent"
         android:alpha="0.9"
         android:background="@android:color/white"
-        android:padding="10dp"
-        android:visibility="gone">
+        android:padding="10dp">
 
-        <GridLayout
+    <GridLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:clickable="true"
@@ -229,8 +247,6 @@
                 android:id="@+id/letsplaybutton"
                 android:layout_width="335dp"
                 android:layout_height="88dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/brandDark"
                 android:fontFamily="sans-serif-light"
@@ -256,8 +272,11 @@
                 android:id="@+id/textViewGameComplete1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_above="@+id/textViewGameComplete2"
+                android:layout_alignParentTop="true"
                 android:fontFamily="sans-serif-light"
-                android:text="Well done, you completed the Fake Spotter game!"
+                android:gravity="center"
+                android:text="Well done, you completed the Fake Spotter game! You got 0/20 questions correct."
                 android:textColor="@android:color/black"
                 android:textSize="9pt" />
 
@@ -265,9 +284,11 @@
                 android:id="@+id/textViewGameComplete2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textViewGameComplete1"
+                android:layout_above="@+id/gameRestartButton"
                 android:fontFamily="sans-serif-light"
-                android:text="You got 20/20 questions correct!"
+                android:gravity="center"
+                android:paddingBottom="30dp"
+                android:text="Try again and if you get all 20 correct, you will earn a badge."
                 android:textColor="@android:color/black"
                 android:textSize="9pt" />
 
@@ -281,8 +302,80 @@
                 android:text="Restart Game"
                 android:textSize="20sp" />
 
+            <Button
+                android:id="@+id/gameShareButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/gameRestartButton"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:padding="5dp"
+                android:text="SHARE"
+                android:textColor="@color/brand" />
+
         </RelativeLayout>
 
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/gameComplete20Frame"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:alpha="1"
+        android:visibility="gone">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:padding="10dp">
+
+            <Button
+                android:id="@+id/gameRestartButton2"
+                android:layout_width="335dp"
+                android:layout_height="88dp"
+                android:layout_below="@+id/gameBadgeView"
+                android:layout_centerHorizontal="true"
+                android:background="@color/brandDark"
+                android:text="Restart Game"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textViewGameComplete3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/gameBadgeView"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:text="Well done, you completed the Fake Spotter game!\n\nYou got all 20 questions correct! You have earned the Fake Spotter badge:"
+                android:textColor="@android:color/black"
+                android:textSize="9pt" />
+
+            <Button
+                android:id="@+id/gameShareButton2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/gameRestartButton2"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:padding="5dp"
+                android:text="SHARE"
+                android:textColor="@color/brand" />
+
+            <ImageView
+                android:id="@+id/gameBadgeView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingBottom="30dp"
+                android:src="@drawable/fakespotter" />
+        </RelativeLayout>
     </FrameLayout>
 
 </FrameLayout>

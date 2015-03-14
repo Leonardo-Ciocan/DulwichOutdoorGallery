@@ -24,6 +24,10 @@ public class Game {
     private String[] artworkName = new String[4];
     private String[] artworkArtist = new String[4];
 
+    private Game() { //intentionally private - only our static functions should create Games
+        possibleChoices = new int[4];
+    }
+
     private static void loadSets() {
         int event;
         Game cur = null;
@@ -71,9 +75,7 @@ public class Game {
                 }
                 data.next();
             }
-        } catch (IOException x) {
-            x.printStackTrace();
-        } catch (XmlPullParserException x) {
+        } catch (IOException | XmlPullParserException x) {
             x.printStackTrace();
         }
     }
@@ -141,14 +143,10 @@ public class Game {
             Game g = theSets.get(t);
             g.correct = false;
             g.completed = false;
-            updateCompletionData.putBoolean(g.artworkResourceName, g.completed).
+            updateCompletionData.putBoolean(g.artworkResourceName, false).
                     putBoolean(g.artworkResourceName + "_correct", g.correct);
         }
         updateCompletionData.apply();
-    }
-
-    private Game() { //intentionally private - only our static functions should create Games
-        possibleChoices = new int[4];
     }
 
     public int getIdOfArtworkToMatch() {
@@ -184,7 +182,7 @@ public class Game {
         return correct;
     }
 
-    public boolean isCompleted() {
+    boolean isCompleted() {
         return completed;
     }
 }

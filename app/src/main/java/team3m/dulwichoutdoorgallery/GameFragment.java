@@ -1,6 +1,7 @@
 package team3m.dulwichoutdoorgallery;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,35 +18,30 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewAnimator;
 
-import java.util.Timer;
-
 public class GameFragment extends Fragment {
 
     private Game game;
     private ImageButton[] imageButtonsArray = new ImageButton[4];
     private ImageView artworkToMatch;
-    private Timer timer = new Timer();
     private ViewAnimator theVa;
     private int currentButton;
     private TextView changeImageChoiceNumberText;
     private TextView changeImageNumberText;
     private TextView changeArtistText;
-
     private TextView changeOldArtistText;
     private TextView changeOldArtNameText;
-
     private Activity theActivity;
     private GestureDetector theGestureDetector;
+
+    public GameFragment() {
+        // Required empty public constructor
+    }
 
     public static GameFragment newInstance() {
         GameFragment fragment = new GameFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public GameFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -69,6 +65,8 @@ public class GameFragment extends Fragment {
         theVa.setInAnimation(AnimationUtils.loadAnimation(theActivity, android.R.anim.fade_in));
         theVa.setOutAnimation(theActivity, android.R.anim.fade_out);
 
+        ImageButton artInfoButton = (ImageButton) v.findViewById(R.id.gameOldArtInfoButton);
+
         theGestureDetector = new GestureDetector(getActivity().getBaseContext(),
                 new GestureDetector.SimpleOnGestureListener() {
                     @Override
@@ -81,7 +79,7 @@ public class GameFragment extends Fragment {
                                 public void run() {
                                     cdd.dismiss();
                                 }
-                            }, 1500);
+                            }, 500);
                         } else {
                             final CustomDialogClass cdd = new CustomDialogClass(theActivity);
                             cdd.show();
@@ -90,13 +88,17 @@ public class GameFragment extends Fragment {
                                 public void run() {
                                     cdd.dismiss();
                                 }
-                            }, 1500);
+                            }, 500);
                         }
                         if (!Game.allSetsComplete()) {
                             loadData();
                         } else {
                             // if all 20 choices guessed correctly, run the GameComplete activity
-                            showCompleteScreen(getView());
+                            if (Game.score() == 20) {
+                                showCompleteScreen20(getView());
+                            } else {
+                                showCompleteScreen(getView());
+                            }
                         }
                         return true;
                     }
@@ -155,21 +157,23 @@ public class GameFragment extends Fragment {
         loadData();
 
         if (Game.allSetsComplete()) {
-            showCompleteScreen(v);
+            if (Game.score() == 20) {
+                showCompleteScreen20(v);
+            } else {
+                showCompleteScreen(v);
+            }
         }
 
-        Button restartGameButton = (Button) v.findViewById(R.id.gameRestartButton);
-        restartGameButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton resetGameButton = (ImageButton) v.findViewById(R.id.gameResetButton);
+        resetGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 theActivity.runOnUiThread(new Runnable() {
-                    @Override
                     public void run() {
                         Game.reset();
-                        theActivity.findViewById(R.id.gameFrame).setVisibility(View.VISIBLE);
                         game = Game.getNextGame(theActivity);
                         loadData();
-                        theActivity.findViewById(R.id.gameCompleteFrame).setVisibility(View.GONE);
+                        theActivity.findViewById(R.id.gameHelpFrame).setVisibility(View.VISIBLE);
                     }
                 });
             }
@@ -185,7 +189,7 @@ public class GameFragment extends Fragment {
 
     }
 
-    public void loadData() {
+    void loadData() {
         game = Game.getNextGame(theActivity);
         theActivity.runOnUiThread(new Thread(new Runnable() {
             public void run() {
@@ -208,16 +212,80 @@ public class GameFragment extends Fragment {
         }));
     }
 
-    public void showCompleteScreen(View v) {
-        TextView displayCorrectAnswers = (TextView) v.findViewById(R.id.textViewGameComplete2);
-        displayCorrectAnswers.setText("You got " + Game.score() + "/20 questions correct!");
+    void showCompleteScreen(View v) {
+        TextView displayCorrectAnswers = (TextView) v.findViewById(R.id.textViewGameComplete1);
+        displayCorrectAnswers.setText("Well done, you completed the Fake Spotter game! You got " + Game.score() + "/20 questions correct.");
+        Button shareButton = (Button) v.findViewById(R.id.gameShareButton);
+        shareButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                share();
+                return true;
+            }
+        });
+        Button restartGameButton = (Button) v.findViewById(R.id.gameRestartButton);
+        restartGameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                theActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Game.reset();
+                        theActivity.findViewById(R.id.gameFrame).setVisibility(View.VISIBLE);
+                        game = Game.getNextGame(theActivity);
+                        loadData();
+                        theActivity.findViewById(R.id.gameCompleteFrame).setVisibility(View.GONE);
+                    }
+                });
+            }
+        });
         v.findViewById(R.id.gameCompleteFrame).setVisibility(View.VISIBLE);
         v.findViewById(R.id.gameFrame).setVisibility(View.GONE);
+    }
+
+    void showCompleteScreen20(View v) {
+        Button shareButton2 = (Button) v.findViewById(R.id.gameShareButton2);
+        shareButton2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                share();
+                return true;
+            }
+        });
+        Button restartGameButton = (Button) v.findViewById(R.id.gameRestartButton2);
+        restartGameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                theActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Game.reset();
+                        theActivity.findViewById(R.id.gameFrame).setVisibility(View.VISIBLE);
+                        game = Game.getNextGame(theActivity);
+                        loadData();
+                        theActivity.findViewById(R.id.gameComplete20Frame).setVisibility(View.GONE);
+                    }
+                });
+            }
+        });
+        //TODO activate fake spotter badge
+        v.findViewById(R.id.gameComplete20Frame).setVisibility(View.VISIBLE);
+        v.findViewById(R.id.gameFrame).setVisibility(View.GONE);
+
+    }
+
+    void share() {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        //Uri uri = Uri.parse("android.resource:team3m.dulwichoutdoorgallery" + R.drawable.fakespotter);
+        //shareIntent.setType("*/*");
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "I guessed " + Game.score() + "/20 pictures right in the Dulwich Outdoor Gallery 'Fake Spotter' game!");
+        //shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        startActivity(Intent.createChooser(shareIntent, "Share via"));
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        timer.cancel();
     }
 }
