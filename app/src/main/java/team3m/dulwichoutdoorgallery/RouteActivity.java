@@ -32,6 +32,7 @@ import android.view.animation.Transformation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -285,6 +286,14 @@ public class RouteActivity extends ActionBarActivity {
                 }
             });
 
+
+            /*LinearLayout cardContainer = (LinearLayout) rootView.findViewById(R.id.cardContainer);
+            for(int x =0;x< Core.getGallery().size();x++)
+            {
+                Art ax = Core.getGallery().get(x);
+                cardContainer.addView(new LocationCardView(getActivity() , ax));
+            }*/
+
             return rootView;
         }
 
@@ -368,7 +377,8 @@ public class RouteActivity extends ActionBarActivity {
         }
 
         void shareArt(){
-            Intent intent2 = new Intent(); intent2.setAction(Intent.ACTION_SEND);
+            Intent intent2 = new Intent();
+            intent2.setAction(Intent.ACTION_SEND);
             intent2.setType("text/plain");
 
             //TODO fix please
@@ -378,6 +388,12 @@ public class RouteActivity extends ActionBarActivity {
                     .getIdentifier(art.getPhoto(), "drawable", getActivity().getPackageName()));
             intent2.putExtra(Intent.EXTRA_STREAM, uri);
             startActivity(Intent.createChooser(intent2, "Share via"));
+        }
+
+        Location userLocation;
+        void computeRoute(){
+            ArrayList<Art> newList = new ArrayList<>();
+
         }
     }
 }

@@ -29,14 +29,17 @@ public class RouteProgressIndicator extends View{
         float radius = getWidth() / Core.getGallery().size();
         //float padding = (getWidth() - Core.getGallery().size() * radius * 2) / (Core.getGallery().size()+1);
         for(int x = 0; x < Core.getGallery().size();x++){
-            paint.setColor(x == selectedIndex ? getResources().getColor(R.color.brand) : Color.LTGRAY);
+            paint.setStrokeWidth(3.5f);
+            paint.setColor(x == selectedIndex ? getResources().getColor(R.color.brand) : Color.WHITE);
             //canvas.drawCircle(x * 10 + (x+1) * padding, getHeight() / 4f * (float)(Math.floor(x/half) + 1f) - radius , radius , paint);
             paint.setStyle(Paint.Style.FILL);
-            canvas.drawRect(x* radius  , 0 , x*radius + radius , getHeight(),paint);
-
+            //canvas.drawRect(x* radius  , 0 , x*radius + radius , getHeight(),paint);
+            canvas.drawCircle(x*radius+radius/2f , radius ,radius/2f,paint);
             paint.setStyle(Paint.Style.STROKE);
-            paint.setColor( Color.WHITE);
-            canvas.drawRect(x* radius , 0 , x*radius + radius , getHeight(),paint);
+            paint.setColor( getResources().getColor(R.color.brandDark));
+            paint.setStrokeWidth(5);
+            //canvas.drawRect(x* radius , 0 , x*radius + radius , getHeight(),paint);
+            canvas.drawCircle(x*radius+radius/2f , radius ,radius/2f,paint);
         }
     }
 

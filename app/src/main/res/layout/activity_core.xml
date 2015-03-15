@@ -26,6 +26,11 @@
 			android:layout_height="fill_parent"
 			android:hint="Search art"/>
 
+        <team3m.dulwichoutdoorgallery.RouteProgressIndicator
+
+            android:layout_width="fill_parent"
+            android:layout_height="18dp" />
+
 	</android.support.v7.widget.Toolbar>
 
 	<android.support.v4.widget.DrawerLayout

@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,7 @@ import android.os.Build;
 import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.Interpolator;
 import android.view.animation.Transformation;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -36,14 +38,16 @@ import java.util.concurrent.locks.Lock;
 
 public class InfoActivity extends ActionBarActivity {
 
+    PlaceholderFragment fragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_activity);
         Slidr.attach(this);
+        fragment = new PlaceholderFragment();
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.container, fragment)
                     .commit();
         }
 
@@ -73,13 +77,24 @@ public class InfoActivity extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
-        super.onBackPressed();
+        fragment.animation.setInterpolator(new ReverseInterpolator());
+        fragment.animation.setDuration(500);
+        fragment.getView().startAnimation(fragment.animation);
+        new CountDownTimer(500,500){
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                InfoActivity.super.onBackPressed();
+            }
+        }.start();
+
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
     public static class PlaceholderFragment extends Fragment {
 
         public PlaceholderFragment() {
@@ -91,6 +106,7 @@ public class InfoActivity extends ActionBarActivity {
         ImageView i1;
         ImageView i2;
         Art art;
+        public Animation animation;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
@@ -98,7 +114,7 @@ public class InfoActivity extends ActionBarActivity {
             final ScrollView scrollView = (ScrollView) rootView.findViewById(R.id.scrollView);
             final FrameLayout imgHolder = (FrameLayout) rootView.findViewById(R.id.imgHolder);
 
-            Animation animation = new Animation() {
+             animation = new Animation() {
                 @Override
                 protected void applyTransformation(float interpolatedTime, Transformation t) {
                     rootView.setAlpha(interpolatedTime);
@@ -154,7 +170,6 @@ public class InfoActivity extends ActionBarActivity {
                 @Override
                 public void onScrollChanged() {
                     int scrollY = scrollView.getScrollY(); //for verticalScrollView
-                    float percentage = scrollY / scrollView.getMaxScrollAmount();
 
                     FrameLayout.LayoutParams params2 = (FrameLayout.LayoutParams) imgHolder.getLayoutParams();
                     params2.topMargin = (int)(-scrollY / 2.5f);
@@ -293,6 +308,13 @@ public class InfoActivity extends ActionBarActivity {
                     .getIdentifier(art.getPhoto(), "drawable", getActivity().getPackageName()));
             intent2.putExtra(Intent.EXTRA_STREAM, uri);
             startActivity(Intent.createChooser(intent2, "Share via"));
+        }
+    }
+
+    public class ReverseInterpolator implements Interpolator {
+        @Override
+        public float getInterpolation(float paramFloat) {
+            return Math.abs(paramFloat -1f);
         }
     }
 }
