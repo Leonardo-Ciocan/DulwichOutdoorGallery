@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="195dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginLeft="-5dp"
+        android:layout_marginRight="-5dp">
 
 
         <fragment
@@ -241,12 +241,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="175dp"
+        android:layout_marginBottom="80dp"
         android:src="@drawable/ic_maps_navigation"
         fab:fab_colorNormal="@color/brand"
         fab:fab_colorPressed="@color/brandDark" />
 
-   <!-- <HorizontalScrollView
+    <!--<HorizontalScrollView
+        android:id="@+id/scrollView"
         android:layout_gravity="bottom"
         android:layout_width="fill_parent"
         android:layout_height="150dp"
@@ -261,7 +262,7 @@
     </HorizontalScrollView>-->
 
     <team3m.dulwichoutdoorgallery.LocationCardView
-
+        android:id="@+id/cardA"
         android:layout_gravity="bottom|left"
         android:layout_width="150dp"
         android:layout_height="180dp"
@@ -271,12 +272,26 @@
 
 
     <team3m.dulwichoutdoorgallery.LocationCardView
+        android:id="@+id/cardB"
         android:layout_marginRight="10dp"
         android:layout_gravity="bottom|right"
-        android:layout_width="110dp"
-        android:layout_height="140dp"
+        android:layout_width="150dp"
+        android:layout_height="180dp"
         android:layout_marginBottom="10dp">
+
+
 
     </team3m.dulwichoutdoorgallery.LocationCardView>
 
+    <team3m.dulwichoutdoorgallery.LocationCardView
+        android:id="@+id/cardC"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="bottom|right"
+        android:layout_width="150dp"
+        android:layout_height="180dp"
+        android:layout_marginBottom="-190dp">
+
+
+
+    </team3m.dulwichoutdoorgallery.LocationCardView>
 </FrameLayout>

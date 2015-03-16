@@ -2,6 +2,8 @@ package team3m.dulwichoutdoorgallery;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -33,6 +35,7 @@ import com.melnykov.fab.FloatingActionButton;
 import com.r0adkll.slidr.Slidr;
 import com.r0adkll.slidr.model.SlidrInterface;
 
+import java.io.File;
 import java.util.concurrent.locks.Lock;
 
 
@@ -161,10 +164,28 @@ public class InfoActivity extends ActionBarActivity {
             textDescription.setText(art.getDescription());
             textAuthor.setText(art.getAuthor());
 
-            header.setImageDrawable(getActivity().getResources().getDrawable(getActivity().getResources()
-                    .getIdentifier(art.getPhoto(), "drawable", getActivity().getPackageName())));
-            header2.setImageDrawable(getActivity().getResources().getDrawable(getActivity().getResources()
-                    .getIdentifier(art.getRelatedArt().getPhoto(), "drawable", getActivity().getPackageName())));
+
+
+            /*if(art.getIsOnline() != null) {
+                File imgFile = new  File(getActivity().getApplicationContext().getFilesDir()+ File.separator+ art.getIsOnline());
+                if(imgFile.exists()){
+                    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                    header.setImageBitmap(myBitmap);
+                }
+
+                File imgFile2 = new  File(getActivity().getApplicationContext().getFilesDir()+ File.separator+ art.getRelatedArt().getIsOnline());
+                if(imgFile2.exists()){
+                    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                    header2.setImageBitmap(myBitmap);
+                }
+            }
+            else {
+                header.setImageDrawable(getActivity().getResources().getDrawable(getActivity().getResources()
+                        .getIdentifier(art.getPhoto(), "drawable", getActivity().getPackageName())));
+                header2.setImageDrawable(getActivity().getResources().getDrawable(getActivity().getResources()
+                        .getIdentifier(art.getRelatedArt().getPhoto(), "drawable", getActivity().getPackageName())));
+            }*/
+
             scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
 
                 @Override

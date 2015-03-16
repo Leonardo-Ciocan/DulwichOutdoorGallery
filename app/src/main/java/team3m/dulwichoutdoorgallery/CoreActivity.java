@@ -82,12 +82,13 @@ public class CoreActivity extends ActionBarActivity {
        // mDBApi.getSession().startOAuth2Authentication(CoreActivity.this);
         mDBApi.getSession().setOAuth2AccessToken("cu234J18AOAAAAAAAAAABLG6O6CmDp57aRQ3frKJ2aNhrKumpe9M10HatiCxFDJN");
 
-        new Thread(new Runnable() {
+        //TODO fix this
+        /*new Thread(new Runnable() {
             @Override
             public void run() {
                 Core.update(CoreActivity.this);
             }
-        }).start();
+        }).start();*/
 /*
 
         new Thread(new Runnable() {
@@ -182,7 +183,7 @@ public class CoreActivity extends ActionBarActivity {
 
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.contentHolder, ExploreFragment)
+                .add(R.id.contentHolder, new RouteActivity.PlaceholderFragment())
                 .commit();
 
 

@@ -19,6 +19,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,9 +29,11 @@ import android.view.ViewGroup;
 import android.os.Build;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.OvershootInterpolator;
 import android.view.animation.Transformation;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -92,6 +95,10 @@ public class RouteActivity extends ActionBarActivity {
     public static class PlaceholderFragment extends Fragment {
 
         Polyline line ;
+        private LocationCardView cardA;
+        private LocationCardView cardB;
+        private LocationCardView cardC;
+
         public PlaceholderFragment() {
         }
 
@@ -100,6 +107,7 @@ public class RouteActivity extends ActionBarActivity {
         LatLng last;
         boolean collapsed;
         Art art;
+        Animation nextCardAnim;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -120,6 +128,11 @@ public class RouteActivity extends ActionBarActivity {
             final CardView               navigationCard = (CardView)                rootView.findViewById(R.id.navigationCard);
             final CardView               currentArt     = (CardView)                rootView.findViewById(R.id.currentArt);
             final FloatingActionButton   fab            = (FloatingActionButton)    rootView.findViewById(R.id.fab);
+           // final LinearLayout           cardContainer  = (LinearLayout)            rootView.findViewById(R.id.cardContainer);
+            //final HorizontalScrollView   scrollView     = (HorizontalScrollView)    rootView.findViewById(R.id.scrollView);
+            cardA = (LocationCardView)        rootView.findViewById(R.id.cardA);
+            cardB = (LocationCardView)        rootView.findViewById(R.id.cardB);
+            cardC = (LocationCardView)        rootView.findViewById(R.id.cardC);
 
 
             titleView.setText(Core.getGallery().get(0).getName());
@@ -152,7 +165,7 @@ public class RouteActivity extends ActionBarActivity {
                             if(closest != lastVisited && closest > lastVisited){
                                 lastVisited = closest;
                                 art = Core.Gallery.get(lastVisited);
-                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(art.getLocation(), 12));
+                                //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(art.getLocation(), 12));
                                 titleProgress.setText((lastVisited) + " : " + art.getName());
                                 title.setText(art.getName());
                                 Log.e("xyz", art.getPhoto().toLowerCase());
@@ -164,6 +177,13 @@ public class RouteActivity extends ActionBarActivity {
                                 artCardImage.setImageDrawable(d);
                                 //author.setText(a.getAuthor());
                                 indicator.setSelected(closest);
+
+                                //scrollView.setSmoothScrollingEnabled(true);
+                                //scrollView.smoothScrollTo((int)(lastVisited*115* getActivity().getResources().getDisplayMetrics().density) ,0);
+
+                                //((LocationCardView)cardContainer.getChildAt(lastVisited)).hideOverlay();
+
+                                cardA.setArt(Core.getGallery().get(lastVisited));
 
                                 drawOverlay();
                             }
@@ -220,50 +240,35 @@ public class RouteActivity extends ActionBarActivity {
 
             collapsed = true;
 
+            fab.setOnTouchListener(new View.OnTouchListener() {
 
-            final Animation a = new Animation() {
+
+                @Override
+                public boolean onTouch(final View v, MotionEvent event) {
+                    next();
+                    return false;
+                }
+            });
+
+
+            nextCardAnim = new Animation() {
                 @Override
                 protected void applyTransformation(float interpolatedTime, Transformation t) {
+                    super.applyTransformation(interpolatedTime, t);
+                    FrameLayout.LayoutParams params55 = (FrameLayout.LayoutParams) cardA.getLayoutParams();
+                    params55.bottomMargin = (int) ((10 - (int) (195 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
+                    cardA.setLayoutParams(params55);
 
-                    Log.v("appi", interpolatedTime + " " + collapsed);
-                    FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) currentArt.getLayoutParams();
-                    params.bottomMargin = (int) ((-80 + (int) (70 * ((collapsed) ? interpolatedTime : 1 - interpolatedTime))) * getActivity().getResources().getDisplayMetrics().density);
-                    currentArt.setLayoutParams(params);
+                    FrameLayout.LayoutParams params5 = (FrameLayout.LayoutParams) cardB.getLayoutParams();
+                    params5.gravity = Gravity.LEFT | Gravity.BOTTOM;
+                    params5.leftMargin = (int) ((rootView.getWidth()-10 - (int) ((rootView.getWidth()-20) * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
+                    cardB.setLayoutParams(params5);
 
-                    FrameLayout.LayoutParams params2 = (FrameLayout.LayoutParams) navigationCard.getLayoutParams();
-                    params2.bottomMargin = (int) (-25 - (int) (190 * ((collapsed) ? interpolatedTime : 1 - interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
-                    navigationCard.setLayoutParams(params2);
-
-                           /* FrameLayout.LayoutParams params3 =(FrameLayout.LayoutParams) smallImage.getLayoutParams();
-                            params3.topMargin = (int)(5 + (int)(30 * ((collapsed)?interpolatedTime:1-interpolatedTime))* getActivity().getResources().getDisplayMetrics().density);
-                            smallImage.setLayoutParams(params3);
-*/
-
-
-
-                    artCardImage.setScaleY(2 - ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
-                    artCardImage.setScaleX(2 - ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
-
-                    navigationCard.setScaleY(1 + ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
-                    navigationCard.setScaleX(1 + ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
-                    navigationCard.setAlpha(1- ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
-
-
-                    artCardImage.setAlpha( ((collapsed) ? interpolatedTime : 1 - interpolatedTime));
-
-
-
-
-                    FrameLayout.LayoutParams params55 = (FrameLayout.LayoutParams) fab.getLayoutParams();
-                    params55.bottomMargin = (int) ((180 + (int) (70 * ((collapsed) ? interpolatedTime : 1 - interpolatedTime))) * getActivity().getResources().getDisplayMetrics().density);
-                    fab.setLayoutParams(params55);
-
-                    fab.setRotation(-90 + 180 *( (collapsed) ? interpolatedTime : 1 - interpolatedTime));
-                    fab.setAlpha(( 0.5f + 0.5f *( (!collapsed) ? interpolatedTime : 1 - interpolatedTime)));
-
-                    if (interpolatedTime == 1) {
-                        collapsed = !collapsed;
-                        this.cancel();
+                    if(interpolatedTime>0.8f) {
+                        FrameLayout.LayoutParams params6 = (FrameLayout.LayoutParams) cardC.getLayoutParams();
+                        params6.gravity = Gravity.RIGHT | Gravity.BOTTOM;
+                        params6.bottomMargin = (int) ((-190 + (int) (200 * (interpolatedTime-0.8f)*5f)) * getActivity().getResources().getDisplayMetrics().density);
+                        cardC.setLayoutParams(params6);
                     }
                 }
 
@@ -272,26 +277,37 @@ public class RouteActivity extends ActionBarActivity {
                     return true;
                 }
             };
+            nextCardAnim.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
 
-            a.setInterpolator(new AccelerateDecelerateInterpolator());
-            a.setDuration(655);
-            fab.setOnTouchListener(new View.OnTouchListener() {
-
+                }
 
                 @Override
-                public boolean onTouch(final View v, MotionEvent event) {
+                public void onAnimationEnd(Animation animation) {
+                    cardB.hideOverlay();
+                    cardA.showOverlay();
+                    cardC.showOverlay();
 
-                    v.startAnimation(a);
-                    return false;
+                    LocationCardView temp = cardA;
+                    cardA = cardB;
+                    LocationCardView temp2 = cardC;
+                    cardC = temp;
+                    cardB = temp2;
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
                 }
             });
+            nextCardAnim.setInterpolator(new OvershootInterpolator());
+            nextCardAnim.setDuration(1000);
 
-
-            /*LinearLayout cardContainer = (LinearLayout) rootView.findViewById(R.id.cardContainer);
-            for(int x =0;x< Core.getGallery().size();x++)
+            /*for(int x =0;x< Core.getGallery().size();x++)
             {
                 Art ax = Core.getGallery().get(x);
-                cardContainer.addView(new LocationCardView(getActivity() , ax));
+                //cardContainer.addView(new LocationCardView(getActivity() , ax));
             }*/
 
             return rootView;
@@ -316,31 +332,51 @@ public class RouteActivity extends ActionBarActivity {
         void drawOverlay(){
             map.clear();
             ArrayList<Art> Gallery = Core.getGallery();
-            for(int i=0; i< Core.getGallery().size(); i++){
-                LatLng point = new LatLng(Gallery.get(i).getLatitude(), Gallery.get(i).getLongitude());
-                map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(
-                        i != lastVisited && i != lastVisited + 1 ? R.drawable.marker_off : R.drawable.marker))
-                        .alpha(i != lastVisited && i != lastVisited + 1 ? 0.7f : 1f)
-                        .title(Gallery.get(i).getName())
-                        .snippet(Gallery.get(i).getDescription())
-                        .position(point));
+
+            int i = lastVisited;
+
+            LatLng point = new LatLng(Gallery.get(i).getLatitude(), Gallery.get(i).getLongitude());
+            map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(
+                    i != lastVisited && i != lastVisited + 1 ? R.drawable.marker_off : R.drawable.marker))
+                    .alpha(i != lastVisited && i != lastVisited + 1 ? 0.7f : 1f)
+                    .title(Gallery.get(i).getName())
+                    .snippet(Gallery.get(i).getDescription())
+                    .position(point));
 
 
-                PolylineOptions options = new PolylineOptions();
-                options.add(last);
-                options.add(point);
+            PolylineOptions options = new PolylineOptions();
 
-                last = point;
+            options.add(point);
 
-                //int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-                if(i>=1) {
-                    Polyline polyline = map.addPolyline(options);
-                    polyline.setGeodesic(true);
-                    int color = (i == lastVisited+1) ? getActivity().getResources().getColor(R.color.brand) : Color.GRAY;
-                    polyline.setColor(color);
-                    polyline.setWidth(6);
-                }
+            last = point;
+
+            i++;
+            LatLng point2 = new LatLng(Gallery.get(i).getLatitude(), Gallery.get(i).getLongitude());
+
+            map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(
+                    i != lastVisited && i != lastVisited + 1 ? R.drawable.marker_off : R.drawable.marker))
+                    .alpha(i != lastVisited && i != lastVisited + 1 ? 0.7f : 1f)
+                    .title(Gallery.get(i).getName())
+                    .snippet(Gallery.get(i).getDescription())
+                    .position(point2));
+
+            options.add(point2);
+
+
+            //int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+            if(i>=1) {
+                Polyline polyline = map.addPolyline(options);
+                polyline.setGeodesic(true);
+                int color = (i == lastVisited+1) ? getActivity().getResources().getColor(R.color.brand) : Color.GRAY;
+                polyline.setColor(color);
+                polyline.setWidth(6);
             }
+
+            /*LatLngBounds position = new LatLngBounds(
+                    point , point2);
+
+            map.moveCamera(CameraUpdateFactory.newLatLngBounds(position, 0));
+*/
         }
 
         void share(){
@@ -390,10 +426,8 @@ public class RouteActivity extends ActionBarActivity {
             startActivity(Intent.createChooser(intent2, "Share via"));
         }
 
-        Location userLocation;
-        void computeRoute(){
-            ArrayList<Art> newList = new ArrayList<>();
-
+        void next(){
+            cardA.startAnimation(nextCardAnim);
         }
     }
 }
