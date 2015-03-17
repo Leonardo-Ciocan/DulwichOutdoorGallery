@@ -41,7 +41,6 @@ public class LocationCardView extends RelativeLayout {
        // this.setRotationY(180);
         card = inflate(getContext(), R.layout.route_card, this);
         img = (ImageView) card.findViewById(R.id.img);
-        tv = (TextView) card.findViewById(R.id.title);
         overlay = (TextView) card.findViewById(R.id.overlay);
         /*if(a==null)a = Core.getGallery().get(x);
         x++;
@@ -95,10 +94,10 @@ public class LocationCardView extends RelativeLayout {
                     getResources().getIdentifier(a.getPhoto() + "_thumb", "drawable", getContext().getApplicationContext().getPackageName())
             );
             Palette palette = Palette.generate(icon);
-            tv.setTextColor(palette.getDarkVibrantColor(Color.BLACK));
+//            tv.setTextColor(palette.getDarkVibrantColor(Color.BLACK));
             overlay.setBackgroundColor(palette.getDarkVibrantColor(Color.BLACK));
         }
-        tv.setText(a.getName());
+//        tv.setText(a.getName());
     }
 
     public void hideOverlay(){

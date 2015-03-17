@@ -27,7 +27,8 @@
 			android:hint="Search art"/>
 
         <team3m.dulwichoutdoorgallery.RouteProgressIndicator
-
+android:visibility="gone"
+            android:id="@+id/routeIndicator"
             android:layout_width="fill_parent"
             android:layout_height="18dp" />
 

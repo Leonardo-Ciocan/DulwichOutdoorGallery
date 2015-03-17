@@ -12,8 +12,13 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class BadgeNotification extends RelativeLayout {
+
+    private TextView title;
+    private TextView description;
+
     public BadgeNotification(Context context) {
         super(context);
         init();
@@ -96,12 +101,16 @@ public class BadgeNotification extends RelativeLayout {
                 BadgeNotification.this.startAnimation(hideAnim);
             }
         });
+
+        title = (TextView) inner.findViewById(R.id.title);
+        description = (TextView) inner.findViewById(R.id.description);
     }
 
 
     public void show(Badge b){
         imageView.setImageResource(b.getBadgeID());
-
+        title.setText(b.getTitle());
+        description.setText(b.getDescription());
         this.startAnimation(enterAnim);
     }
 }

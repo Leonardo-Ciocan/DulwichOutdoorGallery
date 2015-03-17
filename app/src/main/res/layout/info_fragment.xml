@@ -4,12 +4,7 @@
     android:layout_height="match_parent"
     tools:context="team3m.dulwichoutdoorgallery.InfoActivity$PlaceholderFragment"
 
-    android:background="#00ffffff">
-
-
-
-
-
+    android:background="#ffffff">
 
     <FrameLayout
         android:clipChildren="false"

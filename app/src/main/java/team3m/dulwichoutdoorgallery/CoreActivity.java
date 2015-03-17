@@ -60,6 +60,7 @@ public class CoreActivity extends ActionBarActivity {
     static String[] titles = new String[]{"Explore" , "Route" , "Badges" , "Game","About"};
 
     public static SharedPreferences preferences ;
+    public RouteProgressIndicator routeIndicator;
 
     // In the class declaration section:
     public static DropboxAPI<AndroidAuthSession> mDBApi;
@@ -89,7 +90,6 @@ public class CoreActivity extends ActionBarActivity {
                 logoOverlay.setAlpha(1-interpolatedTime);
                 logo.setScaleX(1+interpolatedTime*2.5f);
                 logo.setScaleY(1+interpolatedTime*2.5f);
-                logo.setRotation(200*interpolatedTime);
             }
         };
         entry.setInterpolator(new AccelerateDecelerateInterpolator());
@@ -146,10 +146,8 @@ public class CoreActivity extends ActionBarActivity {
 
     void initUI(){
         toolbar = (Toolbar)findViewById(R.id.toolbar);
-
         searchBox = (EditText) findViewById(R.id.search);
-
-
+        routeIndicator = (RouteProgressIndicator) findViewById(R.id.routeIndicator);
         toolbar.setTitle("Explore");
 
         setSupportActionBar(toolbar);
@@ -176,7 +174,7 @@ public class CoreActivity extends ActionBarActivity {
 
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.contentHolder, new RouteActivity.PlaceholderFragment())
+                .add(R.id.contentHolder, ExploreFragment)
                 .commit();
 
 
@@ -255,6 +253,7 @@ public class CoreActivity extends ActionBarActivity {
                         Fragment fragment = null;
                         if(id == EXPLORE){
                             fragment = new team3m.dulwichoutdoorgallery.ExploreFragment(searchBox);
+                            ExploreFragment = (ExploreFragment)fragment;
                         }
                         else if(id == ROUTE){
                             fragment = new RouteActivity.PlaceholderFragment();
@@ -266,6 +265,10 @@ public class CoreActivity extends ActionBarActivity {
                         else if(id == ABOUT){
                             fragment = new AboutFragment();
                         }
+                        toolbar.getMenu().getItem(1).setVisible(id==ROUTE);
+
+                        routeIndicator.setVisibility(id == ROUTE ? View.VISIBLE : View.GONE);
+
                         getSupportFragmentManager().beginTransaction()
                                 .setCustomAnimations(R.anim.show , R.anim.hide)
                                 .replace(R.id.contentHolder, fragment)

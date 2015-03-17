@@ -30,7 +30,7 @@ public class RouteProgressIndicator extends View{
         //float padding = (getWidth() - Core.getGallery().size() * radius * 2) / (Core.getGallery().size()+1);
         for(int x = 0; x < Core.getGallery().size();x++){
             paint.setStrokeWidth(3.5f);
-            paint.setColor(x == selectedIndex ? getResources().getColor(R.color.brand) : Color.WHITE);
+            paint.setColor(x <= selectedIndex ? getResources().getColor(R.color.brand) : Color.WHITE);
             //canvas.drawCircle(x * 10 + (x+1) * padding, getHeight() / 4f * (float)(Math.floor(x/half) + 1f) - radius , radius , paint);
             paint.setStyle(Paint.Style.FILL);
             //canvas.drawRect(x* radius  , 0 , x*radius + radius , getHeight(),paint);

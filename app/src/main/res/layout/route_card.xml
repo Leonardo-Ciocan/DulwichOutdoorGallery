@@ -35,18 +35,6 @@
             android:textColor="#6f000000"
             android:background="#fff"/>
 
-        <TextView
-
-            android:lines="1"
-            android:id="@+id/title"
-            android:layout_gravity="bottom"
-            android:gravity="center_horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Title"
-            android:textColor="#6f000000"
-            android:background="#fff"/>
 
         <TextView
             android:visibility="gone"

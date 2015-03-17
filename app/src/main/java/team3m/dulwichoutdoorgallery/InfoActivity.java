@@ -165,8 +165,7 @@ public class InfoActivity extends ActionBarActivity {
             textAuthor.setText(art.getAuthor());
 
 
-
-            /*if(art.getIsOnline() != null) {
+            if(art.getIsOnline() != null) {
                 File imgFile = new  File(getActivity().getApplicationContext().getFilesDir()+ File.separator+ art.getIsOnline());
                 if(imgFile.exists()){
                     Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
@@ -184,7 +183,7 @@ public class InfoActivity extends ActionBarActivity {
                         .getIdentifier(art.getPhoto(), "drawable", getActivity().getPackageName())));
                 header2.setImageDrawable(getActivity().getResources().getDrawable(getActivity().getResources()
                         .getIdentifier(art.getRelatedArt().getPhoto(), "drawable", getActivity().getPackageName())));
-            }*/
+            }
 
             scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
 

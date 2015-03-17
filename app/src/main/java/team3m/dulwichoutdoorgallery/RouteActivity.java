@@ -13,6 +13,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -150,18 +151,10 @@ public class RouteActivity extends ActionBarActivity {
                     map = googleMap;
                     googleMap.setMyLocationEnabled(true);
                     GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
-                        Marker last;
                         @Override
                         public void onMyLocationChange(Location location) {
 
 
-
-                            /*
-                            Location userLocation = new Location("t" + 0);
-                            userLocation.setLatitude(Core.Gallery.get(0).getLatitude());
-                            userLocation.setLongitude(Core.Gallery.get(0).getLongitude());
-                            Float dist = userLocation.distanceTo(location);
-                            rootView.setAlpha((dist>30?0.5f:1f));*/
                             if(first != null) {
 
                                 if(visitedStartingPoint) {
@@ -170,16 +163,30 @@ public class RouteActivity extends ActionBarActivity {
 
                                     boolean withinRange = false;
                                     if(current != -1) {
-                                        withinRange = isWithinRange(current , location,
-                                                40f);
+                                        withinRange = isWithinRange(current, location,
+                                                25f);
                                     }
 
 
                                     if (withinRange) {
-                                        cardA.setArt(Core.getGallery().get(lastVisited));
+                                        cardB.setArt(Core.getGallery().get(lastVisited));
+                                        ((CoreActivity)getActivity()).routeIndicator.setSelected(
+                                                visited.size()
+                                        );
                                         visited.add(current);
                                         lastVisited = current;
                                         current = closest;
+                                        new CountDownTimer(357,357){
+                                            @Override
+                                            public void onTick(long millisUntilFinished) {
+
+                                            }
+
+                                            @Override
+                                            public void onFinish() {
+                                                next();
+                                            }
+                                        }.start();
                                     }
 
                                     drawOverlay();
@@ -284,16 +291,20 @@ public class RouteActivity extends ActionBarActivity {
                 @Override
                 protected void applyTransformation(float interpolatedTime, Transformation t) {
                     super.applyTransformation(interpolatedTime, t);
+
                     FrameLayout.LayoutParams params55 = (FrameLayout.LayoutParams) cardA.getLayoutParams();
                     params55.bottomMargin = (int) ((10 - (int) (195 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
                     cardA.setLayoutParams(params55);
 
+
+
                     FrameLayout.LayoutParams params5 = (FrameLayout.LayoutParams) cardB.getLayoutParams();
                     params5.gravity = Gravity.LEFT | Gravity.BOTTOM;
-                    params5.leftMargin = (int) ((rootView.getWidth()-10 - (int) ((rootView.getWidth()-20) * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
+                    params5.leftMargin = (int) Core.convertDpToPixel((Core.convertPixelsToDp(rootView.getWidth(),getActivity()) - 10  - Core.convertPixelsToDp(cardB.getWidth(),getActivity()) - ((Core.convertPixelsToDp(rootView.getWidth(),getActivity()) - 20 - Core.convertPixelsToDp(cardB.getWidth(),getActivity())) * interpolatedTime)) , getActivity());
+
                     cardB.setLayoutParams(params5);
 
-                    if(interpolatedTime>0.8f) {
+                    if(interpolatedTime>0) {
                         FrameLayout.LayoutParams params6 = (FrameLayout.LayoutParams) cardC.getLayoutParams();
                         params6.gravity = Gravity.RIGHT | Gravity.BOTTOM;
                         params6.bottomMargin = (int) ((-190 + (int) (200 * (interpolatedTime-0.8f)*5f)) * getActivity().getResources().getDisplayMetrics().density);
@@ -315,9 +326,9 @@ public class RouteActivity extends ActionBarActivity {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    cardB.showOverlay();
-                    cardA.hideOverlay();
-
+                    animation.cancel();
+                    cardB.hideOverlay();
+                    cardA.showOverlay();
 
                     LocationCardView temp = cardA;
                     cardA = cardB;
@@ -331,7 +342,7 @@ public class RouteActivity extends ActionBarActivity {
 
                 }
             });
-            nextCardAnim.setInterpolator(new OvershootInterpolator());
+            nextCardAnim.setInterpolator(new AccelerateDecelerateInterpolator());
             nextCardAnim.setDuration(1000);
 
             /*for(int x =0;x< Core.getGallery().size();x++)
@@ -340,11 +351,18 @@ public class RouteActivity extends ActionBarActivity {
                 //cardContainer.addView(new LocationCardView(getActivity() , ax));
             }*/
 
+            cardA.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+
             return rootView;
         }
 
-        static ArrayList<Integer> visited = new ArrayList<>();
-        public static int getClosestWithinRange(Location user,float max){
+        static ArrayList<Integer> visited = new ArrayList<Integer>();
+        public static  int getClosestWithinRange(Location user,float max){
             float min = Float.MAX_VALUE;
             int minIndex=-1;
 
@@ -413,6 +431,8 @@ public class RouteActivity extends ActionBarActivity {
 
             map.moveCamera(CameraUpdateFactory.newLatLngBounds(position, 0));
 */
+
+
         }
 
         void share(){
@@ -463,7 +483,9 @@ public class RouteActivity extends ActionBarActivity {
         }
 
         void next(){
-            cardA.startAnimation(nextCardAnim);
+            Log.e("v_:","next()");
+            if(cardA.getAnimation() == null || cardA.getAnimation().hasEnded())
+                cardA.startAnimation(nextCardAnim);
         }
     }
 }
