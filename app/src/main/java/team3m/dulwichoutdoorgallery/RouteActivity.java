@@ -102,12 +102,16 @@ public class RouteActivity extends ActionBarActivity {
         public PlaceholderFragment() {
         }
 
+        int current = -1;
         int lastVisited = 0;
         GoogleMap map;
         LatLng last;
         boolean collapsed;
         Art art;
         Animation nextCardAnim;
+
+        boolean visitedStartingPoint = false;
+        LatLng first = null;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -149,10 +153,8 @@ public class RouteActivity extends ActionBarActivity {
                         Marker last;
                         @Override
                         public void onMyLocationChange(Location location) {
-                            if(last != null)last.remove();
-                            LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-                            last = googleMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory
-                                    .defaultMarker(200)).position(loc));
+
+
 
                             /*
                             Location userLocation = new Location("t" + 0);
@@ -160,33 +162,60 @@ public class RouteActivity extends ActionBarActivity {
                             userLocation.setLongitude(Core.Gallery.get(0).getLongitude());
                             Float dist = userLocation.distanceTo(location);
                             rootView.setAlpha((dist>30?0.5f:1f));*/
+                            if(first != null) {
 
-                            int closest = getClosestWithinRange(location , 20f);
-                            if(closest != lastVisited && closest > lastVisited){
-                                lastVisited = closest;
-                                art = Core.Gallery.get(lastVisited);
-                                //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(art.getLocation(), 12));
-                                titleProgress.setText((lastVisited) + " : " + art.getName());
-                                title.setText(art.getName());
-                                Log.e("xyz", art.getPhoto().toLowerCase());
-                                Drawable d = getActivity().getResources().getDrawable(
-                                        getActivity().getResources().getIdentifier(art.getPhoto() ,
-                                                "drawable" ,
-                                                getActivity().getPackageName()));
-                                smallImage.setImageDrawable(d);
-                                artCardImage.setImageDrawable(d);
-                                //author.setText(a.getAuthor());
-                                indicator.setSelected(closest);
+                                if(visitedStartingPoint) {
+                                    int closest = getClosestWithinRange(location, -1);
+                                    if(current == -1) current = closest;
 
-                                //scrollView.setSmoothScrollingEnabled(true);
-                                //scrollView.smoothScrollTo((int)(lastVisited*115* getActivity().getResources().getDisplayMetrics().density) ,0);
+                                    boolean withinRange = false;
+                                    if(current != -1) {
+                                        withinRange = isWithinRange(current , location,
+                                                40f);
+                                    }
 
-                                //((LocationCardView)cardContainer.getChildAt(lastVisited)).hideOverlay();
 
-                                cardA.setArt(Core.getGallery().get(lastVisited));
+                                    if (withinRange) {
+                                        cardA.setArt(Core.getGallery().get(lastVisited));
+                                        visited.add(current);
+                                        lastVisited = current;
+                                        current = closest;
+                                    }
 
-                                drawOverlay();
+                                    drawOverlay();
+                                }
                             }
+                            else{
+                                int closest = getClosestWithinRange(location, -1);
+                                lastVisited = closest;
+                                visited.add(closest);
+                                PolylineOptions options = new PolylineOptions();
+                                options.add(Core.getGallery().get(closest).getLocation());
+                                options.add(new LatLng(location.getLatitude(),location.getLongitude()));
+
+                                map.addMarker(new MarkerOptions()
+                                        .title(Core.getGallery().get(closest).getName())
+                                        .snippet(Core.getGallery().get(closest).getDescription())
+                                        .position(options.getPoints().get(0)));
+
+
+                                    Polyline polyline = map.addPolyline(options);
+                                    polyline.setGeodesic(true);
+                                    int color = getActivity().getResources().getColor(R.color.brand);
+                                    polyline.setColor(color);
+                                    polyline.setWidth(6);
+
+                                first = Core.getGallery().get(closest).getLocation();
+                            }
+
+                            if(!visitedStartingPoint && first != null){
+
+                                if(isWithinRange(lastVisited , location , 40f)){
+                                    visitedStartingPoint = true;
+                                }
+                            }
+
+
                         }
                     };
 
@@ -198,7 +227,7 @@ public class RouteActivity extends ActionBarActivity {
                     last = Gallery.get(0).getLocation();
 
 
-                    drawOverlay();
+                   // drawOverlay();
 
 
                 }
@@ -277,17 +306,18 @@ public class RouteActivity extends ActionBarActivity {
                     return true;
                 }
             };
+
             nextCardAnim.setAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
-
+                    cardC.showOverlay();
                 }
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    cardB.hideOverlay();
-                    cardA.showOverlay();
-                    cardC.showOverlay();
+                    cardB.showOverlay();
+                    cardA.hideOverlay();
+
 
                     LocationCardView temp = cardA;
                     cardA = cardB;
@@ -313,20 +343,32 @@ public class RouteActivity extends ActionBarActivity {
             return rootView;
         }
 
+        static ArrayList<Integer> visited = new ArrayList<>();
         public static int getClosestWithinRange(Location user,float max){
-
             float min = Float.MAX_VALUE;
             int minIndex=-1;
-            for( int x =0; x< Core.getGallery().size();x++){
+
+
+            for( int x =0; x < Core.getGallery().size();x++){
                 Location location = new Location("t" + x);
                 location.setLatitude(Core.Gallery.get(x).getLatitude());
                 location.setLongitude(Core.Gallery.get(x).getLongitude());
                 Float dist = location.distanceTo(user);
-                if(dist < min && dist < max){
+                boolean isWithinRing = (dist < max || max == -1);
+                if(dist < min && isWithinRing && !visited.contains(x)){
                     minIndex = x;
+                    min = dist;
                 }
             }
             return minIndex;
+        }
+
+        public static boolean isWithinRange(int index , Location user,float max){
+            Location location = new Location("t" + "");
+            location.setLatitude(Core.Gallery.get(index).getLatitude());
+            location.setLongitude(Core.Gallery.get(index).getLongitude());
+            Float dist = location.distanceTo(user);
+            return  dist < max;
         }
 
         void drawOverlay(){
@@ -336,9 +378,7 @@ public class RouteActivity extends ActionBarActivity {
             int i = lastVisited;
 
             LatLng point = new LatLng(Gallery.get(i).getLatitude(), Gallery.get(i).getLongitude());
-            map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(
-                    i != lastVisited && i != lastVisited + 1 ? R.drawable.marker_off : R.drawable.marker))
-                    .alpha(i != lastVisited && i != lastVisited + 1 ? 0.7f : 1f)
+            map.addMarker(new MarkerOptions()
                     .title(Gallery.get(i).getName())
                     .snippet(Gallery.get(i).getDescription())
                     .position(point));
@@ -350,27 +390,23 @@ public class RouteActivity extends ActionBarActivity {
 
             last = point;
 
-            i++;
-            LatLng point2 = new LatLng(Gallery.get(i).getLatitude(), Gallery.get(i).getLongitude());
+            LatLng point2 = new LatLng(Gallery.get(current).getLatitude(), Gallery.get(current).getLongitude());
 
-            map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(
-                    i != lastVisited && i != lastVisited + 1 ? R.drawable.marker_off : R.drawable.marker))
-                    .alpha(i != lastVisited && i != lastVisited + 1 ? 0.7f : 1f)
-                    .title(Gallery.get(i).getName())
-                    .snippet(Gallery.get(i).getDescription())
+            map.addMarker(new MarkerOptions()
+                    .title(Gallery.get(current).getName())
+                    .snippet(Gallery.get(current).getDescription())
                     .position(point2));
 
             options.add(point2);
 
 
             //int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-            if(i>=1) {
                 Polyline polyline = map.addPolyline(options);
                 polyline.setGeodesic(true);
-                int color = (i == lastVisited+1) ? getActivity().getResources().getColor(R.color.brand) : Color.GRAY;
+                int color = getActivity().getResources().getColor(R.color.brand) ;
                 polyline.setColor(color);
                 polyline.setWidth(6);
-            }
+
 
             /*LatLngBounds position = new LatLngBounds(
                     point , point2);

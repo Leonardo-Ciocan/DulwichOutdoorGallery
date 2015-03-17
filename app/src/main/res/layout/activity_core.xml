@@ -246,4 +246,17 @@
             android:layout_margin="16dp"/>
 
 	</FrameLayout>-->
+
+    <FrameLayout
+        android:id="@+id/logoOverlay"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/brandDark">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/screenView"
+            android:src="@drawable/logo_medium"
+            android:layout_gravity="center"/>
+    </FrameLayout>
 </FrameLayout>
