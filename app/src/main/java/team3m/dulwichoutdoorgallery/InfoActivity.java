@@ -38,7 +38,6 @@ import com.r0adkll.slidr.model.SlidrInterface;
 import java.io.File;
 import java.util.concurrent.locks.Lock;
 
-
 public class InfoActivity extends ActionBarActivity {
 
     PlaceholderFragment fragment;
@@ -174,7 +173,7 @@ public class InfoActivity extends ActionBarActivity {
 
                 File imgFile2 = new  File(getActivity().getApplicationContext().getFilesDir()+ File.separator+ art.getRelatedArt().getIsOnline());
                 if(imgFile2.exists()){
-                    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile2.getAbsolutePath());
                     header2.setImageBitmap(myBitmap);
                 }
             }

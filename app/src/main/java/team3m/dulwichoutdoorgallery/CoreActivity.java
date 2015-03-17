@@ -76,10 +76,16 @@ public class CoreActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         preferences = getSharedPreferences(
                 "com.example.app", Context.MODE_PRIVATE);
+        setContentView(R.layout.activity_core);
         super.onCreate(savedInstanceState);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Core.update(CoreActivity.this);
+            }
+        }).start();
         Log.v("xwuwuuwuwu" , "creating activity");
 
-        setContentView(R.layout.activity_core);
 
         final ImageView logo = (ImageView) findViewById(R.id.screenView);
         final FrameLayout logoOverlay = (FrameLayout) findViewById(R.id.logoOverlay);
@@ -100,12 +106,11 @@ public class CoreActivity extends ActionBarActivity {
 
 
 // And later in some initialization function:
-       /* AppKeyPair appKeys = new AppKeyPair(Core.APP_KEY, Core.APP_SECRET);
+       AppKeyPair appKeys = new AppKeyPair(Core.APP_KEY, Core.APP_SECRET);
         AndroidAuthSession session = new AndroidAuthSession(appKeys);
         mDBApi = new DropboxAPI<AndroidAuthSession>(session);
        // mDBApi.getSession().startOAuth2Authentication(CoreActivity.this);
         mDBApi.getSession().setOAuth2AccessToken("cu234J18AOAAAAAAAAAABLG6O6CmDp57aRQ3frKJ2aNhrKumpe9M10HatiCxFDJN");
-*/
 
         new Thread(new Runnable() {
             @Override
@@ -222,6 +227,8 @@ public class CoreActivity extends ActionBarActivity {
 
         BadgesActivity.PlaceholderFragment.populateBadgeList();
         onPostCreate(null);
+
+
     }
     void makeButtonClickable(LinearLayout exploreButton  , final int id){
         exploreButton.setOnClickListener(new View.OnClickListener() {
