@@ -23,12 +23,14 @@ public class Core {
 
     public static ArrayList<Art> Gallery = new ArrayList<Art>(){
         {
-            add(new Art("Europa and the Bull, 2014" ,
-                    "" ,
-                    "Faith47" , new Art("Europa and the Bull(detail), 17th century" , "" ,
+            add(new Art("Europa and the Winged Bird, 2014" ,
+                    "Faith selected Guido Reni's 'Europa and the Bull', which soon found its way onto the streets of Dulwich.  The absence of the bull and " +
+                     "the introduction of a guiding bird are suggestive of a premonition of the abduction to come, her inner emotions and thoughts or perhaps " +
+                     "a new interpretation of the ancient fable." ,
+                    "Faith47" , new Art("Europa and the Bull, 17th century" , "Guido Reni managed one of the busiest studios of the 17th century. His most popular " +
+                    "compositions can exist in several versions, with varying degrees of involvement of the master." ,
                     "Guido Reni" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "faith47_europa_and_the_bull") ,
                     new ArrayList<String>() , 51.471419 , -0.064335 , "faith47_new"));
-
 
             add(new Art("Landscape with Sportsmen and Game, 2013" ,
                     "ROA's dog is almost the only painting that has caused some controversy. He was given a portrait orientated wall, ruling out many " +
@@ -70,14 +72,6 @@ public class Core {
                     "Metz, keeper of the Royal Treasury. There are several preliminary drawings in the Louvre." ,
                     "Charles Le Brun" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "conor_harrington_the_massacre_of_the_innocents") ,
                     new ArrayList<String>() , 51.460617 , -0.075041 , "conor_harrington_new"));
-            /*
-            add(new Art("Mandarina Chicharra (or Tangerine Cicada), 2013" ,
-                    "Crazy and colourful as usual, Liqen’s imagery is never superficial and always seems to spring from some kind of weird acid trip, always " +
-                            "incredible, always interesting, always intriguing. According to Liqen the primary meaning of this new mural has a connection to " +
-                            "the site where it was painted, a school courtyard in Dulwich." ,
-                    "Liqen" , null ,
-                   new ArrayList<String>() , 51.456748 , -0.071105 , ""));
-            */
 
             add(new Art("A Couple in a Landscape, 2012" ,
                     "The original painting is very probably a wedding portrait. It is likely to be a marriage of convenience as they don't seem to be in love " +
@@ -91,14 +85,19 @@ public class Core {
                     "Thomas Gainsborough" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "stik_couple_in_a_landscape") ,
                     new ArrayList<String>() , 51.456641 , -0.075693 , "stik_couple_in_a_landscape_new"));
 
-            /*
-            add(new Art("Mushroom Markers" ,
+            add(new Art("Mushroom Marker" ,
                     "Although Christiaan's mushrooms do not appear in any Dulwich Picture Gallery paintings, he made good markers of a route for a walk that " +
                             "takes in most of the walls and ends at Dulwich Picture Gallery. He put up four mushrooms but one was objected to so the shop " +
                             "owner on whose roof it was, was forced to take it down." ,
                     "Christiaan Nagel " , null ,
-                    new ArrayList<String>(), 51.455987 , -0.076507 , ""));
-            */
+                    new ArrayList<String>(), 51.455979 , -0.076067 , "mushroom_marker1"));
+
+            add(new Art("Mushroom Marker" ,
+                    "Although Christiaan's mushrooms do not appear in any Dulwich Picture Gallery paintings, he made good markers of a route for a walk that " +
+                            "takes in most of the walls and ends at Dulwich Picture Gallery. He put up four mushrooms but one was objected to so the shop " +
+                            "owner on whose roof it was, was forced to take it down." ,
+                    "Christiaan Nagel " , null ,
+                    new ArrayList<String>(), 51.455981 , -0.076418 , "mushroom_marker2"));
 
             add(new Art("The Guardian Angel, 2012" ,
                     "The guardian angel is showing mankind the divine light, the true path, and is preventing the child from 'stubbing its toe on the rock " +
@@ -111,12 +110,14 @@ public class Core {
                     "Marcantonio Franceschini" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "stik_the_guardian_angel") ,
                     new ArrayList<String>() , 51.456128 , -0.077322 , "stik_the_guardian_angel_new"));
 
-            /*
-            add(new Art("St. Sebastian, 2014" ,
-                    "" ,
-                    "Michael Beerens" , null ,
-                    new ArrayList<String>(), 51.455987 , -0.076507 , ""));
-            */
+            add(new Art("St Sebastian, 2014" ,
+                    "St Sebastian is a gay icon, so Beerens gave him a rainbow halo. His stag is as simple and dramatic as Reni's saint, but black on white " +
+                     "rather than white on black." ,
+                    "Michael Beerens" , new Art("Saint Sebastian, 1620-30s" , "Sebastian was a Roman soldier condemned to death by the Emperor Diocletian for " +
+                    "aiding the Christians; his arrow wounds were not fatal and he was later clubbed to death. Reni's painting was one of the most celebrated at " +
+                    "Dulwich in the nineteenth century, but was catalogued in 1880 as a studio work and in 1980 as a copy." ,
+                    "Guido Reni" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "beerens_st_sebastian_original") ,
+                    new ArrayList<String>(), 51.455987 , -0.076507 , "beerens_st_sebastian"));
 
             add(new Art("New World Revolution, 2013" ,
                     "Mear's mixed race mother and child are challenging and demanding. Paradoxically they are more symbolic than the Catholic version " +
@@ -162,13 +163,6 @@ public class Core {
                     "Nicolas Poussin" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "phlegm_triumph_of_david") ,
                     new ArrayList<String>() , 51.451588 , -0.071564 , "phlegm_new"));
 
-            /*
-            add(new Art("Queen Bee on a Throne, 2013" ,
-                    "" ,
-                    "Nunca" , null ,
-                    new ArrayList<String>() ,51.449180 , -0.074245 , ""));
-            */
-
             add(new Art("Elizabeth and Mary Linley, 2012" ,
                     "Elizabeth was one of the foremost sopranos of the day, talented, beautiful and earning a great deal from her concerts. Mary had a successful " +
                             "career as a singer and actress. The sisters are in costly, fashionable clothes and holding objects representing their careers. Stik had " +
@@ -213,7 +207,7 @@ public class Core {
                     "Dulwich Picture Gallery, founded in 1811, is England's oldest public art gallery. It has one of the finest collections of Western " +
                             "European Baroque paintings in the world." ,
                     "Dulwich Gallery" , null ,
-                    new ArrayList<String>(), 51.445936 , -0.086170 , ""));
+                    new ArrayList<String>(), 51.445936 , -0.086170 , "dulwich_gallery"));
 
             add(new Art("Samson and Delilah, 2013" ,
                     "Discovering the painting by Anthony van Dick in Dulwich Picture Gallery, David saw the story coloured in and picked out some great visual " +
@@ -239,8 +233,8 @@ public class Core {
                     "Reka chose the piece 'Europa and the Bull' because the imagery lent itself to his style. He paint a lot of female figures in motion using " +
                             "flowing hair as a way to give the piece a dynamic quality. In a sense it is moving on the wall. The project has been a great experience " +
                             "for Reka, as he rarely use an image as a reference to my artworks." ,
-                    "Reka" , new Art("Europa and the Bull(detail, 17th century" , "Guido Reni managed one of the busiest studios of the 17th century. His most popular " +
-                    "compositions can exist in several versions, with varying degrees of involvement of the master" ,
+                    "Reka" , new Art("Europa and the Bull, 17th century" , "Guido Reni managed one of the busiest studios of the 17th century. His most popular " +
+                    "compositions can exist in several versions, with varying degrees of involvement of the master." ,
                     "Guido Reni" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "reka_europa_and_the_bull") ,
                     new ArrayList<String>() , 51.427814 , -0.086899 , "reka_new"));
 
@@ -263,12 +257,22 @@ public class Core {
                     "Nicolas Poussin" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "run_the_translation_of_st_rita") ,
                     new ArrayList<String>() , 51.438862 , -0.053918 , "run_the_translation_of_st_rita_new"));
 
-            /*
             add(new Art("Three Boys, 2013" ,
-                    "" ,
-                    "Michael Beerens" , null ,
-                    new ArrayList<String>() , 51.447739 , -0.074982 , ""));
-            */
+                    "Based on part of 'Three Boys' by Bartolome Murillo where the white boy might be picking the pocket of the black boy, and is looking " +
+                    "very mischievous. Beerens has transformed him into a white sheep looking sly, with a fox's tail." ,
+                    "Michael Beerens" , new Art("Three Boys, c.1670" , "This painting is unique in Murillo's oeuvre in that he appears to have changed his mind as " +
+                    "he painted, a rare occurrence for an artist who is thought to have carefully planned and drawn out most of his compositions." ,
+                    "Bartolome Esteban Murillo" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "stik_three_boys") ,
+                    new ArrayList<String>() , 51.447739 , -0.074982 , "beerens_new1"));
+
+            add(new Art("Three Boys, 2013" ,
+                    "Based on a part of 'Three Boys' by Bartolome Murillo where the black boy has his hand out for food and the white boy is refusing to give " +
+                     "him any food. Beerens has transformed the black boy into a hungry black sheep standing on barren ground and the white boy into a white sheep " +
+                     "standing on lush grass with its mouth full." ,
+                    "Michael Beerens" , new Art("Three Boys, c.1670" , "This painting is unique in Murillo's oeuvre in that he appears to have changed his mind as " +
+                    "he painted, a rare occurrence for an artist who is thought to have carefully planned and drawn out most of his compositions." ,
+                    "Bartolome Esteban Murillo" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "stik_three_boys") ,
+                    new ArrayList<String>() , 51.447369 , -0.075179 , "beerens_new2"));
 
             add(new Art("Eliza and Mary Davidson, 2012" ,
                     "" ,
@@ -276,8 +280,6 @@ public class Core {
                     "Governor of Madras, 1785-6" ,
                     "Tilly Kettle" , null , new ArrayList<String>() , 51.445936 , -0.086170 , "stik_eliza_and_mary_davidson") ,
                     new ArrayList<String>() , 51.447408 , -0.075845 , "stik_eliza_and_mary_davidson_new"));
-
-
         }
     };
 
