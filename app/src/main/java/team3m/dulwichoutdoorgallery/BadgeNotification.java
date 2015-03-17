@@ -42,7 +42,7 @@ public class BadgeNotification extends RelativeLayout {
 
                 BadgeNotification.this.setPivotX(0);
                 BadgeNotification.this.setPivotY(0);
-                RelativeLayout.LayoutParams navBtnLayout = (RelativeLayout.LayoutParams) BadgeNotification.this.getLayoutParams();
+                FrameLayout.LayoutParams navBtnLayout = (FrameLayout.LayoutParams) BadgeNotification.this.getLayoutParams();
                 navBtnLayout.leftMargin = (int)(interpolatedTime*10* getContext().getResources().getDisplayMetrics().density);
                 navBtnLayout.rightMargin =(int)( interpolatedTime*10* getContext().getResources().getDisplayMetrics().density);
                 navBtnLayout.topMargin = (int) ((-180 + (int) (185 * interpolatedTime)) * getContext().getResources().getDisplayMetrics().density);
@@ -68,7 +68,7 @@ public class BadgeNotification extends RelativeLayout {
 
                 if(interpolatedTime>=1f){
                     this.cancel();
-                    RelativeLayout.LayoutParams navBtnLayout = (RelativeLayout.LayoutParams) BadgeNotification.this.getLayoutParams();
+                    FrameLayout.LayoutParams navBtnLayout = (FrameLayout.LayoutParams) BadgeNotification.this.getLayoutParams();
                     navBtnLayout.leftMargin = 0;
                     navBtnLayout.rightMargin = 0;
                     navBtnLayout.topMargin = (int) ((-180) * getContext().getResources().getDisplayMetrics().density);
