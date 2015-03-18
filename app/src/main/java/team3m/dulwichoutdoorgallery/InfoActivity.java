@@ -283,6 +283,7 @@ public class InfoActivity extends ActionBarActivity {
             return rootView;
         }
 
+        /*
         void share(){
             Intent intent2 = new Intent(); intent2.setAction(Intent.ACTION_SEND);
             intent2.setType("text/plain");
@@ -293,6 +294,21 @@ public class InfoActivity extends ActionBarActivity {
                     .getIdentifier(art.getPhoto(), "drawable", getActivity().getPackageName()));
             intent2.putExtra(Intent.EXTRA_STREAM, uri);
             startActivity(Intent.createChooser(intent2, "Share via"));
+        } */
+
+        void share() {
+            String mySharedLink;
+            if (street_) {
+                mySharedLink = "http://www.facebook.com/dulwichsa/photos/" + art.getRelatedArt().getShareID();
+            } else {
+                mySharedLink = "http://www.facebook.com/dulwichsa/photos/" + art.getShareID();
+            }
+            ;
+            Intent shareIntent = new Intent();
+            shareIntent.setAction(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_TEXT, mySharedLink);
+            startActivity(Intent.createChooser(shareIntent, "Share via"));
         }
     }
 }

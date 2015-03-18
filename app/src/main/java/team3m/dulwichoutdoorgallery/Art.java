@@ -9,6 +9,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 
 public class Art {
+    String shareID;
     String Name;
     String Description;
     String Author;
@@ -81,7 +82,11 @@ public class Art {
 
     public String getPhoto() { return photo;}
 
-    public Art(String name, String description, String author, Art relatedArt, ArrayList<String> tags, double latitude, double longitude, String photo) {
+    public String getShareID() {
+        return shareID;
+    }
+
+    public Art(String name, String description, String author, Art relatedArt, ArrayList<String> tags, double latitude, double longitude, String photo, String shareID) {
         Name = name;
         Description = description;
         Author = author;
@@ -91,9 +96,10 @@ public class Art {
         Longitude = longitude;
         position = new LatLng(latitude,longitude);
         this.photo = photo;
+        this.shareID = shareID;
     }
 
-    public Art(String name, String description, String author, Art relatedArt, ArrayList<String> tags, double latitude, double longitude, String photo, String isOnline) {
+    public Art(String name, String description, String author, Art relatedArt, ArrayList<String> tags, double latitude, double longitude, String photo, String isOnline, String shareID) {
         Name = name;
         Description = description;
         Author = author;
@@ -104,6 +110,7 @@ public class Art {
         position = new LatLng(latitude,longitude);
         this.photo = photo;
         this.isOnline = isOnline;
+        this.shareID = shareID;
     }
 
     @Override

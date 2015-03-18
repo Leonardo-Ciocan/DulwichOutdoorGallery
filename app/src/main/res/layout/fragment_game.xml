@@ -225,7 +225,7 @@
         android:background="@android:color/white"
         android:padding="10dp">
 
-    <GridLayout
+        <GridLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:clickable="true"
@@ -337,7 +337,7 @@
                 android:id="@+id/gameRestartButton2"
                 android:layout_width="335dp"
                 android:layout_height="88dp"
-                android:layout_below="@+id/gameBadgeView"
+                android:layout_below="@+id/textViewGameComplete3"
                 android:layout_centerHorizontal="true"
                 android:background="@color/brandDark"
                 android:text="Restart Game"
@@ -347,14 +347,15 @@
                 android:id="@+id/textViewGameComplete3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/gameBadgeView"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="false"
                 android:fontFamily="sans-serif-light"
                 android:gravity="center"
                 android:text="Well done, you completed the Fake Spotter game!\n\nYou got all 20 questions correct! You have earned the Fake Spotter badge:"
                 android:textColor="@android:color/black"
-                android:textSize="9pt" />
+                android:textSize="9pt"
+                android:padding="30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/gameBadgeView" />
 
             <Button
                 android:id="@+id/gameShareButton2"
@@ -371,11 +372,11 @@
 
             <ImageView
                 android:id="@+id/gameBadgeView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:paddingBottom="30dp"
-                android:src="@drawable/fakespotter" />
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/fakespotter"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="30dp" />
         </RelativeLayout>
     </FrameLayout>
 
