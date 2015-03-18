@@ -114,6 +114,8 @@ public class RouteActivity extends ActionBarActivity {
         boolean visitedStartingPoint = false;
         LatLng first = null;
 
+        LatLng user;
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
@@ -133,8 +135,8 @@ public class RouteActivity extends ActionBarActivity {
             final CardView               navigationCard = (CardView)                rootView.findViewById(R.id.navigationCard);
             final CardView               currentArt     = (CardView)                rootView.findViewById(R.id.currentArt);
             final FloatingActionButton   fab            = (FloatingActionButton)    rootView.findViewById(R.id.fab);
-           // final LinearLayout           cardContainer  = (LinearLayout)            rootView.findViewById(R.id.cardContainer);
-            //final HorizontalScrollView   scrollView     = (HorizontalScrollView)    rootView.findViewById(R.id.scrollView);
+            final LinearLayout           cardContainer  = (LinearLayout)            rootView.findViewById(R.id.cardContainer);
+            final HorizontalScrollView   scrollView     = (HorizontalScrollView)    rootView.findViewById(R.id.scrollView);
             cardA = (LocationCardView)        rootView.findViewById(R.id.cardA);
             cardB = (LocationCardView)        rootView.findViewById(R.id.cardB);
             cardC = (LocationCardView)        rootView.findViewById(R.id.cardC);
@@ -154,7 +156,7 @@ public class RouteActivity extends ActionBarActivity {
                         @Override
                         public void onMyLocationChange(Location location) {
 
-
+                            user = new LatLng(location.getLatitude() , location.getLongitude());
                             if(first != null) {
 
                                 if(visitedStartingPoint) {
@@ -206,13 +208,14 @@ public class RouteActivity extends ActionBarActivity {
                                         .position(options.getPoints().get(0)));
 
 
-                                    Polyline polyline = map.addPolyline(options);
-                                    polyline.setGeodesic(true);
-                                    int color = getActivity().getResources().getColor(R.color.brand);
-                                    polyline.setColor(color);
-                                    polyline.setWidth(6);
+                                Polyline polyline = map.addPolyline(options);
+                                polyline.setGeodesic(true);
+                                int color = getActivity().getResources().getColor(R.color.brand);
+                                polyline.setColor(color);
+                                polyline.setWidth(6);
 
                                 first = Core.getGallery().get(closest).getLocation();
+                                ((LocationCardView)cardContainer.getChildAt(closest)).setArt(Core.getGallery().get(closest));
                             }
 
                             if(!visitedStartingPoint && first != null){
@@ -281,7 +284,7 @@ public class RouteActivity extends ActionBarActivity {
 
                 @Override
                 public boolean onTouch(final View v, MotionEvent event) {
-                    next();
+                    navigate();
                     return false;
                 }
             });
@@ -293,7 +296,7 @@ public class RouteActivity extends ActionBarActivity {
                     super.applyTransformation(interpolatedTime, t);
 
                     FrameLayout.LayoutParams params55 = (FrameLayout.LayoutParams) cardA.getLayoutParams();
-                    params55.bottomMargin = (int) ((10 - (int) (195 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
+                    params55.leftMargin = (int) ((10 - (int) (195 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
                     cardA.setLayoutParams(params55);
 
 
@@ -304,12 +307,6 @@ public class RouteActivity extends ActionBarActivity {
 
                     cardB.setLayoutParams(params5);
 
-                    if(interpolatedTime>0) {
-                        FrameLayout.LayoutParams params6 = (FrameLayout.LayoutParams) cardC.getLayoutParams();
-                        params6.gravity = Gravity.RIGHT | Gravity.BOTTOM;
-                        params6.bottomMargin = (int) ((-190 + (int) (200 * (interpolatedTime-0.8f)*5f)) * getActivity().getResources().getDisplayMetrics().density);
-                        cardC.setLayoutParams(params6);
-                    }
                 }
 
                 @Override
@@ -321,7 +318,7 @@ public class RouteActivity extends ActionBarActivity {
             nextCardAnim.setAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
-                    cardC.showOverlay();
+
                 }
 
                 @Override
@@ -329,12 +326,6 @@ public class RouteActivity extends ActionBarActivity {
                     animation.cancel();
                     cardB.hideOverlay();
                     cardA.showOverlay();
-
-                    LocationCardView temp = cardA;
-                    cardA = cardB;
-                    LocationCardView temp2 = cardC;
-                    cardC = temp;
-                    cardB = temp2;
                 }
 
                 @Override
@@ -345,16 +336,16 @@ public class RouteActivity extends ActionBarActivity {
             nextCardAnim.setInterpolator(new AccelerateDecelerateInterpolator());
             nextCardAnim.setDuration(1000);
 
-            /*for(int x =0;x< Core.getGallery().size();x++)
+            for(int x =0;x< Core.getGallery().size();x++)
             {
                 Art ax = Core.getGallery().get(x);
-                //cardContainer.addView(new LocationCardView(getActivity() , ax));
-            }*/
+                cardContainer.addView(new LocationCardView(getActivity() , ax));
+            }
 
             cardA.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    next();
                 }
             });
 
@@ -444,7 +435,17 @@ public class RouteActivity extends ActionBarActivity {
 
         void navigate(){
             LatLng last = Core.getGallery().get(lastVisited).getLocation();
-            LatLng next = Core.getGallery().get(lastVisited+1).getLocation();
+            LatLng next =null;
+
+
+            if(current == -1){
+                next = first;
+                last = user;
+            }
+            else{
+                next= Core.getGallery().get(current).getLocation();
+            }
+
             Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
             Uri.parse("http://maps.google.com/maps?saddr="+ last.latitude+ "," + last.longitude+"&daddr="+ next.latitude+ "," + next.longitude));
             startActivity(intent);

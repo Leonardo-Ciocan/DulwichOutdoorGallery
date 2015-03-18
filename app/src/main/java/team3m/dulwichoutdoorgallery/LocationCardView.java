@@ -21,7 +21,6 @@ import android.widget.TextView;
 public class LocationCardView extends RelativeLayout {
     Art a;
     private TextView overlay;
-    private TextView tv;
     private ImageView img;
     private View card;
 
@@ -36,51 +35,13 @@ public class LocationCardView extends RelativeLayout {
         init();
     }
 
-    static int x= 0;
+    static float x = 0;
     void init() {
-       // this.setRotationY(180);
         card = inflate(getContext(), R.layout.route_card, this);
         img = (ImageView) card.findViewById(R.id.img);
         overlay = (TextView) card.findViewById(R.id.overlay);
-        /*if(a==null)a = Core.getGallery().get(x);
-        x++;
-        if (a != null) {
-            if (!a.getPhoto().equals("")) {
-                img.setImageDrawable(
-                        getResources().getDrawable(
-                                getResources().getIdentifier(a.getPhoto() + "_thumb", "drawable", getContext().getApplicationContext().getPackageName())
-                        ));
-
-                Bitmap icon = BitmapFactory.decodeResource(getContext().getResources(),
-                        getResources().getIdentifier(a.getPhoto() + "_thumb", "drawable", getContext().getApplicationContext().getPackageName())
-                );
-                Palette palette = Palette.generate(icon);
-                tv.setTextColor(palette.getDarkVibrantColor(Color.BLACK));
-                overlay.setBackgroundColor(palette.getDarkVibrantColor(Color.BLACK));
-            }
-            tv.setText(a.getName());
-
-            Animation entry = new Animation() {
-                @Override
-                protected void applyTransformation(float interpolatedTime, Transformation t) {
-                    super.applyTransformation(interpolatedTime, t);
-                    LocationCardView.this.setRotationY(interpolatedTime * 180 - 180);
-                    LocationCardView.this.setAlpha(interpolatedTime);
-                }
-
-                @Override
-                public boolean willChangeBounds() {
-                    return true;
-                }
-            };
-            entry.setInterpolator(new OvershootInterpolator());
-            entry.setDuration(3000);
-
-            if (Core.getGallery().indexOf(a) > 0) overlay.setVisibility(VISIBLE);
-
-           LocationCardView.this.startAnimation(entry);
-        }
-        */
+        //this.setAlpha(1/(x+1));
+        x+=1;
     }
 
     public void setArt(Art a){
@@ -97,7 +58,6 @@ public class LocationCardView extends RelativeLayout {
 //            tv.setTextColor(palette.getDarkVibrantColor(Color.BLACK));
             overlay.setBackgroundColor(palette.getDarkVibrantColor(Color.BLACK));
         }
-//        tv.setText(a.getName());
     }
 
     public void hideOverlay(){

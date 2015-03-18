@@ -70,7 +70,6 @@ public class CoreActivity extends ActionBarActivity {
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private LinearLayout buttonHolder;
-    private OutputStream outputStream;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,12 +77,12 @@ public class CoreActivity extends ActionBarActivity {
                 "com.example.app", Context.MODE_PRIVATE);
         setContentView(R.layout.activity_core);
         super.onCreate(savedInstanceState);
-        new Thread(new Runnable() {
+        /*new Thread(new Runnable() {
             @Override
             public void run() {
                 Core.update(CoreActivity.this);
             }
-        }).start();
+        }).start();*/
         Log.v("xwuwuuwuwu" , "creating activity");
 
 
@@ -179,7 +178,7 @@ public class CoreActivity extends ActionBarActivity {
 
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.contentHolder, ExploreFragment)
+                .add(R.id.contentHolder, new RouteActivity.PlaceholderFragment())
                 .commit();
 
 

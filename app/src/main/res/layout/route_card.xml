@@ -24,6 +24,7 @@
         </RelativeLayout>
 
         <TextView
+            android:visibility="gone"
             android:lines="1"
             android:id="@+id/hereSign"
             android:layout_gravity="top"
@@ -37,13 +38,14 @@
 
 
         <TextView
-            android:visibility="gone"
+            android:visibility="visible"
             android:id="@+id/overlay"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:text=" ? "
+            android:textColor="@color/brandDark"
             android:textSize="20pt"
-            android:background="@color/brand"
+            android:background="#fff"
             android:gravity="center"
             />
         </FrameLayout>

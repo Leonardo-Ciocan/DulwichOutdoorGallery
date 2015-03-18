@@ -246,23 +246,11 @@
         fab:fab_colorNormal="@color/brand"
         fab:fab_colorPressed="@color/brandDark" />
 
-    <!--<HorizontalScrollView
-        android:id="@+id/scrollView"
-        android:layout_gravity="bottom"
-        android:layout_width="fill_parent"
-        android:layout_height="150dp"
-        android:layout_marginBottom="10dp">
-        <LinearLayout
-            android:id="@+id/cardContainer"
-            android:layout_width="wrap_content"
-            android:layout_height="150dp">
 
-        </LinearLayout>
-
-    </HorizontalScrollView>-->
 
     <team3m.dulwichoutdoorgallery.LocationCardView
         android:id="@+id/cardA"
+        android:visibility="gone"
         android:layout_gravity="bottom|left"
         android:layout_width="150dp"
         android:layout_height="180dp"
@@ -271,8 +259,20 @@
         </team3m.dulwichoutdoorgallery.LocationCardView>
 
 
+
+    <team3m.dulwichoutdoorgallery.LocationCardView
+        android:id="@+id/cardC"
+        android:visibility="gone"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="bottom|right"
+        android:layout_width="150dp"
+        android:layout_height="180dp"
+        android:layout_marginBottom="10dp">
+    </team3m.dulwichoutdoorgallery.LocationCardView>
+
     <team3m.dulwichoutdoorgallery.LocationCardView
         android:id="@+id/cardB"
+        android:visibility="gone"
         android:layout_marginRight="10dp"
         android:layout_gravity="bottom|right"
         android:layout_width="150dp"
@@ -283,14 +283,20 @@
 
     </team3m.dulwichoutdoorgallery.LocationCardView>
 
-    <team3m.dulwichoutdoorgallery.LocationCardView
-        android:id="@+id/cardC"
-        android:layout_marginRight="10dp"
-        android:layout_gravity="bottom|right"
-        android:layout_width="150dp"
-        android:layout_height="180dp"
-        android:layout_marginBottom="-190dp">
-    </team3m.dulwichoutdoorgallery.LocationCardView>
+    <HorizontalScrollView
+            android:id="@+id/scrollView"
+            android:layout_gravity="bottom"
+            android:layout_width="fill_parent"
+            android:layout_height="150dp"
+            android:layout_marginBottom="10dp">
+            <LinearLayout
+                android:id="@+id/cardContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp">
+
+            </LinearLayout>
+
+    </HorizontalScrollView>
 
     <FrameLayout
         android:layout_width="200dp"
