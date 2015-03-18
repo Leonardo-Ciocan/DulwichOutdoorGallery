@@ -25,8 +25,8 @@ public class Core {
         {
             add(new Art("Europa and the Winged Bird, 2014" ,
                     "Faith selected Guido Reni's 'Europa and the Bull', which soon found its way onto the streets of Dulwich.  The absence of the bull and " +
-                     "the introduction of a guiding bird are suggestive of a premonition of the abduction to come, her inner emotions and thoughts or perhaps " +
-                     "a new interpretation of the ancient fable." ,
+                    "the introduction of a guiding bird are suggestive of a premonition of the abduction to come, her inner emotions and thoughts or perhaps " +
+                    "a new interpretation of the ancient fable." ,
                     "Faith47" , new Art("Europa and the Bull, 17th century" , "Guido Reni managed one of the busiest studios of the 17th century. His most popular " +
                     "compositions can exist in several versions, with varying degrees of involvement of the master." ,
                     "Guido Reni", null, new ArrayList<String>(), 51.445936, -0.086170, "faith47_europa_and_the_bull", "a.1387311134920959.1073741826.1387308654921207/1387311151587624"),
@@ -308,18 +308,42 @@ public class Core {
         return CoreActivity.preferences.getBoolean("_location"+n , false);
     }
 
+
+
     public static void setLocationVisited(int n){
         CoreActivity.preferences.edit().putBoolean("_location"+n,true).commit();
     }
 
     public static void updateBadges(){
+
         int count = 0;
+
         for(int x =0; x<getGallery().size();x++){
             if(isLocationVisited(x))count++;
         }
+
+        ArrayList<Integer> achived = new ArrayList<>();
+
+        if(count == getGallery().size()){
+            if(!getBadgeStatus(0)){
+                notifyBadgeEarned(BadgesActivity.badges.get(0));
+                //achived.add(0);
+                setBadgeCompleted(0);
+            }
+        }
+
+        if (isLocationVisited(14) && isLocationVisited(15)){
+            if ((!getBadgeStatus(1))){
+                notifyBadgeEarned(BadgesActivity.badges.get(1));
+                //achived.add(1);
+                setBadgeCompleted(1);
+            }
+        }
+
         if(count == 3){
             if(!getBadgeStatus(3)) {
                 notifyBadgeEarned(BadgesActivity.badges.get(3));
+                //achived.add(3);
                 setBadgeCompleted(3);
             }
         }
@@ -327,9 +351,83 @@ public class Core {
         if(count == 5){
             if(!getBadgeStatus(4)) {
                 notifyBadgeEarned(BadgesActivity.badges.get(4));
+                //achived.add(4);
                 setBadgeCompleted(4);
             }
         }
+
+        if(isLocationVisited(4)){
+            if(!getBadgeStatus(10)){
+                notifyBadgeEarned(BadgesActivity.badges.get(10));
+                //achived.add(10);
+                setBadgeCompleted(10);
+            }
+        }
+
+        if(isLocationVisited(10)){
+            if(!getBadgeStatus(11)){
+                notifyBadgeEarned(BadgesActivity.badges.get(11));
+                //achived.add(11);
+                setBadgeCompleted(11);
+            }
+
+        }
+
+        if(isLocationVisited(3)){
+            if (!getBadgeStatus(12)){
+                notifyBadgeEarned(BadgesActivity.badges.get(12));
+                //achived.add(12);
+                setBadgeCompleted(12);
+            }
+        }
+
+        if (isLocationVisited(5) && isLocationVisited(8) && isLocationVisited(11) && isLocationVisited(13)
+                && isLocationVisited(14) && isLocationVisited(25)){
+            if (!getBadgeStatus(9)){
+                notifyBadgeEarned(BadgesActivity.badges.get(9));
+                //achived.add(9);
+                setBadgeCompleted(9);
+            }
+        }
+
+        if (isLocationVisited(0) && isLocationVisited(18) && isLocationVisited(21) && isLocationVisited(20)){
+            if (!getBadgeStatus(8)){
+                notifyBadgeEarned(BadgesActivity.badges.get(8));
+                //achived.add(8);
+                setBadgeCompleted(8);
+            }
+        }
+
+        if (isLocationVisited(4) && isLocationVisited(5) && isLocationVisited(6) &&isLocationVisited(7)
+                && isLocationVisited(9) && isLocationVisited(10)){
+            if (!getBadgeStatus(6)){
+                notifyBadgeEarned(BadgesActivity.badges.get(6));
+                //achived.add(6);
+                setBadgeCompleted(6);
+            }
+        }
+
+        if (isLocationVisited(19) && isLocationVisited(3) && isLocationVisited(22) && isLocationVisited(18)){
+            if (!getBadgeStatus(5)){
+                notifyBadgeEarned(BadgesActivity.badges.get(5));
+                //achived.add(5);
+                setBadgeCompleted(5);
+            }
+        }
+
+        /*if (!achived.isEmpty()){
+            if (achived.size()>1){
+                while (!achived.isEmpty()){
+                    notifyBadgeEarned(BadgesActivity.badges.get(achived.get(0)));
+
+
+                    achived.remove(0);
+                }
+            }
+        }*/
+
+
+
     }
 
     public static void update(Context c){

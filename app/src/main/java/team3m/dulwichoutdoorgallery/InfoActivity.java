@@ -197,9 +197,6 @@ public class InfoActivity extends ActionBarActivity {
                 }
             });
 
-
-
-
             i1 = header;
             i2 = header2;
 
@@ -304,6 +301,13 @@ public class InfoActivity extends ActionBarActivity {
                 mySharedLink = "http://www.facebook.com/dulwichsa/photos/" + art.getShareID();
             }
             ;
+
+            if (!CoreActivity.preferences.getBoolean("DidShare",false)){
+                CoreActivity.preferences.edit().putBoolean("DidShare",true).commit();
+                Core.setBadgeCompleted(2);
+                Core.notifyBadgeEarned(BadgesActivity.badges.get(2));
+            }
+
             Intent shareIntent = new Intent();
             shareIntent.setAction(Intent.ACTION_SEND);
             shareIntent.setType("text/plain");

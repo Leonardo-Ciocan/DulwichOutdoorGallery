@@ -84,6 +84,8 @@ public class BadgeNotification extends RelativeLayout {
         hideAnim.setInterpolator(new AccelerateDecelerateInterpolator());
         hideAnim.setDuration(565);
 
+
+
         View inner = inflate(getContext(), R.layout.badge_notification, this);
         Button closeBtn = (Button)inner.findViewById(R.id.closeNotification);
         imageView = (ImageView)inner.findViewById(R.id.image);

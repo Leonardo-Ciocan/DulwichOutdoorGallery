@@ -155,13 +155,13 @@ public class BadgesActivity extends ActionBarActivity {
             badges.add(new Badge("Art Lover", "Checking out street art is your new passion", artlover, false));
             badges.add(new Badge("Warm-Up", "What a start! You already got 3 in the bag.", warmup, false));
             badges.add(new Badge("Got a Fiver", "5 arts in the bag already!", fiver, false));
-            badges.add(new Badge("Navigator", "Ay Ay Cap'n!", navigator, false));
-            badges.add(new Badge("Street Watcher", "Getting using monitoring street arts.", streetwatcher, false));
+            badges.add(new Badge("Navigator", "Visit the art located next to a railway station", navigator, false));
+            badges.add(new Badge("Street Watcher", "See the street art on Lordship Ln..", streetwatcher, false));
             badges.add(new Badge("Fake Spotter", "Mastering the spot of original arts.", fakespotter, false));
             badges.add(new Badge("E.S.A.R", "Eat.Sleep.Art.Repeat", eatsleep, false));
             badges.add(new Badge("Stick Runner", "Visit all the Stick Man Arts", stickrunner, false));
-            badges.add(new Badge("Odd one out", "Visit Mear One US Art", oddone, false));
-            badges.add(new Badge("Lord of the arts", "Visit Conor Harrington Art", lordofarts, false));
+            badges.add(new Badge("Odd one out", "Visit Conor Harrington Art", oddone, false));
+            badges.add(new Badge("Lord of the arts", "Visit Mear One US Art", lordofarts, false));
             badges.add(new Badge("The Golden Spray", "Visit System UK Rembrandt Art", goldenspray, false));
         }
 

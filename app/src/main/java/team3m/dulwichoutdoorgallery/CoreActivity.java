@@ -75,7 +75,7 @@ public class CoreActivity extends ActionBarActivity {
         Log.v("xwuwuuwuwu" , "creating activity");
 
 
-// And later in some initialization function:
+        // And later in some initialization function:
         AppKeyPair appKeys = new AppKeyPair(Core.APP_KEY, Core.APP_SECRET);
         AndroidAuthSession session = new AndroidAuthSession(appKeys);
         mDBApi = new DropboxAPI<AndroidAuthSession>(session);
