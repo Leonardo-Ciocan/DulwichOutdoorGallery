@@ -265,7 +265,7 @@ public class BadgesActivity extends ActionBarActivity {
 
             public void getStats(){
                 for(int i=0; i<badges.size(); i++){
-                    if(badges.get(i).getAchieved())
+                    if(Core.getBadgeStatus(i))
                         badgesInTheBag++;
                     achievementsPerc = (badgesInTheBag*100)/badges.size();
                 }

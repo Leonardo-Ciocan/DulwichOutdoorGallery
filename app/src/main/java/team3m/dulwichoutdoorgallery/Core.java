@@ -2,6 +2,8 @@ package team3m.dulwichoutdoorgallery;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.dropbox.client2.DropboxAPI;
@@ -476,7 +478,8 @@ public class Core {
                     }
 
                     String[] lines = stringBuffer.toString().split("\n");
-                Art art = new Art(lines[0], lines[2], lines[1], new Art(lines[5], lines[7], lines[6], null, null, 0, 0, "", ""), null, Float.parseFloat(lines[3]), Float.parseFloat(lines[4]), "", name.replace(".txt", ".png"));
+
+                    Art art = new Art(lines[0], lines[2], lines[1], new Art(lines[5], lines[7], lines[6], null, null, 0, 0,"",name.replace(".txt","a.png")), null, Float.parseFloat(lines[3]), Float.parseFloat(lines[4]),"",name.replace(".txt",".png"));
                     Core.getGallery().add(art);
                     if(MyAdapter.instance!=null)
                         ((Activity)c).runOnUiThread(new Runnable() {
@@ -505,7 +508,20 @@ public class Core {
         catch (Exception e) {
             return false;
         }
+    }
 
+    public static float convertDpToPixel(float dp, Context context){
+        Resources resources = context.getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        float px = dp * (metrics.densityDpi / 160f);
+        return px;
+    }
+
+    public static float convertPixelsToDp(float px, Context context){
+        Resources resources = context.getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        float dp = px / (metrics.densityDpi / 160f);
+        return dp;
     }
 }
 

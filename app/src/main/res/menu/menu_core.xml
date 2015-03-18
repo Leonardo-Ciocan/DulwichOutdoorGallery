@@ -4,4 +4,5 @@
     tools:context="team3m.dulwichoutdoorgallery.CoreActivity">
 
     <item android:id="@+id/search" android:title="Search" android:icon="@drawable/ic_action_action_search" app:showAsAction="always"></item>
+    <item android:title="Close" android:icon="@android:drawable/ic_menu_close_clear_cancel" app:showAsAction="always" android:visible="false"></item>
 </menu>

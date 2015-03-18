@@ -26,6 +26,12 @@
 			android:layout_height="fill_parent"
 			android:hint="Search art"/>
 
+        <team3m.dulwichoutdoorgallery.RouteProgressIndicator
+android:visibility="gone"
+            android:id="@+id/routeIndicator"
+            android:layout_width="fill_parent"
+            android:layout_height="18dp" />
+
 	</android.support.v7.widget.Toolbar>
 
 	<android.support.v4.widget.DrawerLayout
@@ -241,4 +247,17 @@
             android:layout_margin="16dp"/>
 
 	</FrameLayout>-->
+
+    <FrameLayout
+        android:id="@+id/logoOverlay"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/brandDark">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/screenView"
+            android:src="@drawable/logo_medium"
+            android:layout_gravity="center"/>
+    </FrameLayout>
 </FrameLayout>

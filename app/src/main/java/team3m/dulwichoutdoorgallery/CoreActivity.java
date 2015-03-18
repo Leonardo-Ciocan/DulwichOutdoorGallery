@@ -3,6 +3,7 @@ package team3m.dulwichoutdoorgallery;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Animatable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -18,6 +19,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -56,6 +60,7 @@ public class CoreActivity extends ActionBarActivity {
     static String[] titles = new String[]{"Explore" , "Route" , "Badges" , "Game","About"};
 
     public static SharedPreferences preferences ;
+    public RouteProgressIndicator routeIndicator;
 
     // In the class declaration section:
     public static DropboxAPI<AndroidAuthSession> mDBApi;
@@ -65,18 +70,43 @@ public class CoreActivity extends ActionBarActivity {
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private LinearLayout buttonHolder;
-    private OutputStream outputStream;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferences = getSharedPreferences(
                 "com.example.app", Context.MODE_PRIVATE);
+        setContentView(R.layout.activity_core);
         super.onCreate(savedInstanceState);
+        /*new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Core.update(CoreActivity.this);
+            }
+        }).start();*/
         Log.v("xwuwuuwuwu" , "creating activity");
 
 
-        // And later in some initialization function:
-        AppKeyPair appKeys = new AppKeyPair(Core.APP_KEY, Core.APP_SECRET);
+
+        final ImageView logo = (ImageView) findViewById(R.id.screenView);
+        final FrameLayout logoOverlay = (FrameLayout) findViewById(R.id.logoOverlay);
+        final Animation entry = new Animation() {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+                logo.setAlpha(1-interpolatedTime);
+                logoOverlay.setAlpha(1-interpolatedTime);
+                logo.setScaleX(1+interpolatedTime*2.5f);
+                logo.setScaleY(1+interpolatedTime*2.5f);
+            }
+        };
+        entry.setInterpolator(new AccelerateDecelerateInterpolator());
+        entry.setDuration(2000);
+
+
+
+
+
+// And later in some initialization function:
+       AppKeyPair appKeys = new AppKeyPair(Core.APP_KEY, Core.APP_SECRET);
         AndroidAuthSession session = new AndroidAuthSession(appKeys);
         mDBApi = new DropboxAPI<AndroidAuthSession>(session);
        // mDBApi.getSession().startOAuth2Authentication(CoreActivity.this);
@@ -85,82 +115,49 @@ public class CoreActivity extends ActionBarActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Core.update(CoreActivity.this);
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        initUI();
+                    }
+                });
             }
         }).start();
-/*
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-
-                //File file = new File("");
-
-                DropboxAPI.Entry dirent = null;
                 try {
-                    dirent = mDBApi.metadata("/saved/", 1000, null, true, null);
-                } catch (DropboxException e) {
+                    Thread.sleep(1500);
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                ArrayList<DropboxAPI.Entry> files = new ArrayList<DropboxAPI.Entry>();
-                ArrayList<String> dir=new ArrayList<String>();
-                int i = 0;
-                for (DropboxAPI.Entry ent: dirent.contents)
-                {
-                    files.add(ent);// Add it to the list of thumbs we can choose from
-                    //dir = new ArrayList<String>();
-                    dir.add(files.get(i++).path);
-                }
-
-                File folder = getApplicationContext().getFilesDir();
-                File file = new File(folder.getAbsolutePath()+File.separator+"hi.txt");
-
-                // OutputStream outputStream;
-                boolean filee = file.exists();
-                try {
-                    outputStream = getApplicationContext().openFileOutput("hi.txt" , MODE_PRIVATE);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    DropboxAPI.DropboxFileInfo info = mDBApi.getFile("/saved/hi.txt", null, outputStream, null);
-                } catch (DropboxException e) {
-                    e.printStackTrace();
-                }
-
-                try {
-                    BufferedReader inputReader = new BufferedReader(new InputStreamReader(
-                            openFileInput("hi.txt")));
-                    String inputString;
-                    StringBuffer stringBuffer = new StringBuffer();
-                    while ((inputString = inputReader.readLine()) != null) {
-                        stringBuffer.append(inputString + "\n");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        logo.startAnimation(entry);
                     }
-                    Log.e("wuwuuwuuw", stringBuffer.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                });
             }
-        }).start();*/
+        }).start();
+       }
 
 
-        setContentView(R.layout.activity_core);
+    void initUI(){
         toolbar = (Toolbar)findViewById(R.id.toolbar);
-
         searchBox = (EditText) findViewById(R.id.search);
-        /*Palette.generateAsync(BitmapFactory.decodeResource(getResources() , R.drawable.reka_europa_and_the_bull), new Palette.PaletteAsyncListener() {
-            public void onGenerated(Palette palette) {
-                toolbar.setBackground(new ColorDrawable(palette.getVibrantColor(getResources().getColor(R.color.brand))));
-            }
-        });*/
-
+        routeIndicator = (RouteProgressIndicator) findViewById(R.id.routeIndicator);
         toolbar.setTitle("Explore");
 
         setSupportActionBar(toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
-        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close){
+        toggle = new ActionBarDrawerToggle(CoreActivity.this, drawerLayout, R.string.open, R.string.close){
             @Override
             public void onDrawerClosed(View drawerView) {
                 searchBox.setVisibility(View.GONE);
@@ -182,7 +179,7 @@ public class CoreActivity extends ActionBarActivity {
 
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.contentHolder, ExploreFragment)
+                .add(R.id.contentHolder, new RouteActivity.PlaceholderFragment())
                 .commit();
 
 
@@ -201,103 +198,6 @@ public class CoreActivity extends ActionBarActivity {
         makeButtonClickable(gameButton , GAME);
         makeButtonClickable(aboutButton , ABOUT);
 
-        /*
-        Button routeButton = (Button)findViewById(R.id.btn_route);
-        routeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toolbar.getMenu().getItem(0).setVisible(false);
-
-                toolbar.setTitle("Tours");
-                for(int x =0;x < buttonHolder.getChildCount();x++){
-                    buttonHolder.getChildAt(x).setBackground(null);
-                    ((Button)buttonHolder.getChildAt(x)).setTextColor(Color.BLACK);
-                }
-                v.setBackground(new ColorDrawable(getResources().getColor(R.color.brand)));
-                ((Button)v).setTextColor(Color.WHITE);
-
-                drawerLayout.closeDrawers();
-
-                new CountDownTimer(300, 300) {
-                    public void onFinish() {
-                        RouteActivity.AboutFragment routeFragment = new RouteActivity.AboutFragment();
-
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.contentHolder, routeFragment)
-                                .commit();
-                    }
-
-                    public void onTick(long millisUntilFinished) {
-                    }
-                }.start();
-            }
-        });
-
-        Button gameButton = (Button)findViewById(R.id.btn_game);
-        gameButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toolbar.getMenu().getItem(0).setVisible(false);
-
-                toolbar.setTitle("Game");
-                for(int x =0;x < buttonHolder.getChildCount();x++){
-                    buttonHolder.getChildAt(x).setBackground(null);
-                    ((Button)buttonHolder.getChildAt(x)).setTextColor(Color.BLACK);
-                }
-                v.setBackground(new ColorDrawable(getResources().getColor(R.color.brand)));
-                ((Button)v).setTextColor(Color.WHITE);
-
-                drawerLayout.closeDrawers();
-
-                new CountDownTimer(300, 300) {
-                    public void onFinish() {
-                        GameFragment gameFragment = GameFragment.newInstance();
-
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.contentHolder, gameFragment)
-                                .commit();
-                    }
-
-                    public void onTick(long millisUntilFinished) {
-                    }
-                }.start();
-            }
-        });
-
-
-        Button badgesButton = (Button)findViewById(R.id.btn_badge);
-        badgesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toolbar.getMenu().getItem(0).setVisible(false);
-
-
-                toolbar.setTitle("Badges");
-                for(int x =0;x < buttonHolder.getChildCount();x++){
-                    buttonHolder.getChildAt(x).setBackground(null);
-                    ((Button)buttonHolder.getChildAt(x)).setTextColor(Color.BLACK);
-                }
-                v.setBackground(new ColorDrawable(getResources().getColor(R.color.brand)));
-                ((Button)v).setTextColor(Color.WHITE);
-
-                drawerLayout.closeDrawers();
-
-                new CountDownTimer(300, 300) {
-                    public void onFinish() {
-                        BadgesActivity.AboutFragment fragment = new  BadgesActivity.AboutFragment();
-
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.contentHolder, fragment)
-                                .commit();
-                    }
-
-                    public void onTick(long millisUntilFinished) {
-                    }
-                }.start();
-            }
-        });
-
-*/
         searchBox.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -326,9 +226,10 @@ public class CoreActivity extends ActionBarActivity {
         });
 
         BadgesActivity.PlaceholderFragment.populateBadgeList();
+        onPostCreate(null);
 
-       }
 
+    }
     void makeButtonClickable(LinearLayout exploreButton  , final int id){
         exploreButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -359,6 +260,7 @@ public class CoreActivity extends ActionBarActivity {
                         Fragment fragment = null;
                         if(id == EXPLORE){
                             fragment = new team3m.dulwichoutdoorgallery.ExploreFragment(searchBox);
+                            ExploreFragment = (ExploreFragment)fragment;
                         }
                         else if(id == ROUTE){
                             fragment = new RouteActivity.PlaceholderFragment();
@@ -370,6 +272,10 @@ public class CoreActivity extends ActionBarActivity {
                         else if(id == ABOUT){
                             fragment = new AboutFragment();
                         }
+                        toolbar.getMenu().getItem(1).setVisible(id==ROUTE);
+
+                        routeIndicator.setVisibility(id == ROUTE ? View.VISIBLE : View.GONE);
+
                         getSupportFragmentManager().beginTransaction()
                                 .setCustomAnimations(R.anim.show , R.anim.hide)
                                 .replace(R.id.contentHolder, fragment)
@@ -387,7 +293,7 @@ public class CoreActivity extends ActionBarActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        toggle.syncState();
+        if(toggle!=null)toggle.syncState();
     }
 
     @Override

@@ -349,7 +349,6 @@ public class ExploreFragment extends Fragment {
                             .snippet(Gallery.get(i).getDescription())
                             .position(new LatLng(Gallery.get(i).getLatitude(), Gallery.get(i).getLongitude())));
                     markers.add(m);
-
                 }
 
                 //When clicking on the map
@@ -429,6 +428,19 @@ public class ExploreFragment extends Fragment {
             navigationButton.startAnimation(showNavButton);
         }
 
+        map.clear();
+        ArrayList<Art > Gallery = Core.getGallery();
+        for (int i = 0; i < Gallery.size(); i++) {
+            //Core.getGallery().get(i).getDrawable(getActivity());
+            Marker m = map.addMarker(new MarkerOptions()
+                    .icon(BitmapDescriptorFactory
+                            .defaultMarker(200))
+                    .alpha(Core.isLocationVisited(i) ? 0.6f : 1f)
+                    .title(String.valueOf(i))
+                    .snippet(Gallery.get(i).getDescription())
+                    .position(new LatLng(Gallery.get(i).getLatitude(), Gallery.get(i).getLongitude())));
+            markers.add(m);
+        }
 
         artSelected = true;
 
@@ -531,7 +543,7 @@ public class ExploreFragment extends Fragment {
 
         mapHolder.setAlpha(((!isCardUp) ? 1.5f - interpolatedTime : 0.5f + interpolatedTime * 1));
 
-        cardButton.setImageDrawable(getResources().getDrawable(!isCardUp ? R.drawable.ic_action_content_add : R.drawable.ic_navigation_menu));
+        cardButton.setImageDrawable(getResources().getDrawable(!isCardUp ? R.drawable.ic_action_content_add : R.drawable.ic_list2));
         cardButton.setRotation(((isCardUp) ? 135 - interpolatedTime * 135 : interpolatedTime * 135));
 
     }

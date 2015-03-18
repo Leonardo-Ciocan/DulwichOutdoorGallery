@@ -6,21 +6,33 @@
     tools:context="team3m.dulwichoutdoorgallery.RouteActivity$PlaceholderFragment">
 
 
-
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/map"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="170dp"
-        android:name="com.google.android.gms.maps.SupportMapFragment"/>
+        android:layout_marginBottom="195dp"
+        android:layout_marginLeft="-5dp"
+        android:layout_marginRight="-5dp">
+
+
+        <fragment
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"/>
+    </android.support.v7.widget.CardView>
+
 
     <android.support.v7.widget.CardView
+        android:visibility="gone"
         android:id="@+id/currentArt"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginLeft="-5dp"
+        android:layout_height="160dp"
         android:layout_gravity="bottom"
-        android:layout_marginRight="-5dp"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         cardBackgroundColor="#4f000000"
         android:layout_marginBottom="-80dp">
 
@@ -134,13 +146,16 @@
     </android.support.v7.widget.CardView>
     
     <android.support.v7.widget.CardView
+        android:visibility="gone"
+
         android:id="@+id/navigationCard"
-        android:layout_height="245dp"
+        android:layout_height="160dp"
         android:layout_width="match_parent"
-        android:layout_marginLeft="-5dp"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_gravity="bottom"
-        android:layout_marginRight="-5dp"
-        android:layout_marginBottom="-25dp">
+        android:layout_marginBottom="-5dp">
         <LinearLayout
             android:layout_marginTop="20dp"
             android:orientation="vertical"
@@ -169,7 +184,7 @@
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1: First art piece"/>
+                android:text=""/>
             <team3m.dulwichoutdoorgallery.RouteProgressIndicator
 
                 android:layout_marginTop="20dp"
@@ -222,14 +237,68 @@
 
     <com.melnykov.fab.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_marginRight="16dp"
         xmlns:fab="http://schemas.android.com/apk/res-auto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right|bottom"
-        android:layout_marginBottom="180dp"
-        android:src="@drawable/ic_av_play_arrow"
-        android:rotation="-90"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="170dp"
+        android:src="@drawable/ic_maps_navigation"
         fab:fab_colorNormal="@color/brand"
         fab:fab_colorPressed="@color/brandDark" />
+
+
+
+    <team3m.dulwichoutdoorgallery.LocationCardView
+        android:id="@+id/cardA"
+        android:visibility="gone"
+        android:layout_gravity="bottom|left"
+        android:layout_width="150dp"
+        android:layout_height="180dp"
+        android:layout_marginBottom="10dp">
+
+        </team3m.dulwichoutdoorgallery.LocationCardView>
+
+
+
+    <team3m.dulwichoutdoorgallery.LocationCardView
+        android:id="@+id/cardC"
+        android:visibility="gone"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="bottom|right"
+        android:layout_width="150dp"
+        android:layout_height="180dp"
+        android:layout_marginBottom="10dp">
+    </team3m.dulwichoutdoorgallery.LocationCardView>
+
+    <team3m.dulwichoutdoorgallery.LocationCardView
+        android:id="@+id/cardB"
+        android:visibility="gone"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="bottom|right"
+        android:layout_width="150dp"
+        android:layout_height="180dp"
+        android:layout_marginBottom="10dp">
+
+
+
+    </team3m.dulwichoutdoorgallery.LocationCardView>
+
+    <HorizontalScrollView
+            android:id="@+id/scrollView"
+            android:layout_gravity="bottom"
+            android:layout_width="fill_parent"
+            android:layout_height="150dp"
+            android:layout_marginBottom="10dp">
+            <LinearLayout
+                android:id="@+id/cardContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp">
+
+            </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <FrameLayout
+        android:layout_width="200dp"
+        android:layout_height="180dp"></FrameLayout>
 </FrameLayout>

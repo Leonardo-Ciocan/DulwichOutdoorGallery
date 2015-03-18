@@ -5,6 +5,13 @@
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+        <option name="gradleHome" value="E:\Android Studio\gradle\gradle-2.2.1" />
+>>>>>>> origin/intro-features
+>>>>>>> experimental/new-route
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
