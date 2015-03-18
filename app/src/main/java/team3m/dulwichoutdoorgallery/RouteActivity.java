@@ -367,7 +367,7 @@ public class RouteActivity extends ActionBarActivity {
                             ((LocationCardView) cardContainer.getChildAt(iCurrent - 1)).setArt(Core.getGallery().get(lastVisited));
                             ((LocationCardView) cardContainer.getChildAt(iCurrent - 1)).hideOverlay();
                             ((LocationCardView) cardContainer.getChildAt(iCurrent)).setArt(Core.getGallery().get(current));
-                            scrollView.smoothScrollTo((int) Core.convertDpToPixel((130 * (iCurrent - 1)), getActivity()), 0);
+                            scrollView.smoothScrollTo((int) Core.convertDpToPixel((130 * (iCurrent - 2)), getActivity()), 0);
                         }
 
                         new CountDownTimer(357,357){
