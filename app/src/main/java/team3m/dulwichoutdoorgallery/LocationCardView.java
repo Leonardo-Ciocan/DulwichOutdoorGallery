@@ -1,6 +1,7 @@
 package team3m.dulwichoutdoorgallery;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -37,12 +38,25 @@ public class LocationCardView extends RelativeLayout {
 
     static float x = 0;
     void init() {
+        setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), InfoActivity.class);
+                if(a!=null){
+                    int index = Core.getGallery().indexOf(a);
+                    i.putExtra("index", index);
+                    getContext().startActivity(i);
+                }
+            }
+        });
         card = inflate(getContext(), R.layout.route_card, this);
         img = (ImageView) card.findViewById(R.id.img);
         overlay = (TextView) card.findViewById(R.id.overlay);
         //this.setAlpha(1/(x+1));
         x+=1;
     }
+
+
 
     public void setArt(Art a){
         if (!a.getPhoto().equals("")) {
@@ -76,7 +90,7 @@ public class LocationCardView extends RelativeLayout {
             }
         };
         entry.setInterpolator(new AccelerateDecelerateInterpolator());
-        entry.setDuration(3000);
+        entry.setDuration(950);
 
         overlay.startAnimation(entry);
     }
