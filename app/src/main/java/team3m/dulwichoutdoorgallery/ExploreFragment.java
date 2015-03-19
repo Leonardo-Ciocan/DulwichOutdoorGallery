@@ -176,6 +176,7 @@ public class ExploreFragment extends Fragment {
         card       = (CardView)             rootView.findViewById(R.id.card);
         cardButton = (FloatingActionButton) rootView.findViewById(R.id.fab2);
         list       = (ListView)             rootView.findViewById(R.id.artList);
+        list.setEnabled(false);
         mapHolder  = (FrameLayout)          rootView.findViewById(R.id.mapHolder);
         textAuthor = (TextView)             rootView.findViewById(R.id.author);
         textTitle  = (TextView)             rootView.findViewById(R.id.title);
@@ -205,8 +206,10 @@ public class ExploreFragment extends Fragment {
 
                 //Moving the info button below the bottom
                 FrameLayout.LayoutParams infoBtnLayout = (FrameLayout.LayoutParams) btnInfo.getLayoutParams();
-                infoBtnLayout.bottomMargin = (int) ((5 - (45 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
+                infoBtnLayout.bottomMargin = (int) ((45 - (45 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
                 btnInfo.setLayoutParams(infoBtnLayout);
+                btnInfo.setEnabled(false);
+                btnInfo.setAlpha(1-interpolatedTime);
 
                 //At the end reset rotation and finish animation
                 if (interpolatedTime >= 1f) {
@@ -237,8 +240,12 @@ public class ExploreFragment extends Fragment {
 
                 //Show info button
                 FrameLayout.LayoutParams params6 = (FrameLayout.LayoutParams) btnInfo.getLayoutParams();
-                params6.bottomMargin = (int) ((-40 + (45 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
+                params6.bottomMargin = (int) ((-0 + (45 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
                 btnInfo.setLayoutParams(params6);
+
+                btnInfo.setEnabled(true);
+                btnInfo.setAlpha(interpolatedTime);
+
 
             }
 
@@ -255,6 +262,7 @@ public class ExploreFragment extends Fragment {
             @Override
             protected void applyTransformation(float interpolatedTime, Transformation t) {
                 toggleCard(interpolatedTime);
+                list.setEnabled(!isCardUp);
 
                 //When it ends , restore selected state and hide search field if needed
                 if (interpolatedTime >= 1f) {
