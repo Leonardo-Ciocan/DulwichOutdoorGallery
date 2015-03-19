@@ -77,12 +77,12 @@ public class CoreActivity extends ActionBarActivity {
                 "com.example.app", Context.MODE_PRIVATE);
         setContentView(R.layout.activity_core);
         super.onCreate(savedInstanceState);
-        /*new Thread(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 Core.update(CoreActivity.this);
             }
-        }).start();*/
+        }).start();
         Log.v("xwuwuuwuwu" , "creating activity");
 
 
@@ -274,6 +274,7 @@ public class CoreActivity extends ActionBarActivity {
                         else if(id == ABOUT){
                             fragment = new AboutFragment();
                         }
+                        toolbar.getMenu().getItem(1).setVisible(id==ROUTE);
 
                         routeIndicator.setVisibility(id == ROUTE ? View.VISIBLE : View.GONE);
 
@@ -315,6 +316,18 @@ public class CoreActivity extends ActionBarActivity {
             searchBox.requestFocus();
 
             return true;
+        }
+        if(item.getItemId() == R.id.close){
+            Fragment fragment = null;
+
+            fragment = new RouteActivity.PlaceholderFragment();
+
+            routeIndicator.setVisibility(View.VISIBLE);
+
+            getSupportFragmentManager().beginTransaction()
+                    //.setCustomAnimations(R.anim.show , R.anim.hide)
+                    .replace(R.id.contentHolder, fragment)
+                    .commit();
         }
 
         return super.onOptionsItemSelected(item);

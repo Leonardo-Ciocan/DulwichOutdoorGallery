@@ -19,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.io.File;
+
 public class LocationCardView extends RelativeLayout {
     Art a;
     private TextView overlay;
@@ -27,7 +29,6 @@ public class LocationCardView extends RelativeLayout {
 
     public LocationCardView(Context context , Art a){
         super(context);
-        this.a = a;
         init();
     }
 
@@ -59,6 +60,7 @@ public class LocationCardView extends RelativeLayout {
 
 
     public void setArt(Art a){
+        this.a = a;
         if (!a.getPhoto().equals("")) {
             img.setImageDrawable(
                     getResources().getDrawable(
@@ -71,6 +73,15 @@ public class LocationCardView extends RelativeLayout {
             Palette palette = Palette.generate(icon);
 //            tv.setTextColor(palette.getDarkVibrantColor(Color.BLACK));
             overlay.setBackgroundColor(palette.getDarkVibrantColor(Color.BLACK));
+        }
+        else{
+            File imgFile = new  File(getContext().getApplicationContext().getFilesDir()+ File.separator+ a.getIsOnline());
+            if(imgFile.exists()){
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                img.setImageBitmap(myBitmap);
+                Palette palette = Palette.generate(myBitmap);
+                overlay.setBackgroundColor(palette.getDarkVibrantColor(Color.BLACK));
+            }
         }
     }
 

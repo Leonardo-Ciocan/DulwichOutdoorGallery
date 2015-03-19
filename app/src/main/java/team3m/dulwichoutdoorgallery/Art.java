@@ -122,7 +122,6 @@ public class Art {
     public Drawable getDrawable(Context c){
         if(drawable == null) {
             try{
-
                 drawable = c.getResources().getDrawable(c.getResources().getIdentifier(getPhoto()+"_thumb", "drawable", c.getPackageName()));
             }
             catch (Exception ex){}
