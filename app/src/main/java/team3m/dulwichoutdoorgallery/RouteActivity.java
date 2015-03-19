@@ -104,6 +104,7 @@ public class RouteActivity extends ActionBarActivity {
         private LocationCardView cardC;
         private LinearLayout cardContainer;
         private HorizontalScrollView scrollView;
+        private Timer timer;
 
         public PlaceholderFragment() {
         }
@@ -130,16 +131,10 @@ public class RouteActivity extends ActionBarActivity {
             final SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                     .findFragmentById(R.id.map);
 
-            final RouteProgressIndicator indicator      = (RouteProgressIndicator)  rootView.findViewById(R.id.dotview);
             final TextView               titleView      = (TextView)                rootView.findViewById(R.id.title);
             final TextView               authorView     = (TextView)                rootView.findViewById(R.id.author);
-            final ImageView              artCardImage   = (ImageView)               rootView.findViewById(R.id.artCardImage);
-            final ImageView              smallImage     = (ImageView)               rootView.findViewById(R.id.smallImage);
             final TextView               title          = (TextView)                rootView.findViewById(R.id.title);
             final TextView               author         = (TextView)                rootView.findViewById(R.id.author);
-            final TextView               titleProgress  = (TextView)                rootView.findViewById(R.id.titleProgress);
-            final CardView               navigationCard = (CardView)                rootView.findViewById(R.id.navigationCard);
-            final CardView               currentArt     = (CardView)                rootView.findViewById(R.id.currentArt);
             final FloatingActionButton   fab            = (FloatingActionButton)    rootView.findViewById(R.id.fab);
             cardContainer = (LinearLayout)            rootView.findViewById(R.id.cardContainer);
             scrollView = (HorizontalScrollView)    rootView.findViewById(R.id.scrollView);
@@ -193,29 +188,7 @@ public class RouteActivity extends ActionBarActivity {
                     startActivity(i);
                 }
             });
-            Button navigateBtn = (Button) rootView.findViewById(R.id.navigateBtn);
-            navigateBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    navigate();
-                }
-            });
-
-            Button shareBtn = (Button) rootView.findViewById(R.id.shareBtn);
-            shareBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    share();
-                }
-            });
-
-            Button artShareBtn = (Button) rootView.findViewById(R.id.artShareBtn);
-            artShareBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    shareArt();
-                }
-            });
+            
 
 
 
@@ -232,51 +205,8 @@ public class RouteActivity extends ActionBarActivity {
             });
 
 
-            nextCardAnim = new Animation() {
-                @Override
-                protected void applyTransformation(float interpolatedTime, Transformation t) {
-                    super.applyTransformation(interpolatedTime, t);
-
-                    FrameLayout.LayoutParams params55 = (FrameLayout.LayoutParams) cardA.getLayoutParams();
-                    params55.leftMargin = (int) ((10 - (int) (195 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
-                    cardA.setLayoutParams(params55);
 
 
-
-                    FrameLayout.LayoutParams params5 = (FrameLayout.LayoutParams) cardB.getLayoutParams();
-                    params5.gravity = Gravity.LEFT | Gravity.BOTTOM;
-                    params5.leftMargin = (int) Core.convertDpToPixel((Core.convertPixelsToDp(rootView.getWidth(),getActivity()) - 10  - Core.convertPixelsToDp(cardB.getWidth(),getActivity()) - ((Core.convertPixelsToDp(rootView.getWidth(),getActivity()) - 20 - Core.convertPixelsToDp(cardB.getWidth(),getActivity())) * interpolatedTime)) , getActivity());
-
-                    cardB.setLayoutParams(params5);
-
-                }
-
-                @Override
-                public boolean willChangeBounds() {
-                    return true;
-                }
-            };
-
-            nextCardAnim.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-
-                }
-
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    animation.cancel();
-                    cardB.hideOverlay();
-                    cardA.showOverlay();
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-
-                }
-            });
-            nextCardAnim.setInterpolator(new AccelerateDecelerateInterpolator());
-            nextCardAnim.setDuration(1000);
 
             for(int x =0;x< Core.getGallery().size();x++)
             {
@@ -284,20 +214,14 @@ public class RouteActivity extends ActionBarActivity {
                 cardContainer.addView(new LocationCardView(getActivity(), ax));
             }
 
-            cardA.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    next();
-                }
-            });
 
-            Timer timer = new Timer();
+            timer = new Timer();
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
 
                     final Location l = new Location("");
-                    if(first !=null && !visitedStartingPoint){
+                    if (first != null && !visitedStartingPoint) {
                         l.setLatitude(first.latitude);
                         l.setLongitude(first.longitude);
                         getActivity().runOnUiThread(new Runnable() {
@@ -308,7 +232,7 @@ public class RouteActivity extends ActionBarActivity {
                         });
                     }
 
-                    if(current != -1){
+                    if (current != -1) {
                         l.setLatitude(Core.getGallery().get(current).getLatitude());
                         l.setLongitude(Core.getGallery().get(current).getLongitude());
                         getActivity().runOnUiThread(new Runnable() {
@@ -321,7 +245,7 @@ public class RouteActivity extends ActionBarActivity {
                     }
 
                 }
-            } , 3500 , 3000);
+            }, 3500, 3000);
 
             return rootView;
         }
@@ -370,17 +294,6 @@ public class RouteActivity extends ActionBarActivity {
                             scrollView.smoothScrollTo((int) Core.convertDpToPixel((130 * (iCurrent - 2)), getActivity()), 0);
                         }
 
-                        new CountDownTimer(357,357){
-                            @Override
-                            public void onTick(long millisUntilFinished) {
-
-                            }
-
-                            @Override
-                            public void onFinish() {
-                                next();
-                            }
-                        }.start();
                     }
 
                     drawOverlay();
@@ -553,10 +466,6 @@ public class RouteActivity extends ActionBarActivity {
             startActivity(Intent.createChooser(intent2, "Share via"));
         }
 
-        void next(){
-            Log.e("v_:","next()");
-            if(cardA.getAnimation() == null || cardA.getAnimation().hasEnded())
-                cardA.startAnimation(nextCardAnim);
-        }
+
     }
 }

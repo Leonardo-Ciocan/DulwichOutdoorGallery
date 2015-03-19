@@ -179,7 +179,7 @@ public class CoreActivity extends ActionBarActivity {
 
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.contentHolder, new RouteActivity.PlaceholderFragment())
+                .add(R.id.contentHolder, ExploreFragment)
                 .commit();
 
 
@@ -227,6 +227,8 @@ public class CoreActivity extends ActionBarActivity {
 
         BadgesActivity.PlaceholderFragment.populateBadgeList();
         onPostCreate(null);
+
+        //Core.notifyBadgeEarned(BadgesActivity.badges.get(0));
 
 
     }
