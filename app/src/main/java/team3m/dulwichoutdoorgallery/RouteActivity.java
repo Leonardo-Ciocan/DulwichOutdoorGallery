@@ -159,9 +159,6 @@ public class RouteActivity extends ActionBarActivity {
                             if (!hasFinished){
                                 handleLocationChanged(location);
                             }
-
-
-
                         }
                     };
 
@@ -174,9 +171,6 @@ public class RouteActivity extends ActionBarActivity {
 
                 }
             });
-            
-
-
 
             collapsed = true;
 
@@ -190,55 +184,13 @@ public class RouteActivity extends ActionBarActivity {
                 }
             });
 
-
-
-
-
             for(int x =0;x< Core.getGallery().size();x++)
             {
                 Art ax = Core.getGallery().get(x);
                 cardContainer.addView(new LocationCardView(getActivity(), ax));
             }
 
-
             timer = new Timer();
-
-            /*timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    try {
-
-
-                        final Location l = new Location("");
-                        if (first != null && !visitedStartingPoint) {
-                            l.setLatitude(first.latitude);
-                            l.setLongitude(first.longitude);
-                            getActivity().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    handleLocationChanged(l);
-                                }
-                            });
-                        }
-
-                        if (current != -1) {
-                            l.setLatitude(Core.getGallery().get(current).getLatitude());
-                            l.setLongitude(Core.getGallery().get(current).getLongitude());
-                            getActivity().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    handleLocationChanged(l);
-
-                                }
-                            });
-
-                        }
-                    }catch (Exception e){
-
-                    }
-
-                }
-            }, 3500, 3000);*/
 
             return rootView;
         }
@@ -271,7 +223,8 @@ public class RouteActivity extends ActionBarActivity {
                     //Doge
 
                     if (withinRange) {
-                        Core.setLocationVisited(closest);
+                        Core.setLocationVisited(current);
+                        Log.e("wubwu",current+" "+iCurrent);
                         Core.updateBadges();
 
                         ((CoreActivity)getActivity()).routeIndicator.setSelected(
@@ -293,15 +246,14 @@ public class RouteActivity extends ActionBarActivity {
                                 ((LocationCardView) cardContainer.getChildAt(iCurrent)).setArt(Core.getGallery().get(current));
 
                             scrollView.smoothScrollTo((int) Core.convertDpToPixel((130 * (iCurrent - 2)), getActivity()), 0);
-
                         }
 
                     }
-                    if (iCurrent<Core.getGallery().size()-1) {
+                    if (iCurrent < Core.getGallery().size()-1) {
                         drawOverlay();
-                    }else {
+                    }
+                    if (iCurrent == Core.getGallery().size()-1) {
                         hasFinished = true;
-
                     }
                 }
             }
@@ -334,9 +286,11 @@ public class RouteActivity extends ActionBarActivity {
                 if(isWithinRange(lastVisited , location , 40f)){
                     visitedStartingPoint = true;
                     ((LocationCardView)cardContainer.getChildAt(0)).hideOverlay();
-                    //((LocationCardView)cardContainer.getChildAt(1)).setArt(Core.getGallery().get(current));
                     iCurrent++;
                     handleLocationChanged(location);
+
+                    Core.setLocationVisited(lastVisited);
+                    Core.updateBadges();
                 }
             }
         }

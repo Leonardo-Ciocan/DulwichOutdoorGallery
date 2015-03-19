@@ -147,7 +147,7 @@ public class BadgesActivity extends ActionBarActivity {
 
         public static void populateBadgeList(){
             badges.add(new Badge("The Gladiator", "You conquered all of the street arts", guardian, false));
-            badges.add(new Badge("Baller", "You're a true baller across the streets", baller, false));
+            badges.add(new Badge("Baller", "See the street art situated in Dulwich Park", baller, false));
             badges.add(new Badge("Art Lover", "Checking out street art is your new passion", artlover, false));
             badges.add(new Badge("Warm-Up", "What a start! You already got 3 in the bag.", warmup, false));
             badges.add(new Badge("Got a Fiver", "5 arts in the bag already!", fiver, false));
