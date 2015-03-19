@@ -143,8 +143,7 @@ public class RouteActivity extends ActionBarActivity {
             cardC = (LocationCardView)        rootView.findViewById(R.id.cardC);
 
 
-            titleView.setText(Core.getGallery().get(0).getName());
-            authorView.setText(Core.getGallery().get(0).getAuthor());
+
 
             mapFragment.getMapAsync(new OnMapReadyCallback() {
                 @Override
@@ -177,15 +176,6 @@ public class RouteActivity extends ActionBarActivity {
                     handleLocationChanged(l);
 
 
-                }
-            });
-            final Button btnInfo  = (Button) rootView.findViewById(R.id.info);
-            btnInfo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(getActivity() , InfoActivity.class);
-                    i.putExtra("index" , lastVisited);
-                    startActivity(i);
                 }
             });
             
@@ -279,9 +269,11 @@ public class RouteActivity extends ActionBarActivity {
 
                     if (withinRange) {
                         ((CoreActivity)getActivity()).routeIndicator.setSelected(
-                                visited.size()
+                                visited.size()-1
                         );
-                        visited.add(current);
+                       if (!visited.contains(current)){
+                           visited.add(current);
+                       }
                         lastVisited = current;
                         current = closest;
 

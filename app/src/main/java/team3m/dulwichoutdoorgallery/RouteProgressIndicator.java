@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 public class RouteProgressIndicator extends View{
@@ -38,6 +39,7 @@ public class RouteProgressIndicator extends View{
             paint.setStyle(Paint.Style.STROKE);
             paint.setColor( getResources().getColor(R.color.brandDark));
             paint.setStrokeWidth(5);
+            Log.e("wuwuw", ""+selectedIndex);
             //canvas.drawRect(x* radius , 0 , x*radius + radius , getHeight(),paint);
             canvas.drawCircle(x*radius+radius/2f , radius ,radius/2f,paint);
         }
