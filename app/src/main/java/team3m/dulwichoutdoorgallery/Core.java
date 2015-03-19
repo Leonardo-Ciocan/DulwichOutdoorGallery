@@ -425,6 +425,7 @@ public class Core {
     }
 
     public static void update(Context c){
+        ArtistInformation artistInformation = new ArtistInformation();
         DropboxAPI.Entry dirent = null;
         try {
             dirent = CoreActivity.mDBApi.metadata("/saved/", 1000, null, true, null);
@@ -460,7 +461,6 @@ public class Core {
             
             if (name.endsWith(".txt")) {
             try {
-
                     BufferedReader inputReader = new BufferedReader(new InputStreamReader(
                             c.openFileInput(name)));
                     String inputString;
@@ -470,8 +470,9 @@ public class Core {
                     }
 
                     String[] lines = stringBuffer.toString().split("\n");
-
-                    Art art = new Art(lines[0], lines[2], lines[1], new Art(lines[5], lines[7], lines[6], null, null, 0, 0,"",name.replace(".txt","a.png"),""), null, Float.parseFloat(lines[3]), Float.parseFloat(lines[4]),"",name.replace(".txt",".png"),"");
+                    artistInformation.Author.put(lines[1],lines[3]);
+                    artistInformation.Author.put(lines[7],lines[9]);
+                    Art art = new Art(lines[0], lines[2], lines[1], new Art(lines[6], lines[8], lines[7], null, null, 0, 0,"",name.replace(".txt","a.png"),""), null, Float.parseFloat(lines[4]), Float.parseFloat(lines[5]),"",name.replace(".txt",".png"),"");
                     Core.getGallery().add(art);
                     if(MyAdapter.instance!=null)
                         ((Activity)c).runOnUiThread(new Runnable() {
