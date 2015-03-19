@@ -173,7 +173,7 @@
                         android:fontFamily="sans-serif-light"
                         android:text="Placeholder New Artist"
                         android:textColor="@android:color/black"
-                        android:textSize="10pt"
+                        android:textSize="7pt"
                         android:textStyle="italic" />
                 </RelativeLayout>
 
@@ -195,7 +195,7 @@
                         android:fontFamily="sans-serif-light"
                         android:text="Placeholder Old Artwork Name"
                         android:textColor="@android:color/black"
-                        android:textSize="10pt"
+                        android:textSize="7pt"
                         android:textStyle="italic" />
 
                     <TextView
@@ -207,7 +207,7 @@
                         android:fontFamily="sans-serif-light"
                         android:text="Placeholder Old Artwork Artist"
                         android:textColor="@android:color/black"
-                        android:textSize="10pt"
+                        android:textSize="7pt"
                         android:textStyle="italic" />
                 </RelativeLayout>
 

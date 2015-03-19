@@ -3,6 +3,7 @@ package team3m.dulwichoutdoorgallery;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -52,9 +53,12 @@ public class GameFragment extends Fragment {
         changeImageChoiceNumberText = (TextView) v.findViewById(R.id.currentRotatedPicture);
         changeImageNumberText = (TextView) v.findViewById(R.id.currentGameArtwork);
         changeArtistText = (TextView) v.findViewById(R.id.currentNewArtist);
+        changeArtistText.setTypeface(null, Typeface.BOLD);
 
         changeOldArtistText = (TextView) v.findViewById(R.id.currentSelectedOldArtworkName);
+        changeOldArtistText.setTypeface(null, Typeface.BOLD);
         changeOldArtNameText = (TextView) v.findViewById(R.id.currentSelectedOldArtworkArtist);
+        changeOldArtNameText.setTypeface(null, Typeface.BOLD);
 
         artworkToMatch = (ImageView) v.findViewById(R.id.imageView);
         imageButtonsArray[0] = (ImageButton) v.findViewById(R.id.imageButton1);
@@ -79,7 +83,7 @@ public class GameFragment extends Fragment {
                                 public void run() {
                                     cdd.dismiss();
                                 }
-                            }, 500);
+                            }, 1200);
                         } else {
                             final CustomDialogClass cdd = new CustomDialogClass(theActivity);
                             cdd.show();
@@ -88,7 +92,7 @@ public class GameFragment extends Fragment {
                                 public void run() {
                                     cdd.dismiss();
                                 }
-                            }, 500);
+                            }, 1200);
                         }
                         if (!Game.allSetsComplete()) {
                             loadData();
