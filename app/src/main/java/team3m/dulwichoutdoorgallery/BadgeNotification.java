@@ -89,8 +89,6 @@ public class BadgeNotification extends RelativeLayout {
         hideAnim.setInterpolator(new AccelerateDecelerateInterpolator());
         hideAnim.setDuration(565);
 
-
-
         View inner = inflate(getContext(), R.layout.badge_notification, this);
         Button closeBtn = (Button)inner.findViewById(R.id.closeNotification);
         imageView = (ImageView)inner.findViewById(R.id.image);
@@ -107,7 +105,6 @@ public class BadgeNotification extends RelativeLayout {
         title = (TextView) inner.findViewById(R.id.title);
         description = (TextView) inner.findViewById(R.id.description);
     }
-
 
     public void show(Badge b){
         imageView.setImageResource(b.getBadgeID());

@@ -292,8 +292,8 @@ public class ExploreFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 card.startAnimation(toggleCardAnim);
-                map.moveCamera(CameraUpdateFactory.newLatLngZoom(Core.Gallery.get(position).getLocation(), 15));
-                selectArt(position, false);
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(adapter.getItem(position).getLocation(), 15));
+                selectArt(Core.getGallery().indexOf(adapter.getItem(position)), false);
             }
         });
 

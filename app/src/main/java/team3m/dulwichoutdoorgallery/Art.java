@@ -115,7 +115,7 @@ public class Art {
 
     @Override
     public String toString() {
-        return Author;
+        return Author+" "+Name;
     }
 
     Drawable drawable = null;

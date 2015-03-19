@@ -83,9 +83,6 @@ public class CoreActivity extends ActionBarActivity {
                 Core.update(CoreActivity.this);
             }
         }).start();
-        Log.v("xwuwuuwuwu" , "creating activity");
-
-
 
         final ImageView logo = (ImageView) findViewById(R.id.screenView);
         final FrameLayout logoOverlay = (FrameLayout) findViewById(R.id.logoOverlay);
@@ -101,15 +98,10 @@ public class CoreActivity extends ActionBarActivity {
         entry.setInterpolator(new AccelerateDecelerateInterpolator());
         entry.setDuration(2000);
 
-
-
-
-
-// And later in some initialization function:
-       AppKeyPair appKeys = new AppKeyPair(Core.APP_KEY, Core.APP_SECRET);
+        // And later in some initialization function:
+        AppKeyPair appKeys = new AppKeyPair(Core.APP_KEY, Core.APP_SECRET);
         AndroidAuthSession session = new AndroidAuthSession(appKeys);
         mDBApi = new DropboxAPI<AndroidAuthSession>(session);
-       // mDBApi.getSession().startOAuth2Authentication(CoreActivity.this);
         mDBApi.getSession().setOAuth2AccessToken("cu234J18AOAAAAAAAAAABLG6O6CmDp57aRQ3frKJ2aNhrKumpe9M10HatiCxFDJN");
 
         new Thread(new Runnable() {
@@ -148,7 +140,6 @@ public class CoreActivity extends ActionBarActivity {
         }).start();
        }
 
-
     void initUI(){
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         searchBox = (EditText) findViewById(R.id.search);
@@ -173,18 +164,14 @@ public class CoreActivity extends ActionBarActivity {
         toggle.setDrawerIndicatorEnabled(true);
         drawerLayout.setDrawerListener(toggle);
 
-
         ExploreFragment = new team3m.dulwichoutdoorgallery.ExploreFragment(searchBox);
         ExploreFragment.setRetainInstance(true);
-
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.contentHolder, ExploreFragment)
                 .commit();
 
-
         buttonHolder = (LinearLayout) findViewById(R.id.buttonHolder);
-
 
         LinearLayout exploreButton = (LinearLayout)findViewById(R.id.btn_explore);
         LinearLayout routeButton = (LinearLayout)findViewById(R.id.btn_route);
@@ -201,7 +188,6 @@ public class CoreActivity extends ActionBarActivity {
         searchBox.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -211,12 +197,10 @@ public class CoreActivity extends ActionBarActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
 
         final BadgeNotification badgeNotification = (BadgeNotification) findViewById(R.id.badgeNotification);
-        //new Thread().start();
 
         Core.setBadgeListener(new BadgeEarnedListener() {
             @Override
@@ -227,11 +211,8 @@ public class CoreActivity extends ActionBarActivity {
 
         BadgesActivity.PlaceholderFragment.populateBadgeList();
         onPostCreate(null);
-
-        //Core.notifyBadgeEarned(BadgesActivity.badges.get(0));
-
-
     }
+
     void makeButtonClickable(LinearLayout exploreButton  , final int id){
         exploreButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -247,8 +228,8 @@ public class CoreActivity extends ActionBarActivity {
                             .getDrawable(getResources().getIdentifier(titles[x].toLowerCase()+"_dark", "drawable", getApplicationContext().getPackageName())));
                     txt.setTextColor(Color.parseColor("#bf000000"));
                 }
+
                 v.setBackground(new ColorDrawable(getResources().getColor(R.color.brand)));
-                //((Button)v).setTextColor(Color.WHITE);
                 TextView txt = (TextView) ((LinearLayout)v).getChildAt(1);
                 txt.setTextColor(Color.WHITE);
                 ((ImageView)( ((LinearLayout) v)).getChildAt(0)).setImageDrawable(getResources()
@@ -260,6 +241,7 @@ public class CoreActivity extends ActionBarActivity {
                     public void onFinish() {
                         //ExploreFragment = new ExploreActivity.AboutFragment(searchBox);
                         Fragment fragment = null;
+
                         if(id == EXPLORE){
                             fragment = new team3m.dulwichoutdoorgallery.ExploreFragment(searchBox);
                             ExploreFragment = (ExploreFragment)fragment;
@@ -290,7 +272,6 @@ public class CoreActivity extends ActionBarActivity {
             }
         });
     }
-
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -332,6 +313,4 @@ public class CoreActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }
