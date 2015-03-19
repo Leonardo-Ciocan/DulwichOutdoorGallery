@@ -267,7 +267,7 @@ public class ExploreFragment extends Fragment {
                 //When it ends , restore selected state and hide search field if needed
                 if (interpolatedTime >= 1f) {
                     if(isCardUp && artSelected) navigationButton.startAnimation(showNavButton);
-                    if(isCardUp && searchField != null)searchField.setVisibility(View.GONE);
+                    if(isCardUp && searchField != null) searchField.setVisibility(View.GONE);
                     isCardUp = !isCardUp;
                     this.cancel();
                 }
@@ -520,7 +520,7 @@ public class ExploreFragment extends Fragment {
     }
 
     /**
-     * [temporary] replaces applyTransformations
+     * replaces applyTransformations
      * @param interpolatedTime The current time
      */
     void toggleCard(float interpolatedTime){

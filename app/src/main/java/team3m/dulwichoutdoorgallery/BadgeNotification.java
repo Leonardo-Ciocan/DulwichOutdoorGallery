@@ -1,6 +1,7 @@
 package team3m.dulwichoutdoorgallery;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -104,9 +105,24 @@ public class BadgeNotification extends RelativeLayout {
 
         title = (TextView) inner.findViewById(R.id.title);
         description = (TextView) inner.findViewById(R.id.description);
+
+        Button shareBtn = (Button) inner.findViewById(R.id.shareBtn);
+        shareBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent shareIntent = new Intent();
+                    shareIntent.setAction(Intent.ACTION_SEND);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, "I got the <" + b.getTitle() + "> badge in the Dulwich Outdoor Gallery ");
+                    getContext().startActivity(Intent.createChooser(shareIntent, "Share via"));
+            }
+        });
     }
 
+    Badge b;
+
     public void show(Badge b){
+        this.b = b;
         imageView.setImageResource(b.getBadgeID());
         title.setText(b.getTitle());
         description.setText(b.getDescription());
