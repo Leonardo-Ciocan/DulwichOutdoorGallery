@@ -291,6 +291,7 @@ public class ExploreFragment extends Fragment {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                adapter.getFilter().filter("");
                 card.startAnimation(toggleCardAnim);
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(adapter.getItem(position).getLocation(), 15));
                 selectArt(Core.getGallery().indexOf(adapter.getItem(position)), false);
@@ -524,6 +525,10 @@ public class ExploreFragment extends Fragment {
      * @param interpolatedTime The current time
      */
     void toggleCard(float interpolatedTime){
+
+        if (isCardUp){
+            adapter.getFilter().filter("");
+        }
 
         FrameLayout.LayoutParams params3 = (FrameLayout.LayoutParams) card.getLayoutParams();
         if (!isCardUp)
