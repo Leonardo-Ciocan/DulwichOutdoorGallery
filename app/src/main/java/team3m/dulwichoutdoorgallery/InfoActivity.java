@@ -54,7 +54,6 @@ public class InfoActivity extends ActionBarActivity {
                     .add(R.id.container, fragment)
                     .commit();
         }
-
     }
 
     @Override
@@ -104,12 +103,16 @@ public class InfoActivity extends ActionBarActivity {
         public PlaceholderFragment() {
         }
 
-         boolean isLocked = false;
-         boolean street_ = false;
+        boolean isLocked = false;
+        boolean street_ = false;
+
         public SlidrInterface slidr;
+
         ImageView i1;
         ImageView i2;
+
         Art art;
+
         public Animation animation;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -144,7 +147,6 @@ public class InfoActivity extends ActionBarActivity {
             animation.setDuration(1175);
 
             scrollView.startAnimation(animation);
-
 
             final ImageView header = (ImageView) rootView.findViewById(R.id.header);
 
@@ -212,7 +214,6 @@ public class InfoActivity extends ActionBarActivity {
                     textAnim.setDuration(2500);
 
                     scrollView.startAnimation(textAnim);
-
                 }
             });
 
@@ -245,42 +246,12 @@ public class InfoActivity extends ActionBarActivity {
 
                     FrameLayout.LayoutParams params2 = (FrameLayout.LayoutParams) imgHolder.getLayoutParams();
                     params2.topMargin = (int)(-scrollY / 2.5f);
-                    //header.setScaleX(1 + scrollY / 7.5f);
-                    //header.setScaleY(1 + scrollY / 7.5f);
-                    //header.setAlpha(1 - scrollY/200.0f);
-                    //Resources resources = getActivity().getResources();
-                    //DisplayMetrics metrics = resources.getDisplayMetrics();
-                    //float px = 400 * (metrics.densityDpi / 160f);
-                    //params2.height =  (int)(px - scrollY);
                     imgHolder.setLayoutParams(params2);
-
-
-
-                    /**final Animation a = new Animation() {
-                        @Override
-                        protected void applyTransformation(float interpolatedTime, Transformation t) {
-
-                            FrameLayout.LayoutParams params2 = (FrameLayout.LayoutParams) navigationButton.getLayoutParams();
-                            params2.rightMargin = (int)(-200 * interpolatedTime);
-                            navigationButton.setLayoutParams(params2);
-                        }
-
-                        @Override
-                        public boolean willChangeBounds() {
-                            return true;
-                        }
-                    };
-
-                    a.setInterpolator(new AccelerateDecelerateInterpolator());
-                    a.setDuration(500);
-                    header.startAnimation(a);**/
-
 
                     FrameLayout.LayoutParams params3 = (FrameLayout.LayoutParams) fab.getLayoutParams();
                     params3.rightMargin = (int)(-scrollY/1.875f);
                     fab.setLayoutParams(params3);
                     fab.setRotation(scrollY);
-
                 }
             });
 
@@ -290,8 +261,6 @@ public class InfoActivity extends ActionBarActivity {
             imgHolder.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-
                 }
             });
 
@@ -300,7 +269,6 @@ public class InfoActivity extends ActionBarActivity {
                 protected void applyTransformation(float interpolatedTime, Transformation t) {
                     isLocked = true;
                     if(interpolatedTime < 0.5f){
-
 
                         i1.setAlpha(255);
                         i2.setAlpha(0);
@@ -322,10 +290,7 @@ public class InfoActivity extends ActionBarActivity {
                     }
 
                     float opacity = interpolatedTime < 0.5 ? 1-interpolatedTime*2f : (interpolatedTime-0.5f)*2;
-                    Log.v("wuwuwuuwu",opacity+"");
-                    //scrollView.setRotationY(interpolatedTime * 360);
                     scrollView.setAlpha(opacity);
-
 
                     if(interpolatedTime >= 1f){
                         street_ = !street_;
@@ -353,10 +318,7 @@ public class InfoActivity extends ActionBarActivity {
                     if (!isLocked) header.startAnimation(flipAnimation);
                 }
             });
-            //getActivity().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-
-            //Button btnShare = (Button) rootView.findViewById(R.id.shareBtn);
             btnShare.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -367,19 +329,6 @@ public class InfoActivity extends ActionBarActivity {
             return rootView;
         }
 
-        /*
-        void share(){
-            Intent intent2 = new Intent(); intent2.setAction(Intent.ACTION_SEND);
-            intent2.setType("text/plain");
-
-            intent2.putExtra(Intent.EXTRA_TEXT, "" );
-            intent2.setType("image/*");
-            Uri uri = Uri.parse("android.resource://team3m.dulwichoutdoorgallery/" + getActivity().getResources()
-                    .getIdentifier(art.getPhoto(), "drawable", getActivity().getPackageName()));
-            intent2.putExtra(Intent.EXTRA_STREAM, uri);
-            startActivity(Intent.createChooser(intent2, "Share via"));
-        } */
-
         void share() {
             String mySharedLink;
             if (street_) {
@@ -387,7 +336,6 @@ public class InfoActivity extends ActionBarActivity {
             } else {
                 mySharedLink = "http://www.facebook.com/dulwichsa/photos/" + art.getShareID();
             }
-            ;
 
             if (!CoreActivity.preferences.getBoolean("DidShare",false)){
                 CoreActivity.preferences.edit().putBoolean("DidShare",true).commit();

@@ -13,7 +13,10 @@ public class ArtistInformation {
     public static Map Author;
 
     public ArtistInformation(){
-        Author = new HashMap();
+
+        if(Author == null) {
+            Author = new HashMap();
+        }
 
         Author.put("Faith47" , "Faith47 is a self-taught contemporary street artist based in Cape Town, South Africa. She has received recognition for her work " +
                 "beyond her home country and has participated in gallery shows and projects world-wide.\n" +

@@ -1,6 +1,5 @@
 package team3m.dulwichoutdoorgallery;
 
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Intent;
@@ -44,7 +43,6 @@ import static team3m.dulwichoutdoorgallery.R.drawable.streetwatcher;
 import static team3m.dulwichoutdoorgallery.R.drawable.warmup;
 import static team3m.dulwichoutdoorgallery.R.id.badgesListView;
 
-
 public class BadgesActivity extends ActionBarActivity {
 
     public static ArrayList<Badge> badges = new ArrayList<Badge>();
@@ -64,7 +62,6 @@ public class BadgesActivity extends ActionBarActivity {
                     .commit();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -96,7 +93,6 @@ public class BadgesActivity extends ActionBarActivity {
 
         public PlaceholderFragment() {
         }
-
 
        View rootView;
         @Override
@@ -170,8 +166,10 @@ public class BadgesActivity extends ActionBarActivity {
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this.getActivity());
             notificationBuilder.setContentTitle("You just got a new achievement!");
             notificationBuilder.setContentText("You earned the " +badgeTitle + " badge");
+
             // Insert a new notification logo - this one is just a sample for testing
             notificationBuilder.setSmallIcon(R.drawable.ic_action_about);
+
             // Insert a new notification bgColor - this one is just a sample for testing
             notificationBuilder.setColor(getResources().getColor(R.color.bright_foreground_material_light));
 
@@ -213,8 +211,6 @@ public class BadgesActivity extends ActionBarActivity {
             });
         }
 
-
-
         private class MyListAdapter extends ArrayAdapter<Badge>{
 
             public MyListAdapter(){
@@ -245,12 +241,10 @@ public class BadgesActivity extends ActionBarActivity {
                 checkAchieved(currentBadge, imageView, makeTitle, makeDescription);
                 getStats();
 
-
                 return itemView;
 
             }
 
-         
             private void checkAchieved(Badge badge, ImageView img, TextView title, TextView desc){
                 if(!Core.getBadgeStatus(badges.indexOf(badge))){
                     img.setAlpha(0.4f);
@@ -271,15 +265,12 @@ public class BadgesActivity extends ActionBarActivity {
                 }
                 txt_achievementsStats.setText("You have unlocked "+badgesInTheBag+"/"+badges.size()+" ("+Math.round(achievementsPerc)+"%"+")");
             }
-
-
         }
 
         void share(){
             Intent intent2 = new Intent(); intent2.setAction(Intent.ACTION_SEND);
             intent2.setType("text/plain");
 
-            //TODO fix please
             intent2.putExtra(Intent.EXTRA_TEXT, "I've completed "+ Math.round(achievementsPerc) + "% of the badges etc" );
             startActivity(Intent.createChooser(intent2, "Share via"));
         }

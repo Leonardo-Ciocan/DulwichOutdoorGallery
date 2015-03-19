@@ -115,14 +115,13 @@ public class Art {
 
     @Override
     public String toString() {
-        return Author;
+        return Author+" "+Name;
     }
 
     Drawable drawable = null;
     public Drawable getDrawable(Context c){
         if(drawable == null) {
             try{
-
                 drawable = c.getResources().getDrawable(c.getResources().getIdentifier(getPhoto()+"_thumb", "drawable", c.getPackageName()));
             }
             catch (Exception ex){}
