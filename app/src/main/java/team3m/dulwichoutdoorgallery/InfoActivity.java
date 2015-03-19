@@ -166,16 +166,53 @@ public class InfoActivity extends ActionBarActivity {
 
             textAuthor.setText(art.getAuthor());
             textAuthor.setTypeface(null, Typeface.BOLD);
+
+            String description;
             textAuthor.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ArtistInformation art = new ArtistInformation();
+                    final String description = (String)art.Author.get(textAuthor.getText());
+                    final String title = (String)textAuthor.getText();
 
-                    textTitle.setText(textAuthor.getText());
-                    String description = (String)art.Author.get(textAuthor.getText());
+                    Animation textAnim = new Animation() {
+                        @Override
+                        protected void applyTransformation(float interpolatedTime, Transformation t) {
 
-                    textAuthor.setText("");
-                    textDescription.setText(description);
+                            if (interpolatedTime < 0.5f) {
+                                //i1.setAlpha(0);
+                                //i2.setAlpha(255);
+                                //i2.setRotationY(180 + 90 * ( interpolatedTime * 2f));
+                                //i1.setAlpha(255);
+                                //i2.setAlpha(0);
+                                //i1.setAlpha(0);
+                                //i1.setRotationY(90 * (2f * interpolatedTime));
+                            }
+                            else {
+                            textTitle.setText(title);
+                            textAuthor.setText("");
+                            textDescription.setText(description);
+                            //i1.setAlpha(0);
+                            //i2.setAlpha(255);
+                            //i2.setRotationY(180 + 90 * ( interpolatedTime * 2f));
+                            }
+
+                            float opacity = interpolatedTime < 0.5 ? 1-interpolatedTime*2f : (interpolatedTime-0.5f)*2;
+
+                            scrollView.setAlpha(opacity);
+                        }
+
+                        @Override
+                        public boolean willChangeBounds() {
+                            return true;
+                        }
+                    };
+
+                    textAnim.setInterpolator(new AccelerateDecelerateInterpolator());
+                    textAnim.setDuration(2500);
+
+                    scrollView.startAnimation(textAnim);
+
                 }
             });
 

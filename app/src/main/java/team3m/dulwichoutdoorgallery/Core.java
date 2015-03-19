@@ -141,7 +141,7 @@ public class Core {
                     "knowledge of good and evil (Genesis, Chapter III, 6). Although Adam recoils, his eyes are firmly fixed on the temptation. In the distance " +
                     "to the left is their resultant expulsion from Eden (Genesis, III, 23-4). Flemish master Pieter Coecke van Aelst established a successful studio " +
                     "in Brussels in 1544, where many important Flemish artists were trained - including possibly his future son-in-law, Pieter Brueghel the Elder." ,
-                    "Follower of Pieter Coecke van Aelst", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_the_fall_of_man", "a.1387311134920959.1073741826.1387308654921207/1387320694920003"),
+                    "Pieter Coecke van Aelst", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_the_fall_of_man", "a.1387311134920959.1073741826.1387308654921207/1387320694920003"),
                     new ArrayList<String>(), 51.453183, -0.078809, "stik_the_fall_of_man_new", "a.1387325508252855.1073741827.1387308654921207/1387335448251861"));
 
             add(new Art("The Triumph of David, 2013" ,
@@ -219,7 +219,11 @@ public class Core {
                     "You can look for hours at van Huysum's painting. As you peer you spot more and more tiny ants, flies, woodlice, ladybirds and even a " +
                             "minute red snail. It is exactly the same when looking at MadC's wall. Don't stride past it. It is surprising and rewarding to " +
                             "look at it carefully." ,
-                    "MadC" , new Art("Vase with Flowers, c.1720" , "" ,
+                    "MadC" , new Art("Vase with Flowers, c.1720" , "Jan van Huysum was the most famous Dutch still-life painter of the 18th century. His " +
+                    "depictions of luxuriant flowers in classical vases were greatly admired by collectors who bought his works for unprecedented prices, " +
+                    "even during the artist’s lifetime. They particularly admired Van Huysum’s ability to render flowers, fruit and insects with minute " +
+                    "attention to detail, while his curved ornate bouquets showed the influence of the French Rococo style that was in fashion at the " +
+                    "beginning of the 18th century." ,
                     "Jan van Huysum", null, new ArrayList<String>(), 51.445936, -0.086170, "madc_vase_with_flowers", "a.1387311134920959.1073741826.1387308654921207/1387314651587274"),
                     new ArrayList<String>(), 51.441563, -0.091361, "madc_new", "a.1387325508252855.1073741827.1387308654921207/1387329291585810"));
 
@@ -251,7 +255,7 @@ public class Core {
                     "Nicolas Poussin", null, new ArrayList<String>(), 51.445936, -0.086170, "run_the_translation_of_st_rita", "a.1387311134920959.1073741826.1387308654921207"),
                     new ArrayList<String>(), 51.438862, -0.053918, "run_the_translation_of_st_rita_new", "a.1387325508252855.1073741827.1387308654921207/1387332194918853"));
 
-            add(new Art("Three Boys, 2013" ,
+            add(new Art("Three Boys 1, 2013" ,
                     "Based on part of 'Three Boys' by Bartolome Murillo where the white boy might be picking the pocket of the black boy, and is looking " +
                     "very mischievous. Beerens has transformed him into a white sheep looking sly, with a fox's tail." ,
                     "Michael Beerens" , new Art("Three Boys, c.1670" , "This painting is unique in Murillo's oeuvre in that he appears to have changed his mind as " +
@@ -259,7 +263,7 @@ public class Core {
                     "Bartolome Esteban Murillo", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_three_boys", "a.1387311134920959.1073741826.1387308654921207/1387323154919757"),
                     new ArrayList<String>(), 51.447739, -0.074982, "beerens_new1", "a.1387325508252855.1073741827.1387308654921207/1387375291581210"));
 
-            add(new Art("Three Boys, 2013" ,
+            add(new Art("Three Boys 2, 2013" ,
                     "Based on a part of 'Three Boys' by Bartolome Murillo where the black boy has his hand out for food and the white boy is refusing to give " +
                      "him any food. Beerens has transformed the black boy into a hungry black sheep standing on barren ground and the white boy into a white sheep " +
                      "standing on lush grass with its mouth full." ,
@@ -269,7 +273,10 @@ public class Core {
                     new ArrayList<String>(), 51.447369, -0.075179, "beerens_new2", "a.1387325508252855.1073741827.1387308654921207/1387375441581195"));
 
             add(new Art("Eliza and Mary Davidson, 2012" ,
-                    "" ,
+                    "Stik’s figures are stripped down to the pure essence of a human being. He does not confuse the message with clothes, hair or any props " +
+                            "which could imply status or wealth; his people are not individuals who may be beautiful or ugly, old or young, black or white, " +
+                            "they are generalised figures packed with feelings that everyone can recognise. His is a universal language that transcends period, " +
+                            "gender, education and age." ,
                     "Stik" , new Art("Eliza and Mary Davidson, 1784" , "The portrait was painted in India c. 1784, it portrays the daughters of Alexander Davidson (d.1791), " +
                     "Governor of Madras, 1785-6" ,
                     "Tilly Kettle", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_eliza_and_mary_davidson", "a.1387311134920959.1073741826.1387308654921207/1387319454920127"),

@@ -55,14 +55,14 @@ public class ArtistInformation {
                 "waterfalls, and Roelant Roghman, who created popular dramatic castle themes on hillsides. The earliest date that appears on his paintings and " +
                 "etchings is 1646. Two years later he was admitted as a member of the Haarlem Guild of St. Luke; in 1659 he obtained the citizenship of the city " +
                 "of Amsterdam. In 1668 his name appears there as a witness to the marriage of Meindert Hobbema, his only registered pupil.");
-        Author.put("Remi Rough" , "South London born and bred, Rough has been breaking boundaries with the aid of a spray can and a paintbrush for nearly 30 " +
+        Author.put("Remi Rough and System" , "South London born and bred, Rough has been breaking boundaries with the aid of a spray can and a paintbrush for nearly 30 " +
                 "years. His compositions are abstract, consisting of carefully combined colours and straight-edged shapes.\n" +
                 "Rough moved from the streets to the galleries with his debut art show in 1989 and has since gone on to exhibit in London, Paris, Perth, " +
                 "Tokyo, Los Angeles, Hong Kong and other cities dotted around the globe. Rough was invited to speak on the underground history of UK " +
                 "grafitti at the Tate Modern, as part of its Street Art exhibition in 2008, and in 2009 he published his first book 'Lost Colours and Alibis'.\n" +
                 "He is a member of the collection Agents of Change which in 2009 painted the largest mural in London, on the Megaro Hotel, and an abandoned " +
-                "Scottish village, the Ghost Village Project.");
-        Author.put("System" , "System is an extremely talented figurative street artist, portrait heads and half figures being his main subject matter. He has " +
+                "Scottish village, the Ghost Village Project.\n" +
+                "System is an extremely talented figurative street artist, portrait heads and half figures being his main subject matter. He has " +
                 "an extraordinary ability to capture likenesses, rendered even more challenging by their vast scale. System's exquisite modulation of colour " +
                 "and use of line suits his serene Japanese women, and thoughtful young men who gaze from his walls.\n" +
                 "He is part of the collective Agents of Change painting the largest mural in London, the Megaro hotel, and the deserted Scottish village, " +
