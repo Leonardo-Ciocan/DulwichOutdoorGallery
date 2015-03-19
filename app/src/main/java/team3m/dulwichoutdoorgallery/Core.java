@@ -91,14 +91,14 @@ public class Core {
                     "Although Christiaan's mushrooms do not appear in any Dulwich Picture Gallery paintings, he made good markers of a route for a walk that " +
                             "takes in most of the walls and ends at Dulwich Picture Gallery. He put up four mushrooms but one was objected to so the shop " +
                             "owner on whose roof it was, was forced to take it down." ,
-                    "Christiaan Nagel " , null ,
+                    "Christiaan Nagel" , null ,
                     new ArrayList<String>(), 51.455979, -0.076067, "mushroom_marker1", "a.1387325508252855.1073741827.1387308654921207/1387375498247856"));
 
             add(new Art("Mushroom Marker" ,
                     "Although Christiaan's mushrooms do not appear in any Dulwich Picture Gallery paintings, he made good markers of a route for a walk that " +
                             "takes in most of the walls and ends at Dulwich Picture Gallery. He put up four mushrooms but one was objected to so the shop " +
                             "owner on whose roof it was, was forced to take it down." ,
-                    "Christiaan Nagel " , null ,
+                    "Christiaan Nagel" , null ,
                     new ArrayList<String>(), 51.455981, -0.076418, "mushroom_marker2", "a.1387325508252855.1073741827.1387308654921207/1387375528247853"));
 
             add(new Art("The Guardian Angel, 2012" ,
@@ -131,14 +131,6 @@ public class Core {
                     "combed hair of the child and the engaging way he toys with the beads of the rosary in a characteristic Murillesque touch." ,
                     "Bartolome Esteban Murillo", null, new ArrayList<String>(), 51.445936, -0.086170, "mear_one_the_virgin_of_the_rosary", "a.1387311134920959.1073741826.1387308654921207/1387315221587217"),
                     new ArrayList<String>(), 51.454564, -0.077177, "mear_one_new", "a.1387325508252855.1073741827.1387308654921207/1387330554919017"));
-
-            /*
-            add(new Art("Art House, 2013" ,
-                    "Lightbox offered a whole house, up for demolition, to the project. The house was painted inside and out by numerous artists and became " +
-                            "the focal point for 'Baroque the Streets' Street Art Festival in May 2013." ,
-                    "Run, The Rolling People, Christiaan Nagel, Citizen Kane, Malarki, My Dog Sighs" , null ,
-                    new ArrayList<String>(), 51.453037 , -0.077218 , ""));
-            */
 
             add(new Art("The Fall of Man, 2012" ,
                     "Although Adam's eyes are firmly fixed on the fascinating apple, he is rejecting it. Stik saw this as Eve offering herself and said " +
@@ -227,7 +219,7 @@ public class Core {
                     "You can look for hours at van Huysum's painting. As you peer you spot more and more tiny ants, flies, woodlice, ladybirds and even a " +
                             "minute red snail. It is exactly the same when looking at MadC's wall. Don't stride past it. It is surprising and rewarding to " +
                             "look at it carefully." ,
-                    "Mad C" , new Art("Vase with Flowers, c.1720" , "" ,
+                    "MadC" , new Art("Vase with Flowers, c.1720" , "" ,
                     "Jan van Huysum", null, new ArrayList<String>(), 51.445936, -0.086170, "madc_vase_with_flowers", "a.1387311134920959.1073741826.1387308654921207/1387314651587274"),
                     new ArrayList<String>(), 51.441563, -0.091361, "madc_new", "a.1387325508252855.1073741827.1387308654921207/1387329291585810"));
 

@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.CountDownTimer;
@@ -36,6 +37,7 @@ import com.r0adkll.slidr.Slidr;
 import com.r0adkll.slidr.model.SlidrInterface;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.concurrent.locks.Lock;
 
 public class InfoActivity extends ActionBarActivity {
@@ -161,7 +163,19 @@ public class InfoActivity extends ActionBarActivity {
 
             textTitle.setText(art.getName());
             textDescription.setText(art.getDescription());
+
             textAuthor.setText(art.getAuthor());
+            textAuthor.setTypeface(null, Typeface.BOLD);
+            textAuthor.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    textTitle.setText(textAuthor.getText());
+                    String description = (String)ArtistInformation.Author.get(textAuthor.getText());
+
+                    textAuthor.setText("");
+                    textDescription.setText(description);
+                }
+            });
 
 
             if(art.getIsOnline() != null) {
