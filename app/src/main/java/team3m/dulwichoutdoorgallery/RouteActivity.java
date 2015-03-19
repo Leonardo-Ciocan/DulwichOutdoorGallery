@@ -105,6 +105,7 @@ public class RouteActivity extends ActionBarActivity {
         private LinearLayout cardContainer;
         private HorizontalScrollView scrollView;
         private Timer timer;
+        boolean hasFinished;
 
         public PlaceholderFragment() {
         }
@@ -149,32 +150,27 @@ public class RouteActivity extends ActionBarActivity {
                 @Override
                 public void onMapReady(final GoogleMap googleMap) {
                     //the map is ready here
-                    ArrayList<Art> Gallery= Core.getGallery();
+                    ArrayList<Art> Gallery = Core.getGallery();
                     map = googleMap;
-                    //googleMap.setMyLocationEnabled(true);
+                    googleMap.setMyLocationEnabled(true);
                     GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
                         @Override
                         public void onMyLocationChange(Location location) {
+                            if (!hasFinished){
+                                handleLocationChanged(location);
+                            }
 
-                            handleLocationChanged(location);
 
 
                         }
                     };
 
-                    //googleMap.setOnMyLocationChangeListener(myLocationChangeListener);
+                    googleMap.setOnMyLocationChangeListener(myLocationChangeListener);
 
 
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Core.Gallery.get(10).getLocation() ,  12));
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Core.Gallery.get(10).getLocation(), 12));
 
                     last = Gallery.get(0).getLocation();
-
-
-                    Location l = new Location("");
-                    l.setLatitude(51.47404593);
-                    l.setLongitude(-0.06115437);
-                    handleLocationChanged(l);
-
 
                 }
             });
@@ -206,36 +202,43 @@ public class RouteActivity extends ActionBarActivity {
 
 
             timer = new Timer();
-            timer.schedule(new TimerTask() {
+
+            /*timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
+                    try {
 
-                    final Location l = new Location("");
-                    if (first != null && !visitedStartingPoint) {
-                        l.setLatitude(first.latitude);
-                        l.setLongitude(first.longitude);
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                handleLocationChanged(l);
-                            }
-                        });
-                    }
 
-                    if (current != -1) {
-                        l.setLatitude(Core.getGallery().get(current).getLatitude());
-                        l.setLongitude(Core.getGallery().get(current).getLongitude());
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                handleLocationChanged(l);
+                        final Location l = new Location("");
+                        if (first != null && !visitedStartingPoint) {
+                            l.setLatitude(first.latitude);
+                            l.setLongitude(first.longitude);
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    handleLocationChanged(l);
+                                }
+                            });
+                        }
 
-                            }
-                        });
+                        if (current != -1) {
+                            l.setLatitude(Core.getGallery().get(current).getLatitude());
+                            l.setLongitude(Core.getGallery().get(current).getLongitude());
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    handleLocationChanged(l);
+
+                                }
+                            });
+
+                        }
+                    }catch (Exception e){
+
                     }
 
                 }
-            }, 3500, 3000);
+            }, 3500, 3000);*/
 
             return rootView;
         }
@@ -265,9 +268,12 @@ public class RouteActivity extends ActionBarActivity {
                         withinRange = isWithinRange(current, location,
                                 25f);
                     }
-
+                    //Doge
 
                     if (withinRange) {
+                        Core.setLocationVisited(closest);
+                        Core.updateBadges();
+
                         ((CoreActivity)getActivity()).routeIndicator.setSelected(
                                 visited.size()-1
                         );
@@ -277,18 +283,26 @@ public class RouteActivity extends ActionBarActivity {
                         lastVisited = current;
                         current = closest;
 
-                        if(current!= lastVisited) {
+                        if(current != lastVisited) {
                             iCurrent++;
 
                             ((LocationCardView) cardContainer.getChildAt(iCurrent - 1)).setArt(Core.getGallery().get(lastVisited));
                             ((LocationCardView) cardContainer.getChildAt(iCurrent - 1)).hideOverlay();
-                            ((LocationCardView) cardContainer.getChildAt(iCurrent)).setArt(Core.getGallery().get(current));
+
+                            if (iCurrent<Core.getGallery().size()-1)
+                                ((LocationCardView) cardContainer.getChildAt(iCurrent)).setArt(Core.getGallery().get(current));
+
                             scrollView.smoothScrollTo((int) Core.convertDpToPixel((130 * (iCurrent - 2)), getActivity()), 0);
+
                         }
 
                     }
+                    if (iCurrent<Core.getGallery().size()-1) {
+                        drawOverlay();
+                    }else {
+                        hasFinished = true;
 
-                    drawOverlay();
+                    }
                 }
             }
             else{
