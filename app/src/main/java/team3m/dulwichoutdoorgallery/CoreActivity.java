@@ -274,7 +274,6 @@ public class CoreActivity extends ActionBarActivity {
                         else if(id == ABOUT){
                             fragment = new AboutFragment();
                         }
-                        toolbar.getMenu().getItem(1).setVisible(id==ROUTE);
 
                         routeIndicator.setVisibility(id == ROUTE ? View.VISIBLE : View.GONE);
 
