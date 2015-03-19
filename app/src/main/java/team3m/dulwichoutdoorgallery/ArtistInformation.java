@@ -29,7 +29,7 @@ public class ArtistInformation {
                 "rising rival studio, named Accademia degli Incamminati (Academy of the \"newly embarked\", or progressives), led by Lodovico Carracci. They " +
                 "went on to form the nucleus of a prolific and successful school of Bolognese painters who followed Annibale Carracci to Rome. Like many " +
                 "other Bolognese painters, Reni's painting was thematic and eclectic in style.");
-        Author.put("ROA" , "ROA is a legendary Belgian artist from Ghent, internationally acclaimed for his arresting and visceral murals of animals depicted " +
+        Author.put("Roa" , "ROA is a legendary Belgian artist from Ghent, internationally acclaimed for his arresting and visceral murals of animals depicted " +
                 "in black and white. He frequently reveals the skeletons and internal organs of the animals and birds which are often piled on to of each " +
                 "other. ROA has painted large scale murals of indigenous animals in cities throughout the globe on an unmatched scale.");
         Author.put("Adam Pynacker" , "Pynacker was the son of a wine merchant, who was a member of the vroedschap, or city regency. He travelled to Italy and " +

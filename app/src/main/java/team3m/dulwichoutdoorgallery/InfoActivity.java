@@ -169,8 +169,10 @@ public class InfoActivity extends ActionBarActivity {
             textAuthor.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    ArtistInformation art = new ArtistInformation();
+
                     textTitle.setText(textAuthor.getText());
-                    String description = (String)ArtistInformation.Author.get(textAuthor.getText());
+                    String description = (String)art.Author.get(textAuthor.getText());
 
                     textAuthor.setText("");
                     textDescription.setText(description);
