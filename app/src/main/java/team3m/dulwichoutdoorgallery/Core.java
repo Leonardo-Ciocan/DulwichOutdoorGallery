@@ -95,7 +95,7 @@ public class Core {
                     "he made good markers of a route for a walk that takes in most of the walls and ends at Dulwich Picture Gallery. He put up four mushrooms " +
                     "but one was objected to so the shop owner on whose roof it was, was forced to take it down.",
                     "Christiaan Nagel", null, new ArrayList<String>(), 51.455979, -0.076067, "mushroom_marker1", "a.1387325508252855.1073741827.1387308654921207/1387375498247856"),
-                    new ArrayList<String>(), 51.455979, -0.076067, "mushroom_marker1", "a.1387325508252855.1073741827.1387308654921207/1387375498247856"));
+                    new ArrayList <String>(), 51.455979, -0.076067, "mushroom_marker1", "a.1387325508252855.1073741827.1387308654921207/1387375498247856"));
 
             add(new Art("Mushroom Marker 2",
                     "Although Christiaan's mushrooms do not appear in any Dulwich Picture Gallery paintings, he made good markers of a route for a walk that " +
