@@ -5,7 +5,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
+/**
+ * Shows text about the gallery and libraries used
+ */
 public class AboutActivity extends ActionBarActivity {
 
     @Override

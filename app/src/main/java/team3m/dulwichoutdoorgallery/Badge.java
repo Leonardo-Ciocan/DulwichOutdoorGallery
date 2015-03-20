@@ -1,17 +1,31 @@
 package team3m.dulwichoutdoorgallery;
 
+/**
+ * A badge that the user can earn
+ */
 public class Badge {
+    /**
+     * The name of the badge
+     */
     String title;
+
+    /**
+     * A short descrption of the badge
+     */
     String description;
+
+    /**
+     * The id assigned to the badge
+     */
     int badgeID;
+
+    /**
+     * Whether it is achieved or not
+     */
     boolean achieved;
 
     public int getBadgeID() {
         return badgeID;
-    }
-
-    public void setBadgeID(int badgeID) {
-        this.badgeID = badgeID;
     }
 
     public String getTitle() {
@@ -26,14 +40,13 @@ public class Badge {
         return description;
     }
 
-    public void setDescription(String Description) {
-        description = Description;
-    }
-
-    public boolean getAchieved() {return achieved;}
-
-    public void setAchieved(boolean status){this.achieved = status;}
-
+    /**
+     * Create a new badge
+     * @param Title The name shown to the user
+     * @param Description What the badge is about
+     * @param iconID The id for the icon
+     * @param achiv Whether it is achieved
+     */
     public Badge(String Title, String Description, int iconID, boolean achiv) {
 
         title = Title;

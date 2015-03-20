@@ -182,7 +182,7 @@ public class ExploreFragment extends Fragment {
         textTitle  = (TextView)             rootView.findViewById(R.id.title);
         btnInfo    = (Button)               rootView.findViewById(R.id.info);
 
-        adapter = new MyAdapter(getActivity() , R.id.list_item , Core.getGallery());
+        adapter = new ArtAdapter(getActivity() , R.id.list_item , Core.getGallery());
         list.setAdapter(adapter);
     }
 

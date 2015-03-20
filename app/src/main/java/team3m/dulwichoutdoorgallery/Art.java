@@ -8,6 +8,9 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a single piece of art
+ */
 public class Art {
     String shareID;
     String Name;

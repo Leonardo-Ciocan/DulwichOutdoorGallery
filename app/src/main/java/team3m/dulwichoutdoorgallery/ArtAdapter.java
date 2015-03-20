@@ -15,22 +15,33 @@ import android.widget.TextView;
 import java.io.File;
 import java.util.ArrayList;
 
-public class MyAdapter extends ArrayAdapter<Art>{
-    public MyAdapter(Context context, int layoutResourceId, ArrayList data) {
+/**
+ * Used to define the data source of the art list
+ */
+public class ArtAdapter extends ArrayAdapter<Art>{
+
+    /**
+     * The current instance used
+     */
+    public static ArtAdapter instance;
+
+
+    public ArtAdapter(Context context, int layoutResourceId, ArrayList data) {
         super(context, layoutResourceId, data);
         instance =  this;
     }
 
-    public static MyAdapter instance;
     public View getView(int position, View convertView, ViewGroup parent){
 
         View itemView= convertView;
 
+        //We create views if they cant be recycled
         if(itemView==null){
             LayoutInflater inflater = ((Activity)getContext()).getLayoutInflater();
             itemView = inflater.inflate(R.layout.item_view, parent, false);
         }
 
+        //Set the image and text fields
         Art a = getItem(position);
         TextView textName= (TextView) itemView.findViewById(R.id.textView);
         textName.setText(a.getName());
@@ -40,6 +51,7 @@ public class MyAdapter extends ArrayAdapter<Art>{
 
         ImageView photo = (ImageView)itemView.findViewById(R.id.photo);
 
+        //We set the image based on if the image is from dropbox
         if(a.getIsOnline() != null) {
             File imgFile = new  File(getContext().getApplicationContext().getFilesDir()+ File.separator+ a.getIsOnline());
             if(imgFile.exists()){
@@ -48,10 +60,6 @@ public class MyAdapter extends ArrayAdapter<Art>{
             }
         }
         else {
-            //photo.setImageDrawable(a.getDrawable(getContext()));
-            //int c = getContext().getResources().getIdentifier(a.getPhoto(), "drawable", getContext().getPackageName());
-            //if(c != 0)Picasso.with(getContext()).load(c).into(photo);
-            //else photo.setImageResource(0);
             photo.setImageDrawable(a.getDrawable(getContext()));
         }
         return itemView;

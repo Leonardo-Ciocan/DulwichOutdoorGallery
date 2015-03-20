@@ -466,11 +466,11 @@ public class Core {
                     artistInformation.Author.put(lines[7],lines[9]);
                     Art art = new Art(lines[0], lines[2], lines[1], new Art(lines[6], lines[8], lines[7], null, null, 0, 0,"",name.replace(".txt","a.png"),""), null, Float.parseFloat(lines[4]), Float.parseFloat(lines[5]),"",name.replace(".txt",".png"),"");
                     Core.getGallery().add(art);
-                    if (MyAdapter.instance != null)
+                    if (ArtAdapter.instance != null)
                         ((Activity) c).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                MyAdapter.instance.notifyDataSetChanged();
+                                ArtAdapter.instance.notifyDataSetChanged();
                             }
                         });
                 } catch (FileNotFoundException e) {

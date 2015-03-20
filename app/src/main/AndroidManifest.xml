@@ -22,9 +22,6 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".ExploreActivity"
-            android:label="@string/title_activity_explore"></activity>
-        <activity
             android:name=".RouteActivity"
             android:label="@string/title_activity_route"></activity>
         <activity

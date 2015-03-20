@@ -8,6 +8,9 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+/**
+ * Shows a number of dots with all the art , highlights the visited arts
+ */
 public class RouteProgressIndicator extends View{
     public RouteProgressIndicator(Context context){
         super(context);
@@ -17,36 +20,47 @@ public class RouteProgressIndicator extends View{
         super(context, attrs);
     }
 
+    /**
+     * The paint used to draw
+     */
     Paint paint = new Paint();
-    int selectedIndex = 0;
+    /**
+     * We store how many we visited
+     */
+    int visitedCount = 0;
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        //We set some parameters
         paint.setFlags(Paint.ANTI_ALIAS_FLAG);
         paint.setStrokeWidth(3.5f);
 
-        //int half = Core.getGallery().size()/2;
+        //The radius is dynamically calculated
         float radius = getWidth() / Core.getGallery().size();
-        //float padding = (getWidth() - Core.getGallery().size() * radius * 2) / (Core.getGallery().size()+1);
+        //We draw each dot
         for(int x = 0; x < Core.getGallery().size();x++){
+            //We draw the inner dot
             paint.setStrokeWidth(3.5f);
-            paint.setColor(x <= selectedIndex ? getResources().getColor(R.color.brand) : Color.WHITE);
-            //canvas.drawCircle(x * 10 + (x+1) * padding, getHeight() / 4f * (float)(Math.floor(x/half) + 1f) - radius , radius , paint);
+            paint.setColor(x <= visitedCount ? getResources().getColor(R.color.brand) : Color.WHITE);
             paint.setStyle(Paint.Style.FILL);
-            //canvas.drawRect(x* radius  , 0 , x*radius + radius , getHeight(),paint);
-            canvas.drawCircle(x*radius+radius/2f , radius ,radius/2f,paint);
+            canvas.drawCircle(x * radius + radius / 2f, radius, radius / 2f, paint);
+
+            //And the border to separate the dots
             paint.setStyle(Paint.Style.STROKE);
-            paint.setColor( getResources().getColor(R.color.brandDark));
+            paint.setColor(getResources().getColor(R.color.brandDark));
             paint.setStrokeWidth(5);
-            Log.e("wuwuw", ""+selectedIndex);
-            //canvas.drawRect(x* radius , 0 , x*radius + radius , getHeight(),paint);
             canvas.drawCircle(x*radius+radius/2f , radius ,radius/2f,paint);
         }
     }
 
-    public void setSelected(int i){
-        selectedIndex = i;
+    /**
+     * Set how many are selected
+     * @param visited The progress
+     */
+    public void setSelected(int visited){
+        visitedCount = visited;
         invalidate();
     }
 }
