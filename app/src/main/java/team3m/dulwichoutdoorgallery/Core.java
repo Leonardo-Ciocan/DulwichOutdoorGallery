@@ -87,18 +87,24 @@ public class Core {
                     "Thomas Gainsborough", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_couple_in_a_landscape", "a.1387311134920959.1073741826.1387308654921207/1387319091586830"),
                     new ArrayList<String>(), 51.456641, -0.075693, "stik_couple_in_a_landscape_new", "a.1387325508252855.1073741827.1387308654921207/1387332984918774"));
 
-            add(new Art("Mushroom Marker",
+            add(new Art("Mushroom Marker 1",
                     "Although Christiaan's mushrooms do not appear in any Dulwich Picture Gallery paintings, he made good markers of a route for a walk that " +
                             "takes in most of the walls and ends at Dulwich Picture Gallery. He put up four mushrooms but one was objected to so the shop " +
                             "owner on whose roof it was, was forced to take it down.",
-                    "Christiaan Nagel", null,
+                    "Christiaan Nagel", new Art("Mushroom Marker 1", "Although Christiaan's mushrooms do not appear in any Dulwich Picture Gallery paintings, " +
+                    "he made good markers of a route for a walk that takes in most of the walls and ends at Dulwich Picture Gallery. He put up four mushrooms " +
+                    "but one was objected to so the shop owner on whose roof it was, was forced to take it down.",
+                    "Christiaan Nagel", null, new ArrayList<String>(), 51.455979, -0.076067, "mushroom_marker1", "a.1387325508252855.1073741827.1387308654921207/1387375498247856"),
                     new ArrayList<String>(), 51.455979, -0.076067, "mushroom_marker1", "a.1387325508252855.1073741827.1387308654921207/1387375498247856"));
 
-            add(new Art("Mushroom Marker",
+            add(new Art("Mushroom Marker 2",
                     "Although Christiaan's mushrooms do not appear in any Dulwich Picture Gallery paintings, he made good markers of a route for a walk that " +
                             "takes in most of the walls and ends at Dulwich Picture Gallery. He put up four mushrooms but one was objected to so the shop " +
                             "owner on whose roof it was, was forced to take it down.",
-                    "Christiaan Nagel", null,
+                    "Christiaan Nagel", new Art("Mushroom Marker 2", "Although Christiaan's mushrooms do not appear in any Dulwich Picture Gallery paintings, " +
+                    "he made good markers of a route for a walk that takes in most of the walls and ends at Dulwich Picture Gallery. He put up four mushrooms " +
+                    "but one was objected to so the shop owner on whose roof it was, was forced to take it down.",
+                    "Christiaan Nagel", null, new ArrayList<String>(), 51.455979, -0.076067, "mushroom_marker1", "a.1387325508252855.1073741827.1387308654921207/1387375498247856"),
                     new ArrayList<String>(), 51.455981, -0.076418, "mushroom_marker2", "a.1387325508252855.1073741827.1387308654921207/1387375528247853"));
 
             add(new Art("The Guardian Angel, 2012",
@@ -201,7 +207,9 @@ public class Core {
             add(new Art("Dulwich Picture Gallery",
                     "Dulwich Picture Gallery, founded in 1811, is England's oldest public art gallery. It has one of the finest collections of Western " +
                             "European Baroque paintings in the world.",
-                    "Dulwich Gallery", null,
+                    "Dulwich Gallery", new Art("Dulwich Picture Gallery", "Dulwich Picture Gallery, founded in 1811, is England's oldest public art gallery. " +
+                    "It has one of the finest collections of Western European Baroque paintings in the world.",
+                    "Dulwich Gallery", null, new ArrayList<String>(), 51.445936, -0.086170, "dulwich_gallery", "a.1387379154914157.1073741828.1387308654921207/1387379161580823"),
                     new ArrayList<String>(), 51.445936, -0.086170, "dulwich_gallery", "a.1387379154914157.1073741828.1387308654921207/1387379161580823"));
 
             add(new Art("Samson and Delilah, 2013",
