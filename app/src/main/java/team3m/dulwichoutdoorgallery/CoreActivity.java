@@ -1,6 +1,8 @@
 package team3m.dulwichoutdoorgallery;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Animatable;
@@ -260,6 +262,7 @@ public class CoreActivity extends ActionBarActivity {
 
                         routeIndicator.setVisibility(id == ROUTE ? View.VISIBLE : View.GONE);
 
+
                         getSupportFragmentManager().beginTransaction()
                                 .setCustomAnimations(R.anim.show , R.anim.hide)
                                 .replace(R.id.contentHolder, fragment)
@@ -299,16 +302,31 @@ public class CoreActivity extends ActionBarActivity {
             return true;
         }
         if(item.getItemId() == R.id.close){
-            Fragment fragment = null;
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which){
+                        case DialogInterface.BUTTON_POSITIVE:
+                            Fragment fragment = null;
 
-            fragment = new RouteActivity.PlaceholderFragment();
+                            fragment = new RouteActivity.PlaceholderFragment();
 
-            routeIndicator.setVisibility(View.VISIBLE);
+                            routeIndicator.setVisibility(View.VISIBLE);
 
-            getSupportFragmentManager().beginTransaction()
-                    //.setCustomAnimations(R.anim.show , R.anim.hide)
-                    .replace(R.id.contentHolder, fragment)
-                    .commit();
+                            getSupportFragmentManager().beginTransaction()
+                                    //.setCustomAnimations(R.anim.show , R.anim.hide)
+                                    .replace(R.id.contentHolder, fragment)
+                                    .commit();
+                            break;
+                    }
+                }
+            };
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("You will lose your progress and a new route will be calculated.").setPositiveButton("Start new route", dialogClickListener)
+                    .setNegativeButton("No", null).show();
+
+
         }
 
         return super.onOptionsItemSelected(item);

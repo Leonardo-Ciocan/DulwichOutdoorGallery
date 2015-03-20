@@ -226,6 +226,10 @@ public class RouteActivity extends ActionBarActivity {
                     //Doge
 
                     if (withinRange) {
+
+
+
+
                         Core.setLocationVisited(current);
                         Log.e("wubwu",current+" "+iCurrent);
                         Core.updateBadges();
@@ -249,6 +253,7 @@ public class RouteActivity extends ActionBarActivity {
                                 ((LocationCardView) cardContainer.getChildAt(iCurrent)).setArt(Core.getGallery().get(current));
 
                             scrollView.smoothScrollTo((int) Core.convertDpToPixel((130 * (iCurrent - 2)), getActivity()), 0);
+
                         }
 
                     }
@@ -282,6 +287,7 @@ public class RouteActivity extends ActionBarActivity {
 
                 first = Core.getGallery().get(closest).getLocation();
                 ((LocationCardView)cardContainer.getChildAt(0)).setArt(Core.getGallery().get(closest));
+
             }
 
             if(!visitedStartingPoint && first != null){
@@ -363,11 +369,7 @@ public class RouteActivity extends ActionBarActivity {
                 polyline.setWidth(6);
 
 
-            /*LatLngBounds position = new LatLngBounds(
-                    point , point2);
 
-            map.moveCamera(CameraUpdateFactory.newLatLngBounds(position, 0));
-*/
 
 
         }
