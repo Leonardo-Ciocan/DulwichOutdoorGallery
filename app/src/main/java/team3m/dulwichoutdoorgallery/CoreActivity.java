@@ -221,11 +221,11 @@ public class CoreActivity extends ActionBarActivity {
                 toolbar.getMenu().getItem(0).setVisible( id == EXPLORE);
                 toolbar.setTitle(titles[id]);
 
-                for(int x =1;x < buttonHolder.getChildCount()+1;x++){
+                for(int x =1;x < buttonHolder.getChildCount();x++){
                     buttonHolder.getChildAt(x).setBackground(null);
                     TextView txt = (TextView) ((LinearLayout)buttonHolder.getChildAt(x)).getChildAt(1);
                     ((ImageView)( ((LinearLayout) buttonHolder.getChildAt(x)).getChildAt(0))).setImageDrawable(getResources()
-                            .getDrawable(getResources().getIdentifier(titles[x].toLowerCase()+"_dark", "drawable", getApplicationContext().getPackageName())));
+                            .getDrawable(getResources().getIdentifier(titles[x-1].toLowerCase()+"_dark", "drawable", getApplicationContext().getPackageName())));
                     txt.setTextColor(Color.parseColor("#bf000000"));
                 }
 
