@@ -279,11 +279,13 @@ public class InfoActivity extends ActionBarActivity {
                         textTitle.setText(street_? art.getName() : art.getRelatedArt().getName());
                         textAuthor.setText(street_ ? art.getAuthor() : art.getRelatedArt().getAuthor());
                         textDescription.setText(street_? art.getDescription() : art.getRelatedArt().getDescription());
-                        textTitle.setTextColor(street_ ? getResources().getColor(R.color.brand) : Color.RED);
-                        fab.setColorNormal(street_  ? getResources().getColor(R.color.brand) : Color.RED);
-                        fab.setColorPressed(street_  ? getResources().getColor(R.color.brand) : Color.RED);
-                        btnShare.setTextColor(street_  ? getResources().getColor(R.color.brand) : Color.RED);
 
+                        if(!art.getName().equals(art.getRelatedArt().getName())) {
+                            textTitle.setTextColor(street_ ? getResources().getColor(R.color.brand) : Color.RED);
+                            fab.setColorNormal(street_ ? getResources().getColor(R.color.brand) : Color.RED);
+                            fab.setColorPressed(street_ ? getResources().getColor(R.color.brand) : Color.RED);
+                            btnShare.setTextColor(street_ ? getResources().getColor(R.color.brand) : Color.RED);
+                        }
                         i1.setAlpha(0);
                         i2.setAlpha(255);
                         i2.setRotationY(180 + 90 * ( interpolatedTime * 2f));
