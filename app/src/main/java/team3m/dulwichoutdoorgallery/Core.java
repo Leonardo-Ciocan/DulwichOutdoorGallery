@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
-import android.util.Log;
 
 import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.exception.DropboxException;
@@ -420,7 +419,7 @@ public class Core {
         DropboxAPI.Entry dirent = null;
 
         try {
-            dirent = CoreActivity.mDBApi.metadata("/saved/", 1000, null, true, null);
+            dirent = CoreActivity.sessionDropboxAPI.metadata("/saved/", 1000, null, true, null);
         } catch (DropboxException e) {
             e.printStackTrace();
         }
@@ -445,7 +444,7 @@ public class Core {
                 e.printStackTrace();
             }
             try {
-                DropboxAPI.DropboxFileInfo info = CoreActivity.mDBApi.getFile(s, null, outputStream, null);
+                DropboxAPI.DropboxFileInfo info = CoreActivity.sessionDropboxAPI.getFile(s, null, outputStream, null);
             } catch (DropboxException e) {
                 e.printStackTrace();
             }
