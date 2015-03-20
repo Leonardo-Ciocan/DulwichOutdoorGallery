@@ -56,6 +56,14 @@ android:visibility="gone"
 		   android:layout_gravity="start"
 		   android:background="#fff">
 
+           <ImageView
+               android:src="@drawable/ic_launcher"
+               android:layout_marginTop="5dp"
+               android:layout_width="fill_parent"
+               android:layout_height="130dp"
+               android:layout_marginBottom="10dp"/>
+
+
 		   <LinearLayout
 			   android:id="@+id/btn_explore"
 			   android:background="@color/brand"

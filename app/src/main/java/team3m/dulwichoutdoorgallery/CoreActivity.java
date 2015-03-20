@@ -221,7 +221,7 @@ public class CoreActivity extends ActionBarActivity {
                 toolbar.getMenu().getItem(0).setVisible( id == EXPLORE);
                 toolbar.setTitle(titles[id]);
 
-                for(int x =0;x < buttonHolder.getChildCount();x++){
+                for(int x =1;x < buttonHolder.getChildCount()+1;x++){
                     buttonHolder.getChildAt(x).setBackground(null);
                     TextView txt = (TextView) ((LinearLayout)buttonHolder.getChildAt(x)).getChildAt(1);
                     ((ImageView)( ((LinearLayout) buttonHolder.getChildAt(x)).getChildAt(0))).setImageDrawable(getResources()
