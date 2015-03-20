@@ -127,6 +127,9 @@ public class RouteActivity extends ActionBarActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
+
+
             final View rootView = inflater.inflate(R.layout.fragment_route, container, false);
             //gets the map control
             final SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
@@ -195,10 +198,10 @@ public class RouteActivity extends ActionBarActivity {
             return rootView;
         }
 
-        Marker m;
+        //Marker m;
         void handleLocationChanged(Location location){
 
-            user = new LatLng(location.getLatitude() , location.getLongitude());
+            /*user = new LatLng(location.getLatitude() , location.getLongitude());
             if(m==null){
                 m = map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(66))
                 .position(user));
@@ -207,7 +210,7 @@ public class RouteActivity extends ActionBarActivity {
                 m.remove();
                 m = map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(66))
                         .position(user));
-            }
+            }*/
             if(first != null) {
 
                 if(visitedStartingPoint) {
@@ -249,10 +252,10 @@ public class RouteActivity extends ActionBarActivity {
                         }
 
                     }
-                    if (iCurrent < Core.getGallery().size()-1) {
+                    if (iCurrent <= Core.getGallery().size()-1) {
                         drawOverlay();
                     }
-                    if (iCurrent == Core.getGallery().size()-1) {
+                    if (iCurrent > Core.getGallery().size()) {
                         hasFinished = true;
                     }
                 }
