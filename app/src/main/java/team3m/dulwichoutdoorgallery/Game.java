@@ -33,11 +33,12 @@ public class Game {
      */
     private String artworkResourceName;
     /**
-     *
+     * Stores the ID of the artwork to be matched for a particular question.
      */
     private int artworkToMatch;
     /**
-     *
+     * Stores the resource names for the four Dulwich Picture Gallery pieces for a particular
+     * question.
      */
     private int[] possibleChoices;
     /**
