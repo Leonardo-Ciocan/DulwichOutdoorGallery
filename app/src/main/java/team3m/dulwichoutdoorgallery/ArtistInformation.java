@@ -1,24 +1,25 @@
 package team3m.dulwichoutdoorgallery;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Diana Ghitun on 19/03/2015.
+ * Stores all author information
  */
 public class ArtistInformation {
 
-    public static Map Author;
+    /**
+     * Used to retrieve the authors
+     */
+    public static Map Authors;
 
     public ArtistInformation(){
 
-        if(Author == null) {
-            Author = new HashMap();
+        if(Authors == null) {
+            Authors = new HashMap();
         }
 
-        Author.put("Faith47" , "Faith47 is a self-taught contemporary street artist based in Cape Town, South Africa. She has received recognition for her work " +
+        Authors.put("Faith47" , "Faith47 is a self-taught contemporary street artist based in Cape Town, South Africa. She has received recognition for her work " +
                 "beyond her home country and has participated in gallery shows and projects world-wide.\n" +
                 "Following an active street art career spanning more than fifteen years, her work can now be found in major cities around the world. Using a wide " +
                 "range of media, including graphite, spray paint, oil paint, ink, photography and collage, her approach is explorative and substrate appropriate – " +
@@ -26,23 +27,23 @@ public class ArtistInformation {
                 "Through her work, Faith47 attempts to disarm the strategies of global realpolitik, in order to advance the expression of personal truth. In " +
                 "this way, her work is both an internal and spiritual release that speaks to the complexities of the human condition, its deviant histories " +
                 "and existential search.");
-        Author.put("Guido Reni" , "Born in Bologna into a family of musicians, Guido Reni was the son of Daniele Reni and Ginevra de’ Pozzi. As a child of nine, " +
+        Authors.put("Guido Reni" , "Born in Bologna into a family of musicians, Guido Reni was the son of Daniele Reni and Ginevra de’ Pozzi. As a child of nine, " +
                 "he was apprenticed under the Bolognese studio of Denis Calvaert. Soon after, he was joined in that studio by Albani and Domenichino. He may " +
                 "also have trained with a painter by the name of Ferrantini. When Reni was about twenty years old, the three Calvaert pupils migrated to the " +
                 "rising rival studio, named Accademia degli Incamminati (Academy of the \"newly embarked\", or progressives), led by Lodovico Carracci. They " +
                 "went on to form the nucleus of a prolific and successful school of Bolognese painters who followed Annibale Carracci to Rome. Like many " +
                 "other Bolognese painters, Reni's painting was thematic and eclectic in style.");
-        Author.put("Roa" , "ROA is a legendary Belgian artist from Ghent, internationally acclaimed for his arresting and visceral murals of animals depicted " +
+        Authors.put("Roa" , "ROA is a legendary Belgian artist from Ghent, internationally acclaimed for his arresting and visceral murals of animals depicted " +
                 "in black and white. He frequently reveals the skeletons and internal organs of the animals and birds which are often piled on to of each " +
                 "other. ROA has painted large scale murals of indigenous animals in cities throughout the globe on an unmatched scale.");
-        Author.put("Adam Pynacker" , "Pynacker was the son of a wine merchant, who was a member of the vroedschap, or city regency. He travelled to Italy and " +
+        Authors.put("Adam Pynacker" , "Pynacker was the son of a wine merchant, who was a member of the vroedschap, or city regency. He travelled to Italy and " +
                 "was gone for three years. In 1658 he converted to Catholicism in order to marry Eva Maria de Geest, Wybrand de Geest's daughter. Two years " +
                 "later his portrait was painted by his father-in-law as a pendant to an earlier portrait of his wife. In Schiedam he baptized two children, " +
                 "but from 1661 until he died, he lived on the Rozengracht in Amsterdam. Pynacker is considered an example of an Italianate landscape painter, " +
                 "along with Jan Both, Jan Baptist Weenix, Nicolaes Berchem and Jan Asselyn. He specialized in decorating whole rooms. According to Houbraken," +
                 " he would turn in his grave if he knew how the fashions had changed, but fortunately the poet P. Verhoek wrote a poem about one of his " +
                 "decorated rooms.");
-        Author.put("Walter Kershaw" , "Walter Kershaw, born 7 December 1940 in Rochdale, Lancashire, is an artist in oils and watercolours but is best known " +
+        Authors.put("Walter Kershaw" , "Walter Kershaw, born 7 December 1940 in Rochdale, Lancashire, is an artist in oils and watercolours but is best known " +
                 "for his large scale, external, mural paintings in towns in Northern England and the Americas.\n" +
                 "Kershaw has always been self-employed and still runs his studio business today. His early large external murals painted on slum properties " +
                 "alongside his provocative public sculptures attracted much media attention in the ‘60s, ‘70s and early ‘80s. For example, interviews with " +
@@ -50,7 +51,7 @@ public class ArtistInformation {
                 " Radio 4; and as a guest alongside Eric Morecambe on Russell Harty’s BBC2 chat show.\n" +
                 "His work is in public collections worldwide; including Bury Art Museum, Salford Museum and Art Gallery, the Victoria and Albert Museum in " +
                 "London, the Arts Council, the Calouste Gulbenkian Foundation and the National Collection of Brazilian Art in São Paulo.");
-        Author.put("Jacob van Ruisdael" , "Jacob van Ruisdael (or Ruysdael) (c.1629 – 10 March 1682) was a prolific Dutch Golden Age landscape painter, and is " +
+        Authors.put("Jacob van Ruisdael" , "Jacob van Ruisdael (or Ruysdael) (c.1629 – 10 March 1682) was a prolific Dutch Golden Age landscape painter, and is " +
                 "considered the most famous of four Haarlem family members who created landscape paintings, though traditionally their works have been " +
                 "difficult to tell apart. A native of Haarlem, Jacob Isaacksz. van Ruisdael first studied with his father Isaack and uncle Salomon van Ruysdael, " +
                 "landscape painters and sons of a frame dealer called Jacob van Gooyer from Gooi. He was strongly influenced by other contemporary Haarlem " +
@@ -58,7 +59,7 @@ public class ArtistInformation {
                 "waterfalls, and Roelant Roghman, who created popular dramatic castle themes on hillsides. The earliest date that appears on his paintings and " +
                 "etchings is 1646. Two years later he was admitted as a member of the Haarlem Guild of St. Luke; in 1659 he obtained the citizenship of the city " +
                 "of Amsterdam. In 1668 his name appears there as a witness to the marriage of Meindert Hobbema, his only registered pupil.");
-        Author.put("Remi Rough and System" , "South London born and bred, Rough has been breaking boundaries with the aid of a spray can and a paintbrush for nearly 30 " +
+        Authors.put("Remi Rough and System" , "South London born and bred, Rough has been breaking boundaries with the aid of a spray can and a paintbrush for nearly 30 " +
                 "years. His compositions are abstract, consisting of carefully combined colours and straight-edged shapes.\n" +
                 "Rough moved from the streets to the galleries with his debut art show in 1989 and has since gone on to exhibit in London, Paris, Perth, " +
                 "Tokyo, Los Angeles, Hong Kong and other cities dotted around the globe. Rough was invited to speak on the underground history of UK " +
@@ -71,7 +72,7 @@ public class ArtistInformation {
                 "He is part of the collective Agents of Change painting the largest mural in London, the Megaro hotel, and the deserted Scottish village, " +
                 "the Ghost Village Project in 2009. In 2011, along with Remi Rough, he painted the heads of Dondi, Jean-Michel Basquiat and Rammell Zee entitled " +
                 "The Three Kings to great acclaim. This partnership has proved successful again in Dulwich.");
-        Author.put("Rembrandt van Rijn" , "Rembrandt Harmenszoon van Rijn (15 July 1606 – 4 October 1669) was a Dutch painter and etcher. He is generally " +
+        Authors.put("Rembrandt van Rijn" , "Rembrandt Harmenszoon van Rijn (15 July 1606 – 4 October 1669) was a Dutch painter and etcher. He is generally " +
                 "considered one of the greatest painters and printmakers in European art and the most important in Dutch history. His contributions to art " +
                 "came in a period of great wealth and cultural achievement that historians call the Dutch Golden Age when Dutch Golden Age painting, although " +
                 "in many ways antithetical to the Baroque style that dominated Europe, was extremely prolific and innovative, and gave rise to important new " +
@@ -81,14 +82,14 @@ public class ArtistInformation {
                 "important Dutch painters. Rembrandt's greatest creative triumphs are exemplified especially in his portraits of his contemporaries, self-portraits " +
                 "and illustrations of scenes from the Bible. His self-portraits form a unique and intimate biography, in which the artist surveyed himself without " +
                 "vanity and with the utmost sincerity.");
-        Author.put("Conor Harrington" , "From Cork in Ireland, but now based in London, Harrington fuses grafitti and fine art techniques to produce huge murals " +
+        Authors.put("Conor Harrington" , "From Cork in Ireland, but now based in London, Harrington fuses grafitti and fine art techniques to produce huge murals " +
                 "on city walls. These combine realist figurative portrayals of figures generally in 18th century costume, with the abstract raw energy of grafitti. " +
                 "They are often scenes of conflict and are infused with movement and drama.\n" +
                 "Harrington is a classically trained artist who nonetheless began in the world of grafitti. He reflects that he saw his first piece of grafitti " +
                 "in 'National Geographic' magazine at the age of 12 and never looked back, soon venturing out onto the streets of Cork to put up his first " +
                 "typographical work in 1994. Harrington has painted on the city streets all over the world. He has staged many successful exhibitions of his work " +
                 "in galleries, notably at Lazarides gallery in London.");
-        Author.put("Charles Le Brun" , "Born in Paris, he attracted the notice of Chancellor Séguier, who placed him at the age of eleven in the studio of Simon " +
+        Authors.put("Charles Le Brun" , "Born in Paris, he attracted the notice of Chancellor Séguier, who placed him at the age of eleven in the studio of Simon " +
                 "Vouet. He was also a pupil of François Perrier. At fifteen he received commissions from Cardinal Richelieu, in the execution of which he " +
                 "displayed an ability which obtained the generous commendations of Nicolas Poussin, in whose company Le Brun started for Rome in 1642.\n" +
                 "In Rome he remained four years in the receipt of a pension due to the liberality of the chancellor. There he worked under Poussin, adapting the " +
@@ -98,7 +99,7 @@ public class ArtistInformation {
                 "Colbert also promptly recognized Le Brun's powers of organization, and attached him to his interests. Together they took control of the Academy of " +
                 "Painting and Sculpture (Académie royale de peinture et de sculpture, 1648), and the Academy of France at Rome (1666), and gave a new development to " +
                 "the industrial arts.");
-        Author.put("Stik" , "Stik is one of London's best known and most loved street artists. He is renowned for painting simple, androgynous stick figures " +
+        Authors.put("Stik" , "Stik is one of London's best known and most loved street artists. He is renowned for painting simple, androgynous stick figures " +
                 "which although simple nevertheless coney complex body language and emotion. Themes of human vulnerability are infused into Stik's work " +
                 "which reflects both the human spirit and his own life story and experiences with homelessness.\n" +
                 "Initially Stik developed his simple style through having to execute works illegally. He painted his characteristic figures on London " +
@@ -106,7 +107,7 @@ public class ArtistInformation {
                 "to paint walls legally, Stik maintains his minimal simplicity for aesthetic reasons. Stik now paints murals across the UK, Europe, Asia " +
                 "and America in association with orhanisations such as The British Council, Amnesty International and the Big Issue Foundation. He has " +
                 "staged sell-out exhibitions of his work in the UK and the USA.");
-        Author.put("Thomas Gainsborough" , "Gainsborough was the youngest son of John Gainsborough, a weaver in Suffolk. One of his brothers, John, was known " +
+        Authors.put("Thomas Gainsborough" , "Gainsborough was the youngest son of John Gainsborough, a weaver in Suffolk. One of his brothers, John, was known " +
                 "as Scheming Jack because of his passion for designing curiosities; another, Humphrey, had a faculty for mechanics and was said to have " +
                 "invented the method of condensing steam in a separate vessel, which was of great service to James Watt. Gainsborough left home in 1740 to " +
                 "study art in London with Hubert Gravelot, Francis Hayman, and William Hogarth. In 1746, he married Margaret Burr, and they became parents " +
@@ -116,13 +117,13 @@ public class ArtistInformation {
                 "painter Gainsborough's rival Joshua Reynolds. In his last years, Gainsborough painted relatively simple landscapes and is credited (with " +
                 "Richard Wilson) as the originator of the 18th century British landscape school. Gainsborough died of cancer in 1788 and was buried at St. " +
                 "Anne's Church, Kew.");
-        Author.put("Christiaan Nagel" , "Christiaan Nagel's mushrooms are an iconic fixture of London's landscape. Drawing inspiration from the Surrealist and " +
+        Authors.put("Christiaan Nagel" , "Christiaan Nagel's mushrooms are an iconic fixture of London's landscape. Drawing inspiration from the Surrealist and " +
                 "Pop-Art movements, Nagel seeks to juxtapose his bright palette with the surrounding city context. He suggests that art is something ultimately " +
                 "unattainable as he places his luminous fungi at ever greater heights and in more unexpected and challenging places.\n" +
                 "Although patently not a grafitti writter, Nagel's pursuit of ever more dangerous locations and his continued desire to install his works " +
                 "throughout the entire city are analogous to the mindset of many grafitti writers. However he has also created posters and shirts decorated with " +
                 "his signature mushrooms and has held successful solo exhibitions in Mayfair, London and in his native South Africa.");
-        Author.put("Marcantonio Franceschini" , "He was a pupil of Carlo Cignani, with whom he worked on the frescoes in the Palazzo del Giardino in Parma " +
+        Authors.put("Marcantonio Franceschini" , "He was a pupil of Carlo Cignani, with whom he worked on the frescoes in the Palazzo del Giardino in Parma " +
                 "(1678–1681). He worked closely for many years with his brother-in-law, Luigi Quaini, who also was the cousin of Cignani.\n" +
                 "Franceschini had a long career painting canvases on religious and mythological subjects for patrons throughout Europe. Franceschini " +
                 "decorated some ceilings in the Palazzo Ranuzzi (1680) and the Palazzo Marescotti Brazzetti (1682) in Bologna. He helped paint in the " +
@@ -133,14 +134,14 @@ public class ArtistInformation {
                 "destroyed by a fire in 1777. These had been completed with the help of Tommaso Aldrovandini, Quaini, and Antonio Meloni. In addition, his " +
                 "decorations of the pendentives and lunettes of the Cathedral of Piacenza were removed in the late 19th century. He decorated the church of " +
                 "Corpus Domini (1688–1694) in Bologna.");
-        Author.put("Michael Beerens" , "Michael Beerens is a a Parisian  artist. He started doing graffiti in the late ’90s but transitioned to more illustrative " +
+        Authors.put("Michael Beerens" , "Michael Beerens is a a Parisian  artist. He started doing graffiti in the late ’90s but transitioned to more illustrative " +
                 "work in 2007, after a serious motorcycle incident which left him in a hospital bed for nearly 6 months. \"I realized that graffiti, the way I " +
                 "practiced it, was a completely selfish act and limited in time, jail was always around the corner\", Beerens states in his bio. \"Gradually I " +
                 "started using painting as my forum, a way of conveying a message, an idea\". It’s not clear if his transition from ‘graffiti’ to ‘street art’ was " +
                 "also a transition from working illegally to doing more commissioned walls, however he implies that doing street art, to whatever degree, is a " +
                 "lesser risk of arrest than graffiti.\n" +
                 "Beerens work is heavily symbolic, often using animals to depict metaphors for struggle, subversion and the daily grind.\n");
-        Author.put("Mear One" , "MEAR ONE has been at the forefront of LA's grafitti and mural culture for nearly three decades. He is famous for having " +
+        Authors.put("Mear One" , "MEAR ONE has been at the forefront of LA's grafitti and mural culture for nearly three decades. He is famous for having " +
                 "pioneered the Melrose grafitti art movement in the late 80s. Early on in his career, MEAR gained recognition for building the bridge " +
                 "between grafitti art and fine art.\n" +
                 "MEAR was the first grafitti artist to exhibit at the infamous 01 Gallery on Melrose, as well as at 33 1/3 Gallery in Silverlake, where " +
@@ -148,7 +149,7 @@ public class ArtistInformation {
                 "Contemporary Art.\n" +
                 "He is perhaps best known for constructing powerful narratives juxtaposing philosophy, ancient mythology and modern politics. This interpretation " +
                 "of reality is achieved through dialogue between realism and the supernatural.");
-        Author.put("Bartolome Esteban Murillo" , "Bartolomé Esteban Murillo (born late December 1617, baptized January 1, 1618 – April 3, 1682) was a Spanish " +
+        Authors.put("Bartolome Esteban Murillo" , "Bartolomé Esteban Murillo (born late December 1617, baptized January 1, 1618 – April 3, 1682) was a Spanish " +
                 "Baroque painter. Although he is best known for his religious works, Murillo also produced a considerable number of paintings of contemporary " +
                 "women and children. These lively, realist portraits of flower girls, street urchins, and beggars constitute an extensive and appealing record " +
                 "of the everyday life of his times.\n" +
@@ -157,7 +158,7 @@ public class ArtistInformation {
                 "influences from other regions. His first works were influenced by Zurbarán, Jusepe de Ribera and Alonzo Cano, and he shared their strongly " +
                 "realist approach. As his painting developed, his more important works evolved towards the polished style that suited the bourgeois and " +
                 "aristocratic tastes of the time, demonstrated especially in his Roman Catholic religious works.");
-        Author.put("Pieter Coecke van Aelst" , "He was the son of the Deputy Mayor of Aalst. The early Flemish biographer Karel van Mander reports in his " +
+        Authors.put("Pieter Coecke van Aelst" , "He was the son of the Deputy Mayor of Aalst. The early Flemish biographer Karel van Mander reports in his " +
                 "Schilder-boeck published in 1604 that van Aelst studied under Bernaert van Orley, a leading Flemish Renaissance painter. There are no " +
                 "documents that prove this apprenticeship but there are strong stylistic similarities between the styles of the two artists.\n" +
                 "Van Aelst later studied in Italy before entering the Antwerp Guild of Saint Luke in 1527. In 1533, he travelled to Constantinople for one " +
@@ -171,7 +172,7 @@ public class ArtistInformation {
                 "who was a painter of miniatures and the mother of three children, a son named Pauwel (even though he had another son with this name), and two " +
                 "daughters called Katelijne and Maria. The prominent painter Pieter Brueghel the Elder married van Aelst's daughter Maria (called 'Mayken'). Karel " +
                 "van Mander stated that van Aelst's second wife was the first teacher of her grandchildren, Pieter Brueghel the Younger and Jan Brueghel the Elder.");
-        Author.put("Phlegm" , "Phlegm is a Sheffield-based muralist and artist who first developed his fantastic illustrations in self-published comics. His " +
+        Authors.put("Phlegm" , "Phlegm is a Sheffield-based muralist and artist who first developed his fantastic illustrations in self-published comics. His " +
                 "work now extends to the urban landscape, and can mostly be seen in run-down and disused spaces. Phlegm creates surreal illustrations to an " +
                 "untold story, weaving a visual narrative that explores the unreal through creatures from his imagination. His storybook-like imagery is half " +
                 "childlike, half menacing, set in built up cityscapes with castles, turrets and winding stairways.\n" +
@@ -180,7 +181,7 @@ public class ArtistInformation {
                 "Working solely in monochrome, his fine technique and intricate detail can be seen as a curiosity cabinet of the mind. Each drawing forms part " +
                 "of a grand narrative that extends worldwide, in countries including Norway, Canada, Switzerland, Sri Lanka, USA, Belgium, Poland, Italy, Slovakia " +
                 "and Spain.");
-        Author.put("Nicolas Poussin" , "Nicolas Poussin's early biographer was his friend Giovanni Pietro Bellori, who relates that Poussin was born near Les " +
+        Authors.put("Nicolas Poussin" , "Nicolas Poussin's early biographer was his friend Giovanni Pietro Bellori, who relates that Poussin was born near Les " +
                 "Andelys in Normandy and that he received an education that included some Latin, which would stand him in good stead. Early sketches " +
                 "attracted the notice of Quentin Varin, a local painter, whose pupil Poussin became, until he ran away to Paris at the age of eighteen. " +
                 "There he entered the studios of the Flemish painter Ferdinand Elle and then of Georges Lallemand, both minor masters now remembered for " +
@@ -192,7 +193,7 @@ public class ArtistInformation {
                 "into his household, and in 1624 enabled Poussin (who had been detained by commissions in Lyon and Paris) to rejoin him at Rome. It has been " +
                 "suggested that it was this early friendship with Marino, and the commissioning of illustrations of his poetry (which drew on Ovidian themes), " +
                 "that founded, or at least reinforced, the prominent eroticism in Poussin's early work.");
-        Author.put("Thierry Noir" , "Thierry Noir, a forerunner of modern street art, was born in 1958 in Lyon, France, and came to Berlin in 1982. At this time " +
+        Authors.put("Thierry Noir" , "Thierry Noir, a forerunner of modern street art, was born in 1958 in Lyon, France, and came to Berlin in 1982. At this time " +
                 "until its fall in 1989, Noir painted mile upon mile of the Berlin Wall risking his life in the process. He covered the Wall with bright, vivid " +
                 "colours, aiming not to embellish it but to demystify it. His vivid murals were both a personal response and a poignant political statement. " +
                 "Painting on the Wall was absolutely forbidden; it was built three metres beyond the official border so the East German soldiers were able to " +
@@ -203,7 +204,7 @@ public class ArtistInformation {
                 "end of the Cold War. The fall of the Wall gave birth the the East Side Gallery, a 1.3 kilometre strech of wall on which 118 artists, including " +
                 "Noir, from 21 countries applied their designs, leaving a lasting testimony for future generations. Noir's artwork and original pieces of the Berlin " +
                 "Wall can be found in public museums and private art collections throughout the world.");
-        Author.put("Giambattista Tiepolo" , "Born in Venice, he was the youngest of six children of Domenico and Orsetta Tiepolo. His father was a small " +
+        Authors.put("Giambattista Tiepolo" , "Born in Venice, he was the youngest of six children of Domenico and Orsetta Tiepolo. His father was a small " +
                 "shipping merchant who belonged to a family that bore the prestigious patrician name of Tiepolo without claiming any noble descent. Some of " +
                 "the children acquired noble godparents, and Giambattista was originally named after his godfather, a Venetian nobleman called Giovanni " +
                 "Battista Dorià. He was baptised on 16 April 1696 in the local church, San Pietro di Castello (then still officially the cathedral of Venice). " +
@@ -216,7 +217,7 @@ public class ArtistInformation {
                 "painter to the Doge, Giovanni II Cornaro, and oversaw the hanging of pictures at his palace, as well as painting many works himself, of which only two " +
                 "portraits have been identified. He painted his first fresco in 1716, on the ceiling of a church at Biadene, near Treviso. He probably left Lazzarini's " +
                 "studio in 1717, the year he was received into the Fraglia or guild of painters.");
-        Author.put("Ben Wilson" , "Ben Wilson, born in Cambridge in 1963, started working as an artist on a large scale in wood, creating life size wooden " +
+        Authors.put("Ben Wilson" , "Ben Wilson, born in Cambridge in 1963, started working as an artist on a large scale in wood, creating life size wooden " +
                 "sculptures hidden in woods and forests. Since 2004 he has been painstakingly painting on discarded chewing gum in London.\n" +
                 "Wilson's technique involves super-heating the gum with a blow torch, spraying it with a lacquer, then, using tiny brushes, creating a tiny " +
                 "image in enamel paint before sealing the gum with a final layer of clear lacquer. Wilson estimates that he has painted thousands of pieces " +
@@ -224,7 +225,7 @@ public class ArtistInformation {
                 "The highest concentration of his work can be found in Musewell Hill where he lives.\n" +
                 "Wilson's work encompasses a wide subject matter, often relating to the immediate contextual environment or to people that he meets on his " +
                 "travels.");
-        Author.put("Carlo Dolci" , "Carlo Dolci was born in Florence, on his mother's side the grandson of a painter. Although he was precocious and apprenticed " +
+        Authors.put("Carlo Dolci" , "Carlo Dolci was born in Florence, on his mother's side the grandson of a painter. Although he was precocious and apprenticed " +
                 "at a young age to Jacopo Vignali, Dolci was not prolific. \"He would take weeks over a single foot\", according to his biographer Baldinucci. " +
                 "His painstaking technique made him unsuited for large-scale fresco painting. He painted chiefly sacred subjects, and his works are generally " +
                 "small in scale, although he made a few life-size pictures. He often repeated the same composition in several versions, and his daughter, Agnese " +
@@ -232,14 +233,14 @@ public class ArtistInformation {
                 "Dolci was known for his piety. It is said that every year during Passion Week he painted a half-figure of the Saviour wearing the Crown of Thorns. " +
                 "In 1682, when he saw Giordano, nicknamed \"fa presto\" (quick worker), paint more in five hours than he could have completed in months, he fell " +
                 "into a depression. He died in Florence in 1686.");
-        Author.put("David Shillinglaw" , "Born in 1982 in Saudi Arabia to British parents, David Shillinglaw is currently based in London. At home in both the " +
+        Authors.put("David Shillinglaw" , "Born in 1982 in Saudi Arabia to British parents, David Shillinglaw is currently based in London. At home in both the " +
                 "streets and in the studio, Shillinglaw applies his fine arts graphic skills to everything from small hand-made books to large murals focusing " +
                 "on the follies and wisdom of the human race.\n" +
                 "Although he was formally educated with a degree in Fine Art, Shillinglaw contends that the best lessons that he's learned have been " +
                 "self-taught. With mixed-media work that has been exhibited in galleries throughout the world including China, Japan and Turkey, Shillinglaw " +
                 "draws on materials from both ancient mythology and popular culture. His favourite surfaces include objects such as old road signs and doors " +
                 "that he finds in the street.");
-        Author.put("Anthony van Dyck" , "Antoon van Dyck (his Flemish name) was born to prosperous parents in Antwerp. His talent was evident very early, and " +
+        Authors.put("Anthony van Dyck" , "Antoon van Dyck (his Flemish name) was born to prosperous parents in Antwerp. His talent was evident very early, and " +
                 "he was studying painting with Hendrick van Balen by 1609, and became an independent painter around 1615, setting up a workshop with his " +
                 "even younger friend Jan Brueghel the Younger. By the age of fifteen he was already a highly accomplished artist, as his Self-portrait, " +
                 "1613–14, shows. He was admitted to the Antwerp painters' Guild of Saint Luke as a free master by February 1618. Within a few years he was " +
@@ -251,13 +252,13 @@ public class ArtistInformation {
                 "despite his periodic returns to the city, van Dyck spent most of his career abroad. In 1620, in Rubens's contract for the major commission " +
                 "for the ceiling of the Carolus Borromeuskerk, the Jesuit church at Antwerp (lost to fire in 1718), van Dyck is specified as one of the " +
                 "\"discipelen\" who was to execute the paintings to Rubens' designs.");
-        Author.put("MadC" , "MadC was born in 1980 in East Germany. She studied at the University of Art and Design Burg Giebichenstein in Halle Germany and at " +
+        Authors.put("MadC" , "MadC was born in 1980 in East Germany. She studied at the University of Art and Design Burg Giebichenstein in Halle Germany and at " +
                 "the Central Saint Martins College, London. MadC painted her first piece in 1996 and has since gone on to paint, in over 35 countries. Of " +
                 "particular note was the '700 Wall' which she painted in 2010. This is a 700 square metre wall, the largest ever painted by a single artist.\n" +
                 "Technically gifted, MadC is known for her bright and accurate letter style but also her huge and detailed concept walls. Fonts and the energy " +
                 "of combined letters inspire her imagery. She works with bright colours, which she connects through transparent layers to result in an energetic " +
                 "abstract piece of art. MadC has exhibited her artwork on canvas in galleries all over the world.");
-        Author.put("Jan van Huysum" , "He was the brother of Jacob van Huysum, the son of the flower painter Justus van Huysum, and the grandson of Jan van " +
+        Authors.put("Jan van Huysum" , "He was the brother of Jacob van Huysum, the son of the flower painter Justus van Huysum, and the grandson of Jan van " +
                 "Huysum I, who is said to have been expeditious in decorating doorways, screens and vases. A picture by Justus is preserved in the gallery " +
                 "of Brunswick, representing \"Orpheus and the Beasts in a wooded landscape\", and here we have some explanation of his son's fondness for " +
                 "landscapes of a conventional and Arcadian kind; for Jan van Huysum, though skilled as a painter of still life, believed himself to possess " +
@@ -266,13 +267,13 @@ public class ArtistInformation {
                 "and woods of tall and motionless trees-the whole very glossy and smooth, and entirely lifeless. The earliest dated work of this kind is that " +
                 "of 1717, in the Louvre, a grove with maidens culling flowers near a tomb, ruins of a portico, and a distant palace on the shores of a lake " +
                 "bounded by mountains.");
-        Author.put("Reka" , "Growing up next to major train line in Melbourne, Australia, REKA was introduced to the world of grafitti at an early age first " +
+        Authors.put("Reka" , "Growing up next to major train line in Melbourne, Australia, REKA was introduced to the world of grafitti at an early age first " +
                 "hitting the walls of his native city in the late 1990s. He gradually made the shift from grafitti into what is now known as street art. " +
                 "One of the original members of the famed Everfresh crew, REKA has painted large murals all over the world. REKA's body of work comprises " +
                 "surrealist, abstracted creatures communicated through strong lines, dynamic movement and bold colours. \n" +
                 "REKA's work is held in the permanent collection of the National Gallery of Australia and he has exhibited his work in galleries all around " +
                 "the world.");
-        Author.put("Agent Provocateur(AP)" , "Agent Provocateur is from south London. He studied at Central Saint Martins College, London, getting an MA in " +
+        Authors.put("Agent Provocateur(AP)" , "Agent Provocateur is from south London. He studied at Central Saint Martins College, London, getting an MA in " +
                 "Communication Design before becoming a political designer, which culminated in designing the Labour Party Manifesto in 2005. Primarly " +
                 "known for stencils, Agent Provocateur's simple and often humurous images encompass a wide variety of pop culture themes; consumerism, " +
                 "politics, religion and the cult of celibrity being a few. \n" +
@@ -280,7 +281,7 @@ public class ArtistInformation {
                 "dodgy royal souvenirs, shop disloyalty cards, beer labels and wedding portraits. Most recently he's added gallerist to this list. His last " +
                 "Herrods pop-up gallery held in a local junk shop not only showcased work by a selection of world-renowned artists, it also questioned " +
                 "established perceptions of contemporary art, elitism and greed.");
-        Author.put("Sir Peter Paul Rubens" , "Rubens was born in the German city of Siegen, Nassau-Dillenburg, to Jan Rubens and Maria Pypelincks. His father, " +
+        Authors.put("Sir Peter Paul Rubens" , "Rubens was born in the German city of Siegen, Nassau-Dillenburg, to Jan Rubens and Maria Pypelincks. His father, " +
                 "a Calvinist, and mother fled Antwerp for Cologne in 1568, after increased religious turmoil and persecution of Protestants during the rule of " +
                 "the Spanish Netherlands by the Duke of Alba.\n" +
                 "Jan Rubens became the legal advisor (and lover) of Anna of Saxony, the second wife of William I of Orange, and settled at her court in Siegen " +
@@ -289,11 +290,11 @@ public class ArtistInformation {
                 "two years after his father's death, Rubens moved with his mother Maria Pypelincks to Antwerp, where he was raised as a Catholic.\n" +
                 "Religion figured prominently in much of his work and Rubens later became one of the leading voices of the Catholic Counter-Reformation style of " +
                 "painting (he had said \"My passion comes from the heavens, not from earthly musings\").");
-        Author.put("RUN" , "RUN is a London-based Italian artist whose works can be seen adorning street corners from China to Senegal. His style shows a level " +
+        Authors.put("RUN" , "RUN is a London-based Italian artist whose works can be seen adorning street corners from China to Senegal. His style shows a level " +
                 "of detail and complexity rarely seen in street art today, often evidenced through his vivid rendering of interlocking hands and faces in bright, " +
                 "arresting colours. RUN is interested in street art as a language of communication, creating playful characters that speak to diverse audiences on " +
                 "multiple levels. The expansive scale of his work captivates the viewer.");
-        Author.put("Tilly Kettle" , "Tilly Kettle (1735–1786) was a portrait painter and the first English painter to work in India. He was born in London, the " +
+        Authors.put("Tilly Kettle" , "Tilly Kettle (1735–1786) was a portrait painter and the first English painter to work in India. He was born in London, the " +
                 "son of a coach painter, in a family that had been members of the Brewers' Company of freemen for five generations. He studied drawing with " +
                 "William Shipley in the Strand and first entered professional portraiture in the 1750s.\n" +
                 "Kettle's first series of portraits appeared in the 1760s. His first surviving painting is a self-portrait from 1760, with his first exhibit at " +

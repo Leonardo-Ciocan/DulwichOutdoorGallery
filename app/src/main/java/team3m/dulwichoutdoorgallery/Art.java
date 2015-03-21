@@ -2,7 +2,6 @@ package team3m.dulwichoutdoorgallery;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -13,25 +12,60 @@ import java.util.ArrayList;
  */
 public class Art {
     String shareID;
+
+    /**
+     * The title of the art
+     */
     String Name;
+
+    /**
+     * A short description
+     */
     String Description;
+
+    /**
+     * The artist of the art
+     */
     String Author;
+
+    /**
+     * This is the picture gallery's art that this was inspired from
+     */
     Art RelatedArt;
+
+    //TODO tags
     ArrayList<String> Tags = new ArrayList<String>();
+
+    /**
+     * The latitude section of the location
+     */
     double Latitude;
+
+    /**
+     * The longitude section of the location
+     */
     double Longitude;
+
+    /**
+     * An object used to retrieve both latitude and longitude , for use with the API
+     */
     LatLng position;
+
+    /**
+     * The corresponding drawable name
+     */
     String photo;
 
-    public String getIsOnline() {
-        return isOnline;
+    /**
+     * If on dropbox , this will be a local path to the picture
+     */
+    String onlinePicture;
+
+    public String getOnlinePicture() {
+        return onlinePicture;
     }
 
-    public void setIsOnline(String isOnline) {
-        this.isOnline = isOnline;
-    }
 
-    String isOnline;
 
     public String getName() {
         return Name;
@@ -45,17 +79,11 @@ public class Art {
         return Description;
     }
 
-    public void setDescription(String description) {
-        Description = description;
-    }
 
     public String getAuthor() {
         return Author;
     }
 
-    public void setAuthor(String author) {
-        Author = author;
-    }
 
     public Art getRelatedArt() {
         return RelatedArt;
@@ -67,10 +95,6 @@ public class Art {
 
     public ArrayList<String> getTags() {
         return Tags;
-    }
-
-    public void setTags(ArrayList<String> tags) {
-        Tags = tags;
     }
 
     public double getLatitude(){
@@ -102,7 +126,7 @@ public class Art {
         this.shareID = shareID;
     }
 
-    public Art(String name, String description, String author, Art relatedArt, ArrayList<String> tags, double latitude, double longitude, String photo, String isOnline, String shareID) {
+    public Art(String name, String description, String author, Art relatedArt, ArrayList<String> tags, double latitude, double longitude, String photo, String onlinePicture, String shareID) {
         Name = name;
         Description = description;
         Author = author;
@@ -112,7 +136,7 @@ public class Art {
         Longitude = longitude;
         position = new LatLng(latitude,longitude);
         this.photo = photo;
-        this.isOnline = isOnline;
+        this.onlinePicture = onlinePicture;
         this.shareID = shareID;
     }
 

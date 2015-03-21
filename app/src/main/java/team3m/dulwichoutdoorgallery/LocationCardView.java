@@ -8,14 +8,10 @@ import android.graphics.Color;
 import android.support.v7.graphics.Palette;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
-import android.view.animation.OvershootInterpolator;
 import android.view.animation.Transformation;
-import android.widget.ActionMenuView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -122,7 +118,7 @@ public class LocationCardView extends RelativeLayout {
         else{
             //Gets the file downloaded from Dropbox
             File imgFile = new  File(getContext().getApplicationContext().getFilesDir()
-                                     + File.separator+ a.getIsOnline());
+                                     + File.separator+ a.getOnlinePicture());
             if(imgFile.exists()){
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                 img.setImageBitmap(myBitmap);

@@ -15,7 +15,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -258,7 +257,7 @@ public class CoreActivity extends ActionBarActivity {
         });
 
         //We initialize the badge list
-        BadgesActivity.PlaceholderFragment.populateBadgeList();
+        BadgesFragment.populateBadgeList();
         onPostCreate(null);
     }
 
@@ -323,7 +322,7 @@ public class CoreActivity extends ActionBarActivity {
                         } else if (id == ROUTE) {
                             fragment = new RouteActivity.PlaceholderFragment();
                         } else if (id == BADGES) {
-                            fragment = new BadgesActivity.PlaceholderFragment();
+                            fragment = new BadgesFragment();
                         } else if (id == GAME) {
                             fragment = new GameFragment();
                         } else if (id == ABOUT) {

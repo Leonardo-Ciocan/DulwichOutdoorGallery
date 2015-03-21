@@ -249,7 +249,7 @@ public class GameFragment extends Fragment {
 
     void showCompleteScreen20(View v) {
         if (!Core.getBadgeStatus(7)) {
-            Core.notifyBadgeEarned(BadgesActivity.badges.get(7));
+            Core.notifyBadgeEarned(BadgesFragment.badges.get(7));
             Core.setBadgeCompleted(7);
         }
         Button shareButton2 = (Button) v.findViewById(R.id.gameShareButton2);

@@ -17,11 +17,30 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.util.ArrayList;
 
+/**
+ * A general class that handles general utilities and shared data
+ */
 public class Core {
 
+    /**
+     * The key for the dropbox api
+     */
     final static public String APP_KEY = "taiirhe19lvs791";
+
+    /**
+     * The secret key for the dropbox api
+     */
     final static public String APP_SECRET = "wlq0gei4ofhppca";
 
+
+    /**
+     *  Triggered when the user earns a badge
+     */
+    static BadgeEarnedListener badgeEarnedListener;
+
+    /**
+     * A list of all the art in the app
+     */
     public static ArrayList<Art> Gallery = new ArrayList<Art>() {
         {
             add(new Art("Europa and the Winged Bird, 2014",
@@ -292,16 +311,21 @@ public class Core {
         }
     };
 
+
+
     public static ArrayList<Art> getGallery() {
         return Gallery;
     }
 
-    static BadgeEarnedListener badgeEarnedListener;
 
     public static void setBadgeListener(BadgeEarnedListener listener) {
         badgeEarnedListener = listener;
     }
 
+    /**
+     * Triggers a badge earned notification
+     * @param b Which badge was earned
+     */
     public static void notifyBadgeEarned(Badge b) {
         if (badgeEarnedListener != null) badgeEarnedListener.completedBadge(b);
     }
@@ -322,54 +346,55 @@ public class Core {
         CoreActivity.preferences.edit().putBoolean("_location" + n, true).commit();
     }
 
+    /**
+     * Checks whether any badge was earned and triggers that achievement
+     */
     public static void updateBadges() {
-
+        //count is how many places are visited
         int count = 0;
 
         for (int x = 0; x < getGallery().size(); x++) {
             if (isLocationVisited(x)) count++;
         }
 
-        ArrayList<Integer> achived = new ArrayList<>();
-
         if (count == getGallery().size()) {
             if (!getBadgeStatus(0)) {
-                notifyBadgeEarned(BadgesActivity.badges.get(0));
+                notifyBadgeEarned(BadgesFragment.badges.get(0));
                 setBadgeCompleted(0);
             }
         }
 
         if (isLocationVisited(14) && isLocationVisited(15)) {
             if ((!getBadgeStatus(1))) {
-                notifyBadgeEarned(BadgesActivity.badges.get(1));
+                notifyBadgeEarned(BadgesFragment.badges.get(1));
                 setBadgeCompleted(1);
             }
         }
 
         if (count == 3) {
             if (!getBadgeStatus(3)) {
-                notifyBadgeEarned(BadgesActivity.badges.get(3));
+                notifyBadgeEarned(BadgesFragment.badges.get(3));
                 setBadgeCompleted(3);
             }
         }
 
         if (count == 5) {
             if (!getBadgeStatus(4)) {
-                notifyBadgeEarned(BadgesActivity.badges.get(4));
+                notifyBadgeEarned(BadgesFragment.badges.get(4));
                 setBadgeCompleted(4);
             }
         }
 
         if (isLocationVisited(4)) {
             if (!getBadgeStatus(10)) {
-                notifyBadgeEarned(BadgesActivity.badges.get(10));
+                notifyBadgeEarned(BadgesFragment.badges.get(10));
                 setBadgeCompleted(10);
             }
         }
 
         if (isLocationVisited(10)) {
             if (!getBadgeStatus(11)) {
-                notifyBadgeEarned(BadgesActivity.badges.get(11));
+                notifyBadgeEarned(BadgesFragment.badges.get(11));
                 setBadgeCompleted(11);
             }
 
@@ -377,61 +402,76 @@ public class Core {
 
         if (isLocationVisited(3)) {
             if (!getBadgeStatus(12)) {
-                notifyBadgeEarned(BadgesActivity.badges.get(12));
+                notifyBadgeEarned(BadgesFragment.badges.get(12));
                 setBadgeCompleted(12);
             }
         }
 
-        if (isLocationVisited(5) && isLocationVisited(8) && isLocationVisited(11) && isLocationVisited(13)
-                && isLocationVisited(14) && isLocationVisited(25)) {
+        if (    isLocationVisited(5) && isLocationVisited(8) &&
+                isLocationVisited(11) && isLocationVisited(13)&&
+                isLocationVisited(14) && isLocationVisited(25)) {
             if (!getBadgeStatus(9)) {
-                notifyBadgeEarned(BadgesActivity.badges.get(9));
+                notifyBadgeEarned(BadgesFragment.badges.get(9));
                 setBadgeCompleted(9);
             }
         }
 
-        if (isLocationVisited(0) && isLocationVisited(18) && isLocationVisited(21) && isLocationVisited(20)) {
+        if (    isLocationVisited(0) && isLocationVisited(18) &&
+                isLocationVisited(21) && isLocationVisited(20)) {
             if (!getBadgeStatus(8)) {
-                notifyBadgeEarned(BadgesActivity.badges.get(8));
+                notifyBadgeEarned(BadgesFragment.badges.get(8));
                 setBadgeCompleted(8);
             }
         }
 
-        if (isLocationVisited(4) && isLocationVisited(5) && isLocationVisited(6) && isLocationVisited(7)
-                && isLocationVisited(9) && isLocationVisited(10)) {
+        if (    isLocationVisited(4) && isLocationVisited(5) &&
+                isLocationVisited(6) && isLocationVisited(7) &&
+                isLocationVisited(9) && isLocationVisited(10)) {
             if (!getBadgeStatus(6)) {
-                notifyBadgeEarned(BadgesActivity.badges.get(6));
+                notifyBadgeEarned(BadgesFragment.badges.get(6));
                 setBadgeCompleted(6);
             }
         }
 
-        if (isLocationVisited(19) && isLocationVisited(3) && isLocationVisited(22) && isLocationVisited(18)) {
+        if (    isLocationVisited(19) && isLocationVisited(3) &&
+                isLocationVisited(22) && isLocationVisited(18)) {
             if (!getBadgeStatus(5)) {
-                notifyBadgeEarned(BadgesActivity.badges.get(5));
+                notifyBadgeEarned(BadgesFragment.badges.get(5));
                 setBadgeCompleted(5);
             }
         }
     }
 
 
+    /**
+     * Checks dropbox and downloads new art if any
+     * Art is defined within a [name].txt file and [name].png and [name]2.png are the pictures
+     * @param c The context
+     */
     public static void update(Context c){
+        //we use this to insert new authors if needed
         ArtistInformation artistInformation = new ArtistInformation();
-        DropboxAPI.Entry dirent = null;
 
+        DropboxAPI.Entry entry = null;
+
+        //We get the /saved/ folder on dropbox
         try {
-            dirent = CoreActivity.sessionDropboxAPI.metadata("/saved/", 1000, null, true, null);
+            entry = CoreActivity.sessionDropboxAPI.metadata("/saved/", 1000, null, true, null);
         } catch (DropboxException e) {
             e.printStackTrace();
         }
+
+        //We make a list of all filenames in that folder
         ArrayList<DropboxAPI.Entry> files = new ArrayList<DropboxAPI.Entry>();
         ArrayList<String> dir = new ArrayList<String>();
         int i = 0;
-        for (DropboxAPI.Entry ent : dirent.contents) {
+        for (DropboxAPI.Entry ent : entry.contents) {
             files.add(ent);// Add it to the list of thumbs we can choose from
             dir.add(files.get(i++).path);
         }
 
         for (String s : dir) {
+            //Each file is downloaded
             String name = s.split("/")[2];
             File folder = c.getFilesDir();
             File file = new File(folder.getAbsolutePath() + File.separator + name);
@@ -449,9 +489,11 @@ public class Core {
                 e.printStackTrace();
             }
 
+            //The txt file describes the art so we add an art for each txt
             if (name.endsWith(".txt")) {
 
             try {
+                    //We read the .txt file
                     BufferedReader inputReader = new BufferedReader(new InputStreamReader(
                             c.openFileInput(name)));
                     String inputString;
@@ -460,12 +502,16 @@ public class Core {
                         stringBuffer.append(inputString + "\n");
                     }
 
+                    //The format is delimited by \n
                     String[] lines = stringBuffer.toString().split("\n");
 
-                    artistInformation.Author.put(lines[1],lines[3]);
-                    artistInformation.Author.put(lines[7],lines[9]);
-                    Art art = new Art(lines[0], lines[2], lines[1], new Art(lines[6], lines[8], lines[7], null, null, 0, 0,"",name.replace(".txt","a.png"),""), null, Float.parseFloat(lines[4]), Float.parseFloat(lines[5]),"",name.replace(".txt",".png"),"");
+                    artistInformation.Authors.put(lines[1],lines[3]);
+                    artistInformation.Authors.put(lines[7],lines[9]);
+                    Art art = new Art(lines[0], lines[2], lines[1], new Art(lines[6], lines[8], lines[7],
+                            null, null, 0, 0,"",name.replace(".txt","a.png"),""), null, Float.parseFloat(lines[4]),
+                            Float.parseFloat(lines[5]),"",name.replace(".txt",".png"),"");
                     Core.getGallery().add(art);
+                    //We trigger a list notification since there is new art
                     if (ArtAdapter.instance != null)
                         ((Activity) c).runOnUiThread(new Runnable() {
                             @Override
@@ -482,6 +528,7 @@ public class Core {
         }
     }
 
+    //TODO keep this?
     public boolean checkInternetConnection() {
         try {
             InetAddress ipAddr = InetAddress.getByName("www.google.com"); //You can replace it with your name
@@ -492,17 +539,16 @@ public class Core {
         }
     }
 
+    /**
+     * Utility to conver dp to pixels for animations
+     * @param dp
+     * @param context
+     * @return
+     */
     public static float convertDpToPixel(float dp, Context context) {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
-        float px = dp * (metrics.densityDpi / 160f);
-        return px;
+        return dp * (metrics.densityDpi / 160f);
     }
 
-    public static float convertPixelsToDp(float px, Context context) {
-        Resources resources = context.getResources();
-        DisplayMetrics metrics = resources.getDisplayMetrics();
-        float dp = px / (metrics.densityDpi / 160f);
-        return dp;
-    }
 }

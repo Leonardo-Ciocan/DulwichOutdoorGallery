@@ -1,26 +1,19 @@
 package team3m.dulwichoutdoorgallery;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
@@ -37,18 +30,16 @@ import com.r0adkll.slidr.Slidr;
 import com.r0adkll.slidr.model.SlidrInterface;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.concurrent.locks.Lock;
 
 public class InfoActivity extends ActionBarActivity {
 
-    PlaceholderFragment fragment;
+    InfoFragment fragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_activity);
         Slidr.attach(this);
-        fragment = new PlaceholderFragment();
+        fragment = new InfoFragment();
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, fragment)
@@ -98,15 +89,14 @@ public class InfoActivity extends ActionBarActivity {
 
     }
 
-    public static class PlaceholderFragment extends Fragment {
+    public static class InfoFragment extends Fragment {
 
-        public PlaceholderFragment() {
+        public InfoFragment() {
         }
 
         boolean isLocked = false;
         boolean street_ = false;
 
-        public SlidrInterface slidr;
 
         ImageView i1;
         ImageView i2;
@@ -174,7 +164,7 @@ public class InfoActivity extends ActionBarActivity {
                 @Override
                 public void onClick(View v) {
                     ArtistInformation art = new ArtistInformation();
-                    final String description = (String)art.Author.get(textAuthor.getText());
+                    final String description = (String)art.Authors.get(textAuthor.getText());
                     final String title = (String)textAuthor.getText();
 
                     Animation textAnim = new Animation() {
@@ -218,14 +208,14 @@ public class InfoActivity extends ActionBarActivity {
             });
 
 
-            if(art.getIsOnline() != null) {
-                File imgFile = new  File(getActivity().getApplicationContext().getFilesDir()+ File.separator+ art.getIsOnline());
+            if(art.getOnlinePicture() != null) {
+                File imgFile = new  File(getActivity().getApplicationContext().getFilesDir()+ File.separator+ art.getOnlinePicture());
                 if(imgFile.exists()){
                     Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                     header.setImageBitmap(myBitmap);
                 }
 
-                File imgFile2 = new  File(getActivity().getApplicationContext().getFilesDir()+ File.separator+ art.getRelatedArt().getIsOnline());
+                File imgFile2 = new  File(getActivity().getApplicationContext().getFilesDir()+ File.separator+ art.getRelatedArt().getOnlinePicture());
                 if(imgFile2.exists()){
                     Bitmap myBitmap = BitmapFactory.decodeFile(imgFile2.getAbsolutePath());
                     header2.setImageBitmap(myBitmap);
@@ -342,7 +332,7 @@ public class InfoActivity extends ActionBarActivity {
             if (!CoreActivity.preferences.getBoolean("DidShare",false)){
                 CoreActivity.preferences.edit().putBoolean("DidShare",true).commit();
                 Core.setBadgeCompleted(2);
-                Core.notifyBadgeEarned(BadgesActivity.badges.get(2));
+                Core.notifyBadgeEarned(BadgesFragment.badges.get(2));
             }
 
             Intent shareIntent = new Intent();

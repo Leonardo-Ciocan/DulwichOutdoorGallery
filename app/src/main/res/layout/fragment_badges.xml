@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
-    tools:context="team3m.dulwichoutdoorgallery.BadgesActivity$PlaceholderFragment">
+    tools:context="team3m.dulwichoutdoorgallery.BadgesFragment">
 
     <android.support.v7.widget.CardView
         app:cardBackgroundColor="@color/brandDark"

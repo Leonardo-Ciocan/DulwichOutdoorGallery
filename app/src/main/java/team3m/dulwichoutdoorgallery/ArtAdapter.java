@@ -52,8 +52,8 @@ public class ArtAdapter extends ArrayAdapter<Art>{
         ImageView photo = (ImageView)itemView.findViewById(R.id.photo);
 
         //We set the image based on if the image is from dropbox
-        if(a.getIsOnline() != null) {
-            File imgFile = new  File(getContext().getApplicationContext().getFilesDir()+ File.separator+ a.getIsOnline());
+        if(a.getOnlinePicture() != null) {
+            File imgFile = new  File(getContext().getApplicationContext().getFilesDir()+ File.separator+ a.getOnlinePicture());
             if(imgFile.exists()){
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                 photo.setImageBitmap(myBitmap);

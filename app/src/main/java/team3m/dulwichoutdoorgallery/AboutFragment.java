@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+/**
+ * The page that shows the about information
+ */
 public class AboutFragment extends Fragment {
 
     public AboutFragment() {
@@ -22,8 +25,7 @@ public class AboutFragment extends Fragment {
 
         TextView aboutText = (TextView) rootView.findViewById(R.id.aboutText);
 
-
-
+        //The following buttons show the corresponding license information when clicked
         CardView lib1 = (CardView) rootView.findViewById(R.id.lib1);
         lib1.setOnClickListener(new View.OnClickListener() {
             @Override
