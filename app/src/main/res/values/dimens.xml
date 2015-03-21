@@ -3,4 +3,5 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="picture_size">200dp</dimen>
+    <dimen name="picture_size_small">180dp</dimen>
 </resources>
