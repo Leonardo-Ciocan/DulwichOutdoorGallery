@@ -11,32 +11,82 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Bookkeeping class for the main GameFragment class.
+ */
 public class Game {
+    /**
+     * Placeholder activity to interface between the fragment and API methods that require an
+     * activity.
+     */
     private static Activity theActivity;
+    /**
+     * Represents the 20 questions for the game.
+     */
     private static ArrayList<Game> theSets = null;
+    /**
+     * Store's the new artist's name fora particular question.
+     */
     private String artist;
+    /**
+     * Stores the resource name for the street art drawable for a particular question.
+     */
     private String artworkResourceName;
+    /**
+     *
+     */
     private int artworkToMatch;
+    /**
+     *
+     */
     private int[] possibleChoices;
+    /**
+     * Stores the index of the int array which is the correct choice for a particular question.
+     */
     private int correctChoice;
+    /**
+     * Stores whether the user has attempted to answer a particular question.
+     */
     private boolean completed = false;
+    /**
+     * Stores whether the user has got a particular attempt at a question correct.
+     */
     private boolean correct = false;
+    /**
+     * Stores the names of the four Dulwich Picture Gallery pieces for a particular question.
+     */
     private String[] artworkName = new String[4];
+    /**
+     * Stores the names of the artists of the four Dulwich Picture Gallery pieces for a particular
+     * question.
+     */
     private String[] artworkArtist = new String[4];
 
+    /**
+     * Sets up a new object of the Game class (an instance of a question.)
+     */
     private Game() { //intentionally private - only our static functions should create Games
         possibleChoices = new int[4];
     }
 
+    /**
+     * Initialises a new set of question sets.
+     */
     private static void loadSets() {
         int event;
         Game cur = null;
 
         SharedPreferences completionData = theActivity.getSharedPreferences("Completion", 0);
 
+        // Assigns contents of games xml file to xml parser
         theSets = new ArrayList<>();
         XmlResourceParser data = theActivity.getResources().getXml(R.xml.games);
 
+        /**
+         * Reads xml data and creates a new game object for each pictureSet listed in xml.
+         * Each pictureSet corresponds to one question in the game. The resource names listed in
+         * each attribute are saved to each corresponding game object.
+         */
         try {
             event = data.getEventType();
 
@@ -80,6 +130,12 @@ public class Game {
         }
     }
 
+    /**
+     * Calculates the number of correct answers the user has got so far. If no question sets exist,
+     * these are generated.
+     *
+     * @return number of correctly answered questions
+     */
     public static int score() {
         if (theSets == null)
             loadSets();
@@ -93,6 +149,12 @@ public class Game {
         return res;
     }
 
+    /**
+     * Calculates the number of questions the user has attempted to answer. If no question sets
+     * exist, these are generated.
+     *
+     * @return number of questions attempted by user
+     */
     public static int progress() {
         if (theSets == null)
             loadSets();
@@ -106,6 +168,12 @@ public class Game {
         return res;
     }
 
+    /**
+     * Determines if the user has attempted to answer all the questions. If no question sets
+     * exist, these are generated.
+     *
+     * @return true if all questions attempted, false if not
+     */
     public static boolean allSetsComplete() {
         if (theSets == null)
             loadSets();
@@ -118,6 +186,14 @@ public class Game {
         return true;
     }
 
+    /**
+     * Randomly selects a question from the question set. If the question has already been
+     * attempted, questions will continue to be selected until a new one is found. If no question
+     * sets exist, these are generated.
+     *
+     * @param caller the activity
+     * @return next question, or null if no questions left
+     */
     public static Game getNextGame(Activity caller) {
         theActivity = caller;
         if (theSets == null)
@@ -133,6 +209,9 @@ public class Game {
         return theSets.get(n);
     }
 
+    /**
+     * Resets the user's progress in the game.
+     */
     public static void reset() {
         SharedPreferences.Editor updateCompletionData = theActivity.getSharedPreferences("Completion", 0).edit();
 
@@ -169,6 +248,13 @@ public class Game {
         return artworkArtist[i];
     }
 
+    /**
+     * Sets the question as having been attempted. If the selected picture was the correct choice,
+     * this question's boolean completed is set to true.
+     *
+     * @param pictureNumber the number of the image choices selected
+     * @return true if image choice was correct, false if choice was incorrect
+     */
     public boolean makeAGuess(int pictureNumber) {
         SharedPreferences.Editor updateCompletionData = theActivity.getSharedPreferences("Completion", 0).edit();
 
@@ -182,6 +268,11 @@ public class Game {
         return correct;
     }
 
+    /**
+     * Checks if question has already been attempted.
+     *
+     * @return true if question has been attempted, or false if it has not
+     */
     boolean isCompleted() {
         return completed;
     }
