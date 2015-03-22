@@ -51,8 +51,8 @@
                 android:layout_below="@+id/gameprogressBar">
 
                 <FrameLayout
-                    android:layout_width="@dimen/picture_size"
-                    android:layout_height="@dimen/picture_size"
+                    android:layout_width="@dimen/picture_size_small"
+                    android:layout_height="@dimen/picture_size_small"
                     android:layout_alignLeft="@+id/viewAnimator"
                     android:layout_alignTop="@+id/viewAnimator"
                     android:layout_marginLeft="5dp"
@@ -61,8 +61,8 @@
 
                 <ViewAnimator
                     android:id="@+id/viewAnimator"
-                    android:layout_width="@dimen/picture_size"
-                    android:layout_height="@dimen/picture_size"
+                    android:layout_width="@dimen/picture_size_small"
+                    android:layout_height="@dimen/picture_size_small"
                     android:layout_alignLeft="@+id/imageView"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="false"
@@ -121,11 +121,11 @@
                     android:text="1"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@android:color/white"
-                    android:textSize="9pt" />
+                    android:textSize="7pt" />
 
                 <FrameLayout
-                    android:layout_width="@dimen/picture_size"
-                    android:layout_height="@dimen/picture_size"
+                    android:layout_width="@dimen/picture_size_small"
+                    android:layout_height="@dimen/picture_size_small"
                     android:layout_alignLeft="@+id/imageView"
                     android:layout_alignTop="@+id/imageView"
                     android:layout_marginLeft="5dp"
@@ -145,12 +145,12 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="@dimen/picture_size"
-                    android:layout_height="@dimen/picture_size"
+                    android:layout_width="@dimen/picture_size_small"
+                    android:layout_height="@dimen/picture_size_small"
                     android:layout_alignParentEnd="false"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="30dp"
                     android:adjustViewBounds="true"
                     android:background="@drawable/drop_shadow"
                     android:scaleType="fitCenter"
