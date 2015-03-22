@@ -320,7 +320,7 @@ public class CoreActivity extends ActionBarActivity {
                             fragment = new team3m.dulwichoutdoorgallery.ExploreFragment(searchBox);
                             ExploreFragment = (ExploreFragment) fragment;
                         } else if (id == ROUTE) {
-                            fragment = new RouteActivity.PlaceholderFragment();
+                            fragment = new RouteFragment();
                         } else if (id == BADGES) {
                             fragment = new BadgesFragment();
                         } else if (id == GAME) {
@@ -388,7 +388,7 @@ public class CoreActivity extends ActionBarActivity {
                             //route progress
                             Fragment fragment = null;
 
-                            fragment = new RouteActivity.PlaceholderFragment();
+                            fragment = new RouteFragment();
 
                             routeIndicator.setVisibility(View.VISIBLE);
 

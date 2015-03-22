@@ -400,16 +400,15 @@ public class ExploreFragment extends Fragment {
                 GoogleMap.OnMyLocationChangeListener myLocationChangeListener =
                     new GoogleMap.OnMyLocationChangeListener() {
 
+                    //keep last position marker
                     Marker last;
 
                     @Override
                     public void onMyLocationChange(Location location) {
+                        //update position maker
                         if (last != null) last.remove();
-                        //LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-                        //We keep the marker location so we can update it on change
-                        //last = map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.).position(loc));
-
-                        int n = RouteActivity.PlaceholderFragment.getClosestWithinRange(location,11);
+                        //check if we're close to one
+                        int n = RouteFragment.getClosestWithinRange(location, 11);
                         if(n != -1){
                             markers.get(n).setIcon(BitmapDescriptorFactory.defaultMarker(0));
                             Core.setLocationVisited(n);
@@ -421,7 +420,6 @@ public class ExploreFragment extends Fragment {
 
                 map.setMyLocationEnabled(true);
                 map.setOnMyLocationChangeListener(myLocationChangeListener);
-
             }
         });
     }
@@ -438,9 +436,9 @@ public class ExploreFragment extends Fragment {
         }
 
         map.clear();
+        //redraw all markers so we can update their visited status
         ArrayList<Art > Gallery = Core.getGallery();
         for (int i = 0; i < Gallery.size(); i++) {
-            //Core.getGallery().get(i).getDrawable(getActivity());
             Marker m = map.addMarker(new MarkerOptions()
                     .icon(BitmapDescriptorFactory
                             .defaultMarker(200))
@@ -544,14 +542,6 @@ public class ExploreFragment extends Fragment {
             params4.bottomMargin = (int) ((115 + 250 - (250 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
         cardButton.setLayoutParams(params4);
 
-                /*FrameLayout.LayoutParams params5 = (FrameLayout.LayoutParams) searchCard.getLayoutParams();
-                if (isCardUp)
-                    params5.topMargin = (int) (((-200 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
-                else
-                    params5.topMargin = (int) ((-200 + (207 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
-                searchCard.setLayoutParams(params5);
-
-                searchCard.setAlpha(((isCardUp) ? 1 - interpolatedTime : interpolatedTime * 1));*/
         list.setAlpha(((isCardUp) ? 1 - interpolatedTime : interpolatedTime * 1));
 
         mapHolder.setAlpha(((!isCardUp) ? 1.5f - interpolatedTime : 0.5f + interpolatedTime * 1));

@@ -28,10 +28,12 @@ import android.widget.TextView;
 
 import com.melnykov.fab.FloatingActionButton;
 import com.r0adkll.slidr.Slidr;
-import com.r0adkll.slidr.model.SlidrInterface;
 
 import java.io.File;
 
+/**
+ * Displays information about a street art
+ */
 public class InfoActivity extends ActionBarActivity {
 
     InfoFragment fragment;
@@ -72,6 +74,7 @@ public class InfoActivity extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
+        //We delay the back key so we can show a exit animation
         fragment.animation.setInterpolator(new ReverseInterpolator());
         fragment.animation.setDuration(500);
         fragment.getView().startAnimation(fragment.animation);
@@ -92,19 +95,42 @@ public class InfoActivity extends ActionBarActivity {
 
     public static class InfoFragment extends Fragment {
 
+        private FloatingActionButton rotateButton;
+
         public InfoFragment() {
         }
 
+        /**
+         * Whether an animation is in progress
+         */
         boolean isLocked = false;
-        boolean street_ = false;
+
+        /**
+         * If we are on the street art
+         */
+        boolean onStreetImage = false;
 
 
-        ImageView i1;
-        ImageView i2;
+        /**
+         * The street art imageview
+         */
+        ImageView streetImageView;
 
+        /**
+         *
+         */
+        ImageView galleryImageView;
+
+        /**
+         * The art shown
+         */
         Art art;
 
+        /**
+         * The entry animation
+         */
         public Animation animation;
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
@@ -119,7 +145,6 @@ public class InfoActivity extends ActionBarActivity {
                     FrameLayout.LayoutParams params3 = (FrameLayout.LayoutParams) scrollView.getLayoutParams();
                     params3.topMargin = (int) ((400 + (int) (-400 * interpolatedTime)) * getActivity().getResources().getDisplayMetrics().density);
                     scrollView.setLayoutParams(params3);
-                   // navigationButton.setRotation(interpolatedTime * 100);
 
                     scrollView.setAlpha(interpolatedTime);
 
@@ -145,23 +170,23 @@ public class InfoActivity extends ActionBarActivity {
 
             final Button btnShare = (Button) rootView.findViewById(R.id.shareBtn);
             final Button btnTalk = (Button) rootView.findViewById(R.id.talkBtn);
-            final FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
+            rotateButton = (FloatingActionButton) rootView.findViewById(R.id.fab);
 
+            //Extract the correct art
             int i = getActivity().getIntent().getIntExtra("index", 0);
-
             art = Core.getGallery().get(i);
 
+            //Set information
             final TextView textTitle = (TextView) rootView.findViewById(R.id.title);
             final TextView textAuthor = (TextView) rootView.findViewById(R.id.author);
             final TextView textDescription = (TextView) rootView.findViewById(R.id.description);
 
             textTitle.setText(art.getName());
             textDescription.setText(art.getDescription());
-
             textAuthor.setText(art.getAuthor());
             textAuthor.setTypeface(null, Typeface.BOLD);
 
-            String description;
+            //When pressing on the author we show their description
             textAuthor.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -174,21 +199,11 @@ public class InfoActivity extends ActionBarActivity {
                         protected void applyTransformation(float interpolatedTime, Transformation t) {
 
                             if (interpolatedTime < 0.5f) {
-                                //i1.setAlpha(0);
-                                //i2.setAlpha(255);
-                                //i2.setRotationY(180 + 90 * ( interpolatedTime * 2f));
-                                //i1.setAlpha(255);
-                                //i2.setAlpha(0);
-                                //i1.setAlpha(0);
-                                //i1.setRotationY(90 * (2f * interpolatedTime));
                             }
                             else {
-                            textTitle.setText(title);
-                            textAuthor.setText("");
-                            textDescription.setText(description);
-                            //i1.setAlpha(0);
-                            //i2.setAlpha(255);
-                            //i2.setRotationY(180 + 90 * ( interpolatedTime * 2f));
+                                textTitle.setText(title);
+                                textAuthor.setText("");
+                                textDescription.setText(description);
                             }
 
                             float opacity = interpolatedTime < 0.5 ? 1-interpolatedTime*2f : (interpolatedTime-0.5f)*2;
@@ -210,6 +225,7 @@ public class InfoActivity extends ActionBarActivity {
             });
 
 
+            //If the picture is online , we get it from the storage , else from the drawables
             if(art.getOnlinePicture() != null) {
                 File imgFile = new  File(getActivity().getApplicationContext().getFilesDir()+ File.separator+ art.getOnlinePicture());
                 if(imgFile.exists()){
@@ -230,6 +246,7 @@ public class InfoActivity extends ActionBarActivity {
                         .getIdentifier(art.getRelatedArt().getPhoto(), "drawable", getActivity().getPackageName())));
             }
 
+            //We animate the button as we scroll down
             scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
 
                 @Override
@@ -240,15 +257,15 @@ public class InfoActivity extends ActionBarActivity {
                     params2.topMargin = (int)(-scrollY / 2.5f);
                     imgHolder.setLayoutParams(params2);
 
-                    FrameLayout.LayoutParams params3 = (FrameLayout.LayoutParams) fab.getLayoutParams();
+                    FrameLayout.LayoutParams params3 = (FrameLayout.LayoutParams) rotateButton.getLayoutParams();
                     params3.rightMargin = (int)(-scrollY/1.875f);
-                    fab.setLayoutParams(params3);
-                    fab.setRotation(scrollY);
+                    rotateButton.setLayoutParams(params3);
+                    rotateButton.setRotation(scrollY);
                 }
             });
 
-            i1 = header;
-            i2 = header2;
+            streetImageView = header;
+            galleryImageView = header2;
 
             imgHolder.setOnClickListener( new View.OnClickListener() {
                 @Override
@@ -256,43 +273,46 @@ public class InfoActivity extends ActionBarActivity {
                 }
             });
 
+            //The flipping animation
             final Animation flipAnimation = new Animation() {
                 @Override
                 protected void applyTransformation(float interpolatedTime, Transformation t) {
+                    //We lock from pressing the button again
                     isLocked = true;
+                    //We first rotate the first image to 90 degress
                     if(interpolatedTime < 0.5f){
 
-                        i1.setAlpha(255);
-                        i2.setAlpha(0);
-                        //i1.setAlpha(0);
-                        i1.setRotationY(90 * (2f * interpolatedTime));
+                        streetImageView.setAlpha(255);
+                        galleryImageView.setAlpha(0);
+                        streetImageView.setRotationY(90 * (2f * interpolatedTime));
                     }
                     else{
-                        textTitle.setText(street_? art.getName() : art.getRelatedArt().getName());
-                        textAuthor.setText(street_ ? art.getAuthor() : art.getRelatedArt().getAuthor());
-                        textDescription.setText(street_? art.getDescription() : art.getRelatedArt().getDescription());
+                        //We change the information midway
+                        textTitle.setText(onStreetImage ? art.getName() : art.getRelatedArt().getName());
+                        textAuthor.setText(onStreetImage ? art.getAuthor() : art.getRelatedArt().getAuthor());
+                        textDescription.setText(onStreetImage ? art.getDescription() : art.getRelatedArt().getDescription());
 
                         if(!art.getName().equals(art.getRelatedArt().getName())) {
-                            textTitle.setTextColor(street_ ? getResources().getColor(R.color.brand) : Color.RED);
-                            fab.setColorNormal(street_ ? getResources().getColor(R.color.brand) : Color.RED);
-                            fab.setColorPressed(street_ ? getResources().getColor(R.color.brand) : Color.RED);
-                            btnShare.setTextColor(street_ ? getResources().getColor(R.color.brand) : Color.RED);
-                            btnTalk.setTextColor(street_ ? getResources().getColor(R.color.brand) : Color.RED);
+                            textTitle.setTextColor(onStreetImage ? getResources().getColor(R.color.brand) : Color.RED);
+                            rotateButton.setColorNormal(onStreetImage ? getResources().getColor(R.color.brand) : Color.RED);
+                            rotateButton.setColorPressed(onStreetImage ? getResources().getColor(R.color.brand) : Color.RED);
+                            btnShare.setTextColor(onStreetImage ? getResources().getColor(R.color.brand) : Color.RED);
+                            btnTalk.setTextColor(onStreetImage ? getResources().getColor(R.color.brand) : Color.RED);
                         }
-                        i1.setAlpha(0);
-                        i2.setAlpha(255);
-                        i2.setRotationY(180 + 90 * ( interpolatedTime * 2f));
+                        streetImageView.setAlpha(0);
+                        galleryImageView.setAlpha(255);
+                        galleryImageView.setRotationY(180 + 90 * (interpolatedTime * 2f));
                     }
 
                     float opacity = interpolatedTime < 0.5 ? 1-interpolatedTime*2f : (interpolatedTime-0.5f)*2;
                     scrollView.setAlpha(opacity);
 
                     if(interpolatedTime >= 1f){
-                        street_ = !street_;
-                        final ImageView temp = i1;
-                        i1 = i2;
-                        i2 = temp;
-                        //i2.setRotationY(90);
+                        onStreetImage = !onStreetImage;
+                        final ImageView temp = streetImageView;
+                        streetImageView = galleryImageView;
+                        galleryImageView = temp;
+                        //galleryImageView.setRotationY(90);
                         isLocked = false;
                         this.cancel();
                     }
@@ -307,7 +327,7 @@ public class InfoActivity extends ActionBarActivity {
             flipAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
             flipAnimation.setDuration(2000);
 
-            fab.setOnClickListener(new View.OnClickListener() {
+            rotateButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (!isLocked) header.startAnimation(flipAnimation);
@@ -331,14 +351,11 @@ public class InfoActivity extends ActionBarActivity {
             return rootView;
         }
 
+        /**
+         * Shares the art
+         */
         void share() {
-            String mySharedLink;
-            if (street_) {
-                mySharedLink = "http://www.facebook.com/dulwichsa/photos/" + art.getRelatedArt().getShareID();
-            } else {
-                mySharedLink = "http://www.facebook.com/dulwichsa/photos/" + art.getShareID();
-            }
-
+            //We unlock the badge for
             if (!CoreActivity.preferences.getBoolean("DidShare",false)){
                 CoreActivity.preferences.edit().putBoolean("DidShare",true).commit();
                 Core.setBadgeCompleted(2);
@@ -348,13 +365,16 @@ public class InfoActivity extends ActionBarActivity {
             Intent shareIntent = new Intent();
             shareIntent.setAction(Intent.ACTION_SEND);
             shareIntent.setType("text/plain");
-            shareIntent.putExtra(Intent.EXTRA_TEXT, mySharedLink);
+            shareIntent.putExtra(Intent.EXTRA_TEXT, art.getName());
             startActivity(Intent.createChooser(shareIntent, "Share via"));
         }
 
+        /**
+         * Comments for this
+         */
         void comment() {
             String mySharedLink;
-            if (street_) {
+            if (onStreetImage) {
                 mySharedLink = "http://www.facebook.com/dulwichsa/photos/" + art.getRelatedArt().getShareID();
             } else {
                 mySharedLink = "http://www.facebook.com/dulwichsa/photos/" + art.getShareID();
@@ -365,6 +385,9 @@ public class InfoActivity extends ActionBarActivity {
         }
     }
 
+    /**
+     * This lets us reverse an animation
+     */
     public class ReverseInterpolator implements Interpolator {
         @Override
         public float getInterpolation(float paramFloat) {
