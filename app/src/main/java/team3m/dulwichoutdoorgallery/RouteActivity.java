@@ -398,7 +398,7 @@ public class RouteActivity extends ActionBarActivity {
 
             LatLng lastP = loc;
             LatLng nextP = null;
-            if(current!= -1)Core.getGallery().get(current).getLocation();
+            if(current!= -1)nextP = Core.getGallery().get(current).getLocation();
             else {
                 nextP = first;
             }
