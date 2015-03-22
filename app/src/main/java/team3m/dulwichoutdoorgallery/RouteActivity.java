@@ -106,6 +106,7 @@ public class RouteActivity extends ActionBarActivity {
         private HorizontalScrollView scrollView;
         private Timer timer;
         boolean hasFinished;
+        private LatLng loc;
 
         public PlaceholderFragment() {
         }
@@ -200,6 +201,7 @@ public class RouteActivity extends ActionBarActivity {
 
         //Marker m;
         void handleLocationChanged(Location location){
+            loc = new LatLng(location.getLatitude(),location.getLongitude());
 
             /*user = new LatLng(location.getLatitude() , location.getLongitude());
             if(m==null){
@@ -271,7 +273,7 @@ public class RouteActivity extends ActionBarActivity {
                 visited.add(closest);
                 PolylineOptions options = new PolylineOptions();
                 options.add(Core.getGallery().get(closest).getLocation());
-                options.add(new LatLng(location.getLatitude(),location.getLongitude()));
+                options.add(loc);
 
                 map.addMarker(new MarkerOptions()
                         .title(Core.getGallery().get(closest).getName())
@@ -394,8 +396,17 @@ public class RouteActivity extends ActionBarActivity {
                 next= Core.getGallery().get(current).getLocation();
             }
 
+            LatLng lastP = loc;
+            LatLng nextP = null;
+            if(current!= -1)Core.getGallery().get(current).getLocation();
+            else {
+                nextP = first;
+            }
+
             Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-            Uri.parse("http://maps.google.com/maps?saddr="+ last.latitude+ "," + last.longitude+"&daddr="+ next.latitude+ "," + next.longitude));
+
+            Uri.parse("http://maps.google.com/maps?saddr="+ lastP.latitude+ "," + lastP.longitude+"&daddr="+
+                    nextP.latitude+ "," + nextP.longitude));
             startActivity(intent);
             Intent intent1 = new Intent(getActivity() , CoreActivity.class);
             Notification.Builder builder = new Notification.Builder(getActivity().getApplicationContext());
