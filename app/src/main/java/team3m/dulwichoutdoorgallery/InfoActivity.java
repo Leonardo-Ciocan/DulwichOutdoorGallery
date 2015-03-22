@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
@@ -143,6 +144,7 @@ public class InfoActivity extends ActionBarActivity {
             final ImageView header2 = (ImageView) rootView.findViewById(R.id.header2);
 
             final Button btnShare = (Button) rootView.findViewById(R.id.shareBtn);
+            final Button btnTalk = (Button) rootView.findViewById(R.id.talkBtn);
             final FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
 
             int i = getActivity().getIntent().getIntExtra("index", 0);
@@ -275,6 +277,7 @@ public class InfoActivity extends ActionBarActivity {
                             fab.setColorNormal(street_ ? getResources().getColor(R.color.brand) : Color.RED);
                             fab.setColorPressed(street_ ? getResources().getColor(R.color.brand) : Color.RED);
                             btnShare.setTextColor(street_ ? getResources().getColor(R.color.brand) : Color.RED);
+                            btnTalk.setTextColor(street_ ? getResources().getColor(R.color.brand) : Color.RED);
                         }
                         i1.setAlpha(0);
                         i2.setAlpha(255);
@@ -318,6 +321,13 @@ public class InfoActivity extends ActionBarActivity {
                 }
             });
 
+            btnTalk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    comment();
+                }
+            });
+
             return rootView;
         }
 
@@ -340,6 +350,18 @@ public class InfoActivity extends ActionBarActivity {
             shareIntent.setType("text/plain");
             shareIntent.putExtra(Intent.EXTRA_TEXT, mySharedLink);
             startActivity(Intent.createChooser(shareIntent, "Share via"));
+        }
+
+        void comment() {
+            String mySharedLink;
+            if (street_) {
+                mySharedLink = "http://www.facebook.com/dulwichsa/photos/" + art.getRelatedArt().getShareID();
+            } else {
+                mySharedLink = "http://www.facebook.com/dulwichsa/photos/" + art.getShareID();
+            }
+
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mySharedLink));
+            startActivity(browserIntent);
         }
     }
 
