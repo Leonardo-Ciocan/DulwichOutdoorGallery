@@ -1,16 +1,11 @@
 package team3m.dulwichoutdoorgallery;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -35,32 +30,49 @@ import static team3m.dulwichoutdoorgallery.R.drawable.streetwatcher;
 import static team3m.dulwichoutdoorgallery.R.drawable.warmup;
 
 /**
- * A placeholder fragment containing a simple view.
+ * Badges page
  */
 @SuppressWarnings("ConstantConditions")
 public class BadgesFragment extends Fragment {
 
+    /**
+     * The badges
+     */
     public static ArrayList<Badge> badges = new ArrayList<Badge>();
+
+    /**
+     * The title of a badge
+     */
     public static CharSequence badgeTitle;
+
+    /**
+     * The label for the achievement progress
+     */
     private static TextView txt_achievementsStats;
+
+    /**
+     * Badges achieved
+     */
     private static int badgesInTheBag;
+
+    /**
+     * Percentage achieved
+     */
     private static float achievementsPerc;
 
 
     public BadgesFragment() {
     }
 
+    /**
+     * The main view of the fragment
+     */
    View rootView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_badges, container, false);
 
-        /*
-        Quick Fix to Badges Duplication : Quickly checks whether the badges array is already populated.
-                    We only want to populate the list if the array is empty; if it isn't, then
-                    just display the current list.
-         */
         if(badges.size()==0){
             populateBadgeList();
         }
@@ -117,59 +129,18 @@ public class BadgesFragment extends Fragment {
         badges.add(new Badge("The Golden Spray", "Visit System UK Rembrandt Art", goldenspray, false));
     }
 
-    // Notifies the user whenever a badge is earned.
-    private void displayNotification(View v){
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this.getActivity());
-        notificationBuilder.setContentTitle("You just got a new achievement!");
-        notificationBuilder.setContentText("You earned the " +badgeTitle + " badge");
-
-        // Insert a new notification logo - this one is just a sample for testing
-        notificationBuilder.setSmallIcon(R.drawable.ic_action_about);
-
-        // Insert a new notification bgColor - this one is just a sample for testing
-        notificationBuilder.setColor(getResources().getColor(R.color.bright_foreground_material_light));
-
-        /*
-            Works only with API 16+
-
-        Intent notificationIntent = new Intent(this.getActivity(), BadgesActivity.class);
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this.getActivity());
-        stackBuilder.addParentStack(BadgesActivity.class);
-        stackBuilder.addNextIntent(notificationIntent);
-
-        PendingIntent notificationPending = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
-        notificationBuilder.setContentIntent(notificationPending);
-
-        */
-
-        Notification notification = notificationBuilder.build();
-        NotificationManager notificationManager = (NotificationManager) this.getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(1, notification);
-    }
-
+    /**
+     * Populates the list with badges
+     */
     private void populateListView() {
-        final ArrayAdapter<Badge> adapter = new MyListAdapter();
+        final ArrayAdapter<Badge> adapter = new BadgesAdapter();
         ListView list = (ListView) rootView.findViewById(R.id.badgesListView);
         list.setAdapter(adapter);
-
-        // Click on ListItem - ATM it triggers the action which displays the notification
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                /*Badge badgePos = adapter.getItem(position);
-                badgePos.setAchieved(true);
-                Core.notifyBadgeEarned(badgePos);
-                badgeTitle = badgePos.getTitle();
-                adapter.notifyDataSetChanged();
-                // Display Notification
-                displayNotification(view);*/
-            }
-        });
     }
 
-    private class MyListAdapter extends ArrayAdapter<Badge>{
+    private class BadgesAdapter extends ArrayAdapter<Badge>{
 
-        public MyListAdapter(){
+        public BadgesAdapter(){
             super(BadgesFragment.this.getActivity(), R.layout.badge_view, badges);
         }
 
@@ -179,6 +150,7 @@ public class BadgesFragment extends Fragment {
                 itemView = getActivity().getLayoutInflater().inflate(R.layout.badge_view, parent, false);
             }
 
+            //We fill each row with information
             Badge currentBadge;
             currentBadge = badges.get(pos);
 
@@ -201,6 +173,9 @@ public class BadgesFragment extends Fragment {
 
         }
 
+        /**
+         * Changes the opacity if it's achieved or not
+         */
         private void checkAchieved(Badge badge, ImageView img, TextView title, TextView desc){
             if(!Core.getBadgeStatus(badges.indexOf(badge))){
                 img.setAlpha(0.4f);
@@ -213,6 +188,9 @@ public class BadgesFragment extends Fragment {
             }
         }
 
+        /**
+         * Computes the percentage and displays it
+         */
         public void getStats(){
             for(int i=0; i<badges.size(); i++){
                 if(Core.getBadgeStatus(i))
@@ -223,6 +201,9 @@ public class BadgesFragment extends Fragment {
         }
     }
 
+    /**
+     * Shares the badge percentage
+     */
     void share(){
         Intent intent2 = new Intent(); intent2.setAction(Intent.ACTION_SEND);
         intent2.setType("text/plain");

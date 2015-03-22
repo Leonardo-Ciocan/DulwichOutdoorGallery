@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,58 +32,81 @@ import java.util.ArrayList;
 import java.util.Timer;
 
 /**
-* Created by leo on 22/03/15.
+* Routing pages
 */
 public class RouteFragment extends Fragment {
 
-    Polyline line ;
-    private LocationCardView cardA;
-    private LocationCardView cardB;
-    private LocationCardView cardC;
+    /**
+     * Contains the cards at bottom of the container
+     */
     private LinearLayout cardContainer;
+
+    /**
+     * The scrollview of the container
+     */
     private HorizontalScrollView scrollView;
-    private Timer timer;
+
+    /**
+     * Whether the user finished the route
+     */
     boolean hasFinished;
-    private LatLng loc;
+
+    /**
+     * The last location of the user
+     */
+    private LatLng userLoc;
 
     public RouteFragment() {
     }
 
-    int iCurrent = 0;
+
+    /**
+     * The index of the current navigation target in the order they are selected
+     */
+    int currentIndex = 0;
+
+    /**
+     * The index of the current target within the gallery
+     */
     int current = -1;
+
+    /**
+     * The index of the last visited location
+     */
     int lastVisited = 0;
+
+    /**
+     * The google map view
+     */
     GoogleMap map;
+
+    /**
+     * The last coordonate
+     */
     LatLng last;
-    boolean collapsed;
-    Art art;
-    Animation nextCardAnim;
 
+    /**
+     * Whether the user has reached the first point
+     */
     boolean visitedStartingPoint = false;
-    LatLng first = null;
 
-    LatLng user;
+    /**
+     * The computed coordonate of the first point
+     */
+    LatLng first = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
 
         final View rootView = inflater.inflate(R.layout.fragment_route, container, false);
         //gets the map control
         final SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
 
-        final TextView titleView      = (TextView)                rootView.findViewById(R.id.title);
-        final TextView               authorView     = (TextView)                rootView.findViewById(R.id.author);
-        final TextView               title          = (TextView)                rootView.findViewById(R.id.title);
-        final TextView               author         = (TextView)                rootView.findViewById(R.id.author);
         final FloatingActionButton fab            = (FloatingActionButton)    rootView.findViewById(R.id.fab);
         cardContainer = (LinearLayout)            rootView.findViewById(R.id.cardContainer);
         scrollView = (HorizontalScrollView)    rootView.findViewById(R.id.scrollView);
-        cardA = (LocationCardView)        rootView.findViewById(R.id.cardA);
-        cardB = (LocationCardView)        rootView.findViewById(R.id.cardB);
-        cardC = (LocationCardView)        rootView.findViewById(R.id.cardC);
 
 
 
@@ -99,6 +121,7 @@ public class RouteFragment extends Fragment {
                 GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
                     @Override
                     public void onMyLocationChange(Location location) {
+                        //We keep processing events until the we reached the last art
                         if (!hasFinished){
                             handleLocationChanged(location);
                         }
@@ -108,6 +131,7 @@ public class RouteFragment extends Fragment {
                 googleMap.setOnMyLocationChangeListener(myLocationChangeListener);
 
 
+                //We zoom in to the middle of the map
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Core.Gallery.get(10).getLocation(), 12));
 
                 last = Gallery.get(0).getLocation();
@@ -115,7 +139,6 @@ public class RouteFragment extends Fragment {
             }
         });
 
-        collapsed = true;
 
         fab.setOnTouchListener(new View.OnTouchListener() {
 
@@ -127,35 +150,27 @@ public class RouteFragment extends Fragment {
             }
         });
 
+        //We populate the container with art cards
         for(int x =0;x< Core.getGallery().size();x++)
         {
             Art ax = Core.getGallery().get(x);
             cardContainer.addView(new LocationCardView(getActivity(), ax));
         }
 
-        timer = new Timer();
-
         return rootView;
     }
 
-    //Marker m;
+    /**
+     * This handles the user's movement
+     * @param location The location to process
+     */
     void handleLocationChanged(Location location){
-        loc = new LatLng(location.getLatitude(),location.getLongitude());
+        userLoc = new LatLng(location.getLatitude(),location.getLongitude());
 
-        /*user = new LatLng(location.getLatitude() , location.getLongitude());
-        if(m==null){
-            m = map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(66))
-            .position(user));
-        }
-        else{
-            m.remove();
-            m = map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(66))
-                    .position(user));
-        }*/
         if(first != null) {
 
             if(visitedStartingPoint) {
-
+                //If we visited first point , we check if we are close to the target
                 int closest = getClosestWithinRange(location, -1);
                 if(current == -1) current = closest;
 
@@ -164,55 +179,58 @@ public class RouteFragment extends Fragment {
                     withinRange = isWithinRange(current, location,
                             25f);
                 }
-                //Doge
 
                 if (withinRange) {
-
-
-
-
+                    //if we are close , we compute the next target
                     Core.setLocationVisited(current);
-                    Log.e("wubwu", current + " " + iCurrent);
                     Core.updateBadges();
 
+                    //Update the indicator
                     ((CoreActivity)getActivity()).routeIndicator.setSelected(
                             visited.size()-1
                     );
+
                    if (!visited.contains(current)){
                        visited.add(current);
                    }
                     lastVisited = current;
                     current = closest;
 
+                    //We make sure to avoid multiple calls issues
                     if(current != lastVisited) {
-                        iCurrent++;
+                        currentIndex++;
 
-                        ((LocationCardView) cardContainer.getChildAt(iCurrent - 1)).setArt(Core.getGallery().get(lastVisited));
-                        ((LocationCardView) cardContainer.getChildAt(iCurrent - 1)).hideOverlay();
+                        //We reveal the card we arrived at and prepare the next one
 
-                        if (iCurrent<Core.getGallery().size()-1)
-                            ((LocationCardView) cardContainer.getChildAt(iCurrent)).setArt(Core.getGallery().get(current));
+                        ((LocationCardView) cardContainer.getChildAt(currentIndex - 1)).setArt(Core.getGallery().get(lastVisited));
+                        ((LocationCardView) cardContainer.getChildAt(currentIndex - 1)).hideOverlay();
 
-                        scrollView.smoothScrollTo((int) Core.convertDpToPixel((130 * (iCurrent - 2)), getActivity()), 0);
+                        if (currentIndex <Core.getGallery().size()-1)
+                            ((LocationCardView) cardContainer.getChildAt(currentIndex)).setArt(Core.getGallery().get(current));
+
+                        //Scroll to the art
+                        scrollView.smoothScrollTo((int) Core.convertDpToPixel((130 * (currentIndex - 2)), getActivity()), 0);
 
                     }
 
                 }
-                if (iCurrent <= Core.getGallery().size()-1) {
+                if (currentIndex <= Core.getGallery().size()-1) {
                     drawOverlay();
                 }
-                if (iCurrent > Core.getGallery().size()) {
+                if (currentIndex > Core.getGallery().size()) {
                     hasFinished = true;
                 }
             }
         }
         else{
+            //If we havent reached the first
+            //We compute the closest point and draw the line
             int closest = getClosestWithinRange(location, -1);
             lastVisited = closest;
             visited.add(closest);
             PolylineOptions options = new PolylineOptions();
             options.add(Core.getGallery().get(closest).getLocation());
-            options.add(loc);
+            options.add(userLoc);
 
             map.addMarker(new MarkerOptions()
                     .title(Core.getGallery().get(closest).getName())
@@ -232,11 +250,11 @@ public class RouteFragment extends Fragment {
         }
 
         if(!visitedStartingPoint && first != null){
-
+            //We check if we reached the first and prepare for the next location change
             if(isWithinRange(lastVisited , location , 40f)){
                 visitedStartingPoint = true;
                 ((LocationCardView)cardContainer.getChildAt(0)).hideOverlay();
-                iCurrent++;
+                currentIndex++;
                 handleLocationChanged(location);
 
                 Core.setLocationVisited(lastVisited);
@@ -245,12 +263,22 @@ public class RouteFragment extends Fragment {
         }
     }
 
+    /**
+     * The list of visited indexes
+     */
     static ArrayList<Integer> visited = new ArrayList<Integer>();
+
+    /**
+     * Finds the closest art within a range
+     * @param user The location of the user
+     * @param max The maximum distance radius
+     * @return The closest index or -1 if none found
+     */
     public static  int getClosestWithinRange(Location user,float max){
         float min = Float.MAX_VALUE;
         int minIndex=-1;
 
-
+        //Linear search to look for closest
         for( int x =0; x < Core.getGallery().size();x++){
             Location location = new Location("t" + x);
             location.setLatitude(Core.Gallery.get(x).getLatitude());
@@ -265,6 +293,13 @@ public class RouteFragment extends Fragment {
         return minIndex;
     }
 
+    /**
+     * Checks whether a location is within a range
+     * @param index The index of the art
+     * @param user The location of the user
+     * @param max The maximum distance that would qualify
+     * @return Whether it is within the range
+     */
     public static boolean isWithinRange(int index , Location user,float max){
         Location location = new Location("t" + "");
         location.setLatitude(Core.Gallery.get(index).getLatitude());
@@ -273,6 +308,9 @@ public class RouteFragment extends Fragment {
         return  dist < max;
     }
 
+    /**
+     * Draws the markers and the lines to guide the user
+     */
     void drawOverlay(){
         map.clear();
         ArrayList<Art> Gallery = Core.getGallery();
@@ -301,41 +339,20 @@ public class RouteFragment extends Fragment {
 
         options.add(point2);
 
-
-        //int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-            Polyline polyline = map.addPolyline(options);
-            polyline.setGeodesic(true);
-            int color = getActivity().getResources().getColor(R.color.brand) ;
-            polyline.setColor(color);
-            polyline.setWidth(6);
-
-
-
-
-
+        Polyline polyline = map.addPolyline(options);
+        polyline.setGeodesic(true);
+        int color = getActivity().getResources().getColor(R.color.brand) ;
+        polyline.setColor(color);
+        polyline.setWidth(6);
     }
 
-    void share(){
-        Intent intent2 = new Intent(); intent2.setAction(Intent.ACTION_SEND);
-        intent2.setType("text/plain");
-        intent2.putExtra(Intent.EXTRA_TEXT, "I'm on the grand tour of the Dulwich outdoor gallery" );
-        startActivity(Intent.createChooser(intent2, "Share via"));
-    }
 
+    /**
+     * Starts a navigation intent so the user can navigate to a location
+     */
     void navigate(){
-        LatLng last = Core.getGallery().get(lastVisited).getLocation();
-        LatLng next =null;
 
-
-        if(current == -1){
-            next = first;
-            last = user;
-        }
-        else{
-            next= Core.getGallery().get(current).getLocation();
-        }
-
-        LatLng lastP = loc;
+        LatLng lastP = userLoc;
         LatLng nextP = null;
         if(current!= -1)nextP = Core.getGallery().get(current).getLocation();
         else {
@@ -348,6 +365,8 @@ public class RouteFragment extends Fragment {
                 nextP.latitude + "," + nextP.longitude));
         startActivity(intent);
         Intent intent1 = new Intent(getActivity() , CoreActivity.class);
+
+        //We tell the user to come up after being done by using a notification
         Notification.Builder builder = new Notification.Builder(getActivity().getApplicationContext());
         builder.setContentTitle("Dulwich Outdoor Gallery");
         builder.setSubText("When you are done navigating , come back to the app.");
@@ -367,19 +386,6 @@ public class RouteFragment extends Fragment {
         notificationManger.notify(01, notification);
     }
 
-    void shareArt(){
-        Intent intent2 = new Intent();
-        intent2.setAction(Intent.ACTION_SEND);
-        intent2.setType("text/plain");
-
-        //TODO fix please
-        intent2.putExtra(Intent.EXTRA_TEXT, "" );
-        intent2.setType("image/*");
-        Uri uri = Uri.parse("android.resource://team3m.dulwichoutdoorgallery/" + getActivity().getResources()
-                .getIdentifier(art.getPhoto(), "drawable", getActivity().getPackageName()));
-        intent2.putExtra(Intent.EXTRA_STREAM, uri);
-        startActivity(Intent.createChooser(intent2, "Share via"));
-    }
 
 
 }
