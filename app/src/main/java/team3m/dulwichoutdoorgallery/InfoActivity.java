@@ -1,5 +1,6 @@
 package team3m.dulwichoutdoorgallery;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -370,18 +371,35 @@ public class InfoActivity extends ActionBarActivity {
         }
 
         /**
-         * Comments for this
+         * Comments for this. Opens in Facebook app if user has it installed, opens in web
+         * browser if user does not.
          */
         void comment() {
-            String mySharedLink;
-            if (onStreetImage) {
-                mySharedLink = "http://www.facebook.com/dulwichsa/photos/" + art.getRelatedArt().getShareID();
-            } else {
-                mySharedLink = "http://www.facebook.com/dulwichsa/photos/" + art.getShareID();
-            }
 
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mySharedLink));
-            startActivity(browserIntent);
+            Intent facebookAppIntent;
+            try {
+                String mySharedLink;
+
+                if (onStreetImage) {
+                    mySharedLink = "fb://photo/" + art.getRelatedArt().getShareID();
+                } else {
+                    mySharedLink = "fb://photo/" + art.getShareID();
+                }
+
+                facebookAppIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mySharedLink));
+                startActivity(facebookAppIntent);
+            } catch (ActivityNotFoundException e) {
+                String mySharedLink;
+                if (onStreetImage) {
+                    mySharedLink = "http://www.facebook.com/" + art.getRelatedArt().getShareID();
+                } else {
+                    mySharedLink = "http://www.facebook.com/" + art.getShareID();
+                }
+
+                facebookAppIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(mySharedLink));
+                startActivity(facebookAppIntent);
+            }
         }
     }
 

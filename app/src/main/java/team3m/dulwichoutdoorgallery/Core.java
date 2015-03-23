@@ -49,8 +49,8 @@ public class Core {
                             "a new interpretation of the ancient fable.",
                     "Faith47", new Art("Europa and the Bull, 17th century", "Guido Reni managed one of the busiest studios of the 17th century. His most popular " +
                     "compositions can exist in several versions, with varying degrees of involvement of the master.",
-                    "Guido Reni", null, new ArrayList<String>(), 51.445936, -0.086170, "faith47_europa_and_the_bull", "a.1387311134920959.1073741826.1387308654921207/1387311151587624"),
-                    new ArrayList<String>(), 51.471419, -0.064335, "faith47_new", "a.1387325508252855.1073741827.1387308654921207/1387328914919181"));
+                    "Guido Reni", null, new ArrayList<String>(), 51.445936, -0.086170, "faith47_europa_and_the_bull", "1387311151587624"),
+                    new ArrayList<String>(), 51.471419, -0.064335, "faith47_new", "1387328914919181"));
 
             add(new Art("Landscape with Sportsmen and Game, 2013",
                     "ROA's dog is almost the only painting that has caused some controversy. He was given a portrait orientated wall, ruling out many " +
@@ -59,8 +59,8 @@ public class Core {
                     "painted in his mature style of the 1660s when he was living in Amsterdam. It has a cool tonality and sharp definition, with an intense " +
                     "focus on the foreground group of birches to the left. The large blue leaves in the foreground are the result of a chemical change over time: " +
                     "yellow lake may have been laid as a glaze over the blue, which then either faded or was accidentally removed during former restorations.",
-                    "Adam Pynacker", null, new ArrayList<String>(), 51.445936, -0.086170, "roa_landscape_with_sportsmen_and_game1", "a.1387311134920959.1073741826.1387308654921207/1387317981586941"),
-                    new ArrayList<String>(), 51.467437, -0.072308, "roa_new", "a.1387325508252855.1073741827.1387308654921207/1387331974918875"));
+                    "Adam Pynacker", null, new ArrayList<String>(), 51.445936, -0.086170, "roa_landscape_with_sportsmen_and_game1", "1387317981586941"),
+                    new ArrayList<String>(), 51.467437, -0.072308, "roa_new", "1387331974918875"));
 
             add(new Art("Landscape with Windmills near Haarlem, 2014",
                     "Kershaw, 74, sat on scaffolding for 10 days to create this astonishing mural. On a couple of afternoons he offered passing children the " +
@@ -69,8 +69,8 @@ public class Core {
                     "Walter Kershaw", new Art("Landscape with Windmills near Haarlem, 1650-52", "The Groote Kerk, Haarlem, is seen in the distance. A horse " +
                     "and figures centre left (since overpainted) and a rider and boy on the right were shown by pigment analysis to be post 17th-century additions " +
                     "and were removed in 1997. They are partially recorded in a copy made by Constable in 1831.",
-                    "Jacob van Ruisdael", null, new ArrayList<String>(), 51.445936, -0.086170, "walter_kershaw_landscape_with_windmills_near_haarlem", "a.1387311134920959.1073741826.1387308654921207/1387324591586280"),
-                    new ArrayList<String>(), 51.467357, -0.072510, "walter_kershaw_new", "a.1387325508252855.1073741827.1387308654921207/1387337328251673"));
+                    "Jacob van Ruisdael", null, new ArrayList<String>(), 51.445936, -0.086170, "walter_kershaw_landscape_with_windmills_near_haarlem", "1387324591586280"),
+                    new ArrayList<String>(), 51.467357, -0.072510, "walter_kershaw_new", "1387337328251673"));
 
             add(new Art("Girl at a Window, 2013",
                     "This wall is a combnation of System's interpretation of 'Girl at a Window' by Rembrandt and Remi's interpretation of 'The Triumph of David' " +
@@ -79,8 +79,8 @@ public class Core {
                     "and portraiture. The girl’s identity remains uncertain; in the past she has been described as a courtesan, a Jewish bride or an historical " +
                     "or Biblical figure. It is more widely accepted that she is a servant girl; her rosy, tanned complexion along with her brown arms implies " +
                     "she worked outdoors.",
-                    "Rembrandt van Rijn", null, new ArrayList<String>(), 51.445936, -0.086170, "remi_rough_and_system_girl_at_a_window", "a.1387311134920959.1073741826.1387308654921207/1387317278253678"),
-                    new ArrayList<String>(), 51.461959, -0.079336, "remi_rough_and_system_new", "a.1387325508252855.1073741827.1387308654921207/1387331571585582"));
+                    "Rembrandt van Rijn", null, new ArrayList<String>(), 51.445936, -0.086170, "remi_rough_and_system_girl_at_a_window", "1387317278253678"),
+                    new ArrayList<String>(), 51.461959, -0.079336, "remi_rough_and_system_new", "1387331571585582"));
 
             add(new Art("Fight Club, 2013",
                     "Conor is taking Le Brun's 'Massacre of the Innocents' as a source. His interpretation, filtered through the lens of George Bellows, is " +
@@ -90,8 +90,8 @@ public class Core {
                     "wise men of the birth in Bethlehem of the King of the Jews, Herod ordered that the young children of the city be put to death. The " +
                     "picture was begun in 1647, or shortly after, but was left unfinished probably until the mid-1660s, when it was completed for Gedeon du " +
                     "Metz, keeper of the Royal Treasury. There are several preliminary drawings in the Louvre.",
-                    "Charles Le Brun", null, new ArrayList<String>(), 51.445936, -0.086170, "conor_harrington_the_massacre_of_the_innocents", "a.1387311134920959.1073741826.1387308654921207/1387312898254116"),
-                    new ArrayList<String>(), 51.460617, -0.075041, "conor_harrington_new", "a.1387325508252855.1073741827.1387308654921207/1387328184919254"));
+                    "Charles Le Brun", null, new ArrayList<String>(), 51.445936, -0.086170, "conor_harrington_the_massacre_of_the_innocents", "1387312898254116"),
+                    new ArrayList<String>(), 51.460617, -0.075041, "conor_harrington_new", "1387328184919254"));
 
             add(new Art("A Couple in a Landscape, 2012",
                     "The original painting is very probably a wedding portrait. It is likely to be a marriage of convenience as they don't seem to be in love " +
@@ -102,8 +102,8 @@ public class Core {
                     "Joshua Kirby (National Portrait Gallery, London). There is equal emphasis upon the couple and the surrounding landscape. The decaying tree was a " +
                     "popular compositional device used in 17th-century Dutch landscape painting, especially the work of Jacob van Ruisdael and Jan Wijnants, whom" +
                     "Gainsborough greatly admired.",
-                    "Thomas Gainsborough", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_couple_in_a_landscape", "a.1387311134920959.1073741826.1387308654921207/1387319091586830"),
-                    new ArrayList<String>(), 51.456641, -0.075693, "stik_couple_in_a_landscape_new", "a.1387325508252855.1073741827.1387308654921207/1387332984918774"));
+                    "Thomas Gainsborough", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_couple_in_a_landscape", "1387319091586830"),
+                    new ArrayList<String>(), 51.456641, -0.075693, "stik_couple_in_a_landscape_new", "1387332984918774"));
 
             add(new Art("Mushroom Marker 1",
                     "Although Christiaan's mushrooms do not appear in any Dulwich Picture Gallery paintings, he made good markers of a route for a walk that " +
@@ -112,8 +112,8 @@ public class Core {
                     "Christiaan Nagel", new Art("Mushroom Marker 1", "Although Christiaan's mushrooms do not appear in any Dulwich Picture Gallery paintings, " +
                     "he made good markers of a route for a walk that takes in most of the walls and ends at Dulwich Picture Gallery. He put up four mushrooms " +
                     "but one was objected to so the shop owner on whose roof it was, was forced to take it down.",
-                    "Christiaan Nagel", null, new ArrayList<String>(), 51.455979, -0.076067, "mushroom_marker1", "a.1387325508252855.1073741827.1387308654921207/1387375498247856"),
-                    new ArrayList <String>(), 51.455979, -0.076067, "mushroom_marker1", "a.1387325508252855.1073741827.1387308654921207/1387375498247856"));
+                    "Christiaan Nagel", null, new ArrayList<String>(), 51.455979, -0.076067, "mushroom_marker1", "1387375498247856"),
+                    new ArrayList<String>(), 51.455979, -0.076067, "mushroom_marker1", "1387375498247856"));
 
             add(new Art("Mushroom Marker 2",
                     "Although Christiaan's mushrooms do not appear in any Dulwich Picture Gallery paintings, he made good markers of a route for a walk that " +
@@ -122,8 +122,8 @@ public class Core {
                     "Christiaan Nagel", new Art("Mushroom Marker 2", "Although Christiaan's mushrooms do not appear in any Dulwich Picture Gallery paintings, " +
                     "he made good markers of a route for a walk that takes in most of the walls and ends at Dulwich Picture Gallery. He put up four mushrooms " +
                     "but one was objected to so the shop owner on whose roof it was, was forced to take it down.",
-                    "Christiaan Nagel", null, new ArrayList<String>(), 51.455979, -0.076067, "mushroom_marker1", "a.1387325508252855.1073741827.1387308654921207/1387375498247856"),
-                    new ArrayList<String>(), 51.455981, -0.076418, "mushroom_marker2", "a.1387325508252855.1073741827.1387308654921207/1387375528247853"));
+                    "Christiaan Nagel", null, new ArrayList<String>(), 51.455979, -0.076067, "mushroom_marker1", "1387375498247856"),
+                    new ArrayList<String>(), 51.455981, -0.076418, "mushroom_marker2", "1387375528247853"));
 
             add(new Art("The Guardian Angel, 2012",
                     "The guardian angel is showing mankind the divine light, the true path, and is preventing the child from 'stubbing its toe on the rock " +
@@ -133,8 +133,8 @@ public class Core {
                     "the Carracci in Bologna and Rome - he therefore represents the continuation of the best of the Bolognese classical school of painting. " +
                     "His skill is very obvious in the beautiful drawing and colour of this work of his maturity. This work is possibly one of the versions of " +
                     "this subject noted in Franceschini's account book on 5 August and 20 December 1716.",
-                    "Marcantonio Franceschini", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_the_guardian_angel", "a.1387311134920959.1073741826.1387308654921207/1387321604919912"),
-                    new ArrayList<String>(), 51.456128, -0.077322, "stik_the_guardian_angel_new", "a.1387325508252855.1073741827.1387308654921207/1387335994918473"));
+                    "Marcantonio Franceschini", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_the_guardian_angel", "1387321604919912"),
+                    new ArrayList<String>(), 51.456128, -0.077322, "stik_the_guardian_angel_new", "1387335994918473"));
 
             add(new Art("St Sebastian, 2014",
                     "St Sebastian is a gay icon, so Beerens gave him a rainbow halo. His stag is as simple and dramatic as Reni's saint, but black on white " +
@@ -142,8 +142,8 @@ public class Core {
                     "Michael Beerens", new Art("Saint Sebastian, 1620-30s", "Sebastian was a Roman soldier condemned to death by the Emperor Diocletian for " +
                     "aiding the Christians; his arrow wounds were not fatal and he was later clubbed to death. Reni's painting was one of the most celebrated at " +
                     "Dulwich in the nineteenth century, but was catalogued in 1880 as a studio work and in 1980 as a copy.",
-                    "Guido Reni", null, new ArrayList<String>(), 51.445936, -0.086170, "beerens_st_sebastian_original", "a.1387311134920959.1073741826.1387308654921207/1387377008247705"),
-                    new ArrayList<String>(), 51.455987, -0.076507, "beerens_st_sebastian", "a.1387325508252855.1073741827.1387308654921207/1387375668247839"));
+                    "Guido Reni", null, new ArrayList<String>(), 51.445936, -0.086170, "beerens_st_sebastian_original", "1387377008247705"),
+                    new ArrayList<String>(), 51.455987, -0.076507, "beerens_st_sebastian", "1387375668247839"));
 
             add(new Art("New World Revolution, 2013",
                     "Mear's mixed race mother and child are challenging and demanding. Paradoxically they are more symbolic than the Catholic version " +
@@ -153,8 +153,8 @@ public class Core {
                     "vaporoso or ‘vaporous style’). The contours of the figures of the Virgin and the Christ Child have been softened and light suffuses the composition, " +
                     "enveloping them in a gentle glow. Although both figures have been idealized to a great extent, they retain a familiar humanity, particularly in the carefully " +
                     "combed hair of the child and the engaging way he toys with the beads of the rosary in a characteristic Murillesque touch.",
-                    "Bartolome Esteban Murillo", null, new ArrayList<String>(), 51.445936, -0.086170, "mear_one_the_virgin_of_the_rosary", "a.1387311134920959.1073741826.1387308654921207/1387315221587217"),
-                    new ArrayList<String>(), 51.454564, -0.077177, "mear_one_new", "a.1387325508252855.1073741827.1387308654921207/1387330554919017"));
+                    "Bartolome Esteban Murillo", null, new ArrayList<String>(), 51.445936, -0.086170, "mear_one_the_virgin_of_the_rosary", "1387315221587217"),
+                    new ArrayList<String>(), 51.454564, -0.077177, "mear_one_new", "1387330554919017"));
 
             add(new Art("The Fall of Man, 2012",
                     "Although Adam's eyes are firmly fixed on the fascinating apple, he is rejecting it. Stik saw this as Eve offering herself and said " +
@@ -165,9 +165,9 @@ public class Core {
                     "knowledge of good and evil (Genesis, Chapter III, 6). Although Adam recoils, his eyes are firmly fixed on the temptation. In the distance " +
                     "to the left is their resultant expulsion from Eden (Genesis, III, 23-4). Flemish master Pieter Coecke van Aelst established a successful studio " +
                     "in Brussels in 1544, where many important Flemish artists were trained - including possibly his future son-in-law, Pieter Brueghel the Elder." ,
-                    "Pieter Coecke van Aelst", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_the_fall_of_man", "a.1387311134920959.1073741826.1387308654921207/1387320694920003"),
+                    "Pieter Coecke van Aelst", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_the_fall_of_man", "1387320694920003"),
 
-                    new ArrayList<String>(), 51.453183, -0.078809, "stik_the_fall_of_man_new", "a.1387325508252855.1073741827.1387308654921207/1387335448251861"));
+                    new ArrayList<String>(), 51.453183, -0.078809, "stik_the_fall_of_man_new", "1387335448251861"));
 
             add(new Art("The Triumph of David, 2013",
                     "Phlegm originally wanted to interpret 'The Judde Memorial', British School. It includes a skull and a dead body, perfectly normal " +
@@ -179,8 +179,8 @@ public class Core {
                     "expression and dramatic storytelling in his paintings. Taken from the Bible’s Book of Samuel, the scene depicts David’s triumphal entry " +
                     "into Jerusalem after defeating the Philistines’ champion Goliath of Gath, an eight-foot giant who David had outwitted by striking his " +
                     "forehead with a well-aimed stone from his sling.",
-                    "Nicolas Poussin", null, new ArrayList<String>(), 51.445936, -0.086170, "phlegm_triumph_of_david", "a.1387311134920959.1073741826.1387308654921207/1387316671587072"),
-                    new ArrayList<String>(), 51.451588, -0.071564, "phlegm_new", "a.1387325508252855.1073741827.1387308654921207/1387331068252299"));
+                    "Nicolas Poussin", null, new ArrayList<String>(), 51.445936, -0.086170, "phlegm_triumph_of_david", "1387316671587072"),
+                    new ArrayList<String>(), 51.451588, -0.071564, "phlegm_new", "1387331068252299"));
 
             add(new Art("Elizabeth and Mary Linley, 2012",
                     "Elizabeth was one of the foremost sopranos of the day, talented, beautiful and earning a great deal from her concerts. Mary had a successful " +
@@ -190,8 +190,8 @@ public class Core {
                     "Stik", new Art("Elizabeth and Mary Linley, c.1772", "This double portrait of Elizabeth and Mary Linley, is the only known painting " +
                     "depicting both sisters together, each other’s closest companions. Gainsborough carried out this painting between early 1771 and March " +
                     "1772.  In 1785 upon the request of the Linley family, he re-touched the painting to depict the sitters in the fashion of the 1780s.",
-                    "Thomas Gainsborough", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_elizabeth_and_mary_linley", "a.1387311134920959.1073741826.1387308654921207/1387320374920035"),
-                    new ArrayList<String>(), 51.446656, -0.073634, "stik_elizabeth_and_mary_linley_new", "a.1387325508252855.1073741827.1387308654921207/1387333444918728"));
+                    "Thomas Gainsborough", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_elizabeth_and_mary_linley", "1387320374920035"),
+                    new ArrayList<String>(), 51.446656, -0.073634, "stik_elizabeth_and_mary_linley_new", "1387333444918728"));
 
             add(new Art("Three Boys, 2012",
                     "Street children in Seville, probably orphaned by the plague, are negociating for food and drink. Stik's children are negotiating too, but " +
@@ -200,8 +200,8 @@ public class Core {
                             "Skelton, Class Teacher).",
                     "Stik", new Art("Three Boys, c.1670", "This painting is unique in Murillo's oeuvre in that he appears to have changed his mind as " +
                     "he painted, a rare occurrence for an artist who is thought to have carefully planned and drawn out most of his compositions.",
-                    "Bartolome Esteban Murillo", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_three_boys", "a.1387311134920959.1073741826.1387308654921207/1387323154919757"),
-                    new ArrayList<String>(), 51.445235, -0.078621, "stik_three_boys_new", "a.1387325508252855.1073741827.1387308654921207/1387336264918446"));
+                    "Bartolome Esteban Murillo", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_three_boys", "1387323154919757"),
+                    new ArrayList<String>(), 51.445235, -0.078621, "stik_three_boys_new", "1387336264918446"));
 
             add(new Art("Joseph receiving Pharaoh's Ring, 2013",
                     "The subject is from Genesis XLI, 42: appointing Joseph ruler over Egypt, Pharaoh 'took off his ring from his hand, and put it upon " +
@@ -210,8 +210,8 @@ public class Core {
                     "Thierry Noir", new Art("Joseph receiving Pharaoh's Ring, 1733-35", "Pharaoh hands Joseph a ring to show that he has chosen the young Jewish" +
                     " ex-slave as his second-in-command over all the land of Egypt (Genesis 41:42). DPG158 was catalogued by Richter in 1880 as the work of Giandomenico Tiepolo," +
                     " but Morassi returned the picture to Giambattista, an attribution that is now generally accepted. ",
-                    "Giambattista Tiepolo", null, new ArrayList<String>(), 51.445936, -0.086170, "thierry_noir_joseph_receiving_pharaohs_ring", "a.1387311134920959.1073741826.1387308654921207/1387323888253017"),
-                    new ArrayList<String>(), 51.445275, -0.079029, "thierry_noir_new1", "a.1387325508252855.1073741827.1387308654921207/1387336761585063"));
+                    "Giambattista Tiepolo", null, new ArrayList<String>(), 51.445936, -0.086170, "thierry_noir_joseph_receiving_pharaohs_ring", "1387323888253017"),
+                    new ArrayList<String>(), 51.445275, -0.079029, "thierry_noir_new1", "1387336761585063"));
 
             add(new Art("Saint Catherine of Siena, 2013",
                     "Ben's tiny works of art are amazingly accurate reproductions of the Dulwich Picture Gallery paintings. He reproduces in miniature the " +
@@ -219,16 +219,16 @@ public class Core {
                             "Catherine running away, having a vision of a banana.",
                     "Ben Wilson", new Art("Saint Catherine of Siena, 1665-70", "Saint Catherine is shown in the habit of a Dominican tertiary with a crown of thorns." +
                     " This refers to a vision in which Christ offered her the choice between a crown of gold and a crown of thoms and she chose the latter. ",
-                    "Carlo Dolci", null, new ArrayList<String>(), 51.445936, -0.086170, "multiple_st_catherine_of_siena", "a.1387311134920959.1073741826.1387308654921207/1387315718253834"),
-                    new ArrayList<String>(), 51.445548, -0.085312, "ben_wilson_new1", "a.1387325508252855.1073741827.1387308654921207/1387380134914059"));
+                    "Carlo Dolci", null, new ArrayList<String>(), 51.445936, -0.086170, "multiple_st_catherine_of_siena", "1387315718253834"),
+                    new ArrayList<String>(), 51.445548, -0.085312, "ben_wilson_new1", "1387380134914059"));
 
             add(new Art("Dulwich Picture Gallery",
                     "Dulwich Picture Gallery, founded in 1811, is England's oldest public art gallery. It has one of the finest collections of Western " +
                             "European Baroque paintings in the world.",
                     "Dulwich Gallery", new Art("Dulwich Picture Gallery", "Dulwich Picture Gallery, founded in 1811, is England's oldest public art gallery. " +
                     "It has one of the finest collections of Western European Baroque paintings in the world.",
-                    "Dulwich Gallery", null, new ArrayList<String>(), 51.445936, -0.086170, "dulwich_gallery", "a.1387379154914157.1073741828.1387308654921207/1387379161580823"),
-                    new ArrayList<String>(), 51.445936, -0.086170, "dulwich_gallery", "a.1387379154914157.1073741828.1387308654921207/1387379161580823"));
+                    "Dulwich Gallery", null, new ArrayList<String>(), 51.445936, -0.086170, "dulwich_gallery", "1387379161580823"),
+                    new ArrayList<String>(), 51.445936, -0.086170, "dulwich_gallery", "1387379161580823"));
 
             add(new Art("Samson and Delilah, 2013",
                     "Discovering the painting by Anthony van Dick in Dulwich Picture Gallery, David saw the story coloured in and picked out some great visual " +
@@ -239,8 +239,8 @@ public class Core {
                     " the age of 20 and working as Rubens’ studio assistant in Antwerp. It entered Bourgeois’ and Desenfans’ collection in 1783 as a work by Van Dyck, but the similarity " +
                     "in style between his early work and Rubens’ late work caused much confusion, and it was subsequently reattributed to the older master. It was not until the beginning " +
                     "of the 20th century that it was rightfully given back to Van Dyck.",
-                    "Anthony van Dyck", null, new ArrayList<String>(), 51.445936, -0.086170, "david_shillinglaw_samson_and_delilah", "a.1387311134920959.1073741826.1387308654921207/1387314174920655"),
-                    new ArrayList<String>(), 51.452870, -0.103013, "david_shillinglaw_new", "a.1387325508252855.1073741827.1387308654921207/1387328374919235"));
+                    "Anthony van Dyck", null, new ArrayList<String>(), 51.445936, -0.086170, "david_shillinglaw_samson_and_delilah", "1387314174920655"),
+                    new ArrayList<String>(), 51.452870, -0.103013, "david_shillinglaw_new", "1387328374919235"));
 
             add(new Art("Vase with Flowers, 2013",
                     "You can look for hours at van Huysum's painting. As you peer you spot more and more tiny ants, flies, woodlice, ladybirds and even a " +
@@ -251,8 +251,8 @@ public class Core {
                     "even during the artist’s lifetime. They particularly admired Van Huysum’s ability to render flowers, fruit and insects with minute " +
                     "attention to detail, while his curved ornate bouquets showed the influence of the French Rococo style that was in fashion at the " +
                     "beginning of the 18th century." ,
-                    "Jan van Huysum", null, new ArrayList<String>(), 51.445936, -0.086170, "madc_vase_with_flowers", "a.1387311134920959.1073741826.1387308654921207/1387314651587274"),
-                    new ArrayList<String>(), 51.441563, -0.091361, "madc_new", "a.1387325508252855.1073741827.1387308654921207/1387329291585810"));
+                    "Jan van Huysum", null, new ArrayList<String>(), 51.445936, -0.086170, "madc_vase_with_flowers", "1387314651587274"),
+                    new ArrayList<String>(), 51.441563, -0.091361, "madc_new", "1387329291585810"));
 
             add(new Art("Europa and the Bull, 2013",
                     "Reka chose the piece 'Europa and the Bull' because the imagery lent itself to his style. He paint a lot of female figures in motion using " +
@@ -260,8 +260,8 @@ public class Core {
                             "for Reka, as he rarely use an image as a reference to my artworks.",
                     "Reka", new Art("Europa and the Bull, 17th century", "Guido Reni managed one of the busiest studios of the 17th century. His most popular " +
                     "compositions can exist in several versions, with varying degrees of involvement of the master.",
-                    "Guido Reni", null, new ArrayList<String>(), 51.445936, -0.086170, "reka_europa_and_the_bull", "a.1387311134920959.1073741826.1387308654921207/1387311151587624"),
-                    new ArrayList<String>(), 51.427814, -0.086899, "reka_new", "a.1387325508252855.1073741827.1387308654921207/1387331348252271"));
+                    "Guido Reni", null, new ArrayList<String>(), 51.445936, -0.086170, "reka_europa_and_the_bull", "1387311151587624"),
+                    new ArrayList<String>(), 51.427814, -0.086899, "reka_new", "1387331348252271"));
 
             add(new Art("Happy Hour, 2013",
                     "The work of art from Dulwich Picture Gallery that AP chose to interpret is a sketch. Before the days of porn in magazines and on the internet, " +
@@ -270,8 +270,8 @@ public class Core {
                     "Agent Provocateur(AP)", new Art("The Three Graces, c.1636", "The Graces - Euphrosyne, Thalia and Aglaea - were daughters of Zeus and goddesses " +
                     "of beauty and kindness. An irregular section above the heads of the figures has been cut away and replaced. Held suggests a date of c.1625/8, Jaff‚ " +
                     "gives c.1636. A preliminary drawing is at Christ Church, Oxford.",
-                    "Sir Peter Paul Rubens", null, new ArrayList<String>(), 51.445936, -0.086170, "agent_provocateur_the_three_graces", "a.1387311134920959.1073741826.1387308654921207/1387312191587520"),
-                    new ArrayList<String>(), 51.441069, -0.056676, "agent_provocateur_new", "a.1387325508252855.1073741827.1387308654921207/1387325538252852"));
+                    "Sir Peter Paul Rubens", null, new ArrayList<String>(), 51.445936, -0.086170, "agent_provocateur_the_three_graces", "1387312191587520"),
+                    new ArrayList<String>(), 51.441069, -0.056676, "agent_provocateur_new", "1387325538252852"));
 
             add(new Art("The Translation of Saint Rita of Cascia, 2013",
                     "Saint Rita had wished to become a nun, but she submitted to her parents' will and married. After the violent death of her cruel husband, " +
@@ -279,16 +279,16 @@ public class Core {
                             "similar flowing clothes, RUN's Saint Rita is careering down into the convent whereas Poussin's saint is journeying in a more sedate manner.",
                     "RUN", new Art("The Translation of Saint Rita of Cascia, c.1630", "Saint Rita had wished to become a nun, but submitted to her parents' will and married; " +
                     "after the violent death of her cruel husband, she was miraculously transported to the Augustinian convent of Cascia, near Spoleto. She was canonised in 1900. ",
-                    "Nicolas Poussin", null, new ArrayList<String>(), 51.445936, -0.086170, "run_the_translation_of_st_rita", "a.1387311134920959.1073741826.1387308654921207"),
-                    new ArrayList<String>(), 51.438862, -0.053918, "run_the_translation_of_st_rita_new", "a.1387325508252855.1073741827.1387308654921207/1387332194918853"));
+                    "Nicolas Poussin", null, new ArrayList<String>(), 51.445936, -0.086170, "run_the_translation_of_st_rita", "1387318298253576"),
+                    new ArrayList<String>(), 51.438862, -0.053918, "run_the_translation_of_st_rita_new", "1387332194918853"));
 
             add(new Art("Three Boys 1, 2013" ,
                     "Based on part of 'Three Boys' by Bartolome Murillo where the white boy might be picking the pocket of the black boy, and is looking " +
                             "very mischievous. Beerens has transformed him into a white sheep looking sly, with a fox's tail.",
                     "Michael Beerens", new Art("Three Boys, c.1670", "This painting is unique in Murillo's oeuvre in that he appears to have changed his mind as " +
                     "he painted, a rare occurrence for an artist who is thought to have carefully planned and drawn out most of his compositions.",
-                    "Bartolome Esteban Murillo", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_three_boys", "a.1387311134920959.1073741826.1387308654921207/1387323154919757"),
-                    new ArrayList<String>(), 51.447739, -0.074982, "beerens_new1", "a.1387325508252855.1073741827.1387308654921207/1387375291581210"));
+                    "Bartolome Esteban Murillo", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_three_boys", "1387323154919757"),
+                    new ArrayList<String>(), 51.447739, -0.074982, "beerens_new1", "1387375291581210"));
 
             add(new Art("Three Boys 2, 2013" ,
                     "Based on a part of 'Three Boys' by Bartolome Murillo where the black boy has his hand out for food and the white boy is refusing to give " +
@@ -296,8 +296,8 @@ public class Core {
                             "standing on lush grass with its mouth full.",
                     "Michael Beerens", new Art("Three Boys, c.1670", "This painting is unique in Murillo's oeuvre in that he appears to have changed his mind as " +
                     "he painted, a rare occurrence for an artist who is thought to have carefully planned and drawn out most of his compositions.",
-                    "Bartolome Esteban Murillo", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_three_boys", "a.1387311134920959.1073741826.1387308654921207/1387323154919757"),
-                    new ArrayList<String>(), 51.447369, -0.075179, "beerens_new2", "a.1387325508252855.1073741827.1387308654921207/1387375441581195"));
+                    "Bartolome Esteban Murillo", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_three_boys", "1387323154919757"),
+                    new ArrayList<String>(), 51.447369, -0.075179, "beerens_new2", "1387375441581195"));
 
             add(new Art("Eliza and Mary Davidson, 2012" ,
                     "Stik’s figures are stripped down to the pure essence of a human being. He does not confuse the message with clothes, hair or any props " +
@@ -306,8 +306,8 @@ public class Core {
                             "gender, education and age." ,
                     "Stik" , new Art("Eliza and Mary Davidson, 1784" , "The portrait was painted in India c. 1784, it portrays the daughters of Alexander Davidson (d.1791), " +
                     "Governor of Madras, 1785-6" ,
-                    "Tilly Kettle", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_eliza_and_mary_davidson", "a.1387311134920959.1073741826.1387308654921207/1387319454920127"),
-                    new ArrayList<String>(), 51.447408, -0.075845, "stik_eliza_and_mary_davidson_new", "a.1387325508252855.1073741827.1387308654921207/1387333244918748"));
+                    "Tilly Kettle", null, new ArrayList<String>(), 51.445936, -0.086170, "stik_eliza_and_mary_davidson", "1387319454920127"),
+                    new ArrayList<String>(), 51.447408, -0.075845, "stik_eliza_and_mary_davidson_new", "1387333244918748"));
         }
     };
 
@@ -492,7 +492,7 @@ public class Core {
             //The txt file describes the art so we add an art for each txt
             if (name.endsWith(".txt")) {
 
-            try {
+                try {
                     //We read the .txt file
                     BufferedReader inputReader = new BufferedReader(new InputStreamReader(
                             c.openFileInput(name)));
