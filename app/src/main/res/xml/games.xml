@@ -205,7 +205,7 @@
         target="@drawable/run_hoardings_new_game" />
 
     <pictureSet
-        artist="Remi, Rough, and System"
+        artist="Remi Rough and System"
         choice0="@drawable/none_follower_francesco_albani_madonna_game"
         choice0artist="Follower of Francesco Albani"
         choice0name="Madonna"
