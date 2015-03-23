@@ -33,9 +33,6 @@ public class Art {
      */
     Art RelatedArt;
 
-    //TODO tags
-    ArrayList<String> Tags = new ArrayList<String>();
-
     /**
      * The latitude section of the location
      */
@@ -93,10 +90,6 @@ public class Art {
         RelatedArt = relatedArt;
     }
 
-    public ArrayList<String> getTags() {
-        return Tags;
-    }
-
     public double getLatitude(){
         return Latitude;
     }
@@ -113,12 +106,11 @@ public class Art {
         return shareID;
     }
 
-    public Art(String name, String description, String author, Art relatedArt, ArrayList<String> tags, double latitude, double longitude, String photo, String shareID) {
+    public Art(String name, String description, String author, Art relatedArt, double latitude, double longitude, String photo, String shareID) {
         Name = name;
         Description = description;
         Author = author;
         RelatedArt = relatedArt;
-        Tags = tags;
         Latitude = latitude;
         Longitude = longitude;
         position = new LatLng(latitude,longitude);
@@ -126,12 +118,11 @@ public class Art {
         this.shareID = shareID;
     }
 
-    public Art(String name, String description, String author, Art relatedArt, ArrayList<String> tags, double latitude, double longitude, String photo, String onlinePicture, String shareID) {
+    public Art(String name, String description, String author, Art relatedArt, double latitude, double longitude, String photo, String onlinePicture, String shareID) {
         Name = name;
         Description = description;
         Author = author;
         RelatedArt = relatedArt;
-        Tags = tags;
         Latitude = latitude;
         Longitude = longitude;
         position = new LatLng(latitude,longitude);
