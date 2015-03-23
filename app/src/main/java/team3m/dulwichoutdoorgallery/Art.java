@@ -86,10 +86,6 @@ public class Art {
         return RelatedArt;
     }
 
-    public void setRelatedArt(Art relatedArt) {
-        RelatedArt = relatedArt;
-    }
-
     public double getLatitude(){
         return Latitude;
     }

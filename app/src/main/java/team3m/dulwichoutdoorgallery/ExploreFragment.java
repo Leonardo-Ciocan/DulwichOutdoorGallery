@@ -410,7 +410,6 @@ public class ExploreFragment extends Fragment {
                         //check if we're close to one
                         int n = RouteFragment.getClosestWithinRange(location, 11);
                         if(n != -1){
-                            markers.get(n).setIcon(BitmapDescriptorFactory.defaultMarker(0));
                             Core.setLocationVisited(n);
                             Core.updateBadges();
                         }

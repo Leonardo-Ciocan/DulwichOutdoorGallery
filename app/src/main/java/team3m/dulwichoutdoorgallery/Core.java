@@ -507,7 +507,7 @@ public class Core {
                     artistInformation.Authors.put(lines[1],lines[3]);
                     artistInformation.Authors.put(lines[7],lines[9]);
                     Art art = new Art(lines[0], lines[2], lines[1], new Art(lines[6], lines[8], lines[7],
-                            null, null, 0, 0,"",name.replace(".txt","a.png"),""), null, Float.parseFloat(lines[4]),
+                            null, 0, 0,"",name.replace(".txt","a.png"),"") , Float.parseFloat(lines[4]),
                             Float.parseFloat(lines[5]),"",name.replace(".txt",".png"),"");
                     Core.getGallery().add(art);
                     //We trigger a list notification since there is new art
@@ -524,17 +524,6 @@ public class Core {
                     e.printStackTrace();
                 }
             }
-        }
-    }
-
-    //TODO keep this?
-    public boolean checkInternetConnection() {
-        try {
-            InetAddress ipAddr = InetAddress.getByName("www.google.com"); //You can replace it with your name
-
-            return !ipAddr.equals("");
-        } catch (Exception e) {
-            return false;
         }
     }
 
